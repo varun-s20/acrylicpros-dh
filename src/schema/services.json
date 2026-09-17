@@ -1,0 +1,41 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://acrylicpros.com/services.html#page",
+      "name": "Aquarium Services",
+      "description": "Custom aquarium design, restoration & installation: scratch removal, acrylic pool panels, custom builds & installations, acrylic sign fabrication, pond design and construction, aquarium relocations, 24hr emergency services, maintenance services, live corals, tropical fish, sharks, stingrays & eels, reef insert restoration and glass tanks.",
+      "url": "https://acrylicpros.com/services.html",
+      "about": { "@id": "https://acrylicpros.com/#business" },
+      "isPartOf": { "@id": "https://acrylicpros.com/#website" },
+      "mainEntity": {
+        "@type": "ItemList",
+        "name": "Acrylic Pros services",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Scratch Removal", "url": "https://acrylicpros.com/scratch-removal.html" },
+          { "@type": "ListItem", "position": 2, "name": "Acrylic Pool Panels", "url": "https://acrylicpros.com/acrylic-pool-panels.html" },
+          { "@type": "ListItem", "position": 3, "name": "Custom Builds & Installations", "url": "https://acrylicpros.com/custom-builds-installations.html" },
+          { "@type": "ListItem", "position": 4, "name": "Acrylic Sign Fabrication", "url": "https://acrylicpros.com/acrylic-sign-fabrication.html" },
+          { "@type": "ListItem", "position": 5, "name": "Pond Design and Construction", "url": "https://acrylicpros.com/pond-design-construction.html" },
+          { "@type": "ListItem", "position": 6, "name": "Aquarium Relocations", "url": "https://acrylicpros.com/aquarium-relocations.html" },
+          { "@type": "ListItem", "position": 7, "name": "24hr Emergency Services", "url": "https://acrylicpros.com/emergency-services.html" },
+          { "@type": "ListItem", "position": 8, "name": "Maintenance Services", "url": "https://acrylicpros.com/maintenance.html" },
+          { "@type": "ListItem", "position": 9, "name": "Live Corals", "url": "https://acrylicpros.com/live-corals.html" },
+          { "@type": "ListItem", "position": 10, "name": "Tropical Fish", "url": "https://acrylicpros.com/tropical-fish.html" },
+          { "@type": "ListItem", "position": 11, "name": "Sharks", "url": "https://acrylicpros.com/sharks.html" },
+          { "@type": "ListItem", "position": 12, "name": "Stingrays & Eels", "url": "https://acrylicpros.com/stingrays-eels.html" },
+          { "@type": "ListItem", "position": 13, "name": "Reef Insert Restoration", "url": "https://acrylicpros.com/reef-insert-restoration.html" },
+          { "@type": "ListItem", "position": 14, "name": "Glass Tanks", "url": "https://acrylicpros.com/glass-tanks.html" }
+        ]
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://acrylicpros.com/services.html" }
+      ]
+    }
+  ]
+}

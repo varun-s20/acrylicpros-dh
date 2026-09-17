@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://acrylicpros.com/aquarium-relocations.html#service",
+      "name": "Aquarium Relocations",
+      "serviceType": "Aquarium relocation",
+      "description": "Our team will help you move your aquarium from point A to point B. We also provide temporary holding tanks, 24/7 fish support systems.",
+      "url": "https://acrylicpros.com/aquarium-relocations.html",
+      "provider": { "@id": "https://acrylicpros.com/#business" },
+      "areaServed": [
+        { "@type": "State", "name": "California" },
+        { "@type": "Country", "name": "United States" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://acrylicpros.com/services.html" },
+        { "@type": "ListItem", "position": 3, "name": "Aquarium Relocations", "item": "https://acrylicpros.com/aquarium-relocations.html" }
+      ]
+    }
+  ]
+}

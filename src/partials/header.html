@@ -1,0 +1,101 @@
+<div class="site-top {{TOP_CLASS}}" data-header>
+
+<!-- ============================================================
+     02  HEADER & NAVIGATION
+
+     Aquatique Show's chrome, replicated: three floating elements over
+     the page rather than a bar across it. A glass burger pill on the
+     left that says MENU in words, the logo centred, and a gold contact
+     pill on the right that is the only saturated thing on the screen.
+     There is no inline nav — every link lives in the full-screen
+     overlay, which is why the header can stay this quiet.
+     ============================================================ -->
+<header class="site-header">
+
+  <button class="nav-toggle" type="button" data-nav-toggle
+          aria-expanded="false" aria-controls="primary-nav">
+    <span class="nav-toggle__icon" aria-hidden="true">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </span>
+    <span class="nav-toggle__label" data-nav-label>Menu</span>
+    <span class="visually-hidden" data-nav-sr>Open menu</span>
+  </button>
+
+  <a class="site-logo" href="index.html" aria-label="Acrylic Pros — home">
+    <img class="site-logo__mark site-logo__mark--dark" src="assets/images/brand/logo-primary-transparent.png"
+         alt="Acrylic Pros, aquarium design and restoration" width="1599" height="479">
+    <img class="site-logo__mark site-logo__mark--light" src="assets/images/brand/logo-primary-white.png"
+         alt="Acrylic Pros, aquarium design and restoration" width="1599" height="479">
+  </a>
+
+  <!-- aria-label, because the visible label is display:none below the
+       breakpoint and the link would otherwise have no accessible name. -->
+  <a class="contact-pill" href="quote.html" aria-label="Request a quote">
+    <span class="contact-pill__icon" aria-hidden="true">
+      <svg viewBox="0 0 16 16" fill="none">
+        <path d="M1.8 4.2h12.4v8.2H1.8z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="m2.3 4.7 5.7 4.2 5.7-4.2" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+      </svg>
+    </span>
+    <span class="contact-pill__label">Request a Quote</span>
+  </a>
+
+</header>
+
+<!-- The full-screen overlay. Aquatique's menu is a single stack of very
+     large light-weight links on the deepest ground in the palette, with
+     everything secondary demoted to a thin row along the bottom. Ours
+     carries one extra column because twelve services will not fit in a
+     five-item stack. -->
+<nav class="primary-nav" id="primary-nav" data-nav aria-label="Primary" hidden>
+  <div class="primary-nav__inner container">
+
+    <ul class="primary-nav__list">
+      <li class="primary-nav__item"><a class="primary-nav__link" href="index.html">Home</a></li>
+      <li class="primary-nav__item"><a class="primary-nav__link" href="services.html">Our services</a></li>
+      <li class="primary-nav__item"><a class="primary-nav__link" href="gallery.html">Our projects</a></li>
+      <li class="primary-nav__item"><a class="primary-nav__link" href="glass-tanks.html">Glass tanks</a></li>
+      <li class="primary-nav__item"><a class="primary-nav__link" href="about.html">About us</a></li>
+      <li class="primary-nav__item"><a class="primary-nav__link" href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="primary-nav__sub">
+      <p class="eyebrow eyebrow--onDark">What we do</p>
+      <ul class="primary-nav__sub-list">
+        <li><a class="link-wipe" href="scratch-removal.html">Scratch Removal</a></li>
+        <li><a class="link-wipe" href="custom-builds-installations.html">Custom Builds &amp; Installations</a></li>
+        <li><a class="link-wipe" href="acrylic-pool-panels.html">Acrylic Pool Panels</a></li>
+        <li><a class="link-wipe" href="maintenance.html">Maintenance</a></li>
+        <li><a class="link-wipe" href="pond-design-construction.html">Pond Design &amp; Construction</a></li>
+        <li><a class="link-wipe" href="aquarium-relocations.html">Aquarium Relocations</a></li>
+        <li><a class="link-wipe" href="emergency-services.html">24hr Emergency Services</a></li>
+        <li><a class="link-wipe" href="reef-insert-restoration.html">Reef Insert Restoration</a></li>
+        <li><a class="link-wipe" href="acrylic-sign-fabrication.html">Acrylic Sign Fabrication</a></li>
+        <li><a class="link-wipe" href="live-corals.html">Live Corals</a></li>
+        <li><a class="link-wipe" href="sharks.html">Sharks</a></li>
+        <li><a class="link-wipe" href="stingrays-eels.html">Stingrays &amp; Eels</a></li>
+        <li><a class="link-wipe" href="tropical-fish.html">Tropical Fish</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="primary-nav__foot container">
+    <ul class="primary-nav__minor">
+      <li><a class="link-wipe" href="process.html">Our process</a></li>
+      <li><a class="link-wipe" href="videos.html">Videos</a></li>
+      <li><a class="link-wipe" href="warranty.html">Warranty</a></li>
+      <li><a class="link-wipe" href="tel:+15625660150">+1 (562) 566-0150</a></li>
+    </ul>
+    <ul class="primary-nav__social">
+      <li><a class="link-wipe" href="https://www.instagram.com/acrylic_pros_corp/" rel="noopener">Instagram</a></li>
+      <li><a class="link-wipe" href="https://www.facebook.com/acrylicpros1" rel="noopener">Facebook</a></li>
+      <li><a class="link-wipe" href="https://www.youtube.com/@AcrylicPros" rel="noopener">YouTube</a></li>
+      <li><a class="link-wipe" href="https://www.yelp.com/biz/acrylic-pros-anaheim" rel="noopener">Yelp</a></li>
+    </ul>
+  </div>
+</nav>
+
+</div><!-- /.site-top -->

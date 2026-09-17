@@ -1,0 +1,5340 @@
+@charset "UTF-8";
+/* =====================================================================
+   ACRYLIC PROS — Aquarium Design, Restoration & Installation
+   Single shared stylesheet for the whole site.
+
+   DESIGN LANGUAGE
+   A 1:1 replication of aquatic-show.com (Aquatique Show), applied to
+   Acrylic Pros' own content and photography. Colour, type scale,
+   tracking, radii and both easing curves are taken from their compiled
+   stylesheet and measured in the browser, not approximated.
+
+   The page is a stack of alternating full-bleed DARK media bands and
+   WHITE bands with nothing between them — no dividers, no separators.
+   What joins two bands is the stacked panel: the next band lifts over
+   the one above it on a 32px top radius (see 07).
+
+   Display type sets at 300 with the one or two words that matter at 700
+   inside the same line, tracked from -0.04em down to -0.06em as the
+   size grows. That weight mix is the identity; it is why the headings
+   need no second family, no colour change and no rule under them.
+
+   Gold (#C79D47) appears on the fixed contact pill and on section
+   eyebrows and essentially nowhere else, which is what makes it read as
+   brand rather than as decoration.
+
+   See the Design system section of README.md for the full mapping,
+   including the one deliberate departure (the footer capture panel).
+
+   CONTENTS
+   01  Fonts
+   02  Reset
+   03  Root variables
+   04  Base
+   05  Typography
+   06  Utilities
+   07  Layout
+   08  Header
+   09  Navigation
+   10  Hero
+   11  Buttons
+   12  Media
+   13  Services
+   14  Projects & gallery
+   15  Lightbox
+   16  Before / after
+   17  Testimonials
+   18  Accordion
+   19  Forms
+   20  Contact panel & sticky CTA
+   21  Footer
+   22  Page-specific layouts
+   23  Animations
+   24  Responsive
+   25  Reduced motion
+   26  Print
+   27  Aquatique section archetypes
+   28  Interior archetypes
+
+   Mobile-first. Every media query is min-width.
+   ===================================================================== */
+
+
+/* =====================================================================
+   01  FONTS
+   ===================================================================== */
+
+@import url("../fonts/fonts.css");
+
+
+/* =====================================================================
+   02  RESET
+   ===================================================================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, figure, blockquote, dl, dd,
+fieldset, legend { margin: 0; }
+
+ul[class], ol[class] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+img { height: auto; }
+
+/* <picture> defaults to display:inline, which silently breaks every
+   `height: 100%` chain that passes through it — art-directed images
+   inside aspect-ratio boxes collapse to nothing. Making it transparent
+   to layout lets the <img> size against the real container. Safe for
+   accessibility: <picture> carries no semantics of its own, the <img>
+   does. */
+picture { display: contents; }
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+a { color: inherit; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+:where(h1, h2, h3, h4, h5, h6) { text-wrap: pretty; }
+:where(p, li) { text-wrap: pretty; }
+
+[hidden] { display: none !important; }
+
+
+/* =====================================================================
+   03  ROOT VARIABLES
+
+   DESIGN LANGUAGE: aquatic-show.com (Aquatique Show), replicated.
+
+   Their system, verbatim from their compiled stylesheet:
+
+     --clrdarkblue  #000D1A   deepest ground, menu overlay, hero scrim
+     --clrgold      #C79D47   the single accent - CTA pill, eyebrows
+     --clrgolddark  #CEA95D   its lighter / hover state
+     --clrfontaine  #4180C9   blue
+     --clraquatique #6541CB   purple - active state on the pill selector
+     #00284D                  the navy that carries heading ink on white,
+                              the newsletter panel and the footer ground
+
+   Structure: a page is a stack of alternating full-bleed DARK media
+   bands and WHITE bands. White bands carry navy ink; dark bands carry
+   white. Gold appears on the fixed contact pill, on eyebrows, and
+   essentially nowhere else - which is what makes it read as brand
+   rather than as decoration.
+
+   :root therefore carries the LIGHT values of every context token.
+   `.section--deep`, `.section--black` and the footer redefine those
+   same tokens for the dark bands. One mechanism, two grounds.
+   ===================================================================== */
+
+:root {
+  /* --- grounds ---------------------------------------------------- */
+  --navy:        #00284d;   /* ink on white, panels, footer            */
+  --navy-deep:   #000d1a;   /* their --clrdarkblue: deepest ground     */
+  --navy-raised: #04335f;   /* raised panels inside a dark band        */
+  --violet:      #221c35;   /* the html ground behind the rounded page */
+  --near-black:  #0c0a09;
+
+  /* --- accent: gold is the only one -------------------------------
+     #C79D47 on white is 3.1:1 - fine for large display type and for
+     fills, never for body copy. Body copy never uses it. */
+  --accent-base:  #c79d47;
+  --accent-dark:  #a9822f;   /* pressed state, and gold text on white  */
+  --accent-light: #cea95d;   /* their --clrgolddark: hover / on navy   */
+  --accent-ink:   #ffffff;   /* text on a gold fill                    */
+
+  --water:        #4180c9;   /* their --clrfontaine                    */
+  --water-pale:   #9fc6f0;   /* lightened for links on navy            */
+  --coral-purple: #6541cb;   /* their --clraquatique                   */
+
+  /* --- neutrals ---------------------------------------------------- */
+  --grey-300: #cbcbcb;
+  --grey-400: #bababa;
+  --grey-600: #4f4f4f;
+  --tint:  #f9fcff;   /* cool off-white band  */
+  --ice:   #f5f5fe;   /* pale violet-white    */
+  --smoke: #fafafa;
+
+  --brand-signal: #eb9622;   /* emergency only - see the note in 22 */
+
+  /* --- context tokens: LIGHT is the default ------------------------ */
+  --surface:      #ffffff;
+  --surface-soft: var(--tint);
+
+  --ink:            var(--navy);
+  --text-secondary: rgba(0, 40, 77, 0.78);
+  --text-muted:     rgba(0, 40, 77, 0.55);
+
+  --accent: var(--accent-base);
+  --border: rgba(0, 40, 77, 0.14);
+  --tile:   var(--tint);
+
+  /* Fixed light values, for surfaces that are dark in every context. */
+  --text-on-dark:       #ffffff;
+  --text-on-dark-muted: rgba(255, 255, 255, 0.72);
+  --hairline-onDark:    rgba(255, 255, 255, 0.2);
+
+  /* Their glass pill - the burger, the secondary button, the ticker. */
+  --glass:       rgba(255, 255, 255, 0.1);
+  --glass-hover: rgba(255, 255, 255, 0.2);
+
+  /* --- type -------------------------------------------------------
+     They licence Matter VF (Displaay, commercial). Plus Jakarta Sans is
+     the closest freely-licensed analogue - geometric grotesk, tall
+     x-height, low stroke contrast, near-identical width at the same
+     optical size - and it is already self-hosted here. Same axis range
+     (200-800), so the 300 display weight is real, not synthesised.
+
+     The signature is the weight MIX: display type sets at 300 and the
+     one or two words that matter jump to 700 inside the same line.
+     `.hl` is that jump. It changes weight, not colour. */
+  --font-display: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+                  "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-body: var(--font-display);
+
+  --w-display:  300;   /* every heading                               */
+  --w-emphasis: 700;   /* the highlighted words inside one            */
+  --w-body:     400;
+  --w-ui:       600;   /* buttons, nav, eyebrows, meta                */
+
+  /* Their measured desktop sizes: h1/h2 80, h3 60, h4 40, h5 34,
+     body 16/24. Fluid down to mobile; the desktop end is exact. */
+  --step-display: clamp(2.75rem, 6.6vw, 5rem);      /* 44 -> 80px     */
+  --step-h1:      clamp(2.5rem, 6vw, 5rem);         /* 40 -> 80px     */
+  --step-h2:      clamp(2.25rem, 5.4vw, 5rem);      /* 36 -> 80px     */
+  --step-h3:      clamp(1.875rem, 4.2vw, 3.75rem);  /* 30 -> 60px     */
+  --step-h4:      clamp(1.5rem, 2.8vw, 2.5rem);     /* 24 -> 40px     */
+  --step-h5:      clamp(1.3rem, 2.2vw, 2.125rem);   /* 21 -> 34px     */
+  --step-h6:      clamp(1.125rem, 1.6vw, 1.375rem); /* 18 -> 22px     */
+  --step-body:    1rem;                             /* 16 / 24        */
+  --step-small:   0.9375rem;                        /* 15px           */
+  --step-meta:    0.875rem;                         /* 14px           */
+  --step-eyebrow: 0.875rem;                         /* 14px, gold     */
+  --step-cta:     0.8125rem;                        /* 13px, 600, up  */
+
+  --numeral: clamp(3.5rem, 9vw, 5.5rem);
+
+  /* Their tracking is aggressive and is most of why the display type
+     reads as one system: it tightens as the size grows. */
+  --track-display: -0.05em;
+  --track-h2:      -0.06em;
+  --track-h3:      -0.04em;
+  --track-h4:      -0.02em;
+
+  /* --- spacing ---------------------------------------------------- */
+  --space-2xs: clamp(0.25rem, 0.4vw, 0.5rem);
+  --space-xs:  clamp(0.5rem, 0.8vw, 0.75rem);
+  --space-sm:  clamp(0.75rem, 1.2vw, 1.125rem);
+  --space-md:  clamp(1.25rem, 2vw, 2rem);
+  --space-lg:  clamp(2rem, 3.5vw, 3.5rem);
+  --space-xl:  clamp(3rem, 5.5vw, 5.5rem);
+  --space-2xl: clamp(4rem, 8vw, 8rem);
+
+  /* Their vertical rhythm is much airier than a typical marketing site:
+     white bands open at ~107px and close at ~158px. */
+  --section-pad:   clamp(4rem, 9vw, 9.5rem);
+  --section-pad-s: clamp(3rem, 6.5vw, 6.5rem);
+
+  /* --- layout ----------------------------------------------------- */
+  --container:  1320px;
+  --container-narrow: 980px;
+  --measure:    68ch;
+  --measure-sm: 58ch;
+  --gutter:     clamp(1.25rem, 5vw, 3.75rem);
+
+  --header-h:  5.5rem;
+  --utility-h: 2.25rem;
+
+  /* --- motion -----------------------------------------------------
+     Both curves are lifted from their stylesheet unchanged. The long
+     one runs the link underline wipe and the slider ring; the expo one
+     runs scroll reveals. Nothing on the site uses a built-in easing. */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-expo:   cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-card:   cubic-bezier(0.23, 1, 0.32, 1);
+
+  --dur-press: 140ms;
+  --dur-fast:  300ms;   /* their --atransition */
+  --dur:       400ms;
+  --dur-panel: 600ms;
+  --dur-slow:  1000ms;  /* underline wipe, reveal */
+
+  /* --- radii ------------------------------------------------------
+     Everything on their site is either a full pill or a 20px card. The
+     44px pill is the button; 20px is the card, the media and the
+     newsletter panel; 32px is the large stacked page panel. */
+  --radius:      20px;
+  --radius-sm:   12px;
+  --radius-lg:   32px;
+  --radius-xl:   44px;
+  --radius-pill: 100px;
+
+  /* --- shadow -----------------------------------------------------
+     Almost absent by design. The only real shadow on their site is the
+     one the contact pill grows on hover. */
+  --shadow-sm: 0 8px 10px rgba(12, 10, 9, 0.08);
+  --shadow-md: 0 8px 10px rgba(12, 10, 9, 0.18);
+  --shadow-lg: 0 22px 46px -22px rgba(0, 13, 26, 0.6);
+
+  --z-header:   100;
+  --z-panel:    150;
+  --z-drawer:   200;
+  --z-lightbox: 400;
+  --z-skip:     500;
+}
+
+/* The dark context. Applied to the navy bands, the black bands and the
+   footer. Redefining the context tokens flips several hundred rules. */
+.section--deep,
+.section--black,
+.site-footer {
+  --surface:      var(--navy-raised);
+  --surface-soft: rgba(255, 255, 255, 0.06);
+
+  --ink:            #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.78);
+  --text-muted:     rgba(255, 255, 255, 0.58);
+
+  --accent: var(--accent-light);
+  --border: rgba(255, 255, 255, 0.2);
+  --tile:   #ffffff;
+
+  color: var(--text-secondary);
+}
+
+.section--deep  { background: var(--navy); }
+.section--black { background: var(--navy-deep); }
+
+
+/* =====================================================================
+   04  BASE
+   ===================================================================== */
+
+/* Aquatique paints the html element a deep violet and lets the page
+   itself sit on top with rounded corners. The violet is only ever seen
+   in the few pixels either side of the rounded page edge and behind the
+   overscroll, but it is what stops the page reading as a flat document. */
+html {
+  min-height: 100%;
+  background: var(--violet);
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  font-weight: var(--w-body);   /* Aquatique sets body at 400 */
+  line-height: 1.5;             /* their 16/24 exactly */
+  font-variant-numeric: lining-nums;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Locked while a drawer, panel or lightbox owns the viewport. */
+body.is-locked {
+  overflow: hidden;
+  /* padding compensates for the vanishing scrollbar so layout does not jump */
+  padding-right: var(--scrollbar-w, 0px);
+}
+
+main { display: block; }
+
+::selection {
+  background: var(--accent-base);
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent-base);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.section--deep :focus-visible,
+.section--black :focus-visible,
+.site-footer :focus-visible,
+.hero :focus-visible,
+.page-hero :focus-visible,
+.lightbox :focus-visible {
+  outline-color: #ffffff;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-skip);
+  padding: 0.85rem 1.5rem;
+  border-radius: 0 0 var(--radius-sm) 0;
+  background: var(--accent-base);
+  color: var(--accent-ink);
+  font-size: var(--step-meta);
+  font-weight: 600;
+  text-decoration: none;
+  transform: translateY(-120%);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+
+/* =====================================================================
+   05  TYPOGRAPHY
+
+   Aquatique's display voice is one family at TWO weights inside the same
+   line: 300 carries the sentence, 700 carries the one or two words that
+   matter. "The wonder of water show", "Our products" - light, then bold,
+   then light again. That alternation is the whole identity, and it is
+   why the headings never need a second family, a colour change or a
+   rule underneath them.
+
+   The second half of it is tracking. Their h2 sets at 80px / -0.06em /
+   1.0 leading: the letters very nearly touch, and the line box is the
+   cap height. Anything looser immediately stops looking like them, so
+   the tracking tightens as the step grows rather than staying fixed.
+   ===================================================================== */
+
+h1, h2, h3, h4, h5, h6, .display, .headline {
+  font-family: var(--font-display);
+  color: var(--ink);
+  font-weight: var(--w-display);
+  line-height: 1.05;
+  letter-spacing: var(--track-h3);
+}
+
+h1, .h1 { font-size: var(--step-h1); letter-spacing: var(--track-display); line-height: 1.0; }
+h2, .h2 { font-size: var(--step-h2); letter-spacing: var(--track-h2);      line-height: 1.0; }
+h3, .h3 { font-size: var(--step-h3); letter-spacing: var(--track-h3);      line-height: 1.03; }
+h4, .h4 { font-size: var(--step-h4); letter-spacing: var(--track-h4);      line-height: 1.1; }
+h5, .h5 { font-size: var(--step-h5); letter-spacing: var(--track-h4);      line-height: 1.06; }
+h6, .h6 { font-size: var(--step-h6); letter-spacing: -0.01em;              line-height: 1.25; }
+
+.display {
+  font-size: var(--step-display);
+  font-weight: var(--w-display);
+  line-height: 1.0;
+  letter-spacing: var(--track-display);
+}
+
+/* THE signature. On Aquatique the emphasised words inside a heading get
+   heavier, not a different colour - `.hl` therefore changes weight and
+   inherits everything else. Colour variants are kept for the two places
+   that genuinely need a tint (the emergency page, water accents) but
+   they are the exception, and both still carry the weight jump. */
+.hl {
+  font: inherit;
+  font-weight: var(--w-emphasis);
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.hl--gold  { color: var(--accent); }
+.hl--water { color: var(--water); }
+
+/* Optical fix: a 300-weight line that ends on a 700 word looks like it
+   is leaning. Killing the trailing space stops the ragged edge. */
+.hl + .hl { margin-left: 0; }
+
+p { margin: 0 0 var(--space-md); }
+p:last-child { margin-bottom: 0; }
+
+/* Their lead paragraph is the same 16/24 as body copy - the size contrast
+   with an 80px heading is already enormous, so the lead does not need to
+   be large, only centred and narrow. Long-form service copy gets one step
+   up for readability; that is the single deviation. */
+.lede {
+  font-size: var(--step-body);
+  font-weight: var(--w-body);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: var(--measure-sm);
+}
+
+.prose > .lede,
+.page-hero .lede { font-size: var(--step-h6); line-height: 1.45; }
+
+/* The only uppercase on the site: the gold section eyebrow. 14px, 600,
+   tracked, and it always sits 30-40px above its heading. */
+.eyebrow {
+  display: block;
+  margin: 0 0 var(--space-md);
+  font-size: var(--step-eyebrow);
+  font-weight: var(--w-ui);
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eyebrow--muted { color: var(--text-muted); }
+.eyebrow--water { color: var(--water); }
+.eyebrow--onDark { color: var(--accent-light); }
+
+.eyebrow--rule {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.eyebrow--rule::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.3;
+}
+
+.numeral {
+  display: block;
+  font-size: var(--numeral);
+  font-weight: var(--w-display);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  color: var(--accent);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.caption {
+  font-size: var(--step-meta);
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* Their small-caps UI label: nav items, card tags, slider counters. */
+.meta {
+  font-size: var(--step-cta);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+blockquote {
+  font-family: var(--font-display);
+  font-size: var(--step-h4);
+  font-weight: var(--w-display);
+  line-height: 1.15;
+  letter-spacing: var(--track-h4);
+  color: var(--ink);
+}
+
+strong, b { font-weight: var(--w-emphasis); }
+
+/* Prose blocks: the only place descendant links are underlined. */
+.prose > * + * { margin-top: var(--space-md); }
+.prose { max-width: var(--measure); }
+
+.prose a {
+  color: var(--water);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.prose a:hover { color: var(--accent-dark); }
+
+.section--deep .prose a,
+.section--black .prose a { color: var(--water-pale); }
+
+.section--deep .prose a:hover,
+.section--black .prose a:hover { color: var(--accent-light); }
+
+.prose ul { padding-left: 1.25rem; }
+.prose li + li { margin-top: var(--space-xs); }
+
+/* ---------------------------------------------------------------------
+   The Aquatique underline link. Not a text-decoration: a 1px bar that
+   wipes in from the left over a full second on their signature curve.
+   Used on every standalone link that is not a button.
+   --------------------------------------------------------------------- */
+.link-wipe {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-wipe::before {
+  content: "";
+  position: absolute;
+  bottom: -0.2rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.link-wipe:hover::before,
+.link-wipe:focus-visible::before { transform: scaleX(1); }
+
+/* =====================================================================
+   06  UTILITIES
+   ===================================================================== */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.u-measure     { max-width: var(--measure); }
+.u-measure-sm  { max-width: var(--measure-sm); }
+.u-center      { margin-inline: auto; }
+.u-text-center { text-align: center; }
+.u-nowrap      { white-space: nowrap; }
+
+.u-tabular { font-variant-numeric: tabular-nums; }
+
+.u-mt-sm { margin-top: var(--space-sm); }
+.u-mt-md { margin-top: var(--space-md); }
+.u-mt-lg { margin-top: var(--space-lg); }
+.u-mt-xl { margin-top: var(--space-xl); }
+
+.hairline {
+  border: 0;
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+
+/* =====================================================================
+
+/* =====================================================================
+   07  LAYOUT
+
+   Aquatique's page is a stack of full-bleed bands with nothing between
+   them: no dividers, no separators, no decorative edge. What joins two
+   bands is the STACKED PANEL - a light band lifts over the dark band
+   above it on a 32px top radius, so the page reads as sheets sliding
+   over each other rather than as sections abutting.
+
+   HEADING RHYTHM. Theirs is centred and it stays centred: eyebrow, then
+   an 80px title at 300 with one or two words at 700, then a single
+   16px paragraph at ~58ch, then the content. The heading block is held
+   to a narrow measure so the title always breaks onto two or three
+   lines - an 80px title on one long line reads as a banner.
+
+   `.section__head--start` is the left-aligned variant for pages built
+   around a single reading column.
+   ===================================================================== */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow { max-width: var(--container-narrow); }
+.container--wide   { max-width: 1760px; }
+
+.section {
+  padding-block: var(--section-pad);
+  position: relative;
+}
+
+.section--compact      { padding-block: var(--section-pad-s); }
+.section--flush-top    { padding-top: 0; }
+.section--flush-bottom { padding-bottom: 0; }
+
+/* Ground modifiers. White is the default, so a section only declares a
+   ground when it departs from it. `--deep` and `--black` also carry the
+   dark context tokens - see 03. */
+.section--tint { background: var(--tint); }
+.section--ice  { background: var(--ice); }
+
+/* --- the stacked panel ------------------------------------------------
+   A light band that directly follows a dark one lifts over it. The
+   radius is on the panel itself and the negative margin is what makes
+   it overlap; `position: relative` puts it above rather than behind.
+
+   Only the FIRST light band after a dark one does this - two rounded
+   panels in a row would read as a card stack, not as a page.      */
+.section--deep + .section:not(.section--deep):not(.section--black),
+.section--black + .section:not(.section--deep):not(.section--black),
+.hero + .section:not(.section--deep):not(.section--black),
+.page-hero + .section:not(.section--deep):not(.section--black),
+.section--deep + .site-footer {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--radius-lg) * -1);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: #ffffff;
+}
+
+/* The same move in reverse: a dark band following a light one lifts over
+   IT, so the alternation never produces a flat seam in either direction. */
+.section:not(.section--deep):not(.section--black) + .section--deep,
+.section:not(.section--deep):not(.section--black) + .section--black {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(var(--radius-lg) * -1);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+/* A tinted band keeps its own ground when it is the one lifting. */
+.section--deep + .section--tint,
+.section--black + .section--tint,
+.hero + .section--tint,
+.page-hero + .section--tint { background: var(--tint); }
+
+.section--deep + .section--ice,
+.section--black + .section--ice,
+.hero + .section--ice,
+.page-hero + .section--ice { background: var(--ice); }
+
+/* --- the centred heading block ---------------------------------------
+   ONE AXIS. The eyebrow, the title and the supporting paragraph are all
+   centred and stacked on the same centre line. There is no variant that
+   puts the heading in a left column facing its own copy in a right one:
+   that reads as two unrelated blocks, and Aquatique never does it.
+   `.section__head--split` is kept only as an alias so an older page
+   cannot silently reintroduce the two-column form.
+
+   ONE LINE. The measure is wide and the title's own ceiling is lower
+   than the 80px section opener, so a heading of normal length sets on a
+   single line instead of being forced into two. `text-wrap: balance` is
+   explicitly off here — balancing is what splits a heading that would
+   otherwise have fitted.                                           */
+.section__head,
+.section__head--split {
+  display: grid;
+  gap: var(--space-sm);
+  justify-items: center;
+  /* Full container width, not a tight measure. A narrow measure is what
+     forces a heading of ordinary length onto a second row. */
+  max-width: 100%;
+  margin-inline: auto;
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
+  text-align: center;
+}
+
+.section__head > * { justify-self: center; }
+
+/* 48px, not the 80px of a full section opener. At 1200px of container a
+   heading of up to ~50 characters sets on one line at this size, which
+   covers every heading on the site. */
+.section__head :is(h1, h2, h3) {
+  max-width: 100%;
+  font-size: clamp(1.75rem, 3.6vw, 3rem);
+  letter-spacing: var(--track-h3);
+  line-height: 1.04;
+  /* NOT `balance`. Balancing deliberately evens a heading across two
+     lines, which is exactly the two-row result being avoided here.
+     `pretty` only fixes the last-line orphan and leaves a heading that
+     fits on one line on one line. */
+  text-wrap: pretty;
+}
+
+.section__head .lede {
+  max-width: 58ch;
+  margin-inline: auto;
+}
+
+/* The gold eyebrow sits further from its title than a normal label
+   would - about 30px on their site. */
+.section__head .eyebrow { margin-bottom: var(--space-2xs); }
+
+/* Left-aligned variant, for pages built around a single column. */
+.section__head--start {
+  justify-items: start;
+  margin-inline: 0;
+  text-align: left;
+}
+
+/* Title left, supporting copy right - restored at desktop in 24. */
+.section__head--split {
+  justify-items: start;
+  max-width: none;
+  text-align: left;
+}
+
+/* Editorial split: stacks on mobile, becomes asymmetric on desktop. */
+.split {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.stack     { display: grid; gap: var(--space-md); }
+.stack--sm { gap: var(--space-sm); }
+.stack--lg { gap: var(--space-lg); }
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.cluster--lg { gap: var(--space-md); }
+
+/* An 80px heading is sized for a full-width centred block. Dropped into
+   one half of a split it breaks onto five or six lines and stops reading
+   as a heading at all, so headings inside a column step down to the h3
+   size and its looser tracking. Aquatique do the same: their 80px is
+   reserved for section openers, and every in-column title is 60px. */
+.split h2,
+.service-panel h2,
+.cta-final h2,
+.split .h2 {
+  font-size: var(--step-h3);
+  letter-spacing: var(--track-h3);
+  line-height: 1.03;
+}
+
+/* A centred heading block wants its buttons centred too. */
+.section__head .cluster { justify-content: center; }
+.section__head--start .cluster,
+.section__head--split .cluster { justify-content: flex-start; }
+
+/* --- what replaced the wave divider -----------------------------------
+   The previous design ended every band on a drawn wave crest with
+   drifting coral. Aquatique has no such device anywhere - their bands
+   meet on the stacked-panel radius above and nothing else. The wave
+   markup has been removed from every page and `src/partials/wave.html`
+   is no longer included by anything; this rule only exists so that a
+   stale build cannot reintroduce it.                               */
+.wave-divider { display: none; }
+
+/* =====================================================================
+   08  HEADER
+
+   Aquatique's header is not a bar. It is three objects floating over the
+   page at a fixed 16px inset: a glass burger pill on the left, the logo
+   centred, and a gold contact pill on the right. Nothing behind them is
+   tinted, nothing is blurred across the full width, and the header never
+   gains a background on scroll - it simply stays where it is while the
+   page moves underneath.
+
+   That only works because every link lives in the overlay menu. The
+   moment you put inline nav here you need a background plate, and the
+   whole effect collapses. So: no inline nav.
+   ===================================================================== */
+
+/* The chrome sits ABOVE the overlay menu, not under it: on Aquatique the
+   burger, the logo and the gold pill stay exactly where they are when
+   the menu opens, and only the burger's own icon changes. That is what
+   makes the overlay read as the page opening rather than as a modal
+   covering it — so `.site-top` outranks `--z-drawer`. */
+.site-top {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: calc(var(--z-drawer) + 1);
+  pointer-events: none;   /* the page scrolls under the gaps between the three objects */
+}
+
+.site-top > * { pointer-events: auto; }
+
+/* The overlay is a sibling of the header inside `.site-top`, and it comes
+   later in the document, so without an explicit z-index it paints over
+   the chrome. Lifting the header here is what keeps the burger, the logo
+   and the gold pill visible and clickable with the menu open. */
+/* Theirs slides fully out of frame on scroll-down and returns on
+   scroll-up — `transform: translateY(calc(var(--scroll-direction) * 100%))`
+   at 0.4s on the signature curve. Same behaviour, same timing. */
+.site-top.is-hidden .site-header,
+.site-top.is-hidden .hero__ticker { transform: translateY(-120%); }
+
+.site-header {
+  position: relative;
+  z-index: 2;
+  transition: transform 400ms var(--ease-out);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 1rem clamp(1rem, 2.2vw, 2rem);
+  pointer-events: none;
+}
+
+.site-header > * { pointer-events: auto; }
+
+/* --- the logo, centred ------------------------------------------------
+   Aquatique's mark is white-on-transparent and sits over whatever is
+   behind it. Ours only exists as a JPEG with a baked white background
+   plus a white-on-black PNG, so the light variant is used everywhere the
+   header sits over media, and the dark variant only on pages that open
+   on a white band. `.site-top--overlay` is that switch.           */
+.site-logo {
+  grid-column: 2;
+  display: block;
+  line-height: 0;
+}
+
+.site-logo__mark {
+  width: auto;
+  height: clamp(2.25rem, 3.4vw, 3rem);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+/* THE GROUND-AWARE FLIP.
+
+   Aquatique's logo is an SVG that inherits `currentColor`, so theirs just
+   animates `color` from #FFF to #00284D over a second when the band
+   behind the header is light. Ours only exists as two PNGs — a dark mark
+   and a white one — so the same effect is a crossfade: both are stacked
+   in the same grid cell and their opacities swap.
+
+   Which one shows is decided at runtime by main.js, which measures the
+   luminance of whatever is actually painted behind the header rather
+   than trusting a per-page class. A page class cannot know that the
+   visitor has scrolled a white band up under the header, which is
+   exactly when the white logo used to vanish. */
+.site-logo {
+  display: grid;
+  grid-template-areas: "mark";
+}
+
+.site-logo__mark {
+  grid-area: mark;
+  transition: opacity 1s var(--ease-out);
+}
+
+.site-logo__mark--dark  { opacity: 0; }
+.site-logo__mark--light { opacity: 1; }
+
+.site-top.is-on-light:not(.is-nav-open) .site-logo__mark--dark  { opacity: 1; }
+.site-top.is-on-light:not(.is-nav-open) .site-logo__mark--light { opacity: 0; }
+
+.site-logo:hover .site-logo__mark--light { opacity: 0.75; }
+.site-top.is-on-light .site-logo:hover .site-logo__mark--dark { opacity: 0.75; }
+
+/* --- the burger pill --------------------------------------------------
+   Their burger is a glass pill that says MENU in words next to three
+   1px rules, and the rules cross into an X in place rather than being
+   swapped for a different icon. 13x13 box, 11px rules, 3px apart.  */
+.nav-toggle {
+  grid-column: 1;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 2.75rem;
+  padding: 0 1.15rem;
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: #ffffff;
+  font-size: var(--step-cta);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: 1px solid rgba(255, 255, 255, 0);
+  transition: background 1s var(--ease-out),
+              color 1s var(--ease-out),
+              outline-color 1s var(--ease-out);
+}
+
+.nav-toggle:hover { background: var(--glass-hover); }
+
+/* On a light band the glass has nothing to sit on, so it inverts to a
+   navy wash. Their exact values: background #00284d1a, colour #00284d,
+   and a hairline outline that only appears on hover. One second, same
+   curve as the logo, so the whole chrome changes as one thing. */
+.site-top.is-on-light:not(.is-nav-open) .nav-toggle {
+  background: rgba(0, 40, 77, 0.1);
+  color: var(--navy);
+  outline: 1px solid rgba(0, 40, 77, 0);
+}
+
+.site-top.is-on-light:not(.is-nav-open) .nav-toggle:hover {
+  background: rgba(0, 40, 77, 0.16);
+  outline-color: rgba(0, 40, 77, 0.4);
+}
+
+.nav-toggle:hover { outline: 1px solid rgba(255, 255, 255, 0.4); }
+
+.nav-toggle__icon {
+  position: relative;
+  display: block;
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+}
+
+.nav-toggle__bar {
+  position: absolute;
+  left: 1px;
+  width: 11px;
+  height: 1px;
+  border-radius: 1px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease-out),
+              opacity var(--dur-press) linear;
+}
+
+.nav-toggle__bar:nth-child(1) { top: 3px; }
+.nav-toggle__bar:nth-child(2) { top: 6px; }
+.nav-toggle__bar:nth-child(3) { top: 9px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+/* --- the gold contact pill -------------------------------------------
+   The one saturated object on the page. Collapsed to its icon at rest;
+   on hover it grows its left padding so the label slides out from under
+   the icon and the shadow fades up. Their exact transition: padding-left
+   and box-shadow, 400ms, on the signature curve.                  */
+.contact-pill {
+  grid-column: 3;
+  justify-self: end;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 2.75rem;
+  padding: 0 1.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent-base);
+  color: var(--accent-ink);
+  font-size: var(--step-cta);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 10px rgba(12, 10, 9, 0);
+  transition: background var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur) var(--ease-out);
+}
+
+.contact-pill:hover {
+  background: var(--accent-light);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-pill__icon {
+  display: block;
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 0.9rem;
+}
+
+.contact-pill__icon svg { width: 100%; height: 100%; }
+
+/* Below the breakpoint both pills collapse to their icons, exactly as
+   Aquatique's do. Three full-width objects in a 1fr auto 1fr grid will
+   otherwise crush the centre column and reduce the logo to a sliver. */
+@media (max-width: 47.99em) {
+  .nav-toggle__label { display: none; }
+  .nav-toggle { padding: 0; width: 2.75rem; justify-content: center; }
+
+  .contact-pill__label { display: none; }
+  .contact-pill { padding: 0; width: 2.75rem; justify-content: center; }
+  .contact-pill__icon { width: 1.05rem; height: 1.05rem; flex-basis: 1.05rem; }
+}
+
+
+/* =====================================================================
+   09  NAVIGATION
+
+   Aquatique's overlay menu, reproduced from their compiled stylesheet
+   rather than approximated. Their mechanism, verbatim:
+
+     .o-menu__mainItem { overflow: hidden }
+     .o-menu__link     { transform: translateY(100%); opacity: .2;
+                         font-variation-settings: "wght" 300;
+                         transition: font-variation-settings 1s <curve>,
+                                     opacity 1s <curve>,
+                                     letter-spacing 1s <curve> }
+     .o-menu__link:hover, .-active { letter-spacing: -.02em; opacity: 1;
+                                     font-variation-settings: "wght" 600 }
+     .o-menu__mainNav:hover .o-menu__link { opacity: .2 }
+
+   So there are two separate behaviours, and both matter:
+
+   1  EACH ROW IS A MASK. The row clips; the link inside it sits one full
+      row-height BELOW its own row. Opening slides every link UP out of
+      the row above it; closing sends them back DOWN. Nothing fades in
+      place — the type is revealed by the mask moving past it, which is
+      why their menu reads so differently from an ordinary drawer.
+
+   2  THE WEIGHT AXIS IS ANIMATED. A link at rest is 300 and 20% opaque.
+      Hovering it takes it to 600, full opacity and -0.02em tracking over
+      a full second. Hovering anywhere in the list dims every link, so
+      the one under the cursor is the only thing lit. Plus Jakarta Sans
+      is a real variable font here, so this is one axis interpolating,
+      not two weights crossfading.
+
+   Emil Kowalski's rules applied on top, where they do not fight the
+   reference:
+
+   - Only transform and opacity are animated per frame; the weight axis
+     is the deliberate exception and is confined to six links.
+   - THE EXIT IS FASTER THAN THE ENTRANCE and carries no stagger. A
+     staggered exit makes a menu feel slow to dismiss, because the
+     visitor has already decided. Enter 620ms staggered, leave 260ms
+     together.
+   - `will-change` is set only while the panel is actually animating,
+     and dropped on rest, so six promoted layers do not sit on the
+     compositor for the life of the page.
+   - The transition is interruptible: closing mid-open reverses from
+     wherever the rows currently are rather than snapping.
+   - Under `prefers-reduced-motion` the movement is removed and the
+     panel simply appears.
+   ===================================================================== */
+
+.primary-nav {
+  position: fixed;
+  inset: 0;
+  /* `.site-top` already establishes the stacking context and sits above
+     everything else on the page, so this only has to order the overlay
+     against the header beside it - and it must lose to it. */
+  z-index: 1;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  background: var(--navy-deep);
+  color: #ffffff;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  /* The panel itself only fades. All the movement people actually read
+     is in the rows, which is what keeps the effect from feeling like a
+     sheet sliding over the page. */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 260ms var(--ease-out),
+              visibility 0s linear 260ms;
+}
+
+.primary-nav.is-open {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 320ms var(--ease-out),
+              visibility 0s linear 0s;
+}
+
+/* Rendered but hidden from AT until the script takes over, so a visitor
+   with no JS never meets a panel they cannot dismiss. */
+.primary-nav[hidden] { display: none; }
+
+/* A soft caustic wash across the bottom, standing in for the fog plate
+   Aquatique renders behind theirs. */
+.primary-nav::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 60%;
+  background: radial-gradient(120% 100% at 30% 100%,
+              rgba(65, 128, 201, 0.22) 0%, rgba(0, 13, 26, 0) 70%);
+  pointer-events: none;
+}
+
+.primary-nav__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--space-xl);
+  align-content: center;
+  width: 100%;
+  padding-top: calc(var(--header-h) + var(--space-xl));
+  padding-bottom: var(--space-xl);
+}
+
+.primary-nav__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 1. THE MASK. The row clips, so the link can start a full row below it
+      and be revealed by sliding up into frame. */
+.primary-nav__item {
+  overflow: hidden;
+  line-height: 0;   /* no descender gap between the mask and the glyphs */
+}
+
+.primary-nav__link {
+  display: inline-block;
+  padding: 0.06em 0.02em 0.12em;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: var(--step-h3);
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-decoration: none;
+
+  /* 2. THE WEIGHT AXIS. Set through font-variation-settings rather than
+        font-weight: only the axis interpolates smoothly, and the two
+        properties do not compose, so the axis has to win. */
+  font-variation-settings: "wght" 300;
+  font-weight: 300;
+  opacity: 0.2;
+
+  /* Start one full row down, behind the mask. */
+  transform: translateY(100%);
+
+  transition:
+    transform 620ms var(--ease-out),
+    opacity 1s var(--ease-out),
+    letter-spacing 1s var(--ease-out),
+    font-variation-settings 1s var(--ease-out);
+  transition-delay: 0ms;
+}
+
+/* Enter: staggered, one row after another, 45ms apart. */
+.primary-nav.is-open .primary-nav__link {
+  transform: translateY(0);
+  transition-delay: calc(90ms + var(--i, 0) * 45ms);
+}
+
+/* Leave: everything together and faster. The stagger is deliberately
+   NOT reversed here - once the visitor has dismissed the menu, any
+   sequencing at all reads as the interface being slow to obey. */
+.primary-nav:not(.is-open) .primary-nav__link {
+  transition-duration: 260ms, 200ms, 200ms, 200ms;
+  transition-delay: 0ms;
+}
+
+/* Hovering the list dims every row; only the row under the cursor
+   lights. Keyboard focus gets the identical treatment, so the menu is
+   navigable without a pointer. */
+.primary-nav__list:hover .primary-nav__link,
+.primary-nav__list:focus-within .primary-nav__link { opacity: 0.2; }
+
+.primary-nav__link:hover,
+.primary-nav__link:focus-visible,
+.primary-nav__item.is-current .primary-nav__link {
+  opacity: 1;
+  letter-spacing: -0.02em;
+  font-variation-settings: "wght" 600;
+  font-weight: 600;
+}
+
+/* The current page stays lit even while a sibling is hovered, but drops
+   back so the hovered row is still clearly the one being chosen. */
+.primary-nav__list:hover .primary-nav__item.is-current .primary-nav__link { opacity: 0.45; }
+.primary-nav__list .primary-nav__link:hover { opacity: 1; }
+
+/* Promoted only while the panel is actually moving. */
+.primary-nav.is-animating .primary-nav__link { will-change: transform, opacity; }
+
+/* --- the secondary column and the foot row ---------------------------
+   Same masked rise, one beat behind the main stack.                */
+.primary-nav__sub-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.primary-nav__sub,
+.primary-nav__foot {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity 320ms var(--ease-out), transform 420ms var(--ease-out);
+  transition-delay: 0ms;
+}
+
+.primary-nav.is-open .primary-nav__sub,
+.primary-nav.is-open .primary-nav__foot {
+  opacity: 1;
+  transform: none;
+  transition-delay: 380ms;
+}
+
+.primary-nav__sub-list a {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: var(--step-small);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.primary-nav__sub-list a:hover { color: #ffffff; }
+
+.primary-nav__foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-lg);
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+.primary-nav__minor,
+.primary-nav__social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.primary-nav__minor a,
+.primary-nav__social a {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: var(--step-small);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.primary-nav__minor a:hover,
+.primary-nav__social a:hover { color: #ffffff; }
+
+@media (min-width: 62em) {
+  .primary-nav__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 22rem);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .primary-nav__link { font-size: clamp(2.75rem, 4.6vw, 4.25rem); }
+
+  /* Two columns of thirteen links wrap to uneven row heights if the rows
+     size themselves, which makes the pairs read as unrelated. Filling
+     column-wise keeps the reading order vertical and the baselines even. */
+  .primary-nav__sub-list {
+    display: block;
+    column-count: 2;
+    column-gap: var(--space-md);
+  }
+
+  .primary-nav__sub-list li {
+    break-inside: avoid;
+    margin-bottom: 0.7rem;
+  }
+}
+
+/* The movement is the whole effect, so with it removed the panel simply
+   appears. Nothing is left half-transformed. */
+@media (prefers-reduced-motion: reduce) {
+  .primary-nav,
+  .primary-nav__link,
+  .primary-nav__sub,
+  .primary-nav__foot {
+    transition-duration: 1ms;
+    transition-delay: 0ms;
+  }
+
+  .primary-nav__link,
+  .primary-nav__sub,
+  .primary-nav__foot { transform: none; }
+
+  .primary-nav:not(.is-open) .primary-nav__link { transform: none; opacity: 0; }
+}
+   10  HERO
+
+   Aquatique's hero is a full-viewport video under a navy scrim with
+   everything centred on the axis: title, one paragraph at plain body
+   size, then a scroll cue at the very bottom. No buttons in the hero at
+   all on their home page - the only call to action on screen is the gold
+   pill in the header, which is why it works so hard.
+
+   We keep one button pair, because a quote request is the entire point
+   of this site and burying it behind the overlay menu would cost real
+   leads. Everything else is theirs.
+   ===================================================================== */
+
+.hero {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + var(--space-2xl));
+  padding-bottom: calc(var(--space-2xl) + 3rem);
+  overflow: hidden;
+  background: var(--navy-deep);
+  color: #ffffff;
+  text-align: center;
+  isolation: isolate;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__media img,
+.hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Their scrim is heavier at the edges than in the middle, so the centre
+   of the video stays readable while the type at top and bottom always
+   has a ground. Two layers: a flat wash for contrast, and a vertical
+   ramp for the header and the scroll cue. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(to bottom,
+      rgba(0, 13, 26, 0.72) 0%,
+      rgba(0, 13, 26, 0.34) 32%,
+      rgba(0, 13, 26, 0.38) 62%,
+      rgba(0, 13, 26, 0.82) 100%),
+    rgba(0, 13, 26, 0.18);
+}
+
+.hero__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 64rem;
+}
+
+.hero .eyebrow { color: var(--accent-light); }
+
+.hero__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-display);
+  font-weight: var(--w-display);
+  line-height: 1.0;
+  letter-spacing: var(--track-display);
+  text-wrap: pretty;
+}
+
+/* Their hero paragraph is plain 16/24 - the contrast against an 80px
+   title is already the whole hierarchy. Centred, and narrow enough that
+   it breaks into four or five short lines. */
+.hero__lede {
+  max-width: 56ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  justify-content: center;
+  margin-top: var(--space-sm);
+}
+
+/* --- the scroll cue ---------------------------------------------------
+   Pinned to the bottom centre, uppercase micro-label over a 1px rule
+   that runs a slow loop down and back. Their wording is "SCROLL TO
+   DISCOVER"; the arrow is a separate glyph below it.              */
+.hero__scroll {
+  position: absolute;
+  bottom: clamp(1.5rem, 3vw, 2.5rem);
+  left: 50%;
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  color: #ffffff;
+  font-size: var(--step-cta);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transform: translateX(-50%);
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.hero__scroll:hover { opacity: 0.7; }
+
+.hero__scroll-line {
+  position: relative;
+  display: block;
+  width: 1px;
+  height: 2.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.hero__scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 45%;
+  background: #ffffff;
+  animation: scroll-cue 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes scroll-cue {
+  0%   { transform: translateY(-100%); }
+  55%  { transform: translateY(220%); }
+  100% { transform: translateY(220%); }
+}
+
+/* --- the hero ticker --------------------------------------------------
+   Aquatique parks a glass pill in the bottom-right of the hero carrying
+   a single line of running copy. It is where the standing facts about
+   the business live now that the top utility bar is gone.         */
+.hero__ticker {
+  position: absolute;
+  /* Clears the floating contact button, which owns the bottom-right
+     corner on every page. */
+  right: calc(clamp(1rem, 2.2vw, 2rem) + 4.25rem);
+  bottom: clamp(1.5rem, 3vw, 2.5rem);
+  z-index: 2;
+  display: none;
+  max-width: min(34rem, 42vw);
+  height: 2.5rem;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--glass);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  color: #ffffff;
+  font-size: var(--step-cta);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero__ticker a { color: inherit; text-decoration: none; }
+.hero__ticker a:hover { color: var(--accent-light); }
+
+.hero__ticker-track {
+  display: flex;
+  gap: 2.5rem;
+  white-space: nowrap;
+  will-change: transform;
+  animation: ticker 26s linear infinite;
+}
+
+.hero__ticker:hover .hero__ticker-track { animation-play-state: paused; }
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (min-width: 62em) {
+  .hero__ticker { display: flex; }
+}
+
+/* --- the interior page hero ------------------------------------------
+   The same object at two thirds the height, used by every page that is
+   not the home page.                                              */
+.page-hero {
+  position: relative;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  min-height: min(38rem, 78vh);
+  padding-top: calc(var(--header-h) + var(--space-2xl));
+  padding-bottom: var(--space-2xl);
+  overflow: hidden;
+  background: var(--navy-deep);
+  color: #ffffff;
+  text-align: center;
+  isolation: isolate;
+}
+
+.page-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.page-hero__media img,
+.page-hero__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom,
+    rgba(0, 13, 26, 0.76) 0%,
+    rgba(0, 13, 26, 0.42) 50%,
+    rgba(0, 13, 26, 0.7) 100%);
+}
+
+.page-hero__inner {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 60rem;
+}
+
+/* Breadcrumb. It sits inside the page hero on Aquatique-style interior
+   pages, so it is a single quiet row of small links with a slash between
+   them, never a bar with its own ground. */
+.breadcrumb {
+  font-size: var(--step-meta);
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumb li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  opacity: 0.45;
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.breadcrumb a:hover { color: #ffffff; }
+
+.breadcrumb [aria-current="page"] { color: #ffffff; }
+
+/* On a light band — the product and contact pages put it above the
+   heading rather than inside a hero, so it needs its own clearance. */
+.section > .container > .breadcrumb,
+.section .breadcrumb + .section__head { margin-bottom: var(--space-lg); }
+.section .breadcrumb { color: var(--text-muted); }
+.section .breadcrumb a:hover,
+.section .breadcrumb [aria-current="page"] { color: var(--ink); }
+.section .breadcrumb ol { justify-content: flex-start; }
+
+.page-hero .eyebrow { color: var(--accent-light); }
+
+.page-hero__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h1);
+  font-weight: var(--w-display);
+  line-height: 1.0;
+  letter-spacing: var(--track-display);
+  text-wrap: pretty;
+}
+
+.page-hero__lede {
+  max-width: 58ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+
+/* =====================================================================
+   11  BUTTONS
+
+   Aquatique has exactly one button shape: a 44px-radius pill, 600
+   weight, 13.5px/25px padding, no border, no shadow. Three fills:
+
+     gold        the contact pill in the header, and primary actions
+     white       on a dark band - "Discover all our references"
+     glass       rgba(255,255,255,.1), for anything secondary on media
+
+   There is no outline button on their site and no icon inside a button
+   except the arrow on the newsletter field. The arrow we keep, because
+   an arrow is doing real work on a "request a quote" control.
+   ===================================================================== */
+
+.btn {
+  --btn-bg: var(--accent-base);
+  --btn-fg: var(--accent-ink);
+  --btn-bg-hover: var(--accent-light);
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: 3rem;
+  padding: 0.85rem 1.75rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-body);
+  font-size: var(--step-cta);
+  font-weight: var(--w-ui);
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-press) var(--ease-out);
+}
+
+.btn:active { transform: scale(0.97); }
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { background: var(--btn-bg-hover); color: var(--btn-fg); }
+}
+
+/* White fill. Their button on a dark band, and the one that appears
+   under most section headings. */
+.btn--secondary {
+  --btn-bg: #ffffff;
+  --btn-fg: var(--navy);
+  --btn-bg-hover: var(--tint);
+}
+
+/* Glass. Secondary action sitting on media, where a white fill would be
+   too loud and gold would compete with the header pill. */
+/* No backdrop-filter here. It is genuinely expensive to composite and
+   this variant appears many times per page, unlike the two chrome pills
+   that keep it. A flat translucent white over media is indistinguishable
+   at this opacity and costs nothing to scroll past. */
+.btn--ghost {
+  --btn-bg: rgba(255, 255, 255, 0.14);
+  --btn-fg: #ffffff;
+  --btn-bg-hover: rgba(255, 255, 255, 0.24);
+}
+
+/* On a white band the glass variant has nothing behind it, so it falls
+   back to a navy wash. */
+.section:not(.section--deep):not(.section--black) .btn--ghost,
+.section--tint .btn--ghost {
+  --btn-bg: rgba(0, 40, 77, 0.07);
+  --btn-fg: var(--navy);
+  --btn-bg-hover: rgba(0, 40, 77, 0.13);
+}
+
+.btn--sm {
+  min-height: 2.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: var(--step-cta);
+}
+
+.btn--block {
+  display: flex;
+  width: 100%;
+}
+
+.btn__arrow {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 1rem;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover .btn__arrow { transform: translateX(0.25rem); }
+}
+
+.btn[aria-disabled="true"],
+.btn:disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* --- the arrow link ---------------------------------------------------
+   Their inline link: no button, no fill, just the label, an arrow, and
+   the 1px rule that wipes in from the left over a full second.     */
+.link-arrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 0.2rem;
+  color: var(--ink);
+  font-size: var(--step-small);
+  font-weight: var(--w-ui);
+  text-decoration: none;
+}
+
+.link-arrow svg {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: 0 0 0.9rem;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.link-arrow::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link-arrow:hover svg { transform: translateX(0.3em); }
+  .link-arrow:hover::after { transform: scaleX(1); }
+}
+
+.link-arrow:focus-visible::after { transform: scaleX(1); }
+
+.section--deep .link-arrow,
+.section--black .link-arrow,
+.site-footer .link-arrow { color: #ffffff; }
+
+.link-arrow--onDark { color: var(--accent-light); }
+
+/* =====================================================================
+   12  MEDIA
+   ===================================================================== */
+
+.media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--tint);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media--3-2  { aspect-ratio: 3 / 2; }
+.media--4-3  { aspect-ratio: 4 / 3; }
+.media--1-1  { aspect-ratio: 1 / 1; }
+.media--3-4  { aspect-ratio: 3 / 4; }
+.media--2-3  { aspect-ratio: 2 / 3; }
+.media--16-9 { aspect-ratio: 16 / 9; }
+
+/* Cut-out photography (products, logos) is already white-backed, so on
+   the light ground it simply sits on the page — a tile there would just
+   be a third nested box. It is only inside a dark band that the cut-out
+   needs a light tile under it, or it reads as a hole punched in the navy. */
+.media--tile {
+  background: transparent;
+  padding: var(--space-sm);
+  border-radius: var(--radius-lg);
+}
+
+.media--tile img { object-fit: contain; }
+
+.section--deep .media--tile,
+.section--black .media--tile {
+  background: var(--tile);
+  border: 1px solid var(--border);
+}
+
+/* Slow zoom on hover — applied by parent link, not the image itself. */
+.media--zoom img {
+  transition: transform 900ms var(--ease-out);
+  will-change: transform;
+}
+
+a:hover .media--zoom img,
+.media--zoom:hover img { transform: scale(1.045); }
+
+figure { margin: 0; }
+
+figcaption {
+  margin-top: var(--space-sm);
+  font-size: var(--step-meta);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.figure-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Full-bleed media band */
+.bleed {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bleed img,
+.bleed video {
+  width: 100%;
+  height: clamp(20rem, 62vh, 46rem);
+  object-fit: cover;
+}
+
+/* YouTube facade — the iframe is only injected on click. */
+.video-facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--near-black);
+  cursor: pointer;
+}
+
+.video-facade img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.86;
+  transition: opacity var(--dur) var(--ease-out),
+              transform 900ms var(--ease-out);
+}
+
+.video-facade:hover img { opacity: 1; transform: scale(1.03); }
+
+.video-facade__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  pointer-events: none;
+}
+
+.video-facade__play span {
+  display: grid;
+  place-items: center;
+  width: clamp(3.5rem, 6vw, 5rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(201, 169, 97, 0.8);
+  border-radius: 50%;
+  background: rgba(6, 22, 34, 0.42);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  transition: background var(--dur) var(--ease-out),
+              transform var(--dur) var(--ease-out);
+}
+
+.video-facade:hover .video-facade__play span {
+  background: rgba(201, 169, 97, 0.9);
+  color: var(--accent-ink);
+  transform: scale(1.06);
+}
+
+.video-facade iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+/* =====================================================================
+   13  SERVICES
+   Large visual panels — deliberately not a grid of equal cards. The 1px
+   grid gap is the gold hairline showing through from the parent.
+   ===================================================================== */
+
+.service-panels {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+}
+
+.service-panel {
+  position: relative;
+  display: grid;
+  background: var(--surface);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.service-panel__media { position: relative; overflow: hidden; }
+
+.service-panel__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out);
+}
+
+.service-panel:hover .service-panel__media img { transform: scale(1.05); }
+
+.service-panel__body {
+  display: grid;
+  align-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--gutter);
+}
+
+.service-panel__index {
+  font-family: var(--font-display);
+  font-size: var(--step-meta);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.service-panel__title {
+  font-family: var(--font-display);
+  font-size: var(--step-h3);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  transition: color var(--dur) var(--ease-out);
+}
+
+.service-panel:hover .service-panel__title { color: var(--accent); }
+
+.service-panel__text {
+  max-width: 46ch;
+  color: var(--text-secondary);
+}
+
+.service-panel__cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.service-panel__cue svg { transition: transform var(--dur) var(--ease-out); }
+.service-panel:hover .service-panel__cue svg { transform: translateX(0.35em); }
+
+/* Full-bleed variant: copy sits on the photograph. */
+.service-panel--feature {
+  min-height: clamp(24rem, 70vh, 40rem);
+  border-radius: var(--radius-xl);
+}
+
+.service-panel--feature .service-panel__media { position: absolute; inset: 0; }
+
+.service-panel--feature::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(6, 22, 34, 0.9) 0%,
+                                      rgba(6, 22, 34, 0.4) 55%,
+                                      rgba(6, 22, 34, 0.12) 100%);
+}
+
+.service-panel--feature .service-panel__body {
+  position: relative;
+  z-index: 2;
+  align-content: end;
+  padding-block: var(--space-xl);
+}
+
+.service-panel--feature .service-panel__title { color: #fff; }
+.service-panel--feature .service-panel__text { color: rgba(255, 255, 255, 0.84); }
+.service-panel--feature .service-panel__index,
+.service-panel--feature .service-panel__cue { color: var(--accent); }
+.service-panel--feature:hover .service-panel__title { color: var(--accent); }
+
+/* Compact index used on services.html and in "related services". */
+.service-list { display: grid; gap: 1px; background: var(--border); }
+
+.service-list__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-sm);
+  background: var(--surface);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--dur) var(--ease-out),
+              padding-left var(--dur) var(--ease-out);
+}
+
+.service-list__item:hover {
+  background: var(--surface-soft);
+  padding-left: var(--space-md);
+}
+
+.service-list__num {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.service-list__name {
+  font-family: var(--font-display);
+  font-size: var(--step-h6);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.service-list__item svg {
+  color: var(--accent);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.service-list__item:hover svg { transform: translateX(0.35em); }
+/* =====================================================================
+   14  PROJECTS & GALLERY
+   ===================================================================== */
+
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.gallery-filter {
+  padding: 0.55rem 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.gallery-filter:active { transform: scale(0.97); }
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-filter:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+.gallery-filter[aria-pressed="true"] {
+  background: var(--accent-base);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+.gallery-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: var(--tint);
+  border-radius: var(--radius);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform var(--dur-press) var(--ease-out);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 900ms var(--ease-out),
+              opacity var(--dur) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .gallery-item:hover img { transform: scale(1.04); }
+}
+
+.gallery-item:active { transform: scale(0.99); }
+
+.gallery-item__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-md);
+  background: linear-gradient(to top, rgba(6, 22, 34, 0.8), rgba(6, 22, 34, 0) 55%);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease-out);
+}
+
+.gallery-item:hover .gallery-item__overlay,
+.gallery-item:focus-visible .gallery-item__overlay { opacity: 1; }
+
+.gallery-item.is-hidden { display: none; }
+
+
+/* =====================================================================
+   15  LIGHTBOX
+   ===================================================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-lightbox);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  background: rgba(3, 11, 18, 0.97);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity var(--dur-panel) var(--ease-out),
+              visibility 0s linear var(--dur-panel);
+}
+
+.lightbox.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.lightbox :focus-visible { outline-color: var(--accent); }
+
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--gutter);
+  border-bottom: 1px solid rgba(201, 169, 97, 0.24);
+}
+
+.lightbox__count {
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.lightbox__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: var(--space-md) var(--gutter);
+  min-height: 0;
+}
+
+.lightbox__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.lightbox__foot {
+  display: grid;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--gutter) var(--space-lg);
+  text-align: center;
+}
+
+.lightbox__title {
+  font-family: var(--font-display);
+  font-size: var(--step-h6);
+  font-weight: 700;
+  color: #fff;
+}
+
+.lightbox__btn {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid rgba(201, 169, 97, 0.4);
+  border-radius: 50%;
+  color: #fff;
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+
+.lightbox__btn:hover {
+  background: var(--accent-base);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.lightbox__nav--prev { left: var(--space-xs); }
+.lightbox__nav--next { right: var(--space-xs); }
+
+
+/* =====================================================================
+   16  BEFORE / AFTER
+   A styled range input is the real control, so keyboard and assistive
+   technology get a native slider for free.
+   ===================================================================== */
+
+.ba {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--near-black);
+  touch-action: pan-y;         /* horizontal drags belong to the slider */
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* The BEFORE image is in normal flow and therefore sets the height of the
+   whole component. The AFTER image is absolutely positioned on top of it
+   and clipped. Both must render at identical dimensions or the reveal
+   will not line up, so the after image is forced to cover the frame. */
+.ba__frame { position: relative; display: block; width: 100%; }
+
+.ba__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.ba__after {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  /* --pos is written by main.js; 50% is the no-JS resting state */
+  clip-path: inset(0 0 0 var(--pos, 50%));
+}
+
+.ba__after img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ba__label {
+  position: absolute;
+  top: var(--space-sm);
+  z-index: 3;
+  padding: 0.4rem 0.85rem;
+  background: rgba(6, 22, 34, 0.7);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.ba__label--before { left: var(--space-sm); }
+.ba__label--after  { right: var(--space-sm); }
+
+.ba__divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos, 50%);
+  z-index: 4;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--accent-base);
+  pointer-events: none;
+}
+
+.ba__handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--accent-base);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-md);
+}
+
+/* The real control: a range input laid over the whole frame, visually
+   transparent but fully operable by mouse, touch, and keyboard. */
+.ba__range {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: ew-resize;
+}
+
+.ba__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 50%;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+.ba__range::-moz-range-thumb {
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+.ba__range::-moz-range-track { background: transparent; }
+
+.ba__range:focus-visible {
+  outline: 2px solid var(--accent-base);
+  outline-offset: -2px;
+}
+
+.ba__caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  font-size: var(--step-meta);
+  color: var(--text-muted);
+}
+
+
+/* =====================================================================
+   17  TESTIMONIALS
+   One quote at a time, no avatars, understated controls.
+   ===================================================================== */
+
+.testimonials { position: relative; }
+
+.testimonial {
+  display: none;
+  max-width: 54rem;
+}
+
+.testimonial.is-active { display: block; }
+
+.testimonial__quote { margin-bottom: var(--space-lg); }
+.testimonial__quote p { margin: 0; }
+
+.testimonial__cite {
+  display: grid;
+  gap: 0.2rem;
+  font-style: normal;
+}
+
+.testimonial__name {
+  font-family: var(--font-display);
+  font-size: var(--step-meta);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
+.testimonial__role {
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.testimonial-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--border);
+}
+
+.testimonial-controls__btn {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--ink);
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+
+.testimonial-controls__btn:hover {
+  background: var(--accent-base);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.testimonial-controls__count {
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =====================================================================
+   18  ACCORDION
+   ===================================================================== */
+
+.accordion { border-top: 1px solid var(--border); }
+.accordion__item { border-bottom: 1px solid var(--border); }
+
+.accordion__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md) 0;
+  text-align: left;
+  font-family: var(--font-display);
+  font-size: var(--step-h6);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.accordion__trigger:hover { color: var(--accent); }
+
+.accordion__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--accent);
+}
+
+.accordion__icon::before,
+.accordion__icon::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.accordion__icon::after { transform: rotate(90deg); }
+.accordion__trigger[aria-expanded="true"] .accordion__icon::after { transform: rotate(0deg); }
+
+.accordion__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur) var(--ease-out);
+}
+
+.accordion__panel[data-open="true"] { grid-template-rows: 1fr; }
+.accordion__panel > div { overflow: hidden; }
+.accordion__panel-inner { padding-bottom: var(--space-md); max-width: var(--measure); }
+
+
+/* =====================================================================
+   19  FORMS
+   Inputs sit on the raised navy rather than punching a white hole in the
+   page. Every control still resolves to the context tokens, so a form
+   inside a dark band inverts without a second rule set.
+   ===================================================================== */
+
+.form { display: grid; gap: var(--space-lg); }
+
+.form__group {
+  display: grid;
+  gap: var(--space-md);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.form__group:last-of-type { border-bottom: 0; padding-bottom: 0; }
+
+.form__legend {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.field { display: grid; gap: 0.45rem; }
+
+.field__label {
+  font-family: var(--font-display);
+  font-size: var(--step-meta);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field__label .req { color: var(--accent); }
+
+.field__hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="tel"],
+.field input[type="number"],
+.field input[type="url"],
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-size: 1rem;
+  transition: border-color var(--dur-fast) var(--ease-out),
+              box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.field textarea { min-height: 9rem; resize: vertical; line-height: 1.6; }
+
+/* The chevron is drawn in the light text colour because the control sits
+   on the raised navy; the light-context override follows. */
+.field select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23e57428' stroke-width='1.4' d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.75rem;
+  padding-right: 2.5rem;
+}
+
+.section--deep .field select,
+.section--black .field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23f08a3c' stroke-width='1.4' d='M1 1.5 6 6.5l5-5'/%3E%3C/svg%3E");
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(229, 116, 40, 0.12);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--accent-base);
+  outline-offset: 1px;
+}
+
+/* Error red is lightened on the navy ground so it still passes contrast. */
+.field--invalid input,
+.field--invalid select,
+.field--invalid textarea {
+  border-color: #b3261e;
+  box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.10);
+}
+
+.field__error {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #b3261e;
+}
+
+.section--deep .field--invalid input,
+.section--black .field--invalid input,
+.section--deep .field--invalid select,
+.section--black .field--invalid select,
+.section--deep .field--invalid textarea,
+.section--black .field--invalid textarea { border-color: #f08a80; }
+
+.section--deep .field__error,
+.section--black .field__error { color: #f08a80; }
+
+.field--invalid .field__error { display: flex; }
+
+.field-row { display: grid; gap: var(--space-md); }
+
+/* Choice groups (radio / checkbox) styled as selectable chips. */
+.choices { display: flex; flex-wrap: wrap; gap: var(--space-xs); }
+
+.choice {
+  position: relative;
+  display: inline-flex;
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.choice span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.9rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: var(--step-meta);
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-press) var(--ease-out);
+}
+
+.choice input:active + span { transform: scale(0.97); }
+
+.choice input:hover + span { border-color: var(--accent); color: var(--ink); }
+
+.choice input:checked + span {
+  background: var(--accent-base);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.choice input:focus-visible + span {
+  outline: 2px solid var(--accent-base);
+  outline-offset: 2px;
+}
+
+/* Upload placeholder — no backend, so this stores nothing. */
+.upload {
+  display: grid;
+  place-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--surface-soft);
+}
+
+.form__status {
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.form__status[data-state="error"] {
+  border-left-color: #b3261e;
+  background: rgba(179, 38, 30, 0.05);
+}
+
+.section--deep .form__status[data-state="error"],
+.section--black .form__status[data-state="error"] {
+  border-left-color: #f08a80;
+  background: rgba(240, 138, 128, 0.08);
+}
+
+.form__status a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.section--deep .form__status a,
+.section--black .form__status a { color: var(--water-pale); }
+
+.form__status:empty { display: none; }
+
+
+/* =====================================================================
+   20  CONTACT PANEL & STICKY CTA
+   Real channels only. This is NOT an AI chat widget and must never be
+   presented as one — there is no AI backend.
+   ===================================================================== */
+
+.contact-fab {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  z-index: var(--z-panel);
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--accent-base);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--dur) var(--ease-out),
+              background var(--dur) var(--ease-out);
+}
+
+.contact-fab:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+}
+
+.contact-fab__icon { transition: opacity var(--dur-fast) var(--ease-out); }
+.contact-fab[aria-expanded="true"] .contact-fab__icon--open  { display: none; }
+.contact-fab:not([aria-expanded="true"]) .contact-fab__icon--close { display: none; }
+
+.contact-panel {
+  position: fixed;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: calc(clamp(1rem, 3vw, 2rem) + 4.25rem);
+  z-index: var(--z-panel);
+  width: min(21rem, calc(100vw - 2rem));
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: var(--shadow-md);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(0.6rem);
+  transition: opacity var(--dur) var(--ease-out),
+              transform var(--dur) var(--ease-out),
+              visibility 0s linear var(--dur);
+}
+
+.contact-panel.is-open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+
+.contact-panel__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-panel__avatar {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--navy-deep);
+}
+
+.contact-panel__title {
+  font-family: var(--font-display);
+  font-size: var(--step-meta);
+  font-weight: 700;
+  color: var(--text-on-dark);
+}
+
+.contact-panel__sub { font-size: 0.8rem; color: var(--text-on-dark-muted); }
+
+.contact-panel__list { display: grid; gap: 1px; background: var(--border); }
+
+.contact-panel__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.85rem 0.5rem;
+  background: var(--navy-raised);
+  color: var(--text-on-dark);
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.contact-panel__link:hover { background: rgba(229, 116, 40, 0.12); }
+.contact-panel__link svg { flex-shrink: 0; color: var(--accent); }
+
+.contact-panel__link small {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--text-on-dark-muted);
+}
+
+/* Sticky mobile call/quote bar */
+.sticky-cta {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-panel);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-top: 1px solid var(--border);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  transform: translateY(101%);
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.sticky-cta.is-visible { transform: translateY(0); }
+
+.sticky-cta__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.5rem;
+  background: var(--navy-deep);
+  color: var(--text-on-dark);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.sticky-cta__btn--primary { background: var(--accent-base); color: var(--accent-ink); }
+.sticky-cta__btn--signal  { background: var(--brand-signal); color: #20160a; }
+
+@media (min-width: 62rem) {
+  .sticky-cta { display: none; }
+}
+
+
+/* =====================================================================
+   21  FOOTER
+
+   Three stacked pieces, exactly as Aquatique builds theirs:
+
+     1  a navy capture panel on a 20px radius, overlapping the band above
+     2  a full-bleed photographic band: gold ABOUT eyebrow, one large
+        statement at 300 weight, nothing else
+     3  the link columns and the legal bar, on the deepest navy
+
+   The photographic band is what stops the footer reading as a sitemap.
+   It is the last full-width image on the page and it carries the only
+   sentence in the footer anyone actually reads.
+   ===================================================================== */
+
+/* --- 1. the capture panel --------------------------------------------- */
+.footer-capture {
+  position: relative;
+  z-index: 2;
+  padding-block: 0 0;
+  background: transparent;
+}
+
+.footer-capture__panel {
+  display: grid;
+  gap: var(--space-md);
+  align-items: center;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.5rem, 3vw, 3rem);
+  border-radius: var(--radius);
+  background: var(--navy);
+  color: #ffffff;
+  transform: translateY(50%);
+}
+
+.footer-capture__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h4);
+  font-weight: var(--w-display);
+  line-height: 1.1;
+  letter-spacing: var(--track-h4);
+}
+
+/* Their input is a glass pill with the submit arrow sitting inside its
+   right edge, not beside it. */
+.footer-capture__form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.1);
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.footer-capture__form:focus-within { background: rgba(255, 255, 255, 0.16); }
+
+.footer-capture__input {
+  flex: 1;
+  min-width: 0;
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: #ffffff;
+  font-size: var(--step-body);
+}
+
+.footer-capture__input::placeholder { color: rgba(255, 255, 255, 0.6); }
+.footer-capture__input:focus { outline: none; }
+
+.footer-capture__submit {
+  position: absolute;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
+}
+
+.footer-capture__submit svg { width: 1.1rem; height: 1.1rem; }
+
+.footer-capture__submit:hover {
+  background: var(--accent-base);
+  color: var(--accent-ink);
+}
+
+/* --- 2 + 3. the footer proper ----------------------------------------- */
+.site-footer {
+  position: relative;
+  background: var(--navy-deep);
+  color: var(--text-on-dark-muted);
+}
+
+.site-footer__about {
+  position: relative;
+  padding-block: calc(var(--space-2xl) + 3rem) var(--space-2xl);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.site-footer__about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("../images/hero/hero-poster-desktop-1280.webp") center / cover no-repeat;
+  opacity: 0.45;
+}
+
+.site-footer__about::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom,
+    rgba(0, 13, 26, 0.85) 0%,
+    rgba(0, 13, 26, 0.55) 45%,
+    rgba(0, 13, 26, 0.92) 100%);
+}
+
+.site-footer__statement {
+  max-width: 34ch;
+  margin: 0;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: var(--step-h4);
+  font-weight: var(--w-display);
+  line-height: 1.12;
+  letter-spacing: var(--track-h4);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--hairline-onDark);
+}
+
+.site-footer__logo img {
+  width: auto;
+  height: 2.75rem;
+}
+
+.site-footer__tagline {
+  margin: var(--space-md) 0 var(--space-sm);
+  color: #ffffff;
+  font-size: var(--step-small);
+  line-height: 1.45;
+}
+
+.site-footer__phone {
+  display: inline-block;
+  color: #ffffff;
+  font-size: var(--step-h6);
+  font-weight: var(--w-ui);
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-footer__phone:hover { color: var(--accent-light); }
+
+.site-footer__brand p { font-size: var(--step-small); }
+
+.site-footer__brand a { color: inherit; text-decoration: none; }
+.site-footer__brand a:hover { color: #ffffff; }
+
+/* Their column headings are small, white and 600 — not eyebrows, and
+   not tracked. The tracked gold eyebrow is reserved for sections. */
+.site-footer__col-title {
+  margin: 0 0 var(--space-sm);
+  color: #ffffff;
+  font-size: var(--step-small);
+  font-weight: var(--w-emphasis);
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+.site-footer__list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__list a {
+  color: var(--text-on-dark-muted);
+  font-size: var(--step-small);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-footer__list a:hover { color: #ffffff; }
+
+.site-footer__social {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.site-footer__social a {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.site-footer__social a:hover { background: var(--accent-base); }
+
+.site-footer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-lg);
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-md);
+  border-top: 1px solid var(--hairline-onDark);
+  font-size: var(--step-meta);
+}
+
+.site-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.site-footer__legal a {
+  color: var(--text-on-dark-muted);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.site-footer__legal a:hover { color: #ffffff; }
+
+@media (min-width: 48em) {
+  .footer-capture__panel {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    gap: var(--space-lg);
+  }
+}
+
+@media (min-width: 62em) {
+  .site-footer__grid {
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .site-footer__statement { font-size: var(--step-h3); letter-spacing: var(--track-h3); }
+}
+
+/* =====================================================================
+   22  PAGE-SPECIFIC LAYOUTS
+   Shared system, genuinely different compositions per page.
+   ===================================================================== */
+
+/* --- Emergency: conversion beats restraint. Deliberately louder. ---
+   Orange is the only colour on the site that is not navy, gold or blue,
+   and it appears here and on the sticky bar. Nowhere else. */
+.page--emergency .page-hero { min-height: clamp(22rem, 52vh, 32rem); }
+
+.page--emergency .page-hero::after {
+  background: linear-gradient(to top, rgba(6, 22, 34, 0.96) 0%,
+                                      rgba(6, 22, 34, 0.66) 60%,
+                                      rgba(6, 22, 34, 0.4) 100%);
+}
+
+.page--emergency .page-hero .eyebrow { color: var(--brand-signal); }
+
+.emergency-call {
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border: 1px solid var(--brand-signal);
+  border-left-width: 4px;
+  border-radius: var(--radius);
+  background: rgba(235, 150, 34, 0.09);
+}
+
+.emergency-call__number {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 8vw, 3.75rem); /* fits a 320px phone on one line */
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.emergency-call__number:hover { color: var(--brand-signal); }
+
+/* --- Maintenance: calm. Narrower measure, no full-bleed. ---------- */
+.page--maintenance .section { padding-block: var(--section-pad); }
+.page--maintenance .prose { max-width: var(--measure-sm); }
+
+/* --- Pool panels: architectural. Wide, technical, restrained. ----- */
+.page--pool-panels .page-hero { min-height: clamp(30rem, 78vh, 46rem); }
+.page--pool-panels .section__head { margin-bottom: var(--space-2xl); }
+
+/* --- Pond: its light bands run warmer than the site cream. -------- */
+.page--pond .section--tint { background: #eef5f3; }
+
+/* --- Quote: single editorial column. ------------------------------ */
+.page--quote .form { max-width: 44rem; }
+
+/* --- Gallery: type recedes, image dominates. ---------------------- */
+.page--gallery .section { padding-block: var(--section-pad-s); }
+
+/* --- Product catalogue -------------------------------------------
+   Product photography is white-background cut-outs, so every product
+   image sits on its own cream tile. Without it the shots read as white
+   rectangles punched into the navy. This is the one place the light
+   tile is the one place a band colour appears without a section. */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-md);
+}
+
+.product-card {
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-sm) var(--space-md);
+  border-radius: var(--radius);
+  background: #ffffff;
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--dur) var(--ease-card),
+              box-shadow var(--dur) var(--ease-card);
+}
+
+.rail__card {
+  border-radius: var(--radius);
+  transition: transform var(--dur) var(--ease-card),
+              box-shadow var(--dur) var(--ease-card);
+}
+
+/* Lift, not grow: the card rises toward the reader and its shadow
+   deepens to match. Gated behind a fine pointer — on touch, a hover
+   lift leaves the card stuck in its raised state after a tap. */
+@media (hover: hover) and (pointer: fine) {
+  .product-card:hover,
+  .rail__card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-sm);
+  }
+}
+
+.product-card:active { transform: translateY(-1px); }
+
+.product-card__media {
+  aspect-ratio: 1;
+  background: transparent;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.section--deep .product-card__media,
+.section--black .product-card__media {
+  background: var(--tile);
+  border: 1px solid var(--border);
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: var(--space-sm);
+  transition: transform 700ms var(--ease-out);
+}
+
+.product-card:hover .product-card__media img { transform: scale(1.04); }
+
+.product-card__name {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.product-card:hover .product-card__name { color: var(--accent); }
+
+.product-card__price {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.product-note {
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* --- Trust strip: large type, hairline separators, no icon cards -- */
+.trust-strip {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+.trust-strip__item {
+  display: grid;
+  gap: var(--space-2xs);
+  padding-block: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.trust-strip__figure {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.trust-strip__label {
+  font-size: var(--step-small);
+  color: var(--text-secondary);
+  max-width: 34ch;
+}
+
+/* --- Trusted-by ---------------------------------------------------- */
+.trusted-by {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.trusted-by__label {
+  font-family: var(--font-display);
+  font-size: var(--step-eyebrow);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.trusted-by img {
+  height: clamp(1.1rem, 2vw, 1.6rem);
+  width: auto;
+  /* Third-party marks ship as dark-on-white, which is the default ground
+     here. Only the dark bands reverse them out. */
+  opacity: 0.72;
+  transition: opacity var(--dur) var(--ease-out);
+}
+
+.section--deep .trusted-by img,
+.section--black .trusted-by img { filter: invert(1) brightness(2); }
+
+.trusted-by a:hover img { opacity: 1; }
+
+/* --- Process steps ------------------------------------------------- */
+.steps { display: grid; gap: 0; }
+
+.step {
+  display: grid;
+  gap: var(--space-sm);
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+
+.step:last-child { border-bottom: 1px solid var(--border); }
+
+.step__num {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 0.95;
+  color: var(--accent);
+  opacity: 0.6;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The orange needs its full weight on the dark bands to hold 3:1. */
+.section--deep .step__num,
+.section--black .step__num { opacity: 0.95; }
+
+.step__title {
+  font-family: var(--font-display);
+  font-size: var(--step-h6);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+.step__text { max-width: 52ch; }
+
+/* --- Livestock panels ---------------------------------------------- */
+.creature-grid { display: grid; gap: var(--space-sm); }
+
+.creature {
+  position: relative;
+  display: grid;
+  align-content: end;
+  min-height: clamp(20rem, 48vh, 30rem);
+  padding: var(--space-lg) var(--space-md);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: #fff;
+  background: var(--near-black);
+}
+
+.creature img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1000ms var(--ease-out);
+}
+
+.creature::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top, rgba(6, 22, 34, 0.88), rgba(6, 22, 34, 0.1) 70%);
+}
+
+.creature:hover img { transform: scale(1.05); }
+
+.creature__title {
+  font-family: var(--font-display);
+  font-size: var(--step-h6);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.creature:hover .creature__title { color: var(--accent); }
+
+.creature__text {
+  margin-top: var(--space-2xs);
+  max-width: 34ch;
+  font-size: var(--step-meta);
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* --- Related services / next-page rail ----------------------------- */
+.rail {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.rail__card {
+  display: grid;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: inherit;
+}
+
+.rail__card .media { margin-bottom: var(--space-2xs); }
+
+.rail__title {
+  font-family: var(--font-display);
+  font-size: var(--step-h6);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.rail__card:hover .rail__title { color: var(--accent); }
+
+/* --- Final CTA ------------------------------------------------------ */
+.cta-final {
+  display: grid;
+  gap: var(--space-lg);
+  justify-items: start;
+}
+
+.cta-final__title {
+  font-family: var(--font-display);
+  font-size: var(--step-h1);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 20ch;
+}
+
+
+/* =====================================================================
+   23  ANIMATIONS
+   Reveal state applies only when .js is set by main.js, so a failed or
+   blocked script leaves all content visible rather than invisible.
+   ===================================================================== */
+
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children by index, set as --i by main.js. */
+.js [data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition: opacity var(--dur-slow) var(--ease-out),
+              transform var(--dur-slow) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 60ms);
+}
+
+.js [data-reveal-stagger].is-visible > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* Image mask reveal for feature photography. */
+.js [data-reveal-media] { overflow: hidden; }
+
+.js [data-reveal-media] img {
+  transform: scale(1.08);
+  opacity: 0;
+  transition: transform 1100ms var(--ease-out), opacity 700ms var(--ease-out);
+}
+
+.js [data-reveal-media].is-visible img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Hero copy runs on load, independent of IntersectionObserver. */
+.hero__inner > * {
+  animation: hero-in 900ms var(--ease-out) both;
+}
+
+.hero__inner > *:nth-child(1) { animation-delay: 120ms; }
+.hero__inner > *:nth-child(2) { animation-delay: 220ms; }
+.hero__inner > *:nth-child(3) { animation-delay: 330ms; }
+.hero__inner > *:nth-child(4) { animation-delay: 440ms; }
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(1.6rem); }
+  to   { opacity: 1; transform: none; }
+}
+
+
+/* =====================================================================
+   24  RESPONSIVE
+   Mobile-first: everything above is the small-screen composition.
+   ===================================================================== */
+
+/* --- 480px: two-up product and gallery ---------------------------- */
+@media (min-width: 30rem) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .field-row { grid-template-columns: repeat(2, 1fr); }
+  .utility-bar__sep { display: inline; }
+  .utility-bar__item--area { display: inline-flex; }
+}
+
+/* --- 640px ------------------------------------------------------- */
+@media (min-width: 40rem) {
+  .creature-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-strip { grid-template-columns: repeat(2, 1fr); gap: 0 var(--space-lg); }
+  .rail { grid-template-columns: repeat(2, 1fr); }
+  .cta-final { justify-items: start; }
+
+  .step {
+    grid-template-columns: 6rem 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+}
+
+/* --- 768px ------------------------------------------------------- */
+@media (min-width: 48rem) {
+  .service-panel {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
+  }
+
+  .service-panel__media { min-height: clamp(20rem, 42vw, 32rem); }
+  .service-panel__body { padding: var(--space-xl); }
+
+  /* Alternate image side down the stack. */
+  .service-panel:nth-child(even) .service-panel__media { order: 2; }
+
+  .service-panel--feature { grid-template-columns: 1fr; }
+  .service-panel--feature .service-panel__body { max-width: 46rem; }
+
+  .split--2 { grid-template-columns: repeat(2, 1fr); align-items: center; }
+  .split--media-first > :first-child { order: -1; }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: dense;
+  }
+
+  /* Asymmetry: every 7th item spans two columns and two rows. */
+  .gallery-item--wide { grid-column: span 2; }
+  .gallery-item--tall { grid-row: span 2; }
+
+  .site-footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .lightbox__nav--prev { left: var(--space-md); }
+  .lightbox__nav--next { right: var(--space-md); }
+}
+
+/* --- 992px: desktop nav, asymmetric editorial splits -------------- */
+@media (min-width: 62rem) {
+  :root { --header-h: 5.25rem; }
+
+  .split--editorial {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .split--offset {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  /* Section heads go two-column: title left, supporting copy right. */
+  .section__head--split {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+    gap: var(--space-2xl);
+    align-items: end;
+  }
+
+  .trust-strip {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0 var(--space-lg);
+  }
+
+  .creature-grid { grid-template-columns: repeat(4, 1fr); }
+  .rail { grid-template-columns: repeat(3, 1fr); }
+  .site-footer__grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; }
+
+  .service-list__item { padding-inline: var(--space-md); }
+
+  .steps--2col { grid-template-columns: repeat(2, 1fr); column-gap: var(--space-2xl); }
+  .steps--2col .step:nth-child(2) { border-top: 1px solid var(--border); }
+
+}
+
+/* --- 1280px ------------------------------------------------------ */
+@media (min-width: 80rem) {
+  .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+  .product-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* --- Very wide: cap the reading experience ----------------------- */
+@media (min-width: 120rem) {
+  :root { --container: 1600px; }
+}
+
+/* --- Coarse pointers: no hover-dependent affordances ------------- */
+@media (hover: none) {
+  .gallery-item__overlay { opacity: 1; }
+  .media--zoom img { transition: none; }
+}
+
+
+/* =====================================================================
+   25  REDUCED MOTION
+   ===================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Content must never depend on an animation to become visible. */
+  .js [data-reveal],
+  .js [data-reveal-stagger] > *,
+  .js [data-reveal-media] img,
+  .hero__inner > * {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .hero__scroll-line::after { animation: none; top: 0; }
+
+  /* The reef holds its resting pose rather than animating faster. */
+  .coral-piece {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .media--zoom img,
+  .service-panel__media img,
+  .creature img,
+  .video-facade img { transition: none !important; }
+
+  a:hover .media--zoom img,
+  .service-panel:hover .service-panel__media img,
+  .creature:hover img { transform: none !important; }
+}
+
+
+/* =====================================================================
+   26  PRINT
+   The body already prints correctly — it is white with navy type. Only
+   the dark bands, the chrome and the decorative artwork need resetting.
+   ===================================================================== */
+
+@media print {
+  .utility-bar,
+  .site-header,
+  .primary-nav,
+  .hero__scroll,
+  .contact-fab,
+  .contact-panel,
+  .sticky-cta,
+  .lightbox,
+  .gallery-filters,
+  .video-facade,
+  .wave-divider,
+  .ba__range { display: none !important; }
+
+  :root {
+    --ink: #000;
+    --text-secondary: #222;
+    --text-muted: #555;
+    --border: rgba(0, 0, 0, 0.25);
+  }
+
+  body { background: #fff; color: #000; font-size: 11pt; }
+
+  .section { padding-block: 1.5rem; }
+
+  .section--deep,
+  .section--black,
+  .section--tint,
+  .section--ice,
+  .site-footer,
+  .creature { background: #fff !important; color: #000 !important; }
+
+  .section--deep h1, .section--deep h2, .section--deep h3,
+  .section--black h1, .section--black h2, .section--black h3,
+  .creature__title,
+  .site-footer__tagline,
+  .site-footer__phone { color: #000 !important; }
+
+  .creature::after { display: none !important; }
+
+  .site-logo__mark--dark  { display: block; }
+  .site-logo__mark--light { display: none; }
+
+  .trusted-by img { filter: none !important; }
+
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #555; }
+  a[href^="#"]::after, a[href^="tel"]::after { content: ""; }
+
+  .page-hero, .hero { min-height: auto; color: #000; background: #fff; }
+  .page-hero::after, .hero::after { display: none; }
+  .page-hero__title, .hero__title { color: #000; }
+}
+
+
+/* =====================================================================
+   27  AQUATIQUE SECTION ARCHETYPES
+
+   Every section type on aquatic-show.com/en, measured in the browser at
+   1440px rather than approximated. Their homepage is built from six
+   archetypes and nothing else:
+
+     .band          o-homeMagic    full-bleed media, everything centred
+     .showcase      o-homeShows    media grid with the heading OVER it
+     .product-rail  m-slider       296x444 cards, tag pills, centred title
+     .feature-card  o-homeNews     cream card, image left, copy right
+     .logo-strip    o-homeClients  heading, then white logo tiles
+     .gold-band     o-prefooter    the one saturated band on the page
+
+   Their measured values, used verbatim below:
+     o-homeMagic    #00284D, text-align center, padding 160px 0 500px
+     o-homeShows    #0C0A09, padding 170px 0 220px
+     o-prefooter    #C79D47, white, padding 75px 0 60px
+     slide          296 x 444, radius 10px
+     slideContent   padding 32px 24px, gap 24px, centred
+     a-tag          rgba(255,255,255,.24), 10px/600, radius 24px
+     m-client       250 x 200, radius 20px
+   ===================================================================== */
+
+/* --- the tag pill -----------------------------------------------------
+   Their measurements exactly: 10px at 600, a 24px radius, and a
+   translucent white ground that works on any photograph. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+  font-size: 0.625rem;
+  font-weight: var(--w-ui);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tag--gold    { background: var(--accent-base); }
+.tag--water   { background: var(--water); }
+.tag--purple  { background: var(--coral-purple); }
+
+.tag--onLight {
+  background: rgba(0, 40, 77, 0.08);
+  color: var(--navy);
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  justify-content: center;
+}
+
+
+/* =====================================================================
+   .band - o-homeMagic
+
+   A full-viewport photograph with the whole content block centred on it:
+   an 80px title, one paragraph at plain body size, and a single white
+   pill. Their padding is deeply asymmetric - 160px top against 500px
+   bottom - which is what lets the photograph carry the lower half of the
+   band with nothing on it.
+   ===================================================================== */
+
+.band {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  padding-block: clamp(4rem, 11vw, 10rem) clamp(8rem, 26vw, 31.25rem);
+  overflow: hidden;
+  background: var(--navy);
+  color: #ffffff;
+  text-align: center;
+  isolation: isolate;
+}
+
+.band__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.band__media img,
+.band__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to bottom,
+    rgba(0, 13, 26, 0.72) 0%,
+    rgba(0, 13, 26, 0.3) 45%,
+    rgba(0, 13, 26, 0.55) 100%);
+}
+
+.band__inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  max-width: 46rem;
+}
+
+.band__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h2);
+  font-weight: var(--w-display);
+  line-height: 1.0;
+  letter-spacing: var(--track-h2);
+}
+
+.band__text {
+  max-width: 58ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+/* The trust line, when it lands on the band. Its default colours are
+   tuned for a light ground and vanish against a photograph. */
+.band .trusted-by {
+  justify-content: center;
+  margin-top: var(--space-md);
+}
+
+.band .trusted-by__label { color: rgba(255, 255, 255, 0.7); }
+
+.band .trusted-by img {
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+
+/* The small circular "+" that sits between their copy and their button. */
+.band__more {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--glass);
+  color: #ffffff;
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: background var(--dur-fast) var(--ease-out);
+}
+
+.band__more:hover { background: var(--glass-hover); }
+
+
+/* =====================================================================
+   .showcase - o-homeShows
+
+   Their most distinctive section, and the one a conventional layout
+   would never arrive at: a full-bleed grid of project cards with the
+   section heading floating in the MIDDLE OF IT, over the centre card.
+   The grid keeps scrolling behind the heading; the heading has no ground
+   of its own, only a radial scrim so the type stays readable.
+   ===================================================================== */
+
+.showcase {
+  position: relative;
+  padding-block: clamp(4rem, 12vw, 10.625rem) clamp(5rem, 15vw, 13.75rem);
+  overflow: hidden;
+  background: var(--near-black);
+  color: #ffffff;
+  isolation: isolate;
+}
+
+.showcase__grid {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.showcase__grid > * {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+
+.showcase__grid img,
+.showcase__grid video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Each tile carries its own caption at the top, in the same muted grey
+   the overlay menu uses at rest. */
+.showcase__caption {
+  position: absolute;
+  inset: var(--space-md) var(--space-md) auto;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--step-h6);
+  font-weight: var(--w-display);
+  line-height: 1.15;
+  letter-spacing: var(--track-h4);
+  text-align: center;
+}
+
+/* The scrim that makes the centred heading legible over the grid. */
+.showcase::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 55% at 50% 50%,
+      rgba(12, 10, 9, 0.94) 0%, rgba(12, 10, 9, 0.6) 55%, rgba(12, 10, 9, 0.25) 100%),
+    rgba(12, 10, 9, 0.35);
+}
+
+.showcase__head {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-md);
+  max-width: 44rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.showcase__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h2);
+  font-weight: var(--w-display);
+  line-height: 1.0;
+  letter-spacing: var(--track-h2);
+}
+
+/* Their standfirst: same size as body copy but at 700, so it reads as a
+   question being asked rather than as more prose. */
+.showcase__standfirst {
+  max-width: 52ch;
+  margin: 0;
+  font-size: var(--step-body);
+  font-weight: var(--w-emphasis);
+  line-height: 1.5;
+}
+
+.showcase__text {
+  max-width: 56ch;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+@media (min-width: 62em) {
+  .showcase__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+/* =====================================================================
+   .product-rail - m-slider
+
+   Their product slider. Portrait cards at their measured 296 x 444 with
+   a 10px radius, a row of tag pills, and a centred title that runs the
+   300/700 weight mix down two lines. Content block is bottom-aligned
+   with 32px / 24px padding and a 24px gap.
+
+   The cards run edge to edge with no container gutter, exactly as
+   theirs do - the row is meant to look cut off, not laid out.
+   ===================================================================== */
+
+.product-rail { position: relative; }
+
+.product-rail__viewport {
+  display: flex;
+  gap: 0.9375rem;
+  padding-block-end: var(--space-xs);
+  padding-inline: var(--gutter);
+  margin-inline: calc(var(--gutter) * -1);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.product-rail__viewport::-webkit-scrollbar { display: none; }
+
+.product-rail__viewport.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  scroll-behavior: auto;
+  user-select: none;
+}
+
+.p-card {
+  position: relative;
+  flex: 0 0 18.5rem;          /* 296px */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 27.75rem;           /* 444px */
+  overflow: hidden;
+  border-radius: 10px;
+  scroll-snap-align: start;
+  background: var(--navy-deep);
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.p-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.p-card__media img,
+.p-card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 800ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .p-card:hover .p-card__media img,
+  .p-card:hover .p-card__media video { transform: scale(1.06); }
+}
+
+.p-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(to top,
+    rgba(0, 13, 26, 0.88) 0%,
+    rgba(0, 13, 26, 0.45) 45%,
+    rgba(0, 13, 26, 0.1) 100%);
+}
+
+.p-card__content {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;                /* their 24px */
+  padding: 2rem 1.5rem;       /* their 32px / 24px */
+}
+
+.p-card__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h5);
+  font-weight: var(--w-display);
+  line-height: 1.06;
+  letter-spacing: var(--track-h4);
+}
+
+.p-card__note {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-meta);
+  font-weight: var(--w-emphasis);
+  line-height: 1.35;
+}
+
+
+/* =====================================================================
+   .feature-card - o-homeNews
+
+   The one warm surface on the page: a cream card on a large radius with
+   a square image on the left, the heading and body stacked in a single
+   left-aligned column on the right, a dark navy pill, an oversized gold
+   quote glyph in the top corner and the two circular arrows stacked in
+   the bottom one.
+
+   Note the column: the heading and its copy share it. They are never
+   split across two columns facing each other.
+   ===================================================================== */
+
+.feature-card {
+  position: relative;
+  display: grid;
+  gap: var(--space-lg);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  border-radius: var(--radius-lg);
+  background: #fbf7f0;
+  color: var(--navy);
+}
+
+.feature-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--navy-deep);
+}
+
+.feature-card__media img,
+.feature-card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feature-card__body {
+  display: grid;
+  align-content: center;
+  gap: var(--space-sm);
+  padding-right: clamp(0rem, 6vw, 6rem);
+}
+
+/* 700, not 300: this is their one heading that sets bold throughout,
+   because at 40px over a warm ground the light weight disappears. */
+.feature-card__kicker {
+  margin: 0;
+  color: var(--navy);
+  font-size: var(--step-h4);
+  font-weight: var(--w-emphasis);
+  line-height: 1.05;
+  letter-spacing: var(--track-h4);
+}
+
+.feature-card__title {
+  margin: 0;
+  color: var(--navy);
+  font-size: var(--step-h6);
+  font-weight: var(--w-emphasis);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.feature-card__text {
+  margin: 0;
+  max-width: 46ch;
+  color: rgba(0, 40, 77, 0.8);
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+.feature-card__body .btn {
+  justify-self: start;
+  margin-top: var(--space-xs);
+  --btn-bg: var(--navy-deep);
+  --btn-fg: #ffffff;
+  --btn-bg-hover: var(--navy);
+}
+
+/* The gold quote glyph. Decorative, so it is drawn in CSS rather than
+   shipped as an asset, and it is hidden from assistive tech. */
+.feature-card__quote {
+  position: absolute;
+  top: clamp(1.5rem, 3vw, 2.5rem);
+  right: clamp(1.5rem, 3vw, 2.5rem);
+  display: none;
+  color: var(--accent-base);
+  font-family: var(--font-display);
+  font-size: 7rem;
+  font-weight: var(--w-emphasis);
+  line-height: 0.6;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* A testimonial dropped into the card. The global `blockquote` rule sets
+   40px, which is a display size meant for a pull-quote standing on its
+   own — inside a column it overflows the column and runs under the
+   image. Here the quote is body copy, and the width comes from the grid
+   column rather than from the carousel's own 54rem measure. */
+.feature-card .testimonial {
+  max-width: none;
+  min-width: 0;
+}
+
+.feature-card .testimonial__quote {
+  margin-bottom: var(--space-md);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  font-weight: var(--w-body);
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: rgba(0, 40, 77, 0.82);
+}
+
+.feature-card .testimonial__name { color: var(--navy); }
+.feature-card .testimonial__role { color: var(--accent-dark); }
+
+.feature-card__controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+@media (min-width: 62em) {
+  .feature-card {
+    grid-template-columns: minmax(0, 24rem) minmax(0, 1fr) auto;
+    align-items: stretch;
+  }
+
+  .feature-card__quote { display: block; }
+
+  .feature-card__controls {
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+}
+
+
+/* =====================================================================
+   .logo-strip - o-homeClients
+
+   Heading, then a row of white 250 x 200 tiles on a 20px radius, each
+   holding one logo. The row scrolls rather than wrapping, so the number
+   of clients never changes the layout.
+   ===================================================================== */
+
+.logo-strip__title {
+  margin: 0 0 var(--space-lg);
+  font-size: var(--step-h2);
+  font-weight: var(--w-display);
+  line-height: 1.0;
+  letter-spacing: var(--track-h2);
+}
+
+.logo-strip__track {
+  display: flex;
+  gap: var(--space-sm);
+  padding-block-end: var(--space-xs);
+  padding-inline: var(--gutter);
+  margin-inline: calc(var(--gutter) * -1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.logo-strip__track::-webkit-scrollbar { display: none; }
+
+.logo-strip__tile {
+  flex: 0 0 15.625rem;   /* 250px */
+  display: grid;
+  place-items: center;
+  height: 12.5rem;       /* 200px */
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #ffffff;
+}
+
+.logo-strip__tile img {
+  max-width: 100%;
+  max-height: 5rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+
+/* =====================================================================
+   .gold-band - o-prefooter
+
+   The one saturated band on the page: solid #C79D47, white type, their
+   measured 75px / 60px padding. Three things on one horizontal line -
+   a mark, the title, and a short paragraph with its button - never a
+   heading on one side facing text on the other.
+   ===================================================================== */
+
+.gold-band {
+  padding-block: clamp(3rem, 5.2vw, 4.6875rem) clamp(2.5rem, 4.2vw, 3.75rem);
+  background: var(--accent-base);
+  color: #ffffff;
+}
+
+.gold-band__inner {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.gold-band__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h3);
+  font-weight: var(--w-display);
+  line-height: 1.0;
+  letter-spacing: var(--track-h3);
+}
+
+.gold-band__text {
+  margin: 0 0 var(--space-md);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: var(--step-small);
+  line-height: 1.5;
+}
+
+.gold-band__mark img {
+  width: auto;
+  height: 4.5rem;
+}
+
+.gold-band .btn {
+  --btn-bg: #ffffff;
+  --btn-fg: var(--accent-dark);
+  --btn-bg-hover: var(--tint);
+}
+
+@media (min-width: 62em) {
+  .gold-band__inner {
+    grid-template-columns: auto minmax(0, 1fr) minmax(0, 26rem);
+    gap: var(--space-xl);
+  }
+}
+
+
+/* =====================================================================
+   SHARED: the circular stroke button
+
+   Used by the product rail and the feature card. A faint ring at rest;
+   on hover a second ring draws itself around the circle over three
+   seconds on the expo curve. 2*pi*r for r=44 is 276.46.
+   ===================================================================== */
+
+.slider-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: 50%;
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.slider-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.slider-btn__ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-dasharray: 276.46;
+  stroke-dashoffset: 276.46;
+  transform: rotate(-450deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 3s var(--ease-expo),
+              transform 3s var(--ease-expo);
+  pointer-events: none;
+}
+
+.slider-btn:hover:not(:disabled) .slider-btn__ring {
+  stroke-dashoffset: 0;
+  transform: rotate(-90deg);
+}
+
+.slider-btn__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  pointer-events: none;
+}
+
+.slider-btn.-prev .slider-btn__icon { transform: rotate(180deg); }
+
+.slider-btn:disabled { opacity: 0.25; cursor: default; }
+
+.slider-btn--onDark,
+.section--deep .slider-btn,
+.section--black .slider-btn,
+.showcase .slider-btn { color: #ffffff; }
+
+.rail-controls {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: var(--space-md);
+}
+
+
+/* =====================================================================
+   SHARED: the segmented category selector
+
+   One pill track with a coloured pill that slides under the active
+   label. The slider is decorative - every button still works, and
+   aria-pressed still reports the state, if the script never runs.
+   ===================================================================== */
+
+.cat-selector {
+  position: relative;
+  display: flex;
+  /* One row that scrolls, never two that wrap: the sliding pill is
+     absolutely positioned against a single baseline, so a second row
+     would leave it stranded under the first. */
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  max-width: 100%;
+  margin-inline: auto;
+  margin-bottom: var(--space-lg);
+  padding: 0.35rem;
+  border-radius: var(--radius-pill);
+  background: var(--tint);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.cat-selector::-webkit-scrollbar { display: none; }
+
+.cat-selector__slider {
+  position: absolute;
+  top: 0.35rem;
+  left: 0;
+  height: calc(100% - 0.7rem);
+  border-radius: var(--radius-pill);
+  background: var(--coral-purple);
+  transition: transform var(--dur) var(--ease-out),
+              width var(--dur) var(--ease-out);
+  pointer-events: none;
+}
+
+/* Has to beat `.gallery-filter`: Aquatique's segments carry no border,
+   no uppercase and no tracking - the pill behind them is the only
+   indicator. */
+.cat-selector .cat-selector__btn {
+  position: relative;
+  z-index: 1;
+  padding: 0.85rem 1.5rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: var(--step-body);
+  font-weight: var(--w-body);
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cat-selector .cat-selector__btn:hover {
+    border-color: transparent;
+    color: var(--ink);
+  }
+}
+
+.cat-selector .cat-selector__btn[aria-pressed="true"] {
+  background: transparent;
+  color: #ffffff;
+  font-weight: var(--w-ui);
+}
+
+.section--deep .cat-selector,
+.section--black .cat-selector { background: rgba(255, 255, 255, 0.08); }
+
+.section--deep .cat-selector .cat-selector__btn,
+.section--black .cat-selector .cat-selector__btn { color: rgba(255, 255, 255, 0.6); }
+
+.section--deep .cat-selector .cat-selector__btn:hover,
+.section--black .cat-selector .cat-selector__btn:hover { color: #ffffff; }
+
+
+/* =====================================================================
+   SHARED: the media card
+
+   The image scales very slightly on hover while the card itself stays
+   put. It never lifts and never gains a shadow - the scale is the
+   entire interaction.
+   ===================================================================== */
+
+.a-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--navy-deep);
+  color: #ffffff;
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.a-card__media {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.a-card__media img,
+.a-card__media video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 800ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .a-card:hover .a-card__media img,
+  .a-card:hover .a-card__media video { transform: scale(1.06); }
+}
+
+.a-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top,
+    rgba(0, 13, 26, 0.85) 0%,
+    rgba(0, 13, 26, 0.15) 45%,
+    rgba(0, 13, 26, 0) 70%);
+}
+
+.a-card__body {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  display: grid;
+  gap: 0.4rem;
+  padding: var(--space-md);
+}
+
+.a-card__tag {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 1;
+}
+
+.a-card__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h6);
+  font-weight: var(--w-display);
+  line-height: 1.15;
+  letter-spacing: var(--track-h4);
+}
+
+.a-card__meta {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: var(--step-meta);
+}
+
+
+/* --- reduced motion ---------------------------------------------------
+   The rails, the ticker and the ring are the only things here that move
+   on their own or for a long time. All three stop; nothing becomes
+   unusable, because every one of them is a progressive enhancement over
+   a control that already works.
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero__ticker-track { animation: none; }
+  .hero__scroll-line::after { animation: none; }
+
+  .slider-btn__ring { transition: none; stroke-dashoffset: 276.46; }
+
+  .a-card__media img,
+  .a-card__media video,
+  .p-card__media img,
+  .p-card__media video { transition: none; }
+
+  .cat-selector__slider { transition: none; }
+}
+/* =====================================================================
+   28  INTERIOR ARCHETYPES
+
+   The rest of aquatic-show.com, surveyed page by page. Their 111 English
+   URLs resolve to eleven templates, and those templates are built from
+   the archetypes below. Measured, not approximated.
+
+     .step-track    m-expertiseStep      numbered process, drawn rail
+     .ref-grid      o-referenceGrid      coloured cards, inset portrait
+     .page-summary  m-pageSummary        sticky progress rail
+     .text-columns  o-universeVision     heading, then TWO body columns
+     .scatter       o-universeVision     rotated overlapping photographs
+     .text-scroll   m-textScroll         oversized scroll-revealed line
+     .info-tiles    o-contactForm        grey contact tiles
+     .load-more     o-referenceGrid      centred pill
+
+   Their pages are navy `#00284D` far more often than white. The old
+   build had that backwards.
+   ===================================================================== */
+
+
+/* =====================================================================
+   .step-track - m-expertiseStep
+
+   REPLACES the numbered 01-08 service list, which was the last piece of
+   the pre-Aquatique design still standing on the home page.
+
+   Theirs is a 25% / 75% grid. The narrow column holds a dashed vertical
+   rail with a sticky `01 / 05` pill riding it; the rail draws itself in
+   as the step scrolls through, driven by a `--progress` custom property.
+   The wide column holds the heading, the body, and a pair of
+   deliberately overlapping photographs.
+
+   Their exact values: `grid-template-columns: 25% 75%`, rail
+   `stroke-dasharray: 2`, placeholder line at `opacity: .3`, pill sticky
+   at `top: 50%`.
+   ===================================================================== */
+
+.step-track {
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.step-track__list {
+  display: grid;
+  gap: var(--space-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+/* --- the rail -------------------------------------------------------- */
+.step__rail {
+  position: relative;
+  display: none;          /* single column until there is room for it */
+  justify-content: center;
+}
+
+.step__rail::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  /* The dashed placeholder. A repeating-linear-gradient rather than a
+     border, so the dash length does not change with the element height. */
+  background-image: linear-gradient(to bottom,
+    rgba(255, 255, 255, 0.3) 0 4px, transparent 4px 10px);
+  background-size: 2px 10px;
+  opacity: 0.6;
+}
+
+/* The drawn line: the same rail at full strength, scaled from the top by
+   the step's own scroll progress. One transform, no repaint. */
+.step__rail::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 2px;
+  transform: translateX(-50%) scaleY(var(--progress, 0));
+  transform-origin: top;
+  background-image: linear-gradient(to bottom,
+    #ffffff 0 4px, transparent 4px 10px);
+  background-size: 2px 10px;
+  transition: transform 180ms linear;
+}
+
+.step__marker {
+  position: sticky;
+  top: 50%;
+  z-index: 1;
+  align-self: start;
+  margin-top: 1.8rem;
+}
+
+/* --- the body -------------------------------------------------------- */
+.step__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.step__title {
+  margin: 0;
+  color: #ffffff;
+  font-size: var(--step-h4);
+  font-weight: var(--w-emphasis);
+  line-height: 1.05;
+  letter-spacing: var(--track-h4);
+}
+
+.step__text {
+  margin: 0;
+  max-width: 52ch;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+/* --- the overlapping pair ------------------------------------------- */
+/* Their step images are a modest pair, not a full-width hero. Letting
+   them run the whole 75% column makes each step a screen tall and the
+   rail beside it meaningless. */
+.step__images {
+  position: relative;
+  width: 100%;
+  max-width: 34rem;
+  margin-top: var(--space-xs);
+}
+
+.step__images img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-sm);
+}
+
+.step__images--pair { padding-bottom: 14%; }
+
+.step__images--pair > :last-child {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  box-shadow: 0 10px 30px rgba(0, 13, 26, 0.45);
+}
+
+@media (min-width: 62em) {
+  .step { grid-template-columns: 25% 75%; gap: 0; }
+  .step__rail { display: flex; }
+  .step__body { padding-bottom: var(--space-lg); }
+
+  /* The images sit beside the copy rather than under it, so a step is
+     about one screen and the rail reads as a continuous line. */
+  .step__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "title  images"
+      "text   images"
+      "link   images";
+    align-content: start;
+    gap: var(--space-sm) var(--space-lg);
+  }
+
+  .step__title  { grid-area: title; }
+  .step__text   { grid-area: text; }
+  .step__images { grid-area: images; align-self: start; max-width: none; }
+  .step__body > .link-arrow { grid-area: link; justify-self: start; align-self: start; }
+}
+
+
+/* =====================================================================
+   .ref-grid - o-referenceGrid
+
+   Their project card, and nothing like a conventional gallery tile: the
+   card is a flat COLOUR, not a photograph, and the photograph sits
+   inset inside it as a small portrait with the caption underneath. The
+   colour is per-card and comes from the work itself.
+
+   Four columns, title 700 over subtitle 300, a circular mark watermark,
+   and a tiny uppercase location/year line at the bottom.
+   ===================================================================== */
+
+.ref-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+.ref-card {
+  --card: var(--navy-raised);
+
+  position: relative;
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-md) var(--space-lg);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 500ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ref-card:hover { transform: translateY(-4px); }
+}
+
+.ref-card__head { display: grid; gap: 0.1rem; }
+
+.ref-card__kind {
+  font-size: var(--step-h6);
+  font-weight: var(--w-emphasis);
+  line-height: 1.15;
+  letter-spacing: var(--track-h4);
+}
+
+.ref-card__where {
+  font-size: var(--step-h6);
+  font-weight: var(--w-display);
+  line-height: 1.15;
+  letter-spacing: var(--track-h4);
+}
+
+/* The inset portrait. It never fills the card - the colour around it is
+   the point. */
+.ref-card__media {
+  position: relative;
+  width: 68%;
+  margin-inline: auto;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.ref-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ref-card:hover .ref-card__media img { transform: scale(1.05); }
+}
+
+.ref-card__mark {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin-inline: auto;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.ref-card__mark img { width: 60%; height: auto; }
+
+.ref-card__meta {
+  font-size: 0.625rem;
+  font-weight: var(--w-ui);
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* The card colours. Aquatique give each project its own; ours cycle
+   through the palette so a grid of any length stays varied without
+   anyone having to pick one per project. */
+.ref-card:nth-child(8n + 1) { --card: #4f5c2f; }
+.ref-card:nth-child(8n + 2) { --card: #0c0a09; }
+.ref-card:nth-child(8n + 3) { --card: #643232; }
+.ref-card:nth-child(8n + 4) { --card: #5c175e; }
+.ref-card:nth-child(8n + 5) { --card: #17206b; }
+.ref-card:nth-child(8n + 6) { --card: #00284d; }
+.ref-card:nth-child(8n + 7) { --card: #d1701e; }
+.ref-card:nth-child(8n + 8) { --card: #6541cb; }
+
+@media (min-width: 40em) {
+  .ref-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 62em) {
+  .ref-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* The category filter hides cards by class, exactly as it did for the
+   old tile. Kept on the new card so the existing filter module needs no
+   change at all. */
+.ref-card.is-hidden { display: none; }
+
+.load-more {
+  display: grid;
+  justify-items: center;
+  margin-top: var(--space-xl);
+}
+
+
+/* =====================================================================
+   .page-summary - m-pageSummary
+
+   Their interior-page rail: a sticky list of the sections on the page,
+   each with a small circular progress ring that fills as that section is
+   read. Inactive rows sit at 50% opacity.
+
+   It is `position: sticky` inside a tall container rather than fixed, so
+   it scrolls away with its own page region instead of following the
+   visitor forever.
+   ===================================================================== */
+
+.page-summary {
+  display: none;
+  align-self: start;
+  position: sticky;
+  top: 40vh;
+  padding-block: var(--space-md);
+}
+
+.page-summary__list {
+  display: grid;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-summary__link {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  color: inherit;
+  font-size: var(--step-cta);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 1s var(--ease-out);
+}
+
+.page-summary__item.is-active .page-summary__link,
+.page-summary__link:hover { opacity: 1; }
+
+.page-summary__ring {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  transform: rotate(-90deg);
+}
+
+.page-summary__ring circle {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.page-summary__ring .-base { opacity: 0.25; }
+
+/* r = 7 -> circumference 43.98. The dash offset is driven by the
+   section's own scroll progress, set on the item by main.js. */
+.page-summary__ring .-fill {
+  stroke-dasharray: 43.98;
+  stroke-dashoffset: calc(43.98 - 43.98 * var(--progress, 0));
+  transition: stroke-dashoffset 180ms linear;
+}
+
+@media (min-width: 62em) {
+  .page-summary { display: block; }
+
+  .has-summary {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: start;
+  }
+}
+
+
+/* =====================================================================
+   .text-columns - o-universeVision
+
+   How Aquatique spread a long body out. The heading spans the full
+   measure; the prose underneath then breaks into TWO equal columns.
+   It is not a heading facing its own copy - the heading is above both
+   columns, on the same axis - so it satisfies the one-axis rule while
+   keeping long copy readable instead of running to 100 characters.
+   ===================================================================== */
+
+.text-columns {
+  display: grid;
+  gap: var(--space-md) var(--space-xl);
+}
+
+/* Inside a centred band the two columns stay centred as a pair, and each
+   column's own text goes left so the ragged edges do not fight. */
+.band__columns {
+  width: 100%;
+  max-width: 54rem;
+  margin-inline: auto;
+  text-align: left;
+}
+
+.band__columns > p { color: rgba(255, 255, 255, 0.9); }
+
+.text-columns > p {
+  margin: 0;
+  max-width: 58ch;
+  font-size: var(--step-body);
+  line-height: 1.5;
+}
+
+@media (min-width: 48em) {
+  .text-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+
+/* =====================================================================
+   .scatter - o-universeVision
+
+   Their rotated, overlapping photo cluster. Each frame carries its own
+   angle and offset; nothing is on a grid. It is decorative, so it is
+   hidden from assistive technology at the markup level and the rotation
+   is dropped entirely under reduced motion.
+   ===================================================================== */
+
+.scatter {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: clamp(16rem, 34vw, 28rem);
+  margin-block: var(--space-lg);
+}
+
+.scatter img {
+  width: clamp(8rem, 17vw, 15rem);
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 18px 40px rgba(0, 13, 26, 0.5);
+}
+
+.scatter > * { margin-inline: -2.5%; }
+
+.scatter > :nth-child(1) { transform: rotate(-13deg) translateY(8%); }
+.scatter > :nth-child(2) { transform: rotate(7deg) translateY(-4%); }
+.scatter > :nth-child(3) { transform: rotate(-5deg) translateY(6%); z-index: 2; }
+.scatter > :nth-child(4) { transform: rotate(12deg) translateY(-2%); }
+.scatter > :nth-child(5) { transform: rotate(-9deg) translateY(4%); }
+
+
+/* =====================================================================
+   .text-scroll - m-textScroll
+
+   One oversized statement, held to about 65% of the measure, that
+   reveals itself as it scrolls. Their `.m-textScroll__content` is
+   61.5% at tablet and 69.2% at desktop; the reveal is word-by-word
+   opacity, driven by main.js.
+   ===================================================================== */
+
+.text-scroll {
+  margin-block: clamp(4rem, 14vw, 14rem);
+}
+
+.text-scroll__content {
+  width: 100%;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--step-h3);
+  font-weight: var(--w-display);
+  line-height: 1.12;
+  letter-spacing: var(--track-h3);
+}
+
+.text-scroll__word {
+  opacity: 0.22;
+  transition: opacity 320ms var(--ease-out);
+}
+
+.text-scroll__word.is-lit { opacity: 1; }
+
+@media (min-width: 48em)  { .text-scroll__content { width: 61.5%; } }
+@media (min-width: 62em)  { .text-scroll__content { width: 69.2%; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .text-scroll__word { opacity: 1; transition: none; }
+  .scatter > * { transform: none; }
+}
+
+
+/* =====================================================================
+   .info-tiles - o-contactForm
+
+   The three flat grey tiles under their contact form: phone, e-mail,
+   address. No border, no shadow, no icon - a label and a value.
+   ===================================================================== */
+
+.info-tiles {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+  margin-top: var(--space-xl);
+}
+
+.info-tile {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: var(--radius-sm);
+  background: var(--tint);
+}
+
+.info-tile__label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  color: var(--ink);
+  font-size: var(--step-h6);
+  font-weight: var(--w-display);
+  letter-spacing: -0.01em;
+}
+
+.info-tile__value {
+  margin: 0;
+  color: var(--navy);
+  font-size: var(--step-meta);
+  font-weight: var(--w-ui);
+  line-height: 1.5;
+}
+
+.info-tile__value a { color: inherit; text-decoration: none; }
+.info-tile__value a:hover { text-decoration: underline; }
+
+@media (min-width: 48em) {
+  .info-tiles { grid-template-columns: repeat(3, 1fr); }
+}
+
+
+/* =====================================================================
+   The interior page hero label
+
+   Their interior heroes open on a glass PILL, not a tracked eyebrow.
+   ===================================================================== */
+
+.page-hero .tag,
+.hero .tag { margin-bottom: var(--space-sm); }

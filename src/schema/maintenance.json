@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://acrylicpros.com/maintenance.html#service",
+      "name": "Aquarium Maintenance Services",
+      "serviceType": "Aquarium maintenance",
+      "description": "We offer comprehensive, professional aquarium maintenance designed to promote the long-term health and vitality of your aquatic life. Our team provides all essential care and services to ensure your aquarium remains balanced, beautiful, and thriving for years to come.",
+      "url": "https://acrylicpros.com/maintenance.html",
+      "provider": { "@id": "https://acrylicpros.com/#business" },
+      "areaServed": [
+        { "@type": "State", "name": "California" },
+        { "@type": "Country", "name": "United States" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://acrylicpros.com/services.html" },
+        { "@type": "ListItem", "position": 3, "name": "Maintenance Services", "item": "https://acrylicpros.com/maintenance.html" }
+      ]
+    }
+  ]
+}

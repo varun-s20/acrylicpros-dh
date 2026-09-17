@@ -1,0 +1,180 @@
+<!--meta
+title: Contact | Acrylic Pros
+description: Get In Touch with Acrylic Pros. We welcome you to contact us for more information about any of our products or services. Call us at +1 (562) 566-0150.
+og_title: Get In Touch with Acrylic Pros
+og_description: We welcome you to contact us for more information about any of our products or services.
+og_image: assets/images/headers/contact-header.jpg
+og_image_alt: A clownfish sheltering in an anemone.
+body_class: t-inner t-contact
+schema: contact
+head: page-head
+header: page-header
+footer: home-footer
+nav:
+-->
+
+<!-- ============================================================
+     HERO — their plain contact hero
+     ============================================================ -->
+<section class="m-pageBanner" data-page-hero>
+  <div class="m-pageBanner__media" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="assets/images/headers/contact-header-768.webp 768w,
+                              assets/images/headers/contact-header-1280.webp 1280w,
+                              assets/images/headers/contact-header-1920.webp 1920w" sizes="100vw">
+      <img src="assets/images/headers/contact-header.jpg" alt="" width="1920" height="550" fetchpriority="high" decoding="async">
+      </picture>
+  </div>
+  <div class="m-pageBanner__inner">
+    <nav class="m-pageBanner__crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">Contact</li></ol></nav>
+    <h1 class="m-pageBanner__title" data-page-title><strong>Get In Touch</strong> with Acrylic Pros</h1>
+  </div>
+</section>
+
+<!-- ============================================================
+     FORM — their o-contactForm
+     ============================================================ -->
+<div class="t-contact__content" id="form">
+  <div class="row">
+    <div class="o-contactForm" data-scroll data-scroll-offset="33%,33%" data-dark-ui>
+      <p class="tx-h4 o-contactForm__title">Drop us a line.<span class="o-contactForm__sub">We welcome you to contact us for more information about any of our products or services.</span></p>
+
+      <form class="o-contactForm__form" data-validate novalidate aria-label="Contact form">
+        <div class="o-contactForm__leftPanel">
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="c-name">Your name <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="c-name" name="name" placeholder="ex: Jane Smith" required maxlength="80" autocomplete="name" data-label="Your name">
+            <p class="a-inputField__error" id="c-name-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="c-email">Your e-mail <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="email" id="c-email" name="email" placeholder="ex: jane.smith@gmail.com" required autocomplete="email" inputmode="email" data-label="Your e-mail">
+            <p class="a-inputField__error" id="c-email-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="c-phone">Phone number</label>
+            <input type="tel" id="c-phone" name="phone" placeholder="ex: (555) 123-4567" autocomplete="tel" inputmode="tel" data-label="Phone number">
+            <p class="a-inputField__error" id="c-phone-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="c-subject">Subject <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="c-subject" name="subject" placeholder="ex: Scratch removal" required maxlength="120" data-label="Subject">
+            <p class="a-inputField__error" id="c-subject-error" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="o-contactForm__rightPanel">
+          <fieldset class="a-inputField a-inputCheckbox -divided">
+            <legend class="a-inputField__label a-labelText -group">You are interested in:</legend>
+            <ul class="a-inputField__buttons">
+              <li class="a-inputField__button"><input type="checkbox" id="c-int-1" name="interest" value="Restoration &amp; care"><label class="a-inputField__value" for="c-int-1">Restoration &amp; care</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="c-int-2" name="interest" value="Design &amp; build"><label class="a-inputField__value" for="c-int-2">Design &amp; build</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="c-int-3" name="interest" value="Livestock"><label class="a-inputField__value" for="c-int-3">Livestock</label></li>
+            </ul>
+          </fieldset>
+          <fieldset class="a-inputField a-inputRadio">
+            <legend class="a-inputField__label a-labelText -group">For a project that is:</legend>
+            <ul class="a-inputField__buttons">
+              <li class="a-inputField__button"><input type="radio" id="c-prem-1" name="premises" value="Residential"><label class="a-inputField__value" for="c-prem-1">Residential</label></li>
+              <li class="a-inputField__button"><input type="radio" id="c-prem-2" name="premises" value="Commercial"><label class="a-inputField__value" for="c-prem-2">Commercial</label></li>
+            </ul>
+          </fieldset>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="c-message">Your message <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <textarea id="c-message" name="message" cols="30" rows="10" required data-label="Your message"></textarea>
+            <p class="a-inputField__error" id="c-message-error" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="o-contactForm__rgpdPanel">
+          <div class="a-inputField a-inputCheckbox o-contactForm__consent">
+            <div class="a-inputField__button">
+              <input type="checkbox" id="c-consent" name="consent" value="yes" required data-label="Consent">
+              <label class="a-inputField__value" for="c-consent">By ticking this box you agree to Acrylic Pros contacting you about your request &mdash; see our <a href="privacy-policy.html">privacy policy</a>. <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            </div>
+            <p class="a-inputField__error" id="c-consent-error" role="alert"></p>
+          </div>
+          <button class="a-button -primary -bgnavy -boxed" type="submit">
+            <span class="tx-cta">Discuss my project</span>
+            <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </button>
+          <p class="o-contactForm__status" data-form-status role="status" aria-live="polite" tabindex="-1"></p>
+        </div>
+      </form>
+
+      <ul class="o-contactInformations">
+        <li class="o-contactInformations__item">
+          <h2 class="tx-pxlarge">Phone number</h2>
+          <div class="o-contactInformations__wrapper tx-pxsmall">
+            <p>Call us at <a href="tel:+15625660150">+1 (562) 566-0150</a></p>
+          </div>
+        </li>
+        <li class="o-contactInformations__item">
+          <h2 class="tx-pxlarge">E-mail</h2>
+          <div class="o-contactInformations__wrapper tx-pxsmall">
+            <p><a href="mailto:info@acrylicpros.com">info@acrylicpros.com</a></p>
+          </div>
+        </li>
+        <li class="o-contactInformations__item">
+          <h2 class="tx-pxlarge">Follow Us</h2>
+          <div class="o-contactInformations__wrapper tx-pxsmall">
+            <p><a href="https://www.instagram.com/acrylic_pros_corp/" target="_blank" rel="noopener">Instagram</a></p>
+            <p><a href="https://www.yelp.com/biz/acrylic-pros-anaheim" target="_blank" rel="noopener">Yelp</a></p>
+            <p><a href="https://www.facebook.com/acrylicpros1" target="_blank" rel="noopener">Facebook</a></p>
+            <p><a href="https://www.google.com/search?q=Acrylic+Pros+Aquarium+Design+%26+Restoration&amp;stick=H4sIAAAAAAAA_-NgU1I1qLAwSElOMTcxNkk2NTZPNEuxMqhINrU0NzczNrM0NjNISrUwXMSq5ZhcVJmTmawQUJRfrOBYWJpYlFmaq-CSWpyZnqegphCUWlySX5RYkpmfBwDgD4wxVgAAAA&amp;hl=en" target="_blank" rel="noopener">Google</a></p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- CLIENT COPY REQUIRED: street address, opening hours and the placeholder FAQ
+           answers below. No address, hours or FAQs are published on acrylicpros.com.
+           Once the address is known, replace the map placeholder with a Google Maps embed. -->
+      <section class="o-contactVisit" aria-labelledby="visit-title">
+        <div class="o-contactVisit__map" role="img" aria-label="Map placeholder: location to be confirmed">
+          <span class="o-contactVisit__pin" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="currentColor"/><circle cx="12" cy="10" r="2.6" fill="#fff"/></svg></span>
+          <p class="o-contactVisit__mapNote">Map coming soon</p>
+        </div>
+        <div class="o-contactVisit__info">
+          <h2 class="tx-h3" id="visit-title">Visit <strong>Acrylic Pros</strong></h2>
+          <div class="o-contactVisit__group">
+            <h3 class="tx-uni14 -tx600">Address</h3>
+            <p>[Street address]<br>[City], CA [ZIP] <span class="a-placeholder">To be confirmed</span></p>
+            <p class="o-contactVisit__muted">Serving Southern California and nationwide.</p>
+          </div>
+          <div class="o-contactVisit__group">
+            <h3 class="tx-uni14 -tx600">Opening hours <span class="a-placeholder">To be confirmed</span></h3>
+            <table class="o-contactVisit__hours">
+              <tbody>
+                <tr><th scope="row">Monday &ndash; Friday</th><td>[00:00 &ndash; 00:00]</td></tr>
+                <tr><th scope="row">Saturday</th><td>[00:00 &ndash; 00:00]</td></tr>
+                <tr><th scope="row">Sunday</th><td>[00:00 &ndash; 00:00]</td></tr>
+                <tr class="-emergency"><th scope="row">Emergency services</th><td>24/7</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <a class="a-button -primary -bgnavy -boxed" href="tel:+15625660150"><span class="tx-cta">Call +1 (562) 566-0150</span><svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        </div>
+      </section>
+
+      <section class="o-contactFaq" id="faq" aria-labelledby="faq-title">
+        <div class="o-contactFaq__head">
+          <h2 class="tx-h3" id="faq-title">Frequently asked <strong>questions</strong></h2>
+          <p class="tx-p">Can&rsquo;t find your answer? <a href="#form">Drop us a line</a> or tap <strong>Chat with us</strong>.</p>
+        </div>
+        <div class="o-contactFaq__list">
+        <details class="m-faq" open><summary><span>Can you remove scratches with the fish still in the tank?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>Yes. We specialize in removing scratches off your aquarium with or without water, 100% fish and coral safe. The materials we use to polish acrylic have been used for over 20 years in the aquarium industry.</p></div></details>
+        <details class="m-faq"><summary><span>Do you offer emergency services?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>We provide 24/7 emergency services, temporary holding tanks and life support systems. Call us at <a href="tel:+15625660150">+1 (562) 566-0150</a>.</p></div></details>
+        <details class="m-faq"><summary><span>Can you move my aquarium to a new location?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>Our team will help you move your aquarium from point A to point B. We also provide temporary holding tanks and 24/7 fish support systems.</p></div></details>
+        <details class="m-faq"><summary><span>What areas do you serve?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>Southern California and nationwide.</p></div></details>
+        <details class="m-faq"><summary><span>Do you ship glass tanks?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>Glass tanks need to ship by freight; there is no free shipping. See all tanks on our <a href="glass-tanks.html">Glass Tanks</a> page.</p></div></details>
+        <details class="m-faq"><summary><span>What warranty comes with a glass aquarium?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>Tanks are warranted against leaks and cracks from defects in materials or workmanship for 6 months from purchase, and against leakage caused by sealant failure for 2 years. <a href="warranty.html">Read the full warranty</a>.</p></div></details>
+        <details class="m-faq"><summary><span>How much does scratch removal cost?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>[Answer to be provided by Acrylic Pros]</p> <span class="a-placeholder">To be confirmed</span></div></details>
+        <details class="m-faq"><summary><span>How long does a custom aquarium build take?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>[Answer to be provided by Acrylic Pros]</p> <span class="a-placeholder">To be confirmed</span></div></details>
+        <details class="m-faq"><summary><span>Do you offer regular maintenance plans?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>[Answer to be provided by Acrylic Pros]</p> <span class="a-placeholder">To be confirmed</span></div></details>
+        <details class="m-faq"><summary><span>Can I visit your showroom?</span><span class="m-faq__icon" aria-hidden="true"></span></summary><div class="m-faq__body"><p>[Answer to be provided by Acrylic Pros]</p> <span class="a-placeholder">To be confirmed</span></div></details>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+

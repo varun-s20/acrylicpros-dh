@@ -1,0 +1,54 @@
+<!-- Wave divider artwork. Drawn for Acrylic Pros — the crest and the reef
+     silhouettes are original, not traced from any reference site.
+
+     Used as:  a wave-divider wrapper around this partial; see styles.css 07b.
+     The modifier on the wrapper sets which band the wave is flowing INTO,
+     so the divider reads as that band rising rather than as a stripe.
+
+     ORDER MATTERS. The reef is drawn FIRST and the wave body painted over
+     it, so every coral stem can run well below the crest and be clipped by
+     the water rather than having to terminate exactly on a curve that
+     changes height across the viewBox. It also means the sway pivots from
+     a rooted base instead of from the waterline.
+
+     The coral is grouped into three clusters rather than spaced evenly —
+     an even rhythm reads as a border, clusters read as a reef.
+
+     Scaling is uniform (no preserveAspectRatio="none"): stretching the box
+     to the viewport would smear the coral horizontally on wide screens.
+
+     The drift is the only ambient motion on the site. It is confined to
+     decorative illustration, moves by fractions of a degree, and is off
+     entirely under prefers-reduced-motion. -->
+<svg class="wave-divider__svg" viewBox="0 0 1440 180" fill="none"
+     xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+
+  <g class="wave-divider__reef">
+    <!-- cluster one -->
+    <path class="coral-piece coral--aqua coral--sway-a"
+          d="M289 165C288 140 291 116 296 102C299 93 296 85 291 79C287 74 282 71 283 66C285 61 291 62 295 67C299 74 302 82 304 90C307 83 311 77 316 72C320 68 326 66 328 70C330 75 324 79 320 84C314 90 309 98 307 107C304 122 305 145 306 165Z"/>
+    <path class="coral-piece coral--orange coral--float-b"
+          d="M327 165C326 144 327 124 331 111C333 104 331 98 328 93C326 89 323 86 325 83C328 79 333 83 335 88C337 93 338 99 339 105C342 100 345 96 349 95C353 94 355 98 352 102C348 107 344 112 343 119C341 132 341 150 341 165Z"/>
+    <path class="coral-piece coral--aqua coral--sway-c"
+          d="M355 165C354 148 355 131 358 121C360 115 359 109 362 107C366 105 368 109 367 113C365 120 363 127 363 136C363 145 363 156 363 165Z"/>
+
+    <!-- cluster two -->
+    <path class="coral-piece coral--orange coral--float-a"
+          d="M638 165C637 137 639 111 643 96C645 87 643 77 639 71C636 66 631 62 633 57C636 52 642 56 645 62C649 69 651 77 653 85C656 77 661 71 666 67C670 64 675 66 673 71C670 77 665 82 662 89C657 98 654 110 653 124C652 139 653 153 653 165Z"/>
+    <path class="coral-piece coral--purple coral--pulse"
+          d="M676 165C675 140 677 116 680 103C682 95 680 87 683 84C687 81 691 85 690 90C688 98 686 105 687 113C691 106 696 101 701 98C705 96 708 100 705 104C700 110 695 117 693 126C690 140 690 153 690 165Z"/>
+    <path class="coral-piece coral--aqua coral--sway-b"
+          d="M706 165C705 145 706 125 709 115C711 109 710 103 713 101C717 99 719 103 718 107C716 114 714 121 714 130C714 142 714 155 714 165Z"/>
+
+    <!-- cluster three -->
+    <path class="coral-piece coral--aqua coral--sway-b"
+          d="M1089 165C1088 142 1091 120 1095 107C1097 99 1095 91 1091 85C1087 80 1082 77 1084 72C1086 67 1092 69 1096 74C1100 80 1103 88 1105 96C1108 89 1112 83 1117 79C1121 75 1127 74 1129 78C1131 83 1125 87 1121 92C1115 99 1110 108 1108 118C1105 133 1106 150 1107 165Z"/>
+    <path class="coral-piece coral--orange coral--sway-a"
+          d="M1130 165C1129 145 1130 126 1134 114C1136 107 1134 101 1137 98C1141 95 1145 99 1144 104C1142 111 1140 118 1141 126C1145 120 1149 116 1154 114C1158 113 1160 117 1157 121C1152 127 1147 133 1145 141C1143 150 1143 158 1143 165Z"/>
+    <path class="coral-piece coral--aqua coral--float-a"
+          d="M1159 165C1158 150 1159 135 1162 127C1164 122 1163 117 1166 115C1169 113 1171 117 1170 121C1168 127 1167 133 1167 141C1167 149 1167 158 1167 165Z"/>
+  </g>
+
+  <path class="wave-divider__body"
+        d="M0 118C120 140 240 146 360 128C480 110 540 96 660 104C780 112 840 140 960 144C1080 148 1140 122 1260 108C1350 98 1410 104 1440 110V180H0V118Z"/>
+</svg>

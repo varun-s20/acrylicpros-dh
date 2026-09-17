@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://acrylicpros.com/custom-builds-installations.html#service",
+      "name": "Custom Aquarium Builds & Installations",
+      "serviceType": "Custom aquarium fabrication and installation",
+      "description": "Crafting a custom aquarium is more than construction — it’s the art of transforming vision into reality. At Acrylic Pros, we design and fabricate aquariums with precision, elegance, and durability, creating a breathtaking centerpiece that will last a lifetime.",
+      "url": "https://acrylicpros.com/custom-builds-installations.html",
+      "provider": { "@id": "https://acrylicpros.com/#business" },
+      "areaServed": [
+        { "@type": "State", "name": "California" },
+        { "@type": "Country", "name": "United States" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://acrylicpros.com/services.html" },
+        { "@type": "ListItem", "position": 3, "name": "Custom Builds & Installations", "item": "https://acrylicpros.com/custom-builds-installations.html" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://acrylicpros.com/#business",
+      "name": "Acrylic Pros",
+      "alternateName": "Acrylic Pros Aquarium Design & Restoration",
+      "url": "https://acrylicpros.com/",
+      "telephone": "+1-562-566-0150",
+      "email": "info@acrylicpros.com",
+      "foundingDate": "2005",
+      "slogan": "Because your tank is worth it",
+      "description": "Expert aquarium services since 2005. Specializing in acrylic aquarium scratch removal and restoration, custom acrylic and Starphire glass aquariums, professional installation, and aquarium maintenance throughout Southern California and nationwide.",
+      "image": "https://acrylicpros.com/assets/images/hero/hero-poster-desktop.jpg",
+      "logo": "https://acrylicpros.com/assets/images/brand/logo-primary.jpeg",
+      "areaServed": [
+        { "@type": "State", "name": "California" },
+        { "@type": "Country", "name": "United States" }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/acrylic_pros_corp/",
+        "https://www.facebook.com/acrylicpros1",
+        "https://www.yelp.com/biz/acrylic-pros-anaheim",
+        "https://www.youtube.com/@AcrylicPros"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Aquarium services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acrylic Aquarium Scratch Removal" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Aquarium Builds & Installations" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acrylic Pool Panels" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aquarium Maintenance" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pond Design & Construction" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Aquarium Relocations" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24 Hour Emergency Aquarium Services" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Reef Insert Restoration" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acrylic Sign Fabrication" } }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://acrylicpros.com/#website",
+      "url": "https://acrylicpros.com/",
+      "name": "Acrylic Pros",
+      "publisher": { "@id": "https://acrylicpros.com/#business" },
+      "inLanguage": "en-US"
+    }
+  ]
+}

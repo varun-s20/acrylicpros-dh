@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://acrylicpros.com/tropical-fish.html#page",
+      "name": "Tropical Fish",
+      "description": "No one offers a better selection of tropical fish than Acrylic Pros. From Neon Tetras, to Angelfish, clownfish, Sharks and more…",
+      "url": "https://acrylicpros.com/tropical-fish.html",
+      "publisher": { "@id": "https://acrylicpros.com/#business" },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://acrylicpros.com/assets/images/livestock/angelfish-cutout.png",
+        "width": 1455,
+        "height": 870
+      },
+      "about": [
+        { "@type": "Thing", "name": "Neon Tetras" },
+        { "@type": "Thing", "name": "Angelfish" },
+        { "@type": "Thing", "name": "Clownfish" },
+        { "@type": "Thing", "name": "Sharks" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tropical Fish", "item": "https://acrylicpros.com/tropical-fish.html" }
+      ]
+    }
+  ]
+}

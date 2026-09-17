@@ -1,0 +1,92 @@
+<!--meta
+title: Gallery | Acrylic Pros
+description: Acrylic Pros gallery. We take pride in the quality that we've perfected in all of our products we manufacture. We provide custom installations, no job is too big or too small.
+og_title: Gallery — Acrylic Pros
+og_description: We take pride in the quality that we've perfected in all of our products we manufacture.
+og_image: assets/images/gallery/project-15.jpeg
+og_image_alt: A long aquarium with colorful coral formations set into a wall above a black leather sofa.
+body_class: t-inner t-gallery
+schema: gallery
+head: page-head
+header: page-header
+footer: home-footer
+nav: gallery
+-->
+
+
+<!-- ============================================================
+     THEIR "OUR REFERENCES" GRID — no hero; the dark grid is the page
+     ============================================================ -->
+<section class="o-referenceGrid" data-references aria-labelledby="gallery-title">
+  <h1 class="tx-h1 o-referenceGrid__title" id="gallery-title"><b>Gallery</b></h1>
+  <p class="sr-only" role="status" aria-live="polite" data-references-status></p>
+
+  <div class="o-referenceGrid__list">
+{{> gallery-grid}}
+    <button class="a-button -secondary o-referenceGrid__button" type="button" data-references-more>
+      <span class="tx-cta">Load more</span>
+      <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+    </button>
+  </div>
+
+  <div class="m-referencesSelect js-nav" data-references-select>
+    <ul class="m-referencesSelect__list" id="references-filter" data-references-list data-lenis-prevent aria-label="Filter projects by type">
+      <li><button class="m-referencesSelect__item -current" type="button" aria-pressed="true" data-category="all">All</button></li>
+      <li><button class="m-referencesSelect__item" type="button" aria-pressed="false" data-category="custom-aquariums">Custom aquariums</button></li>
+      <li><button class="m-referencesSelect__item" type="button" aria-pressed="false" data-category="residential">Residential</button></li>
+      <li><button class="m-referencesSelect__item" type="button" aria-pressed="false" data-category="commercial">Commercial</button></li>
+      <li><button class="m-referencesSelect__item" type="button" aria-pressed="false" data-category="fabrication">Fabrication</button></li>
+    </ul>
+    <button class="m-referencesSelect__currentFilter" type="button" aria-expanded="false" aria-controls="references-filter" data-references-toggle>
+      <span>Projects</span>
+      <span class="m-referencesSelect__currentLabel" data-references-label>All</span>
+      <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-toggle"/></svg>
+    </button>
+  </div>
+</section>
+
+
+<!-- Lightbox: moved to the end of <body> by pages.js so the page can go inert.
+     Focus is trapped while open, Escape closes, arrow keys and swipe navigate,
+     and focus returns to the tile that opened it. -->
+<div class="m-lightbox" data-lightbox role="dialog" aria-modal="true" aria-label="Project image viewer" aria-hidden="true" data-lenis-prevent>
+  <div class="m-lightbox__bar">
+    <span class="m-lightbox__count" data-lightbox-count>1 / 1</span>
+    <button class="m-lightbox__btn" type="button" data-lightbox-close aria-label="Close image viewer">
+      <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <div class="m-lightbox__stage" data-lightbox-stage>
+    <button class="m-lightbox__btn m-lightbox__nav -prev" type="button" data-lightbox-prev aria-label="Previous project">
+      <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+    </button>
+    <img class="m-lightbox__img" data-lightbox-image src="assets/images/gallery/project-15.jpeg" alt="" width="953" height="720" decoding="async">
+    <button class="m-lightbox__btn m-lightbox__nav -next" type="button" data-lightbox-next aria-label="Next project">
+      <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+    </button>
+  </div>
+  <div class="m-lightbox__foot">
+    <p class="m-lightbox__title" data-lightbox-title></p>
+    <p class="m-lightbox__hint">Use the arrow keys to move between projects, or press Escape to close.</p>
+  </div>
+</div>
+
+<!-- ============================================================
+     PREFOOTER
+     ============================================================ -->
+<section class="o-prefooter" aria-labelledby="estimate-title">
+  <span class="o-prefooter__symbol" aria-hidden="true"></span>
+  <div class="row">
+    <div class="o-prefooter__logo">
+      <img src="assets/images/brand/logo-stacked-white.png" alt="Acrylic Pros" width="356" height="245" loading="lazy" decoding="async">
+    </div>
+    <h2 class="tx-h3 o-prefooter__title" id="estimate-title">Request a<br><strong>free estimate</strong></h2>
+    <div class="o-prefooter__contentWrapper">
+      <p class="tx-p o-prefooter__description">Contact us today for a free estimate regarding your new project and to learn more about our aquarium design company.</p>
+      <a class="a-button -outline" href="quote.html">
+        <span class="tx-cta">Get a quote</span>
+        <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+      </a>
+    </div>
+  </div>
+</section>

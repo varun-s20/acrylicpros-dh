@@ -1,0 +1,32 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "AboutPage",
+   "@id": "https://acrylicpros.com/about.html#page",
+   "url": "https://acrylicpros.com/about.html",
+   "name": "About Acrylic Pros",
+   "about": {
+    "@id": "https://acrylicpros.com/#business"
+   },
+   "description": "At Acrylic Pros, we are dedicated to providing the highest quality aquarium supplies and solutions to our customers."
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://acrylicpros.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "About",
+     "item": "https://acrylicpros.com/about.html"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+# robots.txt — acrylicpros.com
+User-agent: *
+Allow: /
+
+# Build sources and tooling are not content.
+Disallow: /src/
+Disallow: /tools/
+Disallow: /data/
+Disallow: /docs/
+
+Sitemap: https://acrylicpros.com/sitemap.xml

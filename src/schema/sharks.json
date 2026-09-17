@@ -1,0 +1,60 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://acrylicpros.com/sharks.html#page",
+      "name": "Sharks",
+      "description": "We carry a large selection of sharks, from horn shark, white tip reef shark, smooth hound shark, bamboo shark, Epaulette shark, and more. World Wide Shipping.",
+      "url": "https://acrylicpros.com/sharks.html",
+      "publisher": { "@id": "https://acrylicpros.com/#business" },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://acrylicpros.com/assets/images/livestock/blacktip-shark-cutout.jpg",
+        "width": 500,
+        "height": 500
+      },
+      "about": [
+        { "@type": "Thing", "name": "Horn shark" },
+        { "@type": "Thing", "name": "White tip reef shark" },
+        { "@type": "Thing", "name": "Smooth hound shark" },
+        { "@type": "Thing", "name": "Bamboo shark" },
+        { "@type": "Thing", "name": "Epaulette shark" },
+        { "@type": "Thing", "name": "Black tip" }
+      ],
+      "hasPart": [
+        {
+          "@type": "VideoObject",
+          "name": "Custom 600 gallon Shark Tank \"WOW\"",
+          "embedUrl": "https://www.youtube.com/embed/txtw546G9_8",
+          "url": "https://www.youtube.com/watch?v=txtw546G9_8",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/txtw546G9_8.jpg",
+          "publisher": { "@id": "https://acrylicpros.com/#business" }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Rancho Humilde Jimmy's Shark Tank",
+          "embedUrl": "https://www.youtube.com/embed/1p2a0Rf8mAA",
+          "url": "https://www.youtube.com/watch?v=1p2a0Rf8mAA",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/1p2a0Rf8mAA.jpg",
+          "publisher": { "@id": "https://acrylicpros.com/#business" }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Awesome Shark Moat",
+          "embedUrl": "https://www.youtube.com/embed/5GzYcYq7j4A",
+          "url": "https://www.youtube.com/watch?v=5GzYcYq7j4A",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/5GzYcYq7j4A.jpg",
+          "publisher": { "@id": "https://acrylicpros.com/#business" }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Sharks", "item": "https://acrylicpros.com/sharks.html" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://acrylicpros.com/videos.html#page",
+      "name": "Videos",
+      "description": "Videos from Acrylic Pros: scratch removal services, aquarium scratch removal with fishes & corals, a custom 600 gallon shark tank, an awesome shark moat and koi ponds.",
+      "url": "https://acrylicpros.com/videos.html",
+      "publisher": {
+        "@id": "https://acrylicpros.com/#business"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://acrylicpros.com/assets/images/headers/videos-header.jpg",
+        "width": 1920,
+        "height": 550
+      },
+      "hasPart": [
+        {
+          "@type": "VideoObject",
+          "name": "SCRATCH REMOVAL SERVICES",
+          "embedUrl": "https://www.youtube.com/embed/uwtV-Dp0kc8",
+          "url": "https://www.youtube.com/watch?v=uwtV-Dp0kc8",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/uwtV-Dp0kc8.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Aquarium Scratch Removal w/ Fishes 100% SAFE!",
+          "embedUrl": "https://www.youtube.com/embed/-Zy5pNRdqUo",
+          "url": "https://www.youtube.com/watch?v=-Zy5pNRdqUo",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/-Zy5pNRdqUo.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Aquarium Scratch Removal W/ Fishes & Corals, 100% Safe!",
+          "embedUrl": "https://www.youtube.com/embed/MJFgcdNB0dA",
+          "url": "https://www.youtube.com/watch?v=MJFgcdNB0dA",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/MJFgcdNB0dA.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Rancho Humilde Jimmy's Shark Tank",
+          "embedUrl": "https://www.youtube.com/embed/1p2a0Rf8mAA",
+          "url": "https://www.youtube.com/watch?v=1p2a0Rf8mAA",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/1p2a0Rf8mAA.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Custom 600 gallon Shark Tank \"WOW\"",
+          "embedUrl": "https://www.youtube.com/embed/txtw546G9_8",
+          "url": "https://www.youtube.com/watch?v=txtw546G9_8",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/txtw546G9_8.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "OUR VERSION OF A KOI POND – check it out!",
+          "embedUrl": "https://www.youtube.com/embed/q6UxS0Tbc2o",
+          "url": "https://www.youtube.com/watch?v=q6UxS0Tbc2o",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/q6UxS0Tbc2o.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "AMAZING KOI POND DONE BY ACRYLIC PROS",
+          "embedUrl": "https://www.youtube.com/embed/8P91EpgaeNA",
+          "url": "https://www.youtube.com/watch?v=8P91EpgaeNA",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/8P91EpgaeNA.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        },
+        {
+          "@type": "VideoObject",
+          "name": "Awesome Shark Moat",
+          "embedUrl": "https://www.youtube.com/embed/5GzYcYq7j4A",
+          "url": "https://www.youtube.com/watch?v=5GzYcYq7j4A",
+          "thumbnailUrl": "https://acrylicpros.com/assets/images/video-thumbs/5GzYcYq7j4A.jpg",
+          "publisher": {
+            "@id": "https://acrylicpros.com/#business"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://acrylicpros.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Videos",
+          "item": "https://acrylicpros.com/videos.html"
+        }
+      ]
+    }
+  ]
+}

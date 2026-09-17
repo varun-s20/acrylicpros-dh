@@ -1,0 +1,32 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "CollectionPage",
+   "@id": "https://acrylicpros.com/gallery.html#page",
+   "url": "https://acrylicpros.com/gallery.html",
+   "name": "Acrylic Pros Project Gallery",
+   "about": {
+    "@id": "https://acrylicpros.com/#business"
+   },
+   "description": "Acrylic Pros gallery. We take pride in the quality that we've perfected in all of our products we manufacture."
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://acrylicpros.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Projects",
+     "item": "https://acrylicpros.com/gallery.html"
+    }
+   ]
+  }
+ ]
+}

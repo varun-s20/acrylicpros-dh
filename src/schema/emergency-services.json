@@ -1,0 +1,36 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://acrylicpros.com/emergency-services.html#service",
+      "name": "24hr Emergency Aquarium Services",
+      "serviceType": "Emergency aquarium services",
+      "description": "We provide 24/7 emergency services, temporary holding tanks and life support systems.",
+      "url": "https://acrylicpros.com/emergency-services.html",
+      "provider": { "@id": "https://acrylicpros.com/#business" },
+      "areaServed": [
+        { "@type": "State", "name": "California" },
+        { "@type": "Country", "name": "United States" }
+      ],
+      "availableChannel": {
+        "@type": "ServiceChannel",
+        "name": "24/7 emergency line",
+        "servicePhone": {
+          "@type": "ContactPoint",
+          "telephone": "+1-562-566-0150",
+          "contactType": "emergency"
+        },
+        "serviceUrl": "https://acrylicpros.com/emergency-services.html"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://acrylicpros.com/services.html" },
+        { "@type": "ListItem", "position": 3, "name": "24hr Emergency Services", "item": "https://acrylicpros.com/emergency-services.html" }
+      ]
+    }
+  ]
+}

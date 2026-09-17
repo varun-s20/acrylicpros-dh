@@ -1,0 +1,54 @@
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "HowTo",
+   "@id": "https://acrylicpros.com/process.html#howto",
+   "name": "How an Acrylic Pros aquarium is designed, fabricated and installed",
+   "description": "At Acrylic Pros, we design and fabricate aquariums with precision, elegance, and durability, creating a breathtaking centerpiece that will last a lifetime.",
+   "step": [
+    {
+     "@type": "HowToStep",
+     "position": 1,
+     "name": "Design Drawings",
+     "text": "Our design team provides a full set of production drawings prior to fabrication to ensure a seamless collaboration."
+    },
+    {
+     "@type": "HowToStep",
+     "position": 2,
+     "name": "Quality Materials",
+     "text": "We use only the highest grade acrylic and glass, to provide our customers with top quality products that will last a lifetime."
+    },
+    {
+     "@type": "HowToStep",
+     "position": 3,
+     "name": "Craftsmanship",
+     "text": "Step by step, your aquarium will come to life with our team of experts that will pay attention to every detail to ensure your new aquarium is flawless."
+    },
+    {
+     "@type": "HowToStep",
+     "position": 4,
+     "name": "Installation",
+     "text": "There are many moving parts and components that make an aquarium come to life. Installation process reveals a level of quality and complexity that is very unique to the aquarium industry."
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://acrylicpros.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Process",
+     "item": "https://acrylicpros.com/process.html"
+    }
+   ]
+  }
+ ]
+}

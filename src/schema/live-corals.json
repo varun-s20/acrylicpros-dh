@@ -1,0 +1,31 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://acrylicpros.com/live-corals.html#page",
+      "name": "Live Corals",
+      "description": "Live Coral Reef & Invertebrates. Zoanthids, Acropora, Euphyllia.",
+      "url": "https://acrylicpros.com/live-corals.html",
+      "publisher": { "@id": "https://acrylicpros.com/#business" },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://acrylicpros.com/assets/images/headers/coral-closeup-header.jpg",
+        "width": 2148,
+        "height": 895
+      },
+      "about": [
+        { "@type": "Thing", "name": "Zoanthids" },
+        { "@type": "Thing", "name": "Acropora" },
+        { "@type": "Thing", "name": "Euphyllia" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Live Corals", "item": "https://acrylicpros.com/live-corals.html" }
+      ]
+    }
+  ]
+}

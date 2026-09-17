@@ -1,0 +1,2473 @@
+{
+ "images/brand/chat-avatar.png": {
+  "h": 512,
+  "src": "assets/images/brand/chat-avatar.png",
+  "w": 512,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/brand/chat-avatar-400.webp",
+    "w": 400
+   },
+   {
+    "h": 512,
+    "path": "assets/images/brand/chat-avatar-512.webp",
+    "w": 512
+   }
+  ]
+ },
+ "images/brand/favicon-fin.png": {
+  "h": 64,
+  "src": "assets/images/brand/favicon-fin.png",
+  "w": 64,
+  "webp": [
+   {
+    "h": 64,
+    "path": "assets/images/brand/favicon-fin-64.webp",
+    "w": 64
+   }
+  ]
+ },
+ "images/brand/logo-primary-transparent.png": {
+  "h": 479,
+  "src": "assets/images/brand/logo-primary-transparent.png",
+  "w": 1599,
+  "webp": [
+   {
+    "h": 120,
+    "path": "assets/images/brand/logo-primary-transparent-400.webp",
+    "w": 400
+   },
+   {
+    "h": 240,
+    "path": "assets/images/brand/logo-primary-transparent-800.webp",
+    "w": 800
+   },
+   {
+    "h": 479,
+    "path": "assets/images/brand/logo-primary-transparent-1599.webp",
+    "w": 1599
+   }
+  ]
+ },
+ "images/brand/logo-primary-white.png": {
+  "h": 479,
+  "src": "assets/images/brand/logo-primary-white.png",
+  "w": 1599,
+  "webp": [
+   {
+    "h": 120,
+    "path": "assets/images/brand/logo-primary-white-400.webp",
+    "w": 400
+   },
+   {
+    "h": 240,
+    "path": "assets/images/brand/logo-primary-white-800.webp",
+    "w": 800
+   },
+   {
+    "h": 479,
+    "path": "assets/images/brand/logo-primary-white-1599.webp",
+    "w": 1599
+   }
+  ]
+ },
+ "images/brand/logo-primary.jpeg": {
+  "h": 479,
+  "src": "assets/images/brand/logo-primary.jpeg",
+  "w": 1599,
+  "webp": [
+   {
+    "h": 120,
+    "path": "assets/images/brand/logo-primary-400.webp",
+    "w": 400
+   },
+   {
+    "h": 240,
+    "path": "assets/images/brand/logo-primary-800.webp",
+    "w": 800
+   },
+   {
+    "h": 479,
+    "path": "assets/images/brand/logo-primary-1599.webp",
+    "w": 1599
+   }
+  ]
+ },
+ "images/brand/logo-stacked-white.png": {
+  "h": 245,
+  "src": "assets/images/brand/logo-stacked-white.png",
+  "w": 356,
+  "webp": [
+   {
+    "h": 245,
+    "path": "assets/images/brand/logo-stacked-white-356.webp",
+    "w": 356
+   }
+  ]
+ },
+ "images/brand/shark-king-mascot.png": {
+  "h": 1436,
+  "src": "assets/images/brand/shark-king-mascot.png",
+  "w": 1284,
+  "webp": [
+   {
+    "h": 447,
+    "path": "assets/images/brand/shark-king-mascot-400.webp",
+    "w": 400
+   },
+   {
+    "h": 895,
+    "path": "assets/images/brand/shark-king-mascot-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1436,
+    "path": "assets/images/brand/shark-king-mascot-1284.webp",
+    "w": 1284
+   }
+  ]
+ },
+ "images/brand/spacex-logo.png": {
+  "h": 336,
+  "src": "assets/images/brand/spacex-logo.png",
+  "w": 2400,
+  "webp": [
+   {
+    "h": 56,
+    "path": "assets/images/brand/spacex-logo-400.webp",
+    "w": 400
+   },
+   {
+    "h": 112,
+    "path": "assets/images/brand/spacex-logo-800.webp",
+    "w": 800
+   },
+   {
+    "h": 336,
+    "path": "assets/images/brand/spacex-logo-2400.webp",
+    "w": 2400
+   }
+  ]
+ },
+ "images/fabrication/cad-renders.jpg": {
+  "h": 768,
+  "src": "assets/images/fabrication/cad-renders.jpg",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/fabrication/cad-renders-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/fabrication/cad-renders-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 768,
+    "path": "assets/images/fabrication/cad-renders-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/fabrication/fabrication-collage.jpg": {
+  "h": 500,
+  "src": "assets/images/fabrication/fabrication-collage.jpg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 250,
+    "path": "assets/images/fabrication/fabrication-collage-600.webp",
+    "w": 600
+   },
+   {
+    "h": 417,
+    "path": "assets/images/fabrication/fabrication-collage-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 500,
+    "path": "assets/images/fabrication/fabrication-collage-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/fabrication/machinery-bw.png": {
+  "h": 600,
+  "src": "assets/images/fabrication/machinery-bw.png",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 300,
+    "path": "assets/images/fabrication/machinery-bw-600.webp",
+    "w": 600
+   },
+   {
+    "h": 500,
+    "path": "assets/images/fabrication/machinery-bw-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 600,
+    "path": "assets/images/fabrication/machinery-bw-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/fabrication/reef-tank-white-stand.jpg": {
+  "h": 550,
+  "src": "assets/images/fabrication/reef-tank-white-stand.jpg",
+  "w": 1920,
+  "webp": [
+   {
+    "h": 172,
+    "path": "assets/images/fabrication/reef-tank-white-stand-600.webp",
+    "w": 600
+   },
+   {
+    "h": 286,
+    "path": "assets/images/fabrication/reef-tank-white-stand-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 458,
+    "path": "assets/images/fabrication/reef-tank-white-stand-1600.webp",
+    "w": 1600
+   },
+   {
+    "h": 550,
+    "path": "assets/images/fabrication/reef-tank-white-stand-1920.webp",
+    "w": 1920
+   }
+  ]
+ },
+ "images/fabrication/showroom-collage.jpg": {
+  "h": 768,
+  "src": "assets/images/fabrication/showroom-collage.jpg",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/fabrication/showroom-collage-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/fabrication/showroom-collage-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 768,
+    "path": "assets/images/fabrication/showroom-collage-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/fabrication/warehouse-collage.jpg": {
+  "h": 768,
+  "src": "assets/images/fabrication/warehouse-collage.jpg",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/fabrication/warehouse-collage-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/fabrication/warehouse-collage-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 768,
+    "path": "assets/images/fabrication/warehouse-collage-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/gallery/project-01.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-01.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-01-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-01-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-02.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-02.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-02-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-02-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-03.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-03.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-03-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-03-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-04.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-04.jpeg",
+  "w": 546,
+  "webp": [
+   {
+    "h": 633,
+    "path": "assets/images/gallery/project-04-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-04-546.webp",
+    "w": 546
+   }
+  ]
+ },
+ "images/gallery/project-05.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-05.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/gallery/project-05-480.webp",
+    "w": 480
+   },
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-05-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-05-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/gallery/project-06.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-06.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-06-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-06-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-07.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-07.jpeg",
+  "w": 576,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-07-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-07-576.webp",
+    "w": 576
+   }
+  ]
+ },
+ "images/gallery/project-08.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-08.jpeg",
+  "w": 817,
+  "webp": [
+   {
+    "h": 423,
+    "path": "assets/images/gallery/project-08-480.webp",
+    "w": 480
+   },
+   {
+    "h": 705,
+    "path": "assets/images/gallery/project-08-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-08-817.webp",
+    "w": 817
+   }
+  ]
+ },
+ "images/gallery/project-09.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-09.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-09-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-09-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-10.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-10.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-10-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-10-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-11.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-11.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/gallery/project-11-480.webp",
+    "w": 480
+   },
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-11-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-11-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/gallery/project-12.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-12.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-12-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-12-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-13.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-13.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-13-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-13-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-14.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-14.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-14-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-14-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-15.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-15.jpeg",
+  "w": 953,
+  "webp": [
+   {
+    "h": 363,
+    "path": "assets/images/gallery/project-15-480.webp",
+    "w": 480
+   },
+   {
+    "h": 604,
+    "path": "assets/images/gallery/project-15-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-15-953.webp",
+    "w": 953
+   }
+  ]
+ },
+ "images/gallery/project-16.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-16.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/gallery/project-16-480.webp",
+    "w": 480
+   },
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-16-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-16-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/gallery/project-17.jpeg": {
+  "h": 729,
+  "src": "assets/images/gallery/project-17.jpeg",
+  "w": 1320,
+  "webp": [
+   {
+    "h": 265,
+    "path": "assets/images/gallery/project-17-480.webp",
+    "w": 480
+   },
+   {
+    "h": 442,
+    "path": "assets/images/gallery/project-17-800.webp",
+    "w": 800
+   },
+   {
+    "h": 729,
+    "path": "assets/images/gallery/project-17-1320.webp",
+    "w": 1320
+   }
+  ]
+ },
+ "images/gallery/project-18.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-18.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-18-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-18-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-19.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-19.jpeg",
+  "w": 944,
+  "webp": [
+   {
+    "h": 366,
+    "path": "assets/images/gallery/project-19-480.webp",
+    "w": 480
+   },
+   {
+    "h": 610,
+    "path": "assets/images/gallery/project-19-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-19-944.webp",
+    "w": 944
+   }
+  ]
+ },
+ "images/gallery/project-20.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-20.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/gallery/project-20-480.webp",
+    "w": 480
+   },
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-20-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-20-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/gallery/project-21.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-21.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-21-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-21-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-22.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-22.jpeg",
+  "w": 406,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-22-406.webp",
+    "w": 406
+   }
+  ]
+ },
+ "images/gallery/project-23.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-23.jpeg",
+  "w": 458,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-23-458.webp",
+    "w": 458
+   }
+  ]
+ },
+ "images/gallery/project-24.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-24.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/gallery/project-24-480.webp",
+    "w": 480
+   },
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-24-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-24-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/gallery/project-25.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-25.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/gallery/project-25-480.webp",
+    "w": 480
+   },
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-25-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-25-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/gallery/project-26.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-26.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-26-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-26-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-27.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-27.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-27-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-27-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-28.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-28.jpeg",
+  "w": 652,
+  "webp": [
+   {
+    "h": 530,
+    "path": "assets/images/gallery/project-28-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-28-652.webp",
+    "w": 652
+   }
+  ]
+ },
+ "images/gallery/project-29.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-29.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-29-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-29-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-30.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-30.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-30-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-30-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-31.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-31.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-31-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-31-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-32.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-32.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-32-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-32-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-33.jpeg": {
+  "h": 720,
+  "src": "assets/images/gallery/project-33.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-33-480.webp",
+    "w": 480
+   },
+   {
+    "h": 720,
+    "path": "assets/images/gallery/project-33-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/gallery/project-35.jpg": {
+  "h": 1008,
+  "src": "assets/images/gallery/project-35.jpg",
+  "w": 756,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-35-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1008,
+    "path": "assets/images/gallery/project-35-756.webp",
+    "w": 756
+   }
+  ]
+ },
+ "images/gallery/project-36.jpg": {
+  "h": 1008,
+  "src": "assets/images/gallery/project-36.jpg",
+  "w": 756,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-36-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1008,
+    "path": "assets/images/gallery/project-36-756.webp",
+    "w": 756
+   }
+  ]
+ },
+ "images/headers/contact-header.jpg": {
+  "h": 550,
+  "src": "assets/images/headers/contact-header.jpg",
+  "w": 1920,
+  "webp": [
+   {
+    "h": 220,
+    "path": "assets/images/headers/contact-header-768.webp",
+    "w": 768
+   },
+   {
+    "h": 367,
+    "path": "assets/images/headers/contact-header-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 550,
+    "path": "assets/images/headers/contact-header-1920.webp",
+    "w": 1920
+   }
+  ]
+ },
+ "images/headers/coral-closeup-header.jpg": {
+  "h": 895,
+  "src": "assets/images/headers/coral-closeup-header.jpg",
+  "w": 2148,
+  "webp": [
+   {
+    "h": 320,
+    "path": "assets/images/headers/coral-closeup-header-768.webp",
+    "w": 768
+   },
+   {
+    "h": 533,
+    "path": "assets/images/headers/coral-closeup-header-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 800,
+    "path": "assets/images/headers/coral-closeup-header-1920.webp",
+    "w": 1920
+   },
+   {
+    "h": 895,
+    "path": "assets/images/headers/coral-closeup-header-2148.webp",
+    "w": 2148
+   }
+  ]
+ },
+ "images/headers/gallery-header.jpg": {
+  "h": 550,
+  "src": "assets/images/headers/gallery-header.jpg",
+  "w": 1920,
+  "webp": [
+   {
+    "h": 220,
+    "path": "assets/images/headers/gallery-header-768.webp",
+    "w": 768
+   },
+   {
+    "h": 367,
+    "path": "assets/images/headers/gallery-header-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 550,
+    "path": "assets/images/headers/gallery-header-1920.webp",
+    "w": 1920
+   }
+  ]
+ },
+ "images/headers/kitchen-aquarium-lifestyle.jpg": {
+  "h": 847,
+  "src": "assets/images/headers/kitchen-aquarium-lifestyle.jpg",
+  "w": 1239,
+  "webp": [
+   {
+    "h": 525,
+    "path": "assets/images/headers/kitchen-aquarium-lifestyle-768.webp",
+    "w": 768
+   },
+   {
+    "h": 847,
+    "path": "assets/images/headers/kitchen-aquarium-lifestyle-1239.webp",
+    "w": 1239
+   }
+  ]
+ },
+ "images/headers/scratch-removal-header.jpg": {
+  "h": 550,
+  "src": "assets/images/headers/scratch-removal-header.jpg",
+  "w": 1920,
+  "webp": [
+   {
+    "h": 220,
+    "path": "assets/images/headers/scratch-removal-header-768.webp",
+    "w": 768
+   },
+   {
+    "h": 367,
+    "path": "assets/images/headers/scratch-removal-header-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 550,
+    "path": "assets/images/headers/scratch-removal-header-1920.webp",
+    "w": 1920
+   }
+  ]
+ },
+ "images/headers/shop-header.jpg": {
+  "h": 550,
+  "src": "assets/images/headers/shop-header.jpg",
+  "w": 1920,
+  "webp": [
+   {
+    "h": 220,
+    "path": "assets/images/headers/shop-header-768.webp",
+    "w": 768
+   },
+   {
+    "h": 367,
+    "path": "assets/images/headers/shop-header-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 550,
+    "path": "assets/images/headers/shop-header-1920.webp",
+    "w": 1920
+   }
+  ]
+ },
+ "images/headers/underwater-godrays-bg.jpg": {
+  "h": 1440,
+  "src": "assets/images/headers/underwater-godrays-bg.jpg",
+  "w": 2560,
+  "webp": [
+   {
+    "h": 432,
+    "path": "assets/images/headers/underwater-godrays-bg-768.webp",
+    "w": 768
+   },
+   {
+    "h": 720,
+    "path": "assets/images/headers/underwater-godrays-bg-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 1080,
+    "path": "assets/images/headers/underwater-godrays-bg-1920.webp",
+    "w": 1920
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/headers/underwater-godrays-bg-2400.webp",
+    "w": 2400
+   },
+   {
+    "h": 1440,
+    "path": "assets/images/headers/underwater-godrays-bg-2560.webp",
+    "w": 2560
+   }
+  ]
+ },
+ "images/headers/videos-header.jpg": {
+  "h": 550,
+  "src": "assets/images/headers/videos-header.jpg",
+  "w": 1920,
+  "webp": [
+   {
+    "h": 220,
+    "path": "assets/images/headers/videos-header-768.webp",
+    "w": 768
+   },
+   {
+    "h": 367,
+    "path": "assets/images/headers/videos-header-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 550,
+    "path": "assets/images/headers/videos-header-1920.webp",
+    "w": 1920
+   }
+  ]
+ },
+ "images/hero/hero-poster-desktop.jpg": {
+  "h": 684,
+  "src": "assets/images/hero/hero-poster-desktop.jpg",
+  "w": 1366,
+  "webp": [
+   {
+    "h": 385,
+    "path": "assets/images/hero/hero-poster-desktop-768.webp",
+    "w": 768
+   },
+   {
+    "h": 641,
+    "path": "assets/images/hero/hero-poster-desktop-1280.webp",
+    "w": 1280
+   },
+   {
+    "h": 684,
+    "path": "assets/images/hero/hero-poster-desktop-1366.webp",
+    "w": 1366
+   }
+  ]
+ },
+ "images/hero/hero-poster-mobile.jpg": {
+  "h": 716,
+  "src": "assets/images/hero/hero-poster-mobile.jpg",
+  "w": 500,
+  "webp": [
+   {
+    "h": 716,
+    "path": "assets/images/hero/hero-poster-mobile-500.webp",
+    "w": 500
+   }
+  ]
+ },
+ "images/instagram/post-01.jpg": {
+  "h": 1136,
+  "src": "assets/images/instagram/post-01.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 568,
+    "path": "assets/images/instagram/post-01-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1136,
+    "path": "assets/images/instagram/post-01-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-02.jpg": {
+  "h": 1136,
+  "src": "assets/images/instagram/post-02.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 568,
+    "path": "assets/images/instagram/post-02-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1136,
+    "path": "assets/images/instagram/post-02-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-03.jpg": {
+  "h": 1136,
+  "src": "assets/images/instagram/post-03.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 568,
+    "path": "assets/images/instagram/post-03-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1136,
+    "path": "assets/images/instagram/post-03-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-04.jpg": {
+  "h": 1138,
+  "src": "assets/images/instagram/post-04.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 569,
+    "path": "assets/images/instagram/post-04-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1138,
+    "path": "assets/images/instagram/post-04-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-05.jpg": {
+  "h": 1136,
+  "src": "assets/images/instagram/post-05.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 568,
+    "path": "assets/images/instagram/post-05-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1136,
+    "path": "assets/images/instagram/post-05-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-06.jpg": {
+  "h": 1136,
+  "src": "assets/images/instagram/post-06.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 568,
+    "path": "assets/images/instagram/post-06-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1136,
+    "path": "assets/images/instagram/post-06-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-07.jpg": {
+  "h": 1136,
+  "src": "assets/images/instagram/post-07.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 568,
+    "path": "assets/images/instagram/post-07-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1136,
+    "path": "assets/images/instagram/post-07-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-08.jpg": {
+  "h": 1138,
+  "src": "assets/images/instagram/post-08.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 569,
+    "path": "assets/images/instagram/post-08-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1138,
+    "path": "assets/images/instagram/post-08-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-09.jpg": {
+  "h": 1136,
+  "src": "assets/images/instagram/post-09.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 568,
+    "path": "assets/images/instagram/post-09-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1136,
+    "path": "assets/images/instagram/post-09-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-10.jpg": {
+  "h": 1138,
+  "src": "assets/images/instagram/post-10.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 569,
+    "path": "assets/images/instagram/post-10-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1138,
+    "path": "assets/images/instagram/post-10-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-11.jpg": {
+  "h": 1138,
+  "src": "assets/images/instagram/post-11.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 569,
+    "path": "assets/images/instagram/post-11-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1138,
+    "path": "assets/images/instagram/post-11-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/post-12.jpg": {
+  "h": 1138,
+  "src": "assets/images/instagram/post-12.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 569,
+    "path": "assets/images/instagram/post-12-320.webp",
+    "w": 320
+   },
+   {
+    "h": 1138,
+    "path": "assets/images/instagram/post-12-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/instagram/profile.jpg": {
+  "h": 150,
+  "src": "assets/images/instagram/profile.jpg",
+  "w": 150,
+  "webp": [
+   {
+    "h": 150,
+    "path": "assets/images/instagram/profile-150.webp",
+    "w": 150
+   }
+  ]
+ },
+ "images/livestock/angelfish-cutout.png": {
+  "h": 870,
+  "src": "assets/images/livestock/angelfish-cutout.png",
+  "w": 1455,
+  "webp": [
+   {
+    "h": 359,
+    "path": "assets/images/livestock/angelfish-cutout-600.webp",
+    "w": 600
+   },
+   {
+    "h": 598,
+    "path": "assets/images/livestock/angelfish-cutout-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 870,
+    "path": "assets/images/livestock/angelfish-cutout-1455.webp",
+    "w": 1455
+   }
+  ]
+ },
+ "images/livestock/blacktip-shark-cutout.jpg": {
+  "h": 500,
+  "src": "assets/images/livestock/blacktip-shark-cutout.jpg",
+  "w": 500,
+  "webp": [
+   {
+    "h": 500,
+    "path": "assets/images/livestock/blacktip-shark-cutout-500.webp",
+    "w": 500
+   }
+  ]
+ },
+ "images/livestock/coral-colony-cutout.jpg": {
+  "h": 500,
+  "src": "assets/images/livestock/coral-colony-cutout.jpg",
+  "w": 500,
+  "webp": [
+   {
+    "h": 500,
+    "path": "assets/images/livestock/coral-colony-cutout-500.webp",
+    "w": 500
+   }
+  ]
+ },
+ "images/livestock/coral-reef-dense.jpg": {
+  "h": 800,
+  "src": "assets/images/livestock/coral-reef-dense.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/livestock/coral-reef-dense-600.webp",
+    "w": 600
+   },
+   {
+    "h": 800,
+    "path": "assets/images/livestock/coral-reef-dense-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/livestock/reef-colonies-fish.jpg": {
+  "h": 800,
+  "src": "assets/images/livestock/reef-colonies-fish.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/livestock/reef-colonies-fish-600.webp",
+    "w": 600
+   },
+   {
+    "h": 800,
+    "path": "assets/images/livestock/reef-colonies-fish-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/livestock/reef-tank-blue-light.jpg": {
+  "h": 800,
+  "src": "assets/images/livestock/reef-tank-blue-light.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/livestock/reef-tank-blue-light-600.webp",
+    "w": 600
+   },
+   {
+    "h": 800,
+    "path": "assets/images/livestock/reef-tank-blue-light-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/livestock/reef-tank-footer.jpeg": {
+  "h": 556,
+  "src": "assets/images/livestock/reef-tank-footer.jpeg",
+  "w": 1599,
+  "webp": [
+   {
+    "h": 209,
+    "path": "assets/images/livestock/reef-tank-footer-600.webp",
+    "w": 600
+   },
+   {
+    "h": 348,
+    "path": "assets/images/livestock/reef-tank-footer-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 556,
+    "path": "assets/images/livestock/reef-tank-footer-1599.webp",
+    "w": 1599
+   }
+  ]
+ },
+ "images/livestock/soft-corals-macro.jpg": {
+  "h": 800,
+  "src": "assets/images/livestock/soft-corals-macro.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/livestock/soft-corals-macro-600.webp",
+    "w": 600
+   },
+   {
+    "h": 800,
+    "path": "assets/images/livestock/soft-corals-macro-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/livestock/stingray-cutout.jpg": {
+  "h": 500,
+  "src": "assets/images/livestock/stingray-cutout.jpg",
+  "w": 500,
+  "webp": [
+   {
+    "h": 500,
+    "path": "assets/images/livestock/stingray-cutout-500.webp",
+    "w": 500
+   }
+  ]
+ },
+ "images/pond/koi-pond-collage.jpg": {
+  "h": 500,
+  "src": "assets/images/pond/koi-pond-collage.jpg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 250,
+    "path": "assets/images/pond/koi-pond-collage-600.webp",
+    "w": 600
+   },
+   {
+    "h": 417,
+    "path": "assets/images/pond/koi-pond-collage-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 500,
+    "path": "assets/images/pond/koi-pond-collage-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/pond/koi-pond-lilies.jpg": {
+  "h": 550,
+  "src": "assets/images/pond/koi-pond-lilies.jpg",
+  "w": 1920,
+  "webp": [
+   {
+    "h": 172,
+    "path": "assets/images/pond/koi-pond-lilies-600.webp",
+    "w": 600
+   },
+   {
+    "h": 286,
+    "path": "assets/images/pond/koi-pond-lilies-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 458,
+    "path": "assets/images/pond/koi-pond-lilies-1600.webp",
+    "w": 1600
+   },
+   {
+    "h": 550,
+    "path": "assets/images/pond/koi-pond-lilies-1920.webp",
+    "w": 1920
+   }
+  ]
+ },
+ "images/pond/pond-1.jpg": {
+  "h": 768,
+  "src": "assets/images/pond/pond-1.jpg",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/pond/pond-1-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/pond/pond-1-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 768,
+    "path": "assets/images/pond/pond-1-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/pond/pond-2.jpg": {
+  "h": 768,
+  "src": "assets/images/pond/pond-2.jpg",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/pond/pond-2-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/pond/pond-2-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 768,
+    "path": "assets/images/pond/pond-2-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/pond/pond-3.jpg": {
+  "h": 768,
+  "src": "assets/images/pond/pond-3.jpg",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/pond/pond-3-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/pond/pond-3-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 768,
+    "path": "assets/images/pond/pond-3-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/products/120-GAL-48X24X24-STARPHIRE-GLASS-TANK-BLACK-WOOD-STAND-s-watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/120-GAL-48X24X24-STARPHIRE-GLASS-TANK-BLACK-WOOD-STAND-s-watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/120-GAL-48X24X24-STARPHIRE-GLASS-TANK-BLACK-WOOD-STAND-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/120-GAL-48X24X24-STARPHIRE-GLASS-TANK-BLACK-WOOD-STAND-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/120-s-gal-low-iron-glass-tank.jpg": {
+  "h": 800,
+  "src": "assets/images/products/120-s-gal-low-iron-glass-tank.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/120-s-gal-low-iron-glass-tank-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/120-s-gal-low-iron-glass-tank-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/150-GAL-72X30X16-FRAG-TANK-LOW-IRON-GLASS-s-watermark.jpg": {
+  "h": 800,
+  "src": "assets/images/products/150-GAL-72X30X16-FRAG-TANK-LOW-IRON-GLASS-s-watermark.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/150-GAL-72X30X16-FRAG-TANK-LOW-IRON-GLASS-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/150-GAL-72X30X16-FRAG-TANK-LOW-IRON-GLASS-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/150-GAL-72x24x20-SHALLOW-PENINSULA-TANK-LOW-IRON-GLASS-AQUARIUM-s-watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/150-GAL-72x24x20-SHALLOW-PENINSULA-TANK-LOW-IRON-GLASS-AQUARIUM-s-watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/150-GAL-72x24x20-SHALLOW-PENINSULA-TANK-LOW-IRON-GLASS-AQUARIUM-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/150-GAL-72x24x20-SHALLOW-PENINSULA-TANK-LOW-IRON-GLASS-AQUARIUM-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/180-GAL-72X24X24-PENINSULA-STYLE-STARPHIRE-GLASS-WHITE-WOOD-STAND-ALUMINUM-FRAME-1.jpg": {
+  "h": 800,
+  "src": "assets/images/products/180-GAL-72X24X24-PENINSULA-STYLE-STARPHIRE-GLASS-WHITE-WOOD-STAND-ALUMINUM-FRAME-1.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/180-GAL-72X24X24-PENINSULA-STYLE-STARPHIRE-GLASS-WHITE-WOOD-STAND-ALUMINUM-FRAME-1-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/180-GAL-72X24X24-PENINSULA-STYLE-STARPHIRE-GLASS-WHITE-WOOD-STAND-ALUMINUM-FRAME-1-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated.jpg": {
+  "h": 1254,
+  "src": "assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated.jpg",
+  "w": 1254,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1254,
+    "path": "assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-1254.webp",
+    "w": 1254
+   }
+  ]
+ },
+ "images/products/200-GAL-84x24x24-STARPHIRE-GLASS-TANK-BLACK-STAND-s_watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/200-GAL-84x24x24-STARPHIRE-GLASS-TANK-BLACK-STAND-s_watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/200-GAL-84x24x24-STARPHIRE-GLASS-TANK-BLACK-STAND-s_watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/200-GAL-84x24x24-STARPHIRE-GLASS-TANK-BLACK-STAND-s_watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/270-GAL-72X36X24-STARPHIRE-GLASS-VIEWABLE-4-SIDES-BLACK-WOOD-STAND-ALUMINUM-FRAME-s-watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/270-GAL-72X36X24-STARPHIRE-GLASS-VIEWABLE-4-SIDES-BLACK-WOOD-STAND-ALUMINUM-FRAME-s-watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/270-GAL-72X36X24-STARPHIRE-GLASS-VIEWABLE-4-SIDES-BLACK-WOOD-STAND-ALUMINUM-FRAME-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/270-GAL-72X36X24-STARPHIRE-GLASS-VIEWABLE-4-SIDES-BLACK-WOOD-STAND-ALUMINUM-FRAME-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/270-GALLON-84X48X16-CUSTOM-STARPHIRE-GLASS-COFFEE-TABLE-s-watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/270-GALLON-84X48X16-CUSTOM-STARPHIRE-GLASS-COFFEE-TABLE-s-watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/270-GALLON-84X48X16-CUSTOM-STARPHIRE-GLASS-COFFEE-TABLE-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/270-GALLON-84X48X16-CUSTOM-STARPHIRE-GLASS-COFFEE-TABLE-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/270-gal-72x36x24-peninsula-starphire-glass-tank-black-stand-aluminum-frame-s-wateramrk-1-1.png": {
+  "h": 800,
+  "src": "assets/images/products/270-gal-72x36x24-peninsula-starphire-glass-tank-black-stand-aluminum-frame-s-wateramrk-1-1.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/270-gal-72x36x24-peninsula-starphire-glass-tank-black-stand-aluminum-frame-s-wateramrk-1-1-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/270-gal-72x36x24-peninsula-starphire-glass-tank-black-stand-aluminum-frame-s-wateramrk-1-1-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND.png": {
+  "h": 1024,
+  "src": "assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND.png",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1024,
+    "path": "assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/products/400-GAL-PENINSULA-LOW-IRON-GLASS-BLACK-WOOD-STAND-ALUMINUM-FRAME-1.png": {
+  "h": 800,
+  "src": "assets/images/products/400-GAL-PENINSULA-LOW-IRON-GLASS-BLACK-WOOD-STAND-ALUMINUM-FRAME-1.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/400-GAL-PENINSULA-LOW-IRON-GLASS-BLACK-WOOD-STAND-ALUMINUM-FRAME-1-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/400-GAL-PENINSULA-LOW-IRON-GLASS-BLACK-WOOD-STAND-ALUMINUM-FRAME-1-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/60-GAL-36x20x22-MARINE-AQUARIUM-BLACK-STAND-600x60-1.jpg": {
+  "h": 600,
+  "src": "assets/images/products/60-GAL-36x20x22-MARINE-AQUARIUM-BLACK-STAND-600x60-1.jpg",
+  "w": 600,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/60-GAL-36x20x22-MARINE-AQUARIUM-BLACK-STAND-600x60-1-400.webp",
+    "w": 400
+   },
+   {
+    "h": 600,
+    "path": "assets/images/products/60-GAL-36x20x22-MARINE-AQUARIUM-BLACK-STAND-600x60-1-600.webp",
+    "w": 600
+   }
+  ]
+ },
+ "images/products/80-GAL-48x20x22-MARINE-AQUARIUM-WHITE-STAND-1.jpg": {
+  "h": 800,
+  "src": "assets/images/products/80-GAL-48x20x22-MARINE-AQUARIUM-WHITE-STAND-1.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/80-GAL-48x20x22-MARINE-AQUARIUM-WHITE-STAND-1-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/80-GAL-48x20x22-MARINE-AQUARIUM-WHITE-STAND-1-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well.png": {
+  "h": 1024,
+  "src": "assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well.png",
+  "w": 1024,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1024,
+    "path": "assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well-1024.webp",
+    "w": 1024
+   }
+  ]
+ },
+ "images/products/AQUA-JAPAN-50-GAL-24X24X20-FRAG-TANK-s-watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/AQUA-JAPAN-50-GAL-24X24X20-FRAG-TANK-s-watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/AQUA-JAPAN-50-GAL-24X24X20-FRAG-TANK-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/AQUA-JAPAN-50-GAL-24X24X20-FRAG-TANK-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/AQUA-JAPAN-AJ-28P-LOW-IRON-GLASS-TANK-BLACK-STAND-s-watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/AQUA-JAPAN-AJ-28P-LOW-IRON-GLASS-TANK-BLACK-STAND-s-watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/AQUA-JAPAN-AJ-28P-LOW-IRON-GLASS-TANK-BLACK-STAND-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/AQUA-JAPAN-AJ-28P-LOW-IRON-GLASS-TANK-BLACK-STAND-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/BETA-TANK-SYSTEM-34-13-59.jpg": {
+  "h": 800,
+  "src": "assets/images/products/BETA-TANK-SYSTEM-34-13-59.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/BETA-TANK-SYSTEM-34-13-59-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/BETA-TANK-SYSTEM-34-13-59-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/New-Project-38.jpg": {
+  "h": 800,
+  "src": "assets/images/products/New-Project-38.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/New-Project-38-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/New-Project-38-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/New-Project-39.jpg": {
+  "h": 800,
+  "src": "assets/images/products/New-Project-39.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/New-Project-39-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/New-Project-39-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/RETAIL-AQUARIUM-SYSTEM-48X20X92.jpg": {
+  "h": 800,
+  "src": "assets/images/products/RETAIL-AQUARIUM-SYSTEM-48X20X92.jpg",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/RETAIL-AQUARIUM-SYSTEM-48X20X92-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/RETAIL-AQUARIUM-SYSTEM-48X20X92-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/aquarium_120-GAL-48x24x24-PENINSULA-STARPHIRE-GLASS-TANK-BLACK-STAND-s-watermark.png": {
+  "h": 800,
+  "src": "assets/images/products/aquarium_120-GAL-48x24x24-PENINSULA-STARPHIRE-GLASS-TANK-BLACK-STAND-s-watermark.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/aquarium_120-GAL-48x24x24-PENINSULA-STARPHIRE-GLASS-TANK-BLACK-STAND-s-watermark-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/aquarium_120-GAL-48x24x24-PENINSULA-STARPHIRE-GLASS-TANK-BLACK-STAND-s-watermark-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/products/black-color-aqua.png": {
+  "h": 800,
+  "src": "assets/images/products/black-color-aqua.png",
+  "w": 800,
+  "webp": [
+   {
+    "h": 400,
+    "path": "assets/images/products/black-color-aqua-400.webp",
+    "w": 400
+   },
+   {
+    "h": 800,
+    "path": "assets/images/products/black-color-aqua-800.webp",
+    "w": 800
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-01.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-01.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-01-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-02.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-02.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-02-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-03.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-03.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/scratch-removal/scratch-03-600.webp",
+    "w": 600
+   },
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-03-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-04.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-04.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/scratch-removal/scratch-04-600.webp",
+    "w": 600
+   },
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-04-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-05.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-05.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/scratch-removal/scratch-05-600.webp",
+    "w": 600
+   },
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-05-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-06.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-06.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-06-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-07.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-07.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-07-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-08.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-08.jpeg",
+  "w": 480,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-08-480.webp",
+    "w": 480
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-09.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-09.jpeg",
+  "w": 459,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-09-459.webp",
+    "w": 459
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-10.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-10.jpeg",
+  "w": 406,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-10-406.webp",
+    "w": 406
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-11.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-11.jpeg",
+  "w": 405,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-11-405.webp",
+    "w": 405
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-12.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-12.jpeg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/scratch-removal/scratch-12-600.webp",
+    "w": 600
+   },
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-12-960.webp",
+    "w": 960
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-13.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-13.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-13-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-14.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-14.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-14-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-15.jpeg": {
+  "h": 670,
+  "src": "assets/images/scratch-removal/scratch-15.jpeg",
+  "w": 505,
+  "webp": [
+   {
+    "h": 670,
+    "path": "assets/images/scratch-removal/scratch-15-505.webp",
+    "w": 505
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-16.jpeg": {
+  "h": 670,
+  "src": "assets/images/scratch-removal/scratch-16.jpeg",
+  "w": 505,
+  "webp": [
+   {
+    "h": 670,
+    "path": "assets/images/scratch-removal/scratch-16-505.webp",
+    "w": 505
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-17.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-17.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-17-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-18.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-18.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-18-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-19.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-19.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-19-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-20.jpeg": {
+  "h": 720,
+  "src": "assets/images/scratch-removal/scratch-20.jpeg",
+  "w": 540,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/scratch-removal/scratch-20-540.webp",
+    "w": 540
+   }
+  ]
+ },
+ "images/video-thumbs/-Zy5pNRdqUo.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/-Zy5pNRdqUo.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/-Zy5pNRdqUo-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/-Zy5pNRdqUo-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/-Zy5pNRdqUo-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
+ "images/video-thumbs/1p2a0Rf8mAA.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/1p2a0Rf8mAA.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/1p2a0Rf8mAA-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/1p2a0Rf8mAA-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/1p2a0Rf8mAA-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
+ "images/video-thumbs/5GzYcYq7j4A.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/5GzYcYq7j4A.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/5GzYcYq7j4A-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/5GzYcYq7j4A-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/5GzYcYq7j4A-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
+ "images/video-thumbs/8P91EpgaeNA.jpg": {
+  "h": 360,
+  "src": "assets/images/video-thumbs/8P91EpgaeNA.jpg",
+  "w": 480,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/video-thumbs/8P91EpgaeNA-480.webp",
+    "w": 480
+   }
+  ]
+ },
+ "images/video-thumbs/MJFgcdNB0dA.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/MJFgcdNB0dA.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/MJFgcdNB0dA-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/MJFgcdNB0dA-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/MJFgcdNB0dA-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
+ "images/video-thumbs/_Xb7Pd0_cWc.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/_Xb7Pd0_cWc.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/_Xb7Pd0_cWc-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/_Xb7Pd0_cWc-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/_Xb7Pd0_cWc-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
+ "images/video-thumbs/q6UxS0Tbc2o.jpg": {
+  "h": 480,
+  "src": "assets/images/video-thumbs/q6UxS0Tbc2o.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/video-thumbs/q6UxS0Tbc2o-480.webp",
+    "w": 480
+   },
+   {
+    "h": 480,
+    "path": "assets/images/video-thumbs/q6UxS0Tbc2o-640.webp",
+    "w": 640
+   }
+  ]
+ },
+ "images/video-thumbs/txtw546G9_8.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/txtw546G9_8.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/txtw546G9_8-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/txtw546G9_8-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/txtw546G9_8-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
+ "images/video-thumbs/uwtV-Dp0kc8.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/uwtV-Dp0kc8.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/uwtV-Dp0kc8-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/uwtV-Dp0kc8-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/uwtV-Dp0kc8-1280.webp",
+    "w": 1280
+   }
+  ]
+ }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" class="is-loading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{SITE_URL}}{{CANONICAL}}">
+
+<meta name="theme-color" content="#00284d">
+<link rel="icon" href="assets/images/brand/favicon-fin.png" sizes="any">
+<link rel="apple-touch-icon" href="assets/images/brand/favicon-fin.png">
+
+<meta property="og:type" content="{{OG_TYPE}}">
+<meta property="og:site_name" content="Acrylic Pros">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="{{SITE_URL}}{{CANONICAL}}">
+<meta property="og:title" content="{{OG_TITLE}}">
+<meta property="og:description" content="{{OG_DESCRIPTION}}">
+<meta property="og:image" content="{{SITE_URL}}{{OG_IMAGE}}">
+<meta property="og:image:alt" content="{{OG_IMAGE_ALT}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{OG_TITLE}}">
+<meta name="twitter:description" content="{{OG_DESCRIPTION}}">
+<meta name="twitter:image" content="{{SITE_URL}}{{OG_IMAGE}}">
+{{PRELOAD}}
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-latin-normal.woff2" crossorigin>
+
+<link rel="stylesheet" href="assets/home/home.css">
+<link rel="stylesheet" href="assets/home/pages.css">
+<script src="assets/home/lenis.min.js" defer></script>
+<!-- pages.js must run before home.js: it removes the loader when a page is
+     entered through the panel transition. -->
+<script src="assets/home/pages.js" defer></script>
+<script src="assets/home/home.js" defer></script>
+<script>
+  document.documentElement.classList.add('js');
+  try {
+    var t = Number(sessionStorage.getItem('ap:transition'));
+    sessionStorage.removeItem('ap:transition');
+    if (t && Date.now() - t < 10000) document.documentElement.classList.add('is-entering');
+  } catch (e) {}
+</script>
+</head>
+
+<body class="{{BODY_CLASS}}">
+
+<a class="skip-link" href="#main">Skip to content</a>

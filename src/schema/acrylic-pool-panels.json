@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Service",
+      "@id": "https://acrylicpros.com/acrylic-pool-panels.html#service",
+      "name": "Acrylic Pool & Pond Viewing Panels",
+      "serviceType": "Acrylic and glass pool and pond viewing panels",
+      "description": "Acrylic pool & pond viewing panels for residential and commercial projects. With over 15 years of experience in acrylic manufacturing, our team has designed, built and installed complete acrylic and glass pool & pond viewing panels – for homes and commercial businesses.",
+      "url": "https://acrylicpros.com/acrylic-pool-panels.html",
+      "provider": { "@id": "https://acrylicpros.com/#business" },
+      "areaServed": [
+        { "@type": "State", "name": "California" },
+        { "@type": "Country", "name": "United States" }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://acrylicpros.com/services.html" },
+        { "@type": "ListItem", "position": 3, "name": "Acrylic Pool Panels", "item": "https://acrylicpros.com/acrylic-pool-panels.html" }
+      ]
+    }
+  ]
+}

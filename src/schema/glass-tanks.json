@@ -1,0 +1,22 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://acrylicpros.com/glass-tanks.html#collection",
+      "name": "Shop Glass Tanks",
+      "description": "Shop Glass Tanks at Acrylic Pros: 69 aquarium tanks including peninsula, Starphire, Reef Pro, Aqua Japan, frag and shallow peninsula tanks. Need to ship by freight, no free shipping.",
+      "url": "https://acrylicpros.com/glass-tanks.html",
+      "isPartOf": { "@id": "https://acrylicpros.com/#website" },
+      "about": { "@id": "https://acrylicpros.com/#business" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://acrylicpros.com/services.html" },
+        { "@type": "ListItem", "position": 3, "name": "Glass Tanks", "item": "https://acrylicpros.com/glass-tanks.html" }
+      ]
+    }
+  ]
+}
