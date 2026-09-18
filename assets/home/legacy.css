@@ -99,11 +99,11 @@
   --w-emphasis: 700;   
   --w-body:     400;
   --w-ui:       600;   
-  --step-display: clamp(4.4rem, 6.6vw, 8rem);      
-  --step-h1:      clamp(4rem, 6vw, 8rem);         
-  --step-h2:      clamp(3.6rem, 5.4vw, 8rem);      
-  --step-h3:      clamp(3rem, 4.2vw, 6rem);  
-  --step-h4:      clamp(2.4rem, 2.8vw, 4rem);     
+  --step-display: clamp(3.84rem, 5.8vw, 7.04rem);       
+  --step-h1:      clamp(3.36rem, 5.2vw, 7.04rem);       
+  --step-h2:      clamp(3.04rem, 4.7vw, 7.04rem);       
+  --step-h3:      clamp(2.56rem, 3.7vw, 5.28rem);       
+  --step-h4:      clamp(2.08rem, 2.5vw, 3.52rem);       
   --step-h5:      clamp(2.08rem, 2.2vw, 3.4rem);   
   --step-h6:      clamp(1.8rem, 1.6vw, 2.2rem); 
   --step-body:    1.6rem;                             
@@ -236,6 +236,20 @@ body.is-locked {
   font-weight: var(--w-display);
   line-height: 1.05;
   letter-spacing: var(--track-h3);
+}
+:where(#main) h1,
+:where(#main) h2,
+:where(#main) h3,
+:where(#main) h4,
+:where(#main) .h1,
+:where(#main) .h2,
+:where(#main) .h3,
+:where(#main) .h4,
+:where(#main) .display,
+:where(#main) .headline,
+:where(#main) .gold-band__title {
+  text-transform: uppercase;
+  word-spacing: .06em;
 }
 :where(#main) h1,
 :where(#main) .h1 { font-size: var(--step-h1); letter-spacing: var(--track-display); line-height: 1.0; }
@@ -3196,9 +3210,9 @@ body.is-locked {
 :where(#main) .gold-band__title {
   margin: 0;
   color: #ffffff;
-  font-size: var(--step-h3);
+  font-size: min(var(--step-h3), 4.16rem);
   font-weight: var(--w-display);
-  line-height: 1.0;
+  line-height: 1.04;
   letter-spacing: var(--track-h3);
 }
 :where(#main) .gold-band__text {
@@ -3216,9 +3230,9 @@ body.is-locked {
   --btn-fg: var(--accent-dark);
   --btn-bg-hover: var(--tint);
 }
-@media (min-width: 62em) {
+@media (min-width: 75em) {
   :where(#main) .gold-band__inner {
-    grid-template-columns: auto minmax(0, 1fr) minmax(0, 41.6rem);
+    grid-template-columns: auto minmax(38.4rem, 1fr) minmax(0, 38.4rem);
     gap: var(--space-xl);
   }
 }
@@ -3763,6 +3777,48 @@ body.is-locked {
 }
 :where(#main) .page-hero .tag,
 :where(#main) .hero .tag { margin-bottom: var(--space-sm); }
+@media (max-width: 61.99em) {
+  :where(#main) .section__head--start,
+:where(#main) .section__head--split {
+    justify-items: center;
+    margin-inline: auto;
+    text-align: center;
+  }
+  :where(#main) .section__head--start .cluster,
+:where(#main) .section__head--split .cluster { justify-content: center; }
+  :where(#main) .cluster { justify-content: center; }
+}
+@media (max-width: 74.99em) {
+  :where(#main) .gold-band__inner { justify-items: center; text-align: center; }
+  :where(#main) .gold-band__mark img { margin-inline: auto; }
+  :where(#main) .gold-band__text { margin-inline: auto; }
+}
+@media (max-width: 61.99em) {
+  :where(#main) #main p,
+:where(#main) #main .prose,
+:where(#main) #main .lede,
+:where(#main) #main .stack,
+:where(#main) #main figcaption,
+:where(#main) #main blockquote { text-align: center; }
+  :where(#main) #main li,
+:where(#main) #main label,
+:where(#main) #main input,
+:where(#main) #main textarea,
+:where(#main) #main select,
+:where(#main) #main th,
+:where(#main) #main td,
+:where(#main) #main caption,
+:where(#main) #main summary,
+:where(#main) #main .breadcrumbs,
+:where(#main) #main .step,
+:where(#main) #main form p { text-align: left; }
+  :where(#main) #main .prose ul,
+:where(#main) #main .prose ol { display: inline-block; text-align: left; }
+  :where(#main) #main :is(h1, h2, h3, h4, h5),
+:where(#main) #main .section__head,
+:where(#main) #main .step { text-align: center; }
+  :where(#main) #main .step { justify-items: center; }
+}
 
 /* ---- defaults the old markup expects (home.css resets them globally) ---- */
 :where(#main) img { width: auto; }

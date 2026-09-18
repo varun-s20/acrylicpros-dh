@@ -158,7 +158,9 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
   position: relative;
   overflow: hidden;
   margin-top: 8rem;
-  padding: 45.5rem 0 33.3rem;
+  /* Client, 18 Sept: was 45.5rem/33.3rem — 788px of padding around one line,
+     which left the statement stranded in the middle of a black band. */
+  padding: 20rem 0 16rem;
   background-color: #0c0a09;
   color: #fff;
   text-align: center;
@@ -172,7 +174,11 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
 .o-universeAbout__footerImage { position: absolute; bottom: 0; left: 0; z-index: 0; width: 100%; height: 100%; pointer-events: none; }
 .o-universeAbout__footerImage video { width: 100%; height: 100%; object-fit: cover; }
 .o-universeAbout__footerText { position: relative; z-index: 2; width: 100%; will-change: transform; }
-@media (max-width: 1024px) { .o-universeAbout__footerText br { display: none; } }
+/* Client, 18 Sept: this used to be `br { display: none }` below 1025px, which
+   drops the break without putting a space in its place — the statement ran
+   together as "We love fish.Acrylic Prosaquariums." It is written as a
+   three-row stack, so it sets as one at every width. */
+.o-universeAbout__footerText { max-width: 20ch; margin-inline: auto; line-height: 1.12; }
 .a-cloud.-top { top: -.1rem; bottom: auto; transform: rotate(180deg); }
 .o-universeAbout__footer .a-cloud, .o-universeTeam .a-cloud, .o-expertiseProcess .a-cloud { z-index: 2; }
 @media (min-width: 1025px) {
@@ -181,7 +187,7 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
   .o-universeAbout__secondImage { width: 53.8461538462%; }
   .o-universeAbout__thirdImage { width: 30.7692307692%; margin: -9.2rem 0 0 61.5384615385%; }
   .o-universeAbout__quote { width: 61.5384615385%; margin-top: 8rem; }
-  .o-universeAbout__footer { margin-top: 11.6rem; padding-top: 66.4rem; }
+  .o-universeAbout__footer { margin-top: 11.6rem; padding: 34rem 0 24rem; }
 }
 
 .o-universeVision { position: relative; padding: 6rem 0 25rem; color: #fff; scroll-margin-top: 6rem; }
@@ -724,6 +730,21 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
 .o-contactInformations__item { padding: 5rem; background-color: #fafafa; }
 .o-contactInformations__item h2 { margin-bottom: 1.8rem; font-weight: 400; }
 .o-contactInformations__wrapper { display: grid; gap: 1rem; }
+/* Client, 18 Sept: same fix as the footer. The phone number was 12px text —
+   the smallest type on the site carrying the most important action. */
+.o-contactInformations__wrapper a {
+  display: inline-flex; align-items: center;
+  min-height: 4.4rem;
+  font-weight: 700; font-size: 2.2rem; line-height: 1.2; letter-spacing: -.01em;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 13, 26, .3);
+  text-underline-offset: .5rem;
+  transition: text-decoration-color .2s ease, transform .16s var(--ease);
+}
+.o-contactInformations__wrapper a:active { transform: scale(.97); }
+@media (hover: hover) and (pointer: fine) {
+  .o-contactInformations__wrapper a:hover { text-decoration-color: currentColor; }
+}
 
 @media (min-width: 1025px) {
   .o-contactForm { width: 75%; margin-left: 12.5%; padding: 7.6rem 0 15.8rem; }
@@ -902,9 +923,9 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
   margin: 0;
   color: #fff;
   font-weight: 300;
-  font-size: clamp(4.2rem, 6.2vw, 8.8rem);
-  line-height: 1.02;
-  letter-spacing: -.045em;
+  font-size: clamp(3.4rem, 5.4vw, 7.6rem);
+  line-height: 1.04;
+  letter-spacing: -.03em;
   text-wrap: balance;
 }
 .m-pageBanner__title strong, .m-pageBanner__title b, .m-pageBanner__title .hl { font-weight: 600; }
@@ -1340,4 +1361,95 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
   .o-contactVisit__pin, .m-faq[open] .m-faq__body { animation: none; }
+}
+
+/* =====================================================================
+   Client, 18 Sept — phone layout
+   One centre axis per page below 1025px: headings, body copy, lone buttons,
+   and the figures the reference design offsets on desktop, which at 390px
+   only read as a mistake.
+   Lists, form fields and tables keep their left edge — each is read down a
+   column rather than across, and centring them removes the edge the eye
+   tracks. Everything else centres.
+   ===================================================================== */
+@media (max-width: 1024px) {
+  /* The eyebrow and the display line it introduces are one unit — centring
+     one without the other is worse than leaving both alone. The `+` keeps
+     body copy out of it: only a display line follows an eyebrow this way. */
+  .a-sectionTitle,
+  .a-sectionTitle + :is(.tx-h2, .tx-h3, .tx-h4, .tx-h5),
+  .a-sectionTitle + .o-universeTeam__subtitle,
+  .o-videoLibrary__head,
+  .o-shopRanges__head, .o-shop__head, .o-shopRelated__head,
+  .o-contactFaq__head { text-align: center; }
+
+  .o-videoLibrary__head,
+  .o-videoLibrary__jump { justify-content: center; }
+
+  /* Lone calls to action belong on the centre line, not hard left. */
+  .o-videoFollow .a-button,
+  .o-shopHelp .a-button,
+  .o-contactHero .a-button { margin-inline: auto; }
+  .o-videoFollow__icon, .o-shopHelp__icon { margin-inline: auto; }
+
+  .o-universeVision__subtitle, .m-expertiseClients__title { width: 100%; }
+  .o-universeAbout__firstImage { width: 88%; margin-inline: auto; }
+  .o-universeAbout__thirdImage { width: 66%; margin: 4.8rem auto 6.4rem; }
+  .o-universeAbout__secondImage { margin-top: 6rem; }
+  /* Same off-axis device on Process: a 25% margin on one side each. */
+  .o-expertiseApproach__image:nth-child(1) { width: 88%; margin: 0 auto; }
+  .o-expertiseApproach__image:nth-child(2) { width: 66%; margin: 0 auto 5.5rem; }
+  .o-universeTeam__galleryThirdImage { width: 66%; margin-inline: auto; }
+
+  /* The last lone buttons sitting hard left. */
+  .o-contactVisit__info .a-button { margin-inline: auto; }
+
+  /* Title and the YouTube chip side by side left the title 60% of the row
+     and three ragged lines. Stacked, it gets the full measure. */
+  .m-videoCard__meta { flex-direction: column; align-items: center; text-align: center; }
+
+  /* Client, 18 Sept (round 3): body copy centres on phones too, not just the
+     headings. Asked for twice — the client wants one centre axis per page.
+     Lists, forms and tables are excluded below: a bulleted list, a field label
+     and a data table each need a left edge to read down. */
+  .o-universeResponsability__section > h3,
+  .o-universeVision__textImage h3,
+  .o-universeVision__contact,
+  .o-universeTeam__membersTitle,
+  .m-sliderTeam__slide figcaption,
+  .o-expertiseApproach__paragraph { text-align: center; }
+
+  main p,
+  main .m-textContent,
+  main .prose,
+  main dd, main figcaption, main blockquote { text-align: center; }
+
+  /* Headings follow the copy onto the centre axis. Product and video cards
+     are excluded below — those sit in a grid and keep their own left edge. */
+  main :is(h1, h2, h3, h4, h5, .tx-h1, .tx-h2, .tx-h3, .tx-h4, .tx-h5) { text-align: center; }
+
+  /* Back to a left edge: anything read down a column rather than across. */
+  main li,
+  main label, main .a-inputField, main .a-inputField p,
+  main form p, main .o-contactForm__status,
+  main th, main td, main caption,
+  main summary, main .m-faq__head,
+  main .o-breadcrumb, main .m-pageBanner__crumbs,
+  main .m-tankCard, main .m-tankCard p, main .m-tankCard :is(h2, h3, h4),
+  main .o-shopCompare__table p { text-align: left; }
+  .o-universeVision__contact { display: flex; flex-direction: column; align-items: center; }
+
+  /* Contact cards: one full-width card per row on a phone, so their content
+     belongs on the card's centre line rather than against its left edge. */
+  .o-contactInformations__item { text-align: center; }
+  .o-contactInformations__wrapper { justify-items: center; }
+
+  /* The step rail is a desktop device: a 2px dotted line and a badge holding
+     a quarter of the screen, which pushed every step's text off the page
+     axis. On one column the badge sits above its step and the rail goes. */
+  .m-expertiseStep { grid-template-columns: 1fr; }
+  .m-expertiseStep__stepper { flex-direction: row; justify-content: center; }
+  .m-expertiseStep__stepperSvg { display: none; }
+  .m-expertiseStep__content { margin-top: 2.4rem; }
+  .m-expertiseStep__textContent { align-items: center; text-align: center; }
 }

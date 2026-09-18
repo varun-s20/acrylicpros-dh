@@ -104,10 +104,10 @@ html.lenis, html.lenis body { height: auto; }
 .a-svg { display: block; flex-shrink: 0; width: 1.3rem; height: 1.3rem; fill: currentColor; }
 
 /* ---------- Type ----------------------------------------------------- */
-.tx-h1 { font-weight: 300; font-size: 5.6rem; line-height: .85; letter-spacing: -.04em; }
-.tx-h2 { font-weight: 300; font-size: 4rem; line-height: 1; letter-spacing: -.04em; }
-.tx-h3 { font-weight: 300; font-size: 3.6rem; line-height: 1.056; letter-spacing: -.02em; }
-.tx-h4 { font-weight: 300; font-size: 3rem; line-height: 1.067; letter-spacing: -.02em; }
+.tx-h1 { font-weight: 300; font-size: 5.6rem; line-height: .88; letter-spacing: -.025em; }
+.tx-h2 { font-weight: 300; font-size: 3.4rem; line-height: 1.02; letter-spacing: -.025em; }
+.tx-h3 { font-weight: 300; font-size: 3rem; line-height: 1.07; letter-spacing: -.015em; }
+.tx-h4 { font-weight: 300; font-size: 2.3rem; line-height: 1.1; letter-spacing: -.015em; }
 .tx-h5 { font-weight: 400; font-size: 2.2rem; line-height: 1.2; }
 .tx-website { font-weight: 600; font-size: 3.6rem; line-height: 1.75; letter-spacing: -.02em; }
 .tx-p { font-size: 1.6rem; line-height: 1.5; }
@@ -124,11 +124,43 @@ html.lenis, html.lenis body { height: auto; }
 .-tx900 { font-weight: 900; }
 .-clrdarkblue { color: var(--clrdarkblue); }
 
+/* Client, 18 Sept: symmetrical headings at every width. `balance` splits a
+   heading into even-length rows instead of running the first line full and
+   dropping one orphan word onto the last; `pretty` does the widow only. */
+h1, h2, h3, h4,
+.tx-h1, .tx-h2, .tx-h3, .tx-h4, .tx-h5,
+.m-pageBanner__title, .m-promo__title, .o-prefooter__title { text-wrap: balance; }
+p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
+
+/* Client, 18 Sept: headings in capitals, site-wide. The display sizes above are
+   tracked tight for lowercase; capitals have no descenders and more sidebearing,
+   so the negative tracking has to come back off or the words clot together.
+   Not .tx-h5 — on this site that class carries video titles and full sentences,
+   and a sentence in capitals is slow to read. Not the overlay menu either:
+   that is navigation, not a heading. */
+:is(.tx-h1, .tx-h2, .tx-h3, .tx-h4, .m-promo__title, .m-pageBanner__title):not(.o-menu__link, .m-textScroll__content) {
+  text-transform: uppercase;
+  /* Without this the words clot: capitals have no ascender/descender gaps to
+     read a word boundary by, so the default space is too narrow at display
+     sizes. No letter-spacing here — `:is()` takes the specificity of its most
+     specific argument, so a value set here would outrank every per-size
+     tracking value above and in the breakpoint below. Those carry the
+     caps-adjusted tracking instead. */
+  word-spacing: .06em;
+}
+/* Pull quotes and the sentence half of a form intro stay sentence case: they
+   run to 40+ words, and that much uppercase stops being a heading and starts
+   being a wall of letters. */
+.m-textScroll__content, .m-textScroll__content *, .o-contactForm__sub {
+  text-transform: none;
+  word-spacing: normal;
+}
+
 @media (min-width: 1025px) {
-  .tx-h1 { font-size: 8rem; letter-spacing: -.05em; }
-  .tx-h2 { font-size: 8rem; letter-spacing: -.06em; }
-  .tx-h3 { font-size: 6rem; line-height: 1.03; letter-spacing: -.04em; }
-  .tx-h4 { font-size: 4rem; line-height: 1.1; }
+  .tx-h1 { font-size: 8rem; letter-spacing: -.035em; }
+  .tx-h2 { font-size: 7rem; letter-spacing: -.04em; }
+  .tx-h3 { font-size: 5.2rem; line-height: 1.05; letter-spacing: -.025em; }
+  .tx-h4 { font-size: 3.2rem; line-height: 1.12; }
   .tx-h5 { font-size: 3.4rem; line-height: 1.059; }
   .tx-website { font-size: 5rem; }
 }
@@ -619,6 +651,7 @@ html.lenis, html.lenis body { height: auto; }
   display: flex; flex-direction: column; align-items: center;
   width: 100%;
   margin-bottom: 3rem;
+  container-type: inline-size;
 }
 .m-hero__title {
   display: flex; flex-direction: column; align-items: center;
@@ -626,7 +659,14 @@ html.lenis, html.lenis body { height: auto; }
   font-weight: 400;
   font-kerning: none;
 }
-.m-hero .tx-h1 { display: block; width: 100%; padding: 1.2rem 1rem; }
+.m-hero .tx-h1 {
+  display: block; width: 100%;
+  padding: 1.2rem 1rem;
+  /* Sized off the column, not the viewport, so the two rows survive every
+     screen width. 10.1cqi is the longest row ("TANK IS WORTH IT") filling
+     that column with a hair of air left. */
+  font-size: min(10rem, 10.1cqi);
+}
 .js .m-hero .tx-h1 { opacity: 0; }
 .m-hero .a-line-wrapper { overflow: hidden; width: 100%; padding: 1.28% 0; }
 .m-hero .a-line-wrapper:not(:first-child) { margin-top: -4%; }
@@ -714,7 +754,6 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   .m-hero__lastShow { position: absolute; right: 2rem; bottom: 3rem; margin: 0; }
   .m-hero__cloudVideo video { width: 100%; height: auto; }
 }
-@media (min-width: 1441px) { .m-hero .tx-h1 { font-size: 10rem; } }
 
 /* =====================================================================
    Magic
@@ -722,7 +761,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 .o-homeMagic {
   position: relative;
   overflow: hidden;
-  padding: 5.7rem 0 45rem;
+  padding: 5.7rem 0 22rem;
   background-color: var(--clrnavy);
   text-align: center;
 }
@@ -751,15 +790,23 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   pointer-events: none;
 }
 .o-homeMagic .row { z-index: 1; justify-content: center; }
-.o-homeMagic__content { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr; gap: 4.5rem; width: 100%; }
-.o-homeMagic .m-textContent, .o-homeMagic .m-moreContent { gap: 4.5rem; }
+.o-homeMagic__content {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr; gap: 3.5rem;
+  width: 100%;
+  container-type: inline-size;
+}
+/* Two rows at every width: 5.8cqi is "WITH AN ENCHANTING AQUARIUM" — the
+   longer of the two rows — filling the content column. */
+.o-homeMagic .tx-h2 { font-size: min(8rem, 5.8cqi); }
+.o-homeMagic .m-textContent, .o-homeMagic .m-moreContent { gap: 2.5rem; }
 @media (min-width: 1025px) {
   .o-homeMagic {
     display: flex; align-items: center; justify-content: center;
     min-height: 100vh;
-    padding: 16rem 0 50rem;
+    padding: 16rem 0 28rem;
   }
-  .o-homeMagic__content { width: 75%; gap: 6rem; }
+  .o-homeMagic__content { width: 75%; gap: 4.5rem; }
   .o-homeMagic .m-textContent { width: 88%; margin: 0 auto; }
 }
 
@@ -851,6 +898,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 .m-sliderProducts__slideInner {
   position: relative;
   display: flex; align-items: flex-end;
+  container-type: inline-size;
   overflow: hidden;
   border-radius: 1rem;
   color: #fff;
@@ -880,6 +928,23 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   width: 100%;
   padding: 3.2rem 2.4rem;
 }
+/* Client, 18 Sept: card titles were too big once they went to capitals — at
+   1440 the slider shows 4.5 cards, so a card is narrower than a phone and a
+   32px cap title broke "Custom builds & installations" over four rows.
+   8.2cqi is the longest title on any card ("and construction") filling the
+   card's text column, so every card title holds its two rows. Sized off the
+   card, not the viewport: the card gets narrower as the slider shows more. */
+/* Two rows reserved because most titles are two rows and a few ("Sharks")
+   are one — without the floor those cards sat a whole line lower. */
+.m-sliderProducts__slideContent .tx-h4 { font-size: min(3.2rem, 8.2cqi); min-height: 2lh; }
+/* Client, 18 Sept: card titles all on one line across the row. The content
+   block is anchored to the bottom of the card, so a one-line description
+   pushed its title 21px lower than a two-line one and the row of titles
+   staggered. Reserving the longest description (four rows at the narrowest
+   card) fixes the area, so every tag and title lands at the same height.
+   The reserve costs nothing visually: it is transparent space over the photo
+   inside a card whose height is already fixed by its aspect ratio. */
+.m-sliderProducts__slideContent p { min-height: 4lh; }
 .m-sliderProducts__categoriesList { display: flex; flex-flow: row wrap; gap: .6rem; align-items: center; justify-content: center; }
 .m-sliderProducts__categoriesList .a-tag {
   flex-shrink: 0;
@@ -931,11 +996,13 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 
 @media (min-width: 641px) { .o-homeProducts .m-slider { --item-size: 2.1; } }
 @media (min-width: 1025px) {
-  .o-homeProducts { padding: 6.5rem 0 10.5rem; }
+  .o-homeProducts { padding: 6.5rem 0 7rem; }
   .o-homeProducts__title { width: 75%; margin-left: 12.5%; margin-bottom: 7rem; }
   .o-homeProducts .m-textContent { width: 75%; margin-right: auto; margin-left: auto; }
   .o-homeProducts .m-slider { --item-size: 3.1; }
-  .o-homeProducts .m-slider__dots { position: absolute; top: calc(100% + 5rem); left: 0; margin-top: 0; }
+  /* Client, 18 Sept: dots centred. Absolute with only `left: 0` shrink-wraps
+     them against the left edge; the flex centring never had a width to work in. */
+  .o-homeProducts .m-slider__dots { position: absolute; top: calc(100% + 5rem); right: 0; left: 0; margin-top: 0; }
   .m-catSelector { padding: .6rem; border: 1px solid #E3E3E3; border-radius: 4rem; background-color: #fafafa; }
   .m-catSelector::after, .m-catSelector__selector { display: none; }
   .m-catSelector__list {
@@ -1190,7 +1257,12 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   color: #fff;
   text-align: center;
 }
-.o-prefooter .row { z-index: 2; }
+.o-prefooter .row { z-index: 2; container-type: inline-size; }
+/* The title is one narrow column of this row, and the longest version of it
+   ("with an enchanting aquarium.") ran to five rows there in capitals. Sized
+   off the row so it fits its column: 6.1cqi is that row filling the full-width
+   mobile column, 2.27cqi the 37.5% column it gets from 1025 up. */
+.o-prefooter__title { font-size: min(5.2rem, 6.1cqi); }
 .o-prefooter__logo { display: flex; width: 100%; margin-bottom: 7.5rem; }
 .o-prefooter__logo img { width: 17.7rem; margin: 0 auto; }
 .o-prefooter__title { width: 100%; margin-bottom: 3.75rem; }
@@ -1213,7 +1285,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 @media (min-width: 1025px) {
   .o-prefooter { text-align: left; }
   .o-prefooter__logo { width: 18.75%; }
-  .o-prefooter__title { width: 37.5%; margin-left: 6.25%; }
+  .o-prefooter__title { width: 37.5%; margin-left: 6.25%; font-size: min(5.2rem, 2.27cqi); }
   .o-prefooter__contentWrapper { align-items: flex-start; width: 31.25%; margin-left: 6.25%; }
 }
 
@@ -1272,6 +1344,26 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 .o-footer__linksList { display: grid; gap: 1.5rem; }
 .o-footer__links.-access .o-footer__linksList { grid-template-columns: 1fr 1fr; }
 .o-footer__links .a-link { text-align: left; }
+
+/* Client, 18 Sept: the phone number was 14px inline text inside a paragraph —
+   too small to read and too small to hit. Both are now their own 44px-high
+   targets (the Apple/WCAG minimum) with the number sized as the thing it is. */
+.o-footer__area { margin-bottom: 1.2rem; opacity: .85; }
+.o-footer__tel, .o-footer__mail {
+  display: inline-flex; align-items: center;
+  min-height: 4.4rem;
+  font-weight: 700; line-height: 1.2;
+  text-decoration: underline;
+  text-decoration-color: #ffffff59;
+  text-underline-offset: .5rem;
+  transition: text-decoration-color .2s ease, transform .16s var(--ease);
+}
+.o-footer__tel { font-size: 2.6rem; letter-spacing: -.01em; }
+.o-footer__mail { font-size: 1.8rem; }
+.o-footer__tel:active, .o-footer__mail:active { transform: scale(.97); }
+@media (hover: hover) and (pointer: fine) {
+  .o-footer__tel:hover, .o-footer__mail:hover { text-decoration-color: #fff; }
+}
 .o-footer__lower { align-items: flex-start; padding-top: 3.75rem; border-top: .1rem solid rgba(255, 255, 255, .2); }
 .o-footer__socials { display: flex; flex-flow: row wrap; gap: 1rem; width: 100%; }
 .o-footer__social {
@@ -1330,6 +1422,22 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   .o-footer__socials { order: 2; width: auto; margin-left: auto; }
   .o-footer__since { display: block; order: 2; margin-left: 4rem; }
   .o-footer__top { order: 3; margin-right: 6.25%; margin-left: 4rem; }
+}
+
+/* Client, 18 Sept: below the three-column desktop layout the footer columns
+   were left-aligned against a half-empty screen, and "Back to top" stayed
+   pinned left. Centre the lot.
+   This block has to sit after the base .o-footer__lower / .o-footer__credit
+   rules above — same specificity, so source order decides. */
+@media (max-width: 1024px) {
+  .o-footer__middle { text-align: center; }
+  .o-footer__links { display: flex; flex-direction: column; align-items: center; }
+  .o-footer__linksList { justify-items: center; }
+  .o-footer__links .a-link { text-align: center; }
+  .o-footer__socials { justify-content: center; }
+  .o-footer__lower { flex-direction: column; align-items: center; gap: 2.4rem; }
+  .o-footer__top { margin-left: 0; }
+  .o-footer__credit { margin-top: 1.4rem; text-align: center; }
 }
 
 /* =====================================================================
@@ -1824,3 +1932,18 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   .o-header__logoMark { width: 11rem; }
 }
 .m-pageBanner__crumbs ol { row-gap: .2rem; }
+
+/* =====================================================================
+   Client, 18 Sept — phone layout (see the matching block in pages.css)
+   ===================================================================== */
+@media (max-width: 1024px) {
+  .o-homeNews__head { justify-content: center; text-align: center; }
+  .m-promo__cta { align-self: center; }
+  /* The rest of the homepage bands already centre; these were the only blocks
+     left on a left axis. */
+  .o-homeInstagram__head { justify-items: center; text-align: center; }
+  .m-promo__text { align-items: center; text-align: center; }
+  /* Centring the block is not enough once the chips wrap to a second row —
+     the rows themselves pack left without this. */
+  .m-promo__chips { justify-content: center; }
+}
