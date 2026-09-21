@@ -20,11 +20,11 @@ EXCLUDE = {"404.html"}
 PRIORITY = [
     (r"^index\.html$", "1.0", "weekly"),
     (r"^(quote|contact)\.html$", "0.9", "monthly"),
-    (r"^(scratch-removal|services|gallery)\.html$", "0.9", "monthly"),
+    (r"^(scratch-removal|services|gallery|featured-projects)\.html$", "0.9", "monthly"),
     (r"^(custom-builds-installations|acrylic-pool-panels|maintenance|"
      r"pond-design-construction|reef-insert-restoration|aquarium-relocations|"
      r"emergency-services|acrylic-sign-fabrication)\.html$", "0.8", "monthly"),
-    (r"^(live-corals|tropical-fish|sharks|stingrays-eels|glass-tanks|videos|"
+    (r"^(live-corals|tropical-fish|sharks|stingrays-eels|glass-tanks|acrylic-tanks|videos|"
      r"about|process)\.html$", "0.7", "monthly"),
     (r"^product/", "0.5", "monthly"),
     (r"^(warranty|refund-policy|privacy-policy)\.html$", "0.3", "yearly"),

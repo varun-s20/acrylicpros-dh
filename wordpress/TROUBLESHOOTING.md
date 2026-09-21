@@ -227,3 +227,28 @@ a live page and checking the `?ver=` query string on `home.css` — if it still
 matches the *previous* deploy's timestamp, the new file never arrived. Prefer
 the zip through **Plugins → Add New → Upload** — it replaces the plugin
 atomically in one operation, with no folder-merge ambiguity.
+
+## Something is left-aligned, unspaced or the wrong size, only in WordPress
+
+**Cause:** Elementor's own `frontend.css` resets bare elements inside
+`.elementor`, and some of those resets out-rank the design's rules:
+
+- `figure { margin: 0 }`: four classes deep, so every figure loses its margin.
+  This is what made the scratch-removal film sit hard left, and About lost its
+  photo offsets.
+- `a { text-decoration: none; box-shadow: none }`, `hr { background:
+  transparent }` and `img { height: auto; max-width: 100% }`: one class plus a
+  tag, which beats any single-class design rule.
+
+**Fixed in 1.1.0:**
+
+- **Figures:** the page widget carries `elementor-widget-theme-post-content`,
+  the one class Elementor exempts from its figure rule (`inc/setup.php`).
+  Re-run **Build the site** so existing pages get it.
+- **The rest:** `build_wordpress.py` adds a few WordPress-only
+  "restore" rules to the top of `home.css`, for the footer background, footer
+  phone/email underline, video covers, contact button shadow and hairlines.
+
+**If a new one appears,** find the winning rule in DevTools. If it comes from
+`elementor/assets/css/frontend.min.css`, add the element and only the property
+it takes to that restore block, at one class plus the tag.

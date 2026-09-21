@@ -6,7 +6,7 @@
  *                    and the gallery, Instagram and video content types the owner
  *                    edits. Everything lives here rather than in the theme, so a
  *                    theme change cannot take the design or the content with it.
- * Version:           1.0.2
+ * Version:           1.1.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Digital Heroes
@@ -20,7 +20,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AP_VER', '1.0.2' );
+define( 'AP_VER', '1.1.0' );
 define( 'AP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AP_URL', plugin_dir_url( __FILE__ ) );
 

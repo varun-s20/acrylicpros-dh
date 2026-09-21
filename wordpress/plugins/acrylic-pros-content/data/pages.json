@@ -15,113 +15,123 @@
   "order": 2
  },
  {
+  "slug": "acrylic-tanks",
+  "title": "Acrylic Tanks",
+  "order": 3
+ },
+ {
   "slug": "aquarium-relocations",
   "title": "Aquarium Relocations",
-  "order": 3
+  "order": 4
  },
  {
   "slug": "contact",
   "title": "Contact",
-  "order": 4
+  "order": 5
  },
  {
   "slug": "custom-builds-installations",
   "title": "Custom Builds & Installations",
-  "order": 5
+  "order": 6
  },
  {
   "slug": "emergency-services",
   "title": "24hr Emergency Services",
-  "order": 6
+  "order": 7
+ },
+ {
+  "slug": "featured-projects",
+  "title": "Featured Projects",
+  "order": 8
  },
  {
   "slug": "gallery",
   "title": "Gallery",
-  "order": 7
+  "order": 9
  },
  {
   "slug": "glass-tanks",
   "title": "Glass Tanks",
-  "order": 8
+  "order": 10
  },
  {
   "slug": "index",
   "title": "Home",
-  "order": 9
+  "order": 11
  },
  {
   "slug": "live-corals",
   "title": "Live Corals",
-  "order": 10
+  "order": 12
  },
  {
   "slug": "maintenance",
   "title": "Maintenance Services",
-  "order": 11
+  "order": 13
  },
  {
   "slug": "pond-design-construction",
   "title": "Pond Design & Construction",
-  "order": 12
+  "order": 14
  },
  {
   "slug": "privacy-policy",
   "title": "Privacy Policy",
-  "order": 13
+  "order": 15
  },
  {
   "slug": "process",
   "title": "Our process",
-  "order": 14
+  "order": 16
  },
  {
   "slug": "quote",
   "title": "Get a quote",
-  "order": 15
+  "order": 17
  },
  {
   "slug": "reef-insert-restoration",
   "title": "Reef Insert Restoration",
-  "order": 16
+  "order": 18
  },
  {
   "slug": "refund-policy",
   "title": "Refund & Return Policy",
-  "order": 17
+  "order": 19
  },
  {
   "slug": "scratch-removal",
   "title": "Scratch Removal",
-  "order": 18
+  "order": 20
  },
  {
   "slug": "services",
   "title": "Our services",
-  "order": 19
+  "order": 21
  },
  {
   "slug": "sharks",
   "title": "Sharks",
-  "order": 20
+  "order": 22
  },
  {
   "slug": "stingrays-eels",
   "title": "Stingrays & Eels",
-  "order": 21
+  "order": 23
  },
  {
   "slug": "tropical-fish",
   "title": "Tropical Fish",
-  "order": 22
+  "order": 24
  },
  {
   "slug": "videos",
   "title": "Videos",
-  "order": 23
+  "order": 25
  },
  {
   "slug": "warranty",
   "title": "Warranty of Products",
-  "order": 24
+  "order": 26
  }
 ]

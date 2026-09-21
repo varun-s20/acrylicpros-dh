@@ -689,6 +689,22 @@ body :where(.o-header, .o-footer, #main, .m-chat, .o-menu)
 /* Elementor wraps every widget. These wrappers must not introduce spacing or
    a stacking context between the chrome and the page shell. */
 .elementor-widget-html, .elementor-widget-container { margin: 0; padding: 0; }
+
+/* Elementor's frontend.css also resets bare elements under .elementor at
+   (0,1,1): `a { box-shadow:none; text-decoration:none }`, `hr { background:
+   transparent }`, `img { height:auto; max-width:100% }`. That out-ranks the
+   design's single-class rules at (0,1,0). These restore only the properties it
+   takes, at the same (0,1,1) -- this file loads after Elementor's, so a tie
+   goes to us -- and nothing more, so the design's own media-query and :hover
+   overrides still apply. The values mirror home.css / styles.css; found by
+   diffing every page with Elementor's element rules removed (21 Sept). */
+img.o-footer__background, img.b-video__cover, img.b-video__still { height: 100%; }
+a.o-footer__tel, a.o-footer__mail { text-decoration-line: underline; }
+a.a-buttonContact { box-shadow: 0 8px 10px #0c0a0900; }
+hr.hairline { background: var(--border); }
+@media (min-width: 1025px) {
+  a.a-buttonContact:hover, a.a-buttonContact:focus-visible { box-shadow: 0 8px 10px #0c0a092e; }
+}
 """
 
 FONT_FACE = """
@@ -758,7 +774,8 @@ NAV_SHIM = """/* ===============================================================
     var p = location.pathname.replace(/^\\/|\\/$/g, '');
     if (p === '') key = 'home';
     else if (p === 'about' || p === 'process' || p === 'gallery' ||
-             p === 'videos' || p === 'services') key = p;
+             p === 'videos' || p === 'services' ||
+             p === 'featured-projects' || p === 'acrylic-tanks') key = p;
     else if (p === 'glass-tanks' || p.indexOf('product/') === 0) key = 'glass-tanks';
     else if (['contact', 'quote', 'warranty', 'refund-policy',
               'privacy-policy'].indexOf(p) >= 0) key = '';
@@ -934,6 +951,66 @@ function ap_product_body_class() : string {{
 """
 
 
+def build_plugin_zip() -> None:
+    """Re-zip the plugin folder into the installable plugins/acrylic-pros-content.zip.
+
+    wp-admin installs plugins only from a zip, and nothing used to rebuild it:
+    the folder kept up with every build while the zip stayed frozen at whatever
+    day it was last made by hand, so installing it shipped stale CSS, JS and
+    page bodies. The top-level folder name must match the plugin slug or
+    WordPress installs it as a second plugin instead of replacing this one.
+    """
+    import zipfile
+
+    zip_path = PLUGIN.parent / (PLUGIN.name + ".zip")
+    files = sorted(f for f in PLUGIN.rglob("*") if f.is_file())
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        for f in files:
+            z.write(f, arcname=f"{PLUGIN.name}/{f.relative_to(PLUGIN).as_posix()}")
+    print(f"  plugins/{zip_path.name}  {len(files)} files, "
+          f"{zip_path.stat().st_size / 1024:.0f} KB")
+
+
+def build_media_update(since: str) -> None:
+    """media-update.zip: only the media added or changed since a git ref.
+
+    For an install that already has the full Media Library, re-uploading the
+    whole 100 MB zip to add a few photos is the wrong trade. This takes the
+    files git reports as new or modified under assets/, and keeps only those a
+    page, the chrome or the plugin actually references -- a source master that
+    nothing links to (e.g. the 44 MB scratch-removal.mp4) stays out.
+    """
+    import subprocess
+    import zipfile
+
+    def git(*a: str) -> list[str]:
+        out = subprocess.run(["git", *a], cwd=ROOT, capture_output=True,
+                             text=True, check=True).stdout
+        return [l for l in out.splitlines() if l.strip()]
+
+    roots = ["assets/images", "assets/icons", "assets/video"]
+    changed = set(git("diff", "--name-only", since, "--", *roots))
+    changed |= set(git("ls-files", "--others", "--exclude-standard", "--", *roots))
+
+    used = "".join(
+        f.read_text(encoding="utf-8", errors="ignore")
+        for f in [*(OUT / "pages").glob("*.html"), OUT / "header.html",
+                  OUT / "chat.html", PLUGIN / "templates" / "footer.php",
+                  *(PLUGIN / "assets").glob("*.css"), *(PLUGIN / "assets").glob("*.js")]
+        if f.exists())
+
+    picked = sorted(p for p in changed
+                    if (ROOT / p).is_file() and Path(p).name in used)
+    zip_path = OUT / "media-update.zip"
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED, compresslevel=6) as z:
+        for p in picked:
+            z.write(ROOT / p, arcname=Path(p).name)  # flat, like media-upload.zip
+    skipped = sorted(Path(p).name for p in changed - set(picked) if (ROOT / p).is_file())
+    print(f"  media-update.zip {len(picked)} files since {since}, "
+          f"{zip_path.stat().st_size / 1024 / 1024:.1f} MB"
+          + (f" (unreferenced, left out: {', '.join(skipped)})" if skipped else ""))
+
+
 # ---------------------------------------------------------------------- main
 
 def main() -> int:
@@ -948,6 +1025,13 @@ def main() -> int:
              "month/year upload folders are OFF. Pass the dated prefix "
              "(e.g. /wp-content/uploads/2026/09) if the media is already "
              "uploaded that way.",
+    )
+    ap.add_argument(
+        "--media-since",
+        metavar="GIT_REF",
+        help="Also write media-update.zip: only the media added or changed "
+             "since this git ref (e.g. HEAD, or the commit the live install "
+             "was built from), for an install that already has the rest.",
     )
     args = ap.parse_args()
     UPLOADS = args.uploads.rstrip("/")
@@ -1053,6 +1137,10 @@ def main() -> int:
     php = PAGE_MAP_PHP.format(rows="\n".join(rows), product=product_class)
     (PLUGIN / "inc").mkdir(parents=True, exist_ok=True)
     (PLUGIN / "inc" / "page-map.php").write_text(php, encoding="utf-8")
+
+    build_plugin_zip()
+    if args.media_since:
+        build_media_update(args.media_since)
 
     print(f"  pages/          {len(pages)}")
     print(f"  products/       {len(products)}")

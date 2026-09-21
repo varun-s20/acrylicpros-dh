@@ -651,97 +651,108 @@
       refRoot.addEventListener('mouseleave', function () { changeHover(-1); });
     }
 
-    // Lightbox
+    lightbox(refRoot, function () { return matches; });
+  }
+
+  // Featured projects: every photo tile, in page order, is one lightbox set.
+  var featRoot = $('[data-featured]');
+  if (featRoot) lightbox(featRoot, function () { return $$('[data-card]', featRoot); });
+
+  /* ------------------------------------------------------------------
+     Lightbox (gallery + featured projects): focus trapped while open,
+     Escape closes, arrow keys and swipe navigate, focus returns to the
+     tile that opened it. getSet() returns the tiles currently in play.
+     ------------------------------------------------------------------ */
+  function lightbox(root, getSet) {
     var box = $('[data-lightbox]');
-    if (box) {
-      body.appendChild(box); // outside the page so the page can go inert
-      var img = $('[data-lightbox-image]', box);
-      var titleEl = $('[data-lightbox-title]', box);
-      var countEl = $('[data-lightbox-count]', box);
-      var header = $('.o-header');
-      var sidemenu = $('[data-sidemenu]');
-      var set = [];
-      var index = 0;
-      var opener = null;
+    if (!box) return;
+    body.appendChild(box); // outside the page so the page can go inert
+    var img = $('[data-lightbox-image]', box);
+    var titleEl = $('[data-lightbox-title]', box);
+    var countEl = $('[data-lightbox-count]', box);
+    var header = $('.o-header');
+    var sidemenu = $('[data-sidemenu]');
+    var set = [];
+    var index = 0;
+    var opener = null;
 
-      var show = function (i, animate) {
-        index = (i + set.length) % set.length;
-        var it = set[index];
-        var btn = $('[data-open]', it);
-        var apply = function () {
-          img.src = btn.getAttribute('data-full');
-          img.alt = btn.getAttribute('data-alt');
-          titleEl.textContent = btn.getAttribute('data-title');
-          countEl.textContent = (index + 1) + ' / ' + set.length;
-          box.classList.remove('is-swapping');
-        };
-        if (animate && !reduced) {
-          box.classList.add('is-swapping');
-          setTimeout(apply, 180);
-        } else {
-          apply();
-        }
+    var show = function (i, animate) {
+      index = (i + set.length) % set.length;
+      var it = set[index];
+      var btn = $('[data-open]', it);
+      var apply = function () {
+        img.src = btn.getAttribute('data-full');
+        img.alt = btn.getAttribute('data-alt');
+        titleEl.textContent = btn.getAttribute('data-title');
+        countEl.textContent = (index + 1) + ' / ' + set.length;
+        box.classList.remove('is-swapping');
       };
+      if (animate && !reduced) {
+        box.classList.add('is-swapping');
+        setTimeout(apply, 180);
+      } else {
+        apply();
+      }
+    };
 
-      var inertChrome = function (on) {
-        if (page) page.inert = on;
-        if (header) header.inert = on;
-        if (sidemenu) sidemenu.inert = on;
-      };
+    var inertChrome = function (on) {
+      if (page) page.inert = on;
+      if (header) header.inert = on;
+      if (sidemenu) sidemenu.inert = on;
+    };
 
-      var openBox = function (item) {
-        set = matches.slice();
-        opener = $('[data-open]', item);
-        show(set.indexOf(item), false);
-        box.classList.add('is-open');
-        box.setAttribute('aria-hidden', 'false');
-        body.classList.add('is-locked');
-        doc.style.overflow = 'hidden';
-        inertChrome(true);
-        setTimeout(function () { $('[data-lightbox-close]', box).focus(); }, 50);
-      };
+    var openBox = function (item) {
+      set = getSet().slice();
+      opener = $('[data-open]', item);
+      show(set.indexOf(item), false);
+      box.classList.add('is-open');
+      box.setAttribute('aria-hidden', 'false');
+      body.classList.add('is-locked');
+      doc.style.overflow = 'hidden';
+      inertChrome(true);
+      setTimeout(function () { $('[data-lightbox-close]', box).focus(); }, 50);
+    };
 
-      var closeBox = function () {
-        box.classList.remove('is-open');
-        box.setAttribute('aria-hidden', 'true');
-        body.classList.remove('is-locked');
-        doc.style.overflow = '';
-        inertChrome(false);
-        if (opener) opener.focus({ preventScroll: true });
-      };
+    var closeBox = function () {
+      box.classList.remove('is-open');
+      box.setAttribute('aria-hidden', 'true');
+      body.classList.remove('is-locked');
+      doc.style.overflow = '';
+      inertChrome(false);
+      if (opener) opener.focus({ preventScroll: true });
+    };
 
-      refRoot.addEventListener('click', function (e) {
-        var btn = e.target.closest('[data-open]');
-        if (btn) openBox(btn.closest('[data-card]'));
-      });
-      $('[data-lightbox-close]', box).addEventListener('click', closeBox);
-      $('[data-lightbox-prev]', box).addEventListener('click', function () { show(index - 1, true); });
-      $('[data-lightbox-next]', box).addEventListener('click', function () { show(index + 1, true); });
-      box.addEventListener('click', function (e) {
-        if (e.target === box || e.target.hasAttribute('data-lightbox-stage')) closeBox();
-      });
-      document.addEventListener('keydown', function (e) {
-        if (!box.classList.contains('is-open')) return;
-        if (e.key === 'Escape') closeBox();
-        else if (e.key === 'ArrowRight') show(index + 1, true);
-        else if (e.key === 'ArrowLeft') show(index - 1, true);
-        else if (e.key === 'Tab') {
-          var focusables = $$('button', box);
-          var first = focusables[0];
-          var last = focusables[focusables.length - 1];
-          if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-          else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-        }
-      });
-      var swipeX = null;
-      box.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') swipeX = e.clientX; });
-      box.addEventListener('pointerup', function (e) {
-        if (swipeX === null) return;
-        var dx = e.clientX - swipeX;
-        swipeX = null;
-        if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1), true);
-      });
-    }
+    root.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-open]');
+      if (btn) openBox(btn.closest('[data-card]'));
+    });
+    $('[data-lightbox-close]', box).addEventListener('click', closeBox);
+    $('[data-lightbox-prev]', box).addEventListener('click', function () { show(index - 1, true); });
+    $('[data-lightbox-next]', box).addEventListener('click', function () { show(index + 1, true); });
+    box.addEventListener('click', function (e) {
+      if (e.target === box || e.target.hasAttribute('data-lightbox-stage')) closeBox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (!box.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeBox();
+      else if (e.key === 'ArrowRight') show(index + 1, true);
+      else if (e.key === 'ArrowLeft') show(index - 1, true);
+      else if (e.key === 'Tab') {
+        var focusables = $$('button', box);
+        var first = focusables[0];
+        var last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    });
+    var swipeX = null;
+    box.addEventListener('pointerdown', function (e) { if (e.pointerType !== 'mouse') swipeX = e.clientX; });
+    box.addEventListener('pointerup', function (e) {
+      if (swipeX === null) return;
+      var dx = e.clientX - swipeX;
+      swipeX = null;
+      if (Math.abs(dx) > 50) show(index + (dx < 0 ? 1 : -1), true);
+    });
   }
 
   /* ------------------------------------------------------------------
@@ -863,16 +874,53 @@
     }
   }
 
-  // A product page links here as ?tank=<name>.
+  // A product page links here as ?tank=<name>; acrylic cards add &kind=acrylic.
   (function () {
     var box = $('form textarea[name="message"]');
     var tank = /[?&]tank=([^&]*)/.exec(location.search);
     if (!box || !tank || box.value) return;
-    try { box.value = 'Glass tank: ' + decodeURIComponent(tank[1].replace(/\+/g, ' ')) + '\n'; } catch (e) {}
+    var kind = /[?&]kind=acrylic/.test(location.search) ? 'Acrylic tank: ' : 'Glass tank: ';
+    try { box.value = kind + decodeURIComponent(tank[1].replace(/\+/g, ' ')) + '\n'; } catch (e) {}
   })();
 
   /* ------------------------------------------------------------------
-     Glass tanks shop: range filter, sort, load more (12 at a time)
+     Sound toggle for a muted background film (scratch-removal band).
+     Autoplay only works muted, so sound starts off and is opt-in. Under
+     reduced motion the lazy loader never ran, so the first press loads
+     and plays it too.
+     ------------------------------------------------------------------ */
+  $$('[data-sound-toggle]').forEach(function (btn) {
+    var video = $('video', btn.parentElement);
+    btn.addEventListener('click', function () {
+      video.muted = !video.muted;
+      if (!video.muted) {
+        if (!video.getAttribute('src')) video.src = video.getAttribute('data-lazy-src');
+        play(video);
+      }
+      btn.setAttribute('aria-pressed', String(!video.muted));
+      btn.classList.toggle('-on', !video.muted);
+    });
+  });
+
+  /* ------------------------------------------------------------------
+     Scratch-removal film: the native controls stay in the markup for
+     no-JS; with JS the big play button stands in until the first play.
+     ------------------------------------------------------------------ */
+  $$('[data-film]').forEach(function (film) {
+    var video = $('video', film);
+    video.controls = false;
+    $('[data-film-play]', film).addEventListener('click', function () {
+      film.classList.add('is-playing');
+      video.controls = true;
+      play(video);
+      video.focus({ preventScroll: true });
+    });
+  });
+
+  /* ------------------------------------------------------------------
+     Tanks shop (glass + acrylic): range filter, sort, load more (12 at a
+     time). The acrylic page has no sort, since it has no prices, and its
+     grid counts "styles" (data-shop-noun).
      ------------------------------------------------------------------ */
   (function () {
     var shop = $('[data-shop]');
@@ -885,6 +933,7 @@
     var moreBtn = $('[data-shop-more]', shop);
     var countEl = $('[data-shop-count]', shop);
     var emptyEl = $('[data-shop-empty]', shop);
+    var noun = grid.getAttribute('data-shop-noun') || 'tank';
     var STEP = 12;
     var state = { range: 'all', sort: 'featured', limit: STEP };
     cards.forEach(function (c, i) { c.setAttribute('data-order', i); });
@@ -911,13 +960,13 @@
       var shown = Math.min(state.limit, matching.length);
       moreBtn.hidden = shown >= matching.length;
       emptyEl.hidden = matching.length > 0;
-      countEl.textContent = matching.length ? 'Showing ' + shown + ' of ' + matching.length + ' tank' + (matching.length === 1 ? '' : 's') : '';
+      countEl.textContent = matching.length ? 'Showing ' + shown + ' of ' + matching.length + ' ' + noun + (matching.length === 1 ? '' : 's') : '';
       rangeButtons.forEach(function (b) {
         var on = b.getAttribute('data-shop-range') === state.range;
         b.classList.toggle('-active', on);
         if (b.hasAttribute('aria-pressed')) b.setAttribute('aria-pressed', String(on));
       });
-      if (sortSelect.value !== state.sort) sortSelect.value = state.sort;
+      if (sortSelect && sortSelect.value !== state.sort) sortSelect.value = state.sort;
     };
 
     var remember = function () {
@@ -941,7 +990,7 @@
         }
       });
     });
-    sortSelect.addEventListener('change', function () {
+    if (sortSelect) sortSelect.addEventListener('change', function () {
       state.sort = sortSelect.value;
       render();
       remember();

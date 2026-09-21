@@ -1,0 +1,14 @@
+[
+ {"name": "Curved-front acrylic aquarium", "range": "curved", "image": "assets/images/featured/featured-curved-office.jpg", "chips": ["Curved front", "Canopy &amp; cabinet"]},
+ {"name": "Curved-end acrylic aquarium", "range": "curved", "image": "assets/images/gallery/project-22.jpeg", "chips": ["Curved ends", "Gray cabinet"]},
+ {"name": "Acrylic cylinder aquarium", "range": "cylinder", "image": "assets/images/scratch-removal/scratch-16.jpeg", "chips": ["Cylinder", "Rock column"]},
+ {"name": "Tapered acrylic cylinder", "range": "cylinder", "image": "assets/images/scratch-removal/scratch-20.jpeg", "chips": ["Cylinder", "Tapered"]},
+ {"name": "Long acrylic aquarium", "range": "rectangular", "image": "assets/images/scratch-removal/scratch-02.jpeg", "chips": ["Rectangular", "Long format"]},
+ {"name": "Acrylic aquarium on steel stand", "range": "rectangular", "image": "assets/images/scratch-removal/scratch-04.jpeg", "chips": ["Rectangular", "Steel stand"]},
+ {"name": "Acrylic aquarium by the window", "range": "rectangular", "image": "assets/images/scratch-removal/scratch-07.jpeg", "chips": ["Rectangular", "Viewable sides"]},
+ {"name": "Acrylic tank with braced top", "range": "rectangular", "image": "assets/images/featured/featured-acrylic-tank-bench.jpg", "chips": ["Rectangular", "Braced top"]},
+ {"name": "Acrylic tank with twin overflows", "range": "overflow", "image": "assets/images/scratch-removal/scratch-18.jpeg", "chips": ["Twin overflows", "Blue acrylic"]},
+ {"name": "Acrylic tank with cut-out top", "range": "overflow", "image": "assets/images/featured/featured-acrylic-cutout-top.jpg", "chips": ["Corner overflow", "Black back"]},
+ {"name": "Acrylic tank with black overflows", "range": "overflow", "image": "assets/images/featured/featured-acrylic-overflows.jpg", "chips": ["Twin overflows", "Clear sides"]},
+ {"name": "See-through in-wall aquarium", "range": "in-wall", "image": "assets/images/scratch-removal/scratch-12.jpeg", "chips": ["In-wall", "See-through"]}
+]

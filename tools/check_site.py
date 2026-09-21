@@ -192,7 +192,9 @@ def main():
             warn(page, "no skip-to-content link")
 
         # --- hygiene -----------------------------------------------
-        if re.search(r'\sstyle="', body):
+        # Custom properties only are data, not styling: the Featured Projects
+        # rows pass each photo's aspect ratio to the stylesheet as --a/--sum.
+        if re.search(r'\sstyle="(?!(?:--[\w-]+:[^;"]*;?)+")', body):
             err(page, "inline style attribute present (all CSS belongs in styles.css)")
 
         if re.search(r"lorem ipsum", raw, re.I):

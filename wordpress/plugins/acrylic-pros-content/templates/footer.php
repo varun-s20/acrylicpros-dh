@@ -21,10 +21,12 @@
         <li><a class="a-link tx-cta" href="/">Home page</a></li>
         <li><a class="a-link tx-cta" href="/glass-tanks/">Glass tanks</a></li>
         <li><a class="a-link tx-cta" href="/about/">About us</a></li>
-        <li><a class="a-link tx-cta" href="/warranty/">Warranty</a></li>
+        <li><a class="a-link tx-cta" href="/acrylic-tanks/">Acrylic tanks</a></li>
         <li><a class="a-link tx-cta" href="/process/">Our process</a></li>
-        <li><a class="a-link tx-cta" href="/refund-policy/">Refund policy</a></li>
+        <li><a class="a-link tx-cta" href="/warranty/">Warranty</a></li>
         <li><a class="a-link tx-cta" href="/gallery/">Gallery</a></li>
+        <li><a class="a-link tx-cta" href="/refund-policy/">Refund policy</a></li>
+        <li><a class="a-link tx-cta" href="/featured-projects/">Featured projects</a></li>
         <li><a class="a-link tx-cta" href="/privacy-policy/">Privacy policy</a></li>
         <li><a class="a-link tx-cta" href="/videos/">Videos</a></li>
         <li><a class="a-link tx-cta" href="/contact/">Contact</a></li>

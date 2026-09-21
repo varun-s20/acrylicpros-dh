@@ -1,0 +1,21 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://acrylicpros.com/acrylic-tanks.html#collection",
+      "name": "Shop Acrylic Tanks",
+      "description": "Custom acrylic aquariums from Acrylic Pros: curved and bow front, cylinders, rectangular and in-wall acrylic tanks, designed and fabricated to order.",
+      "url": "https://acrylicpros.com/acrylic-tanks.html",
+      "isPartOf": { "@id": "https://acrylicpros.com/#website" },
+      "about": { "@id": "https://acrylicpros.com/#business" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://acrylicpros.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Acrylic Tanks", "item": "https://acrylicpros.com/acrylic-tanks.html" }
+      ]
+    }
+  ]
+}

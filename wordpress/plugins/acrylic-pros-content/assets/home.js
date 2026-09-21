@@ -28,7 +28,8 @@
     var p = location.pathname.replace(/^\/|\/$/g, '');
     if (p === '') key = 'home';
     else if (p === 'about' || p === 'process' || p === 'gallery' ||
-             p === 'videos' || p === 'services') key = p;
+             p === 'videos' || p === 'services' ||
+             p === 'featured-projects' || p === 'acrylic-tanks') key = p;
     else if (p === 'glass-tanks' || p.indexOf('product/') === 0) key = 'glass-tanks';
     else if (['contact', 'quote', 'warranty', 'refund-policy',
               'privacy-policy'].indexOf(p) >= 0) key = '';

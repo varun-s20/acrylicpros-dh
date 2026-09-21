@@ -3,7 +3,7 @@
 A static, multi-page rebuild of acrylicpros.com. HTML5, CSS3 and vanilla
 JavaScript. No framework, no runtime dependency, no jQuery.
 
-- **95 pages** — 26 hand-authored, 69 generated product pages
+- **97 pages** — 28 hand-authored, 69 generated product pages
 - **One** shared stylesheet (`assets/css/styles.css`) and **one** shared script
   (`assets/js/main.js`)
 - Every page is a separate HTML document that can be served from any static host
@@ -60,6 +60,8 @@ which makes them suitable for CI.
 | A page's title / description / OG tags | the `<!--meta -->` block at the top of its `src/pages/` file |
 | Structured data | `src/schema/<name>.json` |
 | Gallery contents | `data/gallery.json` |
+| Featured Projects page (chapters, photos, the install clip) | `data/featured.json`, then `tools/build_gallery.py` |
+| Acrylic Tanks page (quote-only style cards + tiles) | `data/acrylic-tanks.json`, then `tools/build_products.py` |
 | Homepage Instagram feed | `data/instagram.json` (post links + short captions), then `tools/build_instagram.py --refresh` |
 | Chat button avatar | replace `assets/images/brand/chat-avatar.png` (square PNG); panel markup is at the end of `src/partials/home-footer.html`, behaviour in `home.js` |
 | Contact address / hours / FAQ answers | `src/pages/contact.body.html` (placeholders marked "To be confirmed" and `[...]`) |
@@ -72,8 +74,9 @@ which makes them suitable for CI.
 Then run `python tools/build_pages.py`.
 
 > **One header, menu and footer everywhere; two body systems.** The homepage,
-> About, Process, Services, Gallery, Contact, Quote, Videos, Glass Tanks and the
-> 69 product pages are fully on the Aquatique-style system in `assets/home/`.
+> About, Process, Services, Gallery, Featured Projects, Contact, Quote, Videos,
+> Glass Tanks, Acrylic Tanks and the 69 product pages are fully on the
+> Aquatique-style system in `assets/home/`.
 > Every page except the homepage opens with the same compact banner
 > (`.m-pageBanner` in `pages.css`: breadcrumb, tag, title, one line, photo or
 > the homepage video). The rest (service pages, legal, 404) use the same chrome through
@@ -105,8 +108,8 @@ Then run `python tools/build_pages.py`.
 
 ### Why there is a build step on a "static site"
 
-The header, footer, contact panel and `<head>` boilerplate are identical on 95
-pages. Hand-copying them means one nav change becomes 95 edits and the 96th gets
+The header, footer, contact panel and `<head>` boilerplate are identical on 97
+pages. Hand-copying them means one nav change becomes 97 edits and the 98th gets
 forgotten. The chrome lives once in `src/partials/`; each page contributes only
 its own composition. **The output is plain static HTML** — nothing about the
 deployed site needs Python.
@@ -134,7 +137,9 @@ deployed site needs Python.
 │
 ├── data/
 │   ├── products.json             69 SKUs: name, price, spec, image
-│   └── gallery.json              48 gallery items: alt text, category
+│   ├── gallery.json              gallery items: alt text, category
+│   ├── featured.json             Featured Projects chapters + photos
+│   └── acrylic-tanks.json        acrylic tank styles (quote-only)
 │
 ├── assets/
 │   ├── home/                     NEW system: home.css/js, pages.css/js, lenis,

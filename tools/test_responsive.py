@@ -14,7 +14,7 @@ widths = [int(w) for w in (sys.argv[1].split(',') if len(sys.argv) > 1 else '320
 
 JS = r"""() => {
   const vw = document.documentElement.clientWidth;
-  const SKIP = '[data-menu], [data-loader], .a-panel, [hidden], .m-slider, [data-slider-track], [data-marquee], .o-homeShows__grid, .o-shop__filters, .o-shopCompare__scroll, .m-hero__lastShow, .sr-only, .skip-link, .m-chat__launcherLabel, .m-lightbox, [data-cat-list], .rail, .ticker';
+  const SKIP = '[data-menu], [data-loader], .a-panel, [hidden], .m-slider, .m-justified, [data-slider-track], [data-marquee], .o-homeShows__grid, .o-shop__filters, .o-shopCompare__scroll, .m-hero__lastShow, .sr-only, .skip-link, .m-chat__launcherLabel, .m-lightbox, [data-cat-list], .rail, .ticker';
   const out = [];
   for (const el of document.querySelectorAll('main *, footer *, header *, .m-chat *')) {
     if (el.closest(SKIP)) continue;

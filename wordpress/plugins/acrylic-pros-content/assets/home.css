@@ -50,6 +50,22 @@ body :where(.o-header, .o-footer, #main, .m-chat, .o-menu)
    a stacking context between the chrome and the page shell. */
 .elementor-widget-html, .elementor-widget-container { margin: 0; padding: 0; }
 
+/* Elementor's frontend.css also resets bare elements under .elementor at
+   (0,1,1): `a { box-shadow:none; text-decoration:none }`, `hr { background:
+   transparent }`, `img { height:auto; max-width:100% }`. That out-ranks the
+   design's single-class rules at (0,1,0). These restore only the properties it
+   takes, at the same (0,1,1) -- this file loads after Elementor's, so a tie
+   goes to us -- and nothing more, so the design's own media-query and :hover
+   overrides still apply. The values mirror home.css / styles.css; found by
+   diffing every page with Elementor's element rules removed (21 Sept). */
+img.o-footer__background, img.b-video__cover, img.b-video__still { height: 100%; }
+a.o-footer__tel, a.o-footer__mail { text-decoration-line: underline; }
+a.a-buttonContact { box-shadow: 0 8px 10px #0c0a0900; }
+hr.hairline { background: var(--border); }
+@media (min-width: 1025px) {
+  a.a-buttonContact:hover, a.a-buttonContact:focus-visible { box-shadow: 0 8px 10px #0c0a092e; }
+}
+
 /* =====================================================================
    Self-hosted Plus Jakarta Sans. Plugin-relative, because the Media
    Library rejects .woff2 and there is no SFTP to reach the theme folder.
@@ -848,7 +864,9 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 .o-homeMagic {
   position: relative;
   overflow: hidden;
-  padding: 5.7rem 0 22rem;
+  /* Client, 21 Sept: less navy between the gallery button and Our services.
+     The bottom padding only has to clear the cloud fade now. */
+  padding: 5.7rem 0 15rem;
   background-color: var(--clrnavy);
   text-align: center;
 }
@@ -890,8 +908,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 @media (min-width: 1025px) {
   .o-homeMagic {
     display: flex; align-items: center; justify-content: center;
-    min-height: 100vh;
-    padding: 16rem 0 28rem;
+    padding: 16rem 0 20rem; /* was min-height: 100vh + 28rem bottom (client, 21 Sept) */
   }
   .o-homeMagic__content { width: 75%; gap: 4.5rem; }
   .o-homeMagic .m-textContent { width: 88%; margin: 0 auto; }
@@ -901,7 +918,13 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
    Services (products)
    ===================================================================== */
 .t-home__section { background-color: #fff; color: var(--clrnavy); }
-.o-homeProducts { overflow: hidden; padding: 4rem 0; text-align: center; }
+.o-homeProducts { overflow: hidden; padding: 2.5rem 0 4rem; text-align: center; }
+/* Client, 21 Sept (round 2): phones still read a gap here. The cloud is a thin
+   band at this width, so the navy under the button only has to hold it. */
+@media (max-width: 640px) {
+  .o-homeMagic { padding-bottom: 9rem; }
+  .o-homeProducts { padding-top: 1rem; }
+}
 .o-homeProducts__title { width: 100%; margin-bottom: 4.5rem; }
 .o-homeProducts .tx-h3 { margin-bottom: 3.75rem; }
 .o-homeProducts .m-textContent { margin-bottom: 4.5rem; color: #4f4f4f; }
@@ -1083,7 +1106,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 
 @media (min-width: 641px) { .o-homeProducts .m-slider { --item-size: 2.1; } }
 @media (min-width: 1025px) {
-  .o-homeProducts { padding: 6.5rem 0 7rem; }
+  .o-homeProducts { padding: 3rem 0 7rem; }
   .o-homeProducts__title { width: 75%; margin-left: 12.5%; margin-bottom: 7rem; }
   .o-homeProducts .m-textContent { width: 75%; margin-right: auto; margin-left: auto; }
   .o-homeProducts .m-slider { --item-size: 3.1; }
@@ -2000,3 +2023,21 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
      the rows themselves pack left without this. */
   .m-promo__chips { justify-content: center; }
 }
+
+/* ==== ROUND 7 (client, 21 Sept) ==== */
+/* Menu: nine main links were one long column. From tablet up they read as two
+   columns, five then four (grid-auto-flow: column keeps DOM order, which the
+   hover cards are matched by). Phones keep one column: it still fits there,
+   and two columns would force the type down to caption size. */
+@media (min-width: 641px) {
+  .o-menu__mainNav {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(5, auto);
+    gap: .3rem 6rem;
+    justify-content: center;
+  }
+  .o-menu__mainItem { text-align: left; }
+  .o-menu__mainNav .o-menu__link.tx-h3 { font-size: clamp(3.2rem, 3.2vw, 5.2rem); }
+}
+@media (min-width: 1025px) { .o-menu__mainNav { justify-content: start; } }

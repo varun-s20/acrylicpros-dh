@@ -220,6 +220,47 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
    page — where the band follows a .row and the margin is doing real work — is
    untouched. */
 .section + .o-universeAbout__footer { margin-top: 0; }
+/* -film (scratch-removal page, client 21 Sept): the band carries the client's
+   scratch film, which has burned-in captions, so cropping it to a strip and
+   laying the dark gradient and clouds over it hid most of it. The film now
+   sits uncropped (16:9) in the middle of the band, above the clouds; the
+   clouds only edge the band's padding. */
+.o-universeAbout__footer.-media.-film { height: auto; padding: 8rem 1.4rem; }
+.o-universeAbout__footer.-film::before { display: none; }
+.o-universeAbout__footer.-film .o-universeAbout__footerImage {
+  position: relative; z-index: 3;
+  overflow: hidden;
+  max-width: 120rem; height: auto;
+  margin: 0 auto;
+  border-radius: 1.2rem;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 3rem 6rem -2rem rgba(0, 0, 0, .8);
+}
+@media (min-width: 1025px) { .o-universeAbout__footer.-media.-film { padding: 16rem 2rem; } }
+/* Sound toggle on the band's film: an icon-only glass circle, bottom right. */
+.o-universeAbout__footer.-film .o-universeAbout__footerImage { pointer-events: auto; }
+.m-soundToggle {
+  position: absolute; right: 1.2rem; bottom: 1.2rem; z-index: 2;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 4.8rem; height: 4.8rem;
+  border-radius: 50%;
+  background-color: rgba(0, 13, 26, .55);
+  color: #fff;
+  outline: .1rem solid rgba(255, 255, 255, .35);
+  -webkit-backdrop-filter: blur(1rem);
+  backdrop-filter: blur(1rem);
+  cursor: pointer;
+  transition: background-color .4s var(--ease), outline-color .4s var(--ease);
+}
+.m-soundToggle .a-svg { width: 2rem; height: 2rem; }
+.m-soundToggle__waves { display: none; }
+.m-soundToggle.-on .m-soundToggle__waves { display: inline; }
+.m-soundToggle.-on .m-soundToggle__off { display: none; }
+.m-soundToggle:focus-visible { outline: 2px solid var(--clrgold); outline-offset: 2px; }
+@media (hover: hover) and (any-pointer: fine) {
+  .m-soundToggle:hover { background-color: var(--clrgold); outline-color: var(--clrgold); }
+}
+@media (min-width: 1025px) { .m-soundToggle { right: 2rem; bottom: 2rem; } }
 @media (min-width: 1025px) {
   .o-universeAbout { padding-top: 8rem; }
   .o-universeAbout__firstImage { position: absolute; top: 18.3rem; right: 0; width: 30.7692307692%; margin: 0; }
@@ -1496,3 +1537,234 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
   .m-expertiseStep__content { margin-top: 2.4rem; }
   .m-expertiseStep__textContent { align-items: center; text-align: center; }
 }
+
+/* =====================================================================
+   FEATURED PROJECTS (21 Sept) — the gallery's editorial sibling: navy
+   page, outlined gold chapter numbers, justified rows that keep every
+   photo at its own proportions, numbered captions, shared lightbox.
+   ===================================================================== */
+.o-featured { background-color: var(--clrdarkblue); color: #fff; padding-bottom: 10rem; }
+.o-featured .row { row-gap: 0; }
+
+/* ---- intro: one live sentence set large, the rest beside it ----
+   Client, 21 Sept: neither navy-on-navy (it ran into the dark banner) nor
+   white (too loud against the photo). A deep ocean-blue band, a clear step
+   lighter than the banner and the near-black collection, lit from above like
+   water; the collection then lifts over it with rounded corners. */
+.o-featuredIntro {
+  position: relative;
+  padding: 8rem 0 calc(6rem + 3.2rem);
+  background:
+    radial-gradient(60rem 36rem at 18% 0%, rgba(65, 128, 201, .35), transparent 70%),
+    radial-gradient(50rem 30rem at 92% 100%, rgba(199, 157, 71, .12), transparent 70%),
+    linear-gradient(180deg, #00284d 0%, #001a33 100%);
+  color: #fff;
+}
+.o-featuredIntro + .o-featured__chapter {
+  position: relative;
+  margin-top: -3.2rem;
+  border-radius: 3.2rem 3.2rem 0 0;
+  background-color: var(--clrdarkblue);
+  box-shadow: 0 -2rem 4rem -2rem rgba(0, 0, 0, .5);
+}
+.o-featuredIntro .row { gap: 4rem; }
+.o-featuredIntro__lede {
+  position: relative;
+  width: 100%;
+  padding-top: 3.2rem;
+  font-weight: 300; font-size: clamp(2.8rem, 4.4vw, 6.4rem); line-height: 1.06; letter-spacing: -.03em;
+  text-wrap: balance;
+}
+.o-featuredIntro__lede::before {
+  content: "";
+  position: absolute; top: 0; left: 0;
+  width: 6.4rem; height: .2rem;
+  background-color: var(--clrgold);
+}
+.o-featuredIntro__side { display: grid; gap: 3.2rem; width: 100%; align-content: end; }
+.o-featuredIntro__side > .tx-p { color: rgba(255, 255, 255, .72); }
+.o-featuredIntro__index a {
+  display: flex; gap: 1.6rem; align-items: center;
+  padding: 1.2rem 0;
+  border-top: .1rem solid rgba(255, 255, 255, .14);
+  color: #fff;
+  font-weight: 600; font-size: 1.3rem; letter-spacing: .08em; text-transform: uppercase;
+  transition: color .4s var(--ease), padding-left .6s var(--ease);
+}
+.o-featuredIntro__index li:last-child a { border-bottom: .1rem solid rgba(255, 255, 255, .14); }
+.o-featuredIntro__index span {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 3.2rem; height: 3.2rem;
+  border: .1rem solid rgba(199, 157, 71, .5);
+  border-radius: 50%;
+  color: var(--clrgold);
+  font-size: 1.1rem; font-variant-numeric: tabular-nums;
+  transition: background-color .4s var(--ease), color .4s var(--ease);
+}
+@media (hover: hover) and (any-pointer: fine) {
+  .o-featuredIntro__index a:hover { padding-left: .8rem; color: var(--clrgolddark); }
+  .o-featuredIntro__index a:hover span { background-color: var(--clrgold); color: var(--clrdarkblue); }
+}
+@media (max-width: 640px) { .o-featuredIntro__lede::before { left: 50%; transform: translateX(-50%); } }
+@media (min-width: 1025px) {
+  .o-featuredIntro { padding: 11rem 0 calc(10rem + 3.2rem); }
+  .o-featuredIntro .row { flex-wrap: nowrap; gap: 8rem; align-items: end; }
+  .o-featuredIntro__lede { flex: 1 1 auto; }
+  .o-featuredIntro__side { flex: 0 0 38rem; }
+}
+
+/* ---- chapter ---- */
+.o-featured__chapter { padding: 6rem 0; scroll-margin-top: 6rem; }
+.o-featured__head { display: grid; gap: 1.6rem 4rem; width: 100%; margin-bottom: 4rem; }
+.o-featured__num {
+  color: transparent;
+  font-weight: 200; font-size: clamp(7.2rem, 10vw, 14rem); line-height: .8; letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+  -webkit-text-stroke: .1rem var(--clrgold);
+}
+.o-featured__title strong { font-weight: 600; }
+.o-featured__intro { display: grid; gap: 1.6rem; justify-items: start; }
+.o-featured__intro .tx-p { color: rgba(255, 255, 255, .72); }
+.o-featured__intro .a-link { color: var(--clrgolddark); }
+@media (max-width: 640px) { .o-featured__intro { justify-items: center; } } /* phones centre copy site-wide */
+@media (min-width: 1025px) {
+  .o-featured__chapter { padding: 8rem 0; }
+  .o-featured__head { grid-template-columns: auto 1fr 38rem; align-items: end; margin-bottom: 5.6rem; }
+}
+.js .o-featured__head > *, .js .o-featuredIntro [data-scroll] {
+  opacity: 0;
+  transform: translateY(3rem);
+  transition: opacity 1.2s var(--ease), transform 1.6s var(--ease);
+}
+.js .o-featured__head.is-inview > *, .js .o-featuredIntro [data-scroll].is-inview { opacity: 1; transform: none; }
+.o-featured__head > :nth-child(2) { transition-delay: .1s; }
+.o-featured__head > :nth-child(3) { transition-delay: .2s; }
+
+/* ---- justified rows: flex-grow = aspect ratio, so one height per row ---- */
+.m-justified {
+  display: flex; gap: 1.6rem;
+  width: 100%; max-width: calc(var(--sum) * 60rem);
+  margin: 0 auto 1.6rem;
+}
+.m-projectTile { flex: var(--a) 1 0; min-width: 0; margin: 0; }
+.m-projectTile__open, .m-projectTile.-video .m-projectTile__image {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: var(--a);
+  border-radius: .8rem;
+  background-color: #0b1c2d;
+}
+.m-projectTile__open { cursor: zoom-in; }
+.m-projectTile__open .m-projectTile__image {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform 1.4s var(--ease);
+}
+.m-projectTile.-video .m-projectTile__image { height: auto; object-fit: cover; } /* the height attribute would win over aspect-ratio */
+/* a hairline that turns gold on hover, drawn inside the frame */
+.m-projectTile__open::after {
+  content: "";
+  position: absolute; inset: 0;
+  border: .1rem solid rgba(255, 255, 255, .08);
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color .6s var(--ease);
+}
+.m-projectTile__open:focus-visible { outline: 2px solid var(--clrgold); outline-offset: 3px; }
+@media (hover: hover) and (any-pointer: fine) {
+  .m-projectTile__open:hover .m-projectTile__image { transform: scale(1.05); }
+  .m-projectTile__open:hover::after { border-color: rgba(199, 157, 71, .7); }
+}
+.js .m-justified .m-projectTile {
+  opacity: 0;
+  transform: translateY(4rem);
+  transition: opacity 1.2s var(--ease), transform 1.6s var(--ease);
+}
+.js .m-justified.is-inview .m-projectTile { opacity: 1; transform: none; }
+.m-justified .m-projectTile:nth-child(2) { transition-delay: .12s; }
+.m-justified .m-projectTile:nth-child(3) { transition-delay: .24s; }
+/* Phones: each row becomes a swipe strip at one shared height, so three
+   portraits never shrink to thumbnails and nothing is cropped. */
+@media (max-width: 640px) {
+  .m-justified {
+    overflow-x: auto;
+    max-width: none;
+    margin: 0 -1.4rem 1.2rem; padding: 0 1.4rem;
+    width: calc(100% + 2.8rem);
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 1.4rem;
+    scrollbar-width: none;
+  }
+  .m-justified::-webkit-scrollbar { display: none; }
+  .m-projectTile { flex: 0 0 auto; width: min(calc(var(--a) * 64vw), 84vw); scroll-snap-align: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .m-justified .m-projectTile, .js .o-featured__head > *, .js .o-featuredIntro [data-scroll] { transform: none; }
+}
+
+/* ---- film (Featured Projects, Videos): big play button until first play ---- */
+.m-film { position: relative; overflow: hidden; width: 100%; border-radius: 1.2rem; background-color: #000; }
+.m-film__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.m-film__play {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; gap: 1.6rem; align-items: center; justify-content: center;
+  background: linear-gradient(180deg, rgba(0, 13, 26, 0) 35%, rgba(0, 13, 26, .55));
+  color: #fff;
+  cursor: pointer;
+  transition: opacity .6s var(--ease);
+}
+.m-film__icon {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 8rem; height: 8rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, .14);
+  outline: .1rem solid rgba(255, 255, 255, .5);
+  -webkit-backdrop-filter: blur(1.2rem);
+  backdrop-filter: blur(1.2rem);
+  transition: transform .6s var(--ease), background-color .4s var(--ease);
+}
+.m-film__icon::after {
+  content: "";
+  position: absolute; inset: -.1rem;
+  border: .1rem solid rgba(255, 255, 255, .5);
+  border-radius: 50%;
+  animation: film-ring 2.4s var(--ease) infinite;
+}
+@keyframes film-ring { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(1.6); } }
+.m-film__icon .a-svg { width: 2.2rem; height: 2.2rem; margin-left: .3rem; }
+.m-film__play:focus-visible { outline: 2px solid var(--clrgold); outline-offset: -4px; }
+@media (hover: hover) and (any-pointer: fine) {
+  .m-film__play:hover .m-film__icon { transform: scale(1.08); background-color: var(--clrgold); outline-color: var(--clrgold); }
+}
+.m-film.is-playing .m-film__play { opacity: 0; pointer-events: none; }
+html:not(.js) .m-film__play { display: none; }
+@media (prefers-reduced-motion: reduce) { .m-film__icon::after { animation: none; opacity: 0; } }
+@media (min-width: 1025px) { .m-film__icon { width: 11.2rem; height: 11.2rem; } }
+.o-featured__chapter.-film .m-film { box-shadow: 0 4rem 8rem -3rem rgba(0, 0, 0, .8); }
+.o-videoLibrary .m-film { margin-bottom: 2.4rem; }
+
+/* =====================================================================
+   ACRYLIC TANKS (21 Sept) — Glass Tanks' layout; tiles and cards are
+   photographs rather than cut-outs, and the table is the four steps.
+   ===================================================================== */
+.m-rangeTile.-photo { padding: .8rem .8rem 1.6rem; }
+.m-rangeTile.-photo .m-rangeTile__media { overflow: hidden; aspect-ratio: 4 / 5; border-radius: 1rem; }
+.m-rangeTile.-photo .m-rangeTile__media img { object-fit: cover; mix-blend-mode: normal; transition: transform .8s var(--ease); }
+@media (hover: hover) and (any-pointer: fine) {
+  .m-rangeTile.-photo:hover .m-rangeTile__media img { transform: scale(1.05); }
+}
+@media (min-width: 1025px) { .t-acrylic .o-shopRanges__list { grid-template-columns: repeat(5, 1fr); } }
+.t-acrylic .m-tankCard__media img { padding: 0; object-fit: cover; mix-blend-mode: normal; }
+.t-acrylic .m-tankCard__price { color: #6b7580; font-weight: 500; font-size: 1.4rem; }
+
+.o-shopSteps { display: grid; gap: 3.2rem; }
+.o-shopSteps li { display: grid; gap: 1rem; align-content: start; padding-top: 2.4rem; border-top: .1rem solid rgba(255, 255, 255, .16); }
+.o-shopSteps__no { color: var(--clrgolddark); font-weight: 600; font-size: 1.2rem; letter-spacing: .1em; font-variant-numeric: tabular-nums; }
+.o-shopSteps h3 { font-weight: 600; font-size: 2rem; }
+.o-shopSteps p { color: rgba(255, 255, 255, .72); font-size: 1.5rem; line-height: 1.5; }
+@media (min-width: 641px) { .o-shopSteps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1025px) { .o-shopSteps { grid-template-columns: repeat(4, 1fr); gap: 4rem; } }

@@ -22,6 +22,7 @@ WIDTHS = {
     "images/headers":         [768, 1280, 1920, 2400],
     "images/hero":            [768, 1280, 1920],
     "images/gallery":         [480, 800, 1400],
+    "images/featured":        [600, 1000, 1600],
     "images/scratch-removal": [600, 1000, 1600],
     "images/fabrication":     [600, 1000, 1600],
     "images/pond":            [600, 1000, 1600],

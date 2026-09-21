@@ -13,7 +13,7 @@ python wordpress/tests/check.py wordpress/ --config wordpress/tests/check-config
 
 Change the design in `src/`, rebuild the static site, then rebuild this. The
 generator fails loudly if the header, footer or chat widget stop being identical
-across all 95 pages, because Theme Builder renders exactly one copy of each.
+across all 97 pages, because Theme Builder renders exactly one copy of each.
 
 ---
 
@@ -23,14 +23,64 @@ across all 95 pages, because Theme Builder renders exactly one copy of each.
 |---|---|---|
 | `header.html` | skip link, SVG sprite, loader, header, menu, transition panels | Theme Builder → Header |
 | `chat.html` | the floating chat widget | Theme Builder → Footer |
-| `pages/*.html` | 25 page bodies | one HTML widget per page |
+| `pages/*.html` | 27 page bodies | one HTML widget per page |
 | `products/*.html` | 69 SKU bodies | reference only — WooCommerce renders these |
 | `plugins/acrylic-pros-content.zip` | CSS, JS, fonts, CPTs, the footer, and the one-button site builder | Plugins → Add New → Upload |
 | `products.csv` | 69 products | WooCommerce → Products → Import |
-| `media/` | 458 images and videos, flat | Media Library, bulk upload |
+| `media/` | 549 images and videos, flat (`media-upload.zip` is the same, zipped) | Media Library, bulk upload |
 | `tests/check.py` | the static checks | run before every deploy |
 
 ---
+
+## Updating an install that is already live
+
+For a site that was set up from an earlier build. The 21 Sept 2026 update is
+an example:
+
+- **New pages:** Featured Projects (`/featured-projects/`) and Acrylic Tanks
+  (`/acrylic-tanks/`).
+- **Menu:** the menu has two columns, with both new links.
+- **Gallery:** two new lobby photos at the top.
+- **Scratch removal film:** it plays on Featured Projects, Videos and Scratch
+  Removal, where it also has a sound toggle.
+- **Homepage:** a shorter gap above Our services.
+
+1. Rebuild, and write only the new media into its own zip. Pass the commit the
+   live site was built from:
+
+   ```bash
+   python tools/build_wordpress.py --media-since <that-commit>   # or HEAD for uncommitted work
+   ```
+
+2. **Media:** upload the files in `media-update.zip`, the same way as step 2
+   below. Upload them flat, with month/year folders still off.
+
+   The zip holds only files a page, the chrome or the plugin actually uses. The
+   44 MB master `scratch-removal.mp4` is deliberately left out; the site plays
+   `scratch-removal-web.mp4`.
+
+3. **Plugin:** go to Plugins → Add New → Upload, choose
+   `plugins/acrylic-pros-content.zip`, and pick **Replace current with
+   uploaded**. The generator rebuilds that zip on every run. The version goes
+   up to show it is newer: 1.1.0 for this update. CSS and JS are cache-busted
+   by file time, so visitors get the new files straight away.
+
+4. **Tools → Acrylic Pros setup → Build the site.** This updates the managed
+   pages and the header and footer templates. It also creates the two new
+   pages. Then add both new pages to any menu you manage by hand. The site's
+   own menu is in the header template, which already has them.
+
+5. **Tools → Acrylic Pros import.** This adds the two new gallery photos to
+   the Gallery. That only matters if the Gallery page uses `[ap_gallery]`;
+   otherwise step 4 already updated it.
+
+6. **Elementor → Tools → Regenerate CSS & Data**, then check that these pages
+   show the changes:
+   - `/featured-projects/`
+   - `/acrylic-tanks/`
+   - `/scratch-removal/`
+   - `/videos/`
+   - the homepage.
 
 ## Install, in order
 
@@ -52,7 +102,7 @@ The order matters in two places, both flagged below.
 > folders".**
 >
 > Every image path in the build is `/wp-content/uploads/<filename>` with no date
-> segment. Upload with this box ticked and all 458 images 404, on every page.
+> segment. Upload with this box ticked and all 549 images 404, on every page.
 > Fixing it afterwards means re-uploading, because WordPress does not move
 > existing files.
 
@@ -108,7 +158,7 @@ anything you add later.
 
 **Tools → Acrylic Pros setup → Build the site.**
 
-This does steps 5 and 6 below for you: both Theme Builder templates, and all 25
+This does steps 5 and 6 below for you: both Theme Builder templates, and all 27
 pages with their slug, Elementor Full Width layout, hidden title, container and
 HTML widget already filled with the right body. It also sets the static front
 page and clears Elementor's CSS cache.
@@ -186,7 +236,7 @@ one section is looking at forty lines instead of nine hundred.
 
 ### 7. Content
 
-**Tools → Acrylic Pros import** creates the 35 gallery photos, 12 Instagram posts
+**Tools → Acrylic Pros import** creates the 37 gallery photos, 12 Instagram posts
 and 8 videos, matching each to an image already in the Media Library by filename.
 Run it after the media upload, not before. It is safe to run twice — items are
 matched on a source key and updated rather than duplicated.

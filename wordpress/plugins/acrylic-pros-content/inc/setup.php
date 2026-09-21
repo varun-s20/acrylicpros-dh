@@ -68,7 +68,17 @@ function ap_elementor_tree( string $html ) : array {
 					'id'         => substr( md5( 'widget' . $html ), 0, 7 ),
 					'elType'     => 'widget',
 					'widgetType' => 'html',
-					'settings'   => [ 'html' => $html ],
+					// Elementor's frontend.css zeroes the margin of every <figure> in a
+					// widget -- `.elementor .elementor-widget:not(...-text-editor)
+					// :not(...-theme-post-content) figure`, four classes deep, so no
+					// design rule can win. It exempts post-content widgets, and this
+					// widget *is* the page's content, so it takes that class. The class
+					// carries no other style anywhere in Elementor. Without it the
+					// scratch-removal film sat hard left and About lost its offsets.
+					'settings'   => [
+						'html'         => $html,
+						'_css_classes' => 'elementor-widget-theme-post-content',
+					],
 					'elements'   => [],
 				],
 			],

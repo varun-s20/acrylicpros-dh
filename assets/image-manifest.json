@@ -287,6 +287,407 @@
    }
   ]
  },
+ "images/featured/featured-3d-root-background.jpg": {
+  "h": 1350,
+  "src": "assets/images/featured/featured-3d-root-background.jpg",
+  "w": 1800,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/featured/featured-3d-root-background-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/featured/featured-3d-root-background-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1200,
+    "path": "assets/images/featured/featured-3d-root-background-1600.webp",
+    "w": 1600
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/featured/featured-3d-root-background-1800.webp",
+    "w": 1800
+   }
+  ]
+ },
+ "images/featured/featured-acrylic-cutout-top.jpg": {
+  "h": 959,
+  "src": "assets/images/featured/featured-acrylic-cutout-top.jpg",
+  "w": 1284,
+  "webp": [
+   {
+    "h": 448,
+    "path": "assets/images/featured/featured-acrylic-cutout-top-600.webp",
+    "w": 600
+   },
+   {
+    "h": 747,
+    "path": "assets/images/featured/featured-acrylic-cutout-top-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 959,
+    "path": "assets/images/featured/featured-acrylic-cutout-top-1284.webp",
+    "w": 1284
+   }
+  ]
+ },
+ "images/featured/featured-acrylic-overflows.jpg": {
+  "h": 360,
+  "src": "assets/images/featured/featured-acrylic-overflows.jpg",
+  "w": 644,
+  "webp": [
+   {
+    "h": 335,
+    "path": "assets/images/featured/featured-acrylic-overflows-600.webp",
+    "w": 600
+   },
+   {
+    "h": 360,
+    "path": "assets/images/featured/featured-acrylic-overflows-644.webp",
+    "w": 644
+   }
+  ]
+ },
+ "images/featured/featured-acrylic-tank-bench.jpg": {
+  "h": 956,
+  "src": "assets/images/featured/featured-acrylic-tank-bench.jpg",
+  "w": 1284,
+  "webp": [
+   {
+    "h": 447,
+    "path": "assets/images/featured/featured-acrylic-tank-bench-600.webp",
+    "w": 600
+   },
+   {
+    "h": 745,
+    "path": "assets/images/featured/featured-acrylic-tank-bench-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 956,
+    "path": "assets/images/featured/featured-acrylic-tank-bench-1284.webp",
+    "w": 1284
+   }
+  ]
+ },
+ "images/featured/featured-curved-office-canopy.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-curved-office-canopy.jpg",
+  "w": 1350,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/featured/featured-curved-office-canopy-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/featured/featured-curved-office-canopy-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-curved-office-canopy-1350.webp",
+    "w": 1350
+   }
+  ]
+ },
+ "images/featured/featured-curved-office.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-curved-office.jpg",
+  "w": 1350,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/featured/featured-curved-office-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/featured/featured-curved-office-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-curved-office-1350.webp",
+    "w": 1350
+   }
+  ]
+ },
+ "images/featured/featured-in-wall-fireplace.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-in-wall-fireplace.jpg",
+  "w": 1800,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/featured/featured-in-wall-fireplace-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1000,
+    "path": "assets/images/featured/featured-in-wall-fireplace-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/featured/featured-in-wall-fireplace-1600.webp",
+    "w": 1600
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-in-wall-fireplace-1800.webp",
+    "w": 1800
+   }
+  ]
+ },
+ "images/featured/featured-in-wall-reef-white.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-in-wall-reef-white.jpg",
+  "w": 1414,
+  "webp": [
+   {
+    "h": 764,
+    "path": "assets/images/featured/featured-in-wall-reef-white-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1273,
+    "path": "assets/images/featured/featured-in-wall-reef-white-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-in-wall-reef-white-1414.webp",
+    "w": 1414
+   }
+  ]
+ },
+ "images/featured/featured-in-wall-wood-wall.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-in-wall-wood-wall.jpg",
+  "w": 1350,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/featured/featured-in-wall-wood-wall-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/featured/featured-in-wall-wood-wall-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-in-wall-wood-wall-1350.webp",
+    "w": 1350
+   }
+  ]
+ },
+ "images/featured/featured-koi-pond-bridge.jpg": {
+  "h": 1279,
+  "src": "assets/images/featured/featured-koi-pond-bridge.jpg",
+  "w": 1284,
+  "webp": [
+   {
+    "h": 598,
+    "path": "assets/images/featured/featured-koi-pond-bridge-600.webp",
+    "w": 600
+   },
+   {
+    "h": 996,
+    "path": "assets/images/featured/featured-koi-pond-bridge-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1279,
+    "path": "assets/images/featured/featured-koi-pond-bridge-1284.webp",
+    "w": 1284
+   }
+  ]
+ },
+ "images/featured/featured-koi-pond-overhead.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-koi-pond-overhead.jpg",
+  "w": 1350,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/featured/featured-koi-pond-overhead-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/featured/featured-koi-pond-overhead-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-koi-pond-overhead-1350.webp",
+    "w": 1350
+   }
+  ]
+ },
+ "images/featured/featured-new-install-white.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-new-install-white.jpg",
+  "w": 1350,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/featured/featured-new-install-white-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/featured/featured-new-install-white-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-new-install-white-1350.webp",
+    "w": 1350
+   }
+  ]
+ },
+ "images/featured/featured-reef-black-cabinet.jpg": {
+  "h": 1000,
+  "src": "assets/images/featured/featured-reef-black-cabinet.jpg",
+  "w": 1000,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/featured/featured-reef-black-cabinet-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1000,
+    "path": "assets/images/featured/featured-reef-black-cabinet-1000.webp",
+    "w": 1000
+   }
+  ]
+ },
+ "images/featured/featured-reef-ready-sump.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-reef-ready-sump.jpg",
+  "w": 1350,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/featured/featured-reef-ready-sump-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/featured/featured-reef-ready-sump-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-reef-ready-sump-1350.webp",
+    "w": 1350
+   }
+  ]
+ },
+ "images/featured/featured-root-background-build.jpg": {
+  "h": 1350,
+  "src": "assets/images/featured/featured-root-background-build.jpg",
+  "w": 1800,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/featured/featured-root-background-build-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/featured/featured-root-background-build-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1200,
+    "path": "assets/images/featured/featured-root-background-build-1600.webp",
+    "w": 1600
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/featured/featured-root-background-build-1800.webp",
+    "w": 1800
+   }
+  ]
+ },
+ "images/featured/featured-root-background-filled.jpg": {
+  "h": 1800,
+  "src": "assets/images/featured/featured-root-background-filled.jpg",
+  "w": 1350,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/featured/featured-root-background-filled-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/featured/featured-root-background-filled-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1800,
+    "path": "assets/images/featured/featured-root-background-filled-1350.webp",
+    "w": 1350
+   }
+  ]
+ },
+ "images/featured/featured-triple-in-wall.jpg": {
+  "h": 1350,
+  "src": "assets/images/featured/featured-triple-in-wall.jpg",
+  "w": 1800,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/featured/featured-triple-in-wall-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/featured/featured-triple-in-wall-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1200,
+    "path": "assets/images/featured/featured-triple-in-wall-1600.webp",
+    "w": 1600
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/featured/featured-triple-in-wall-1800.webp",
+    "w": 1800
+   }
+  ]
+ },
+ "images/featured/featured-turtle-aquarium.jpg": {
+  "h": 960,
+  "src": "assets/images/featured/featured-turtle-aquarium.jpg",
+  "w": 960,
+  "webp": [
+   {
+    "h": 600,
+    "path": "assets/images/featured/featured-turtle-aquarium-600.webp",
+    "w": 600
+   },
+   {
+    "h": 960,
+    "path": "assets/images/featured/featured-turtle-aquarium-960.webp",
+    "w": 960
+   }
+  ]
+ },
  "images/gallery/project-01.jpeg": {
   "h": 720,
   "src": "assets/images/gallery/project-01.jpeg",
@@ -919,6 +1320,50 @@
     "h": 1008,
     "path": "assets/images/gallery/project-36-756.webp",
     "w": 756
+   }
+  ]
+ },
+ "images/gallery/project-37.jpeg": {
+  "h": 1600,
+  "src": "assets/images/gallery/project-37.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-37-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/gallery/project-37-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/gallery/project-37-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/gallery/project-38.jpeg": {
+  "h": 1600,
+  "src": "assets/images/gallery/project-38.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-38-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/gallery/project-38-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/gallery/project-38-1200.webp",
+    "w": 1200
    }
   ]
  },
@@ -2409,6 +2854,23 @@
    }
   ]
  },
+ "images/video-thumbs/featured-install.jpg": {
+  "h": 1280,
+  "src": "assets/images/video-thumbs/featured-install.jpg",
+  "w": 720,
+  "webp": [
+   {
+    "h": 853,
+    "path": "assets/images/video-thumbs/featured-install-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1280,
+    "path": "assets/images/video-thumbs/featured-install-720.webp",
+    "w": 720
+   }
+  ]
+ },
  "images/video-thumbs/q6UxS0Tbc2o.jpg": {
   "h": 480,
   "src": "assets/images/video-thumbs/q6UxS0Tbc2o.jpg",
@@ -2423,6 +2885,28 @@
     "h": 480,
     "path": "assets/images/video-thumbs/q6UxS0Tbc2o-640.webp",
     "w": 640
+   }
+  ]
+ },
+ "images/video-thumbs/scratch-removal-film.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/scratch-removal-film.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/scratch-removal-film-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/scratch-removal-film-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/scratch-removal-film-1280.webp",
+    "w": 1280
    }
   ]
  },
