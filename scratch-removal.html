@@ -26,7 +26,7 @@
 <meta name="twitter:title" content="Got Scratches? We Can Help! — Acrylic Pros">
 <meta name="twitter:description" content="Acrylic Pros — restoring scratched acrylic to crystal-clear perfection.">
 <meta name="twitter:image" content="https://acrylicpros.com/assets/images/scratch-removal/scratch-02.jpeg">
-<link rel="preload" as="image" href="assets/images/headers/scratch-removal-header-1280.webp" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/headers/scratch-removal-header-1280.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high"><link rel="preload" as="image" href="assets/images/headers/scratch-removal-header-768.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-latin-normal.woff2" crossorigin>
 
 <link rel="stylesheet" href="assets/home/home.css">
@@ -235,15 +235,18 @@
      ============================================================ -->
 <section class="m-pageBanner" data-page-hero>
   <div class="m-pageBanner__media" aria-hidden="true">
-    <picture>
-      <source type="image/webp"
-      srcset="assets/images/headers/scratch-removal-header-768.webp 768w,
-                              assets/images/headers/scratch-removal-header-1280.webp 1280w,
-                              assets/images/headers/scratch-removal-header-1920.webp 1920w"
-      sizes="100vw">
-      <img src="assets/images/headers/scratch-removal-header.jpg" alt=""
-      width="1920" height="550" fetchpriority="high" decoding="async">
-      </picture>
+    <!-- Client, 19 Sept: the banner plays the overview video behind the title,
+         the same treatment the Videos page banner uses. The header photo stays
+         as the poster, so it is still what paints first and what stands in
+         under prefers-reduced-motion — home.js does not touch the video at all
+         in that case. One file for both breakpoints: there is no mobile cut of
+         acrylic-overview, and home.js requires both attributes. -->
+    <video muted loop playsinline autoplay preload="metadata"
+           poster="assets/images/headers/scratch-removal-header-1280.webp"
+           data-poster-mobile="assets/images/headers/scratch-removal-header-768.webp"
+           data-src-desktop="assets/video/acrylic-overview.mp4"
+           data-src-mobile="assets/video/acrylic-overview.mp4"
+           data-autoplay data-inview-play></video>
   </div>
   <div class="m-pageBanner__inner">
     <nav class="m-pageBanner__crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li aria-current="page">Scratch Removal</li></ol></nav>
@@ -703,23 +706,34 @@
 </section>
 
 <!-- ============================================================
-     FULL-BLEED TRANSFORMATION
+     "WE LOVE FISH" VIDEO BAND
+     Client request 2026-09-19: replaces the full-bleed scratch-05
+     photo that used to sit here. Same component as the band that
+     closes the About page, minus the "We love fish" line, which the
+     client asked to drop here — that statement belongs to About and
+     reads as a sign-off, which is wrong in the middle of a service
+     page. Everything else is shared, so restyling the band restyles
+     both. It carries a cloud at each edge because it sits between two
+     light sections rather than closing the page.
+     pages.js lazy-loads the video from data-lazy-src, so nothing is
+     fetched until it scrolls into view.
      ============================================================ -->
-<section class="bleed" aria-hidden="true">
-  <picture>
-    <source type="image/webp"
-            srcset="assets/images/scratch-removal/scratch-05-600.webp 600w,
-                              assets/images/scratch-removal/scratch-05-960.webp 960w"
-            sizes="100vw">
-    <img src="assets/images/scratch-removal/scratch-05.jpeg" alt=""
-         width="960" height="720" loading="lazy" decoding="async">
-  </picture>
-</section>
+<div class="o-universeAbout__footer -media">
+  <figure class="o-universeAbout__footerImage" aria-hidden="true">
+    <video muted loop playsinline preload="none" data-lazy-src="assets/video/acrylic-overview.mp4"></video>
+  </figure>
+  <div class="a-cloud -top" aria-hidden="true"></div>
+  <div class="a-cloud -bottom" aria-hidden="true"></div>
+</div>
 
 <!-- ============================================================
      EXPERIENCE
+     Client, 19 Sept: --compact rather than the default section rhythm.
+     The video band above it already ends in a lot of empty space, and
+     the default padding stacked another 130px of white on each side of
+     this short block.
      ============================================================ -->
-<section class="section">
+<section class="section section--compact">
   <div class="container container--narrow">
     <div class="stack stack--lg" data-reveal>
       <span class="eyebrow eyebrow--rule">Proven methods</span>
@@ -870,6 +884,7 @@
 
   </div>
 </section>
+
 </main>
 
 <footer class="o-footer">

@@ -44,8 +44,14 @@ def warn(page, msg):
 def html_files():
     found = []
     for dirpath, dirnames, filenames in os.walk(ROOT):
+        # `wordpress` holds page *fragments* for the WordPress build — no
+        # <head>, no <html>, and links to pretty URLs that exist only once
+        # WordPress is serving them. Checking them as standalone pages reports
+        # every one of those as a fault. They have their own suite:
+        # python wordpress/tests/check.py wordpress/ --config wordpress/tests/check-config.json
         dirnames[:] = [d for d in dirnames
-                       if d not in ("assets", "tools", "docs", "src", ".git", "node_modules")]
+                       if d not in ("assets", "tools", "docs", "src", ".git",
+                                    "node_modules", "wordpress")]
         for name in sorted(filenames):
             if name.endswith(".html"):
                 found.append(os.path.join(dirpath, name))

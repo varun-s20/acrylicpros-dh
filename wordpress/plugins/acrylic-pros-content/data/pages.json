@@ -1,0 +1,127 @@
+[
+ {
+  "slug": "about",
+  "title": "About us",
+  "order": 0
+ },
+ {
+  "slug": "acrylic-pool-panels",
+  "title": "Acrylic Pool Panels",
+  "order": 1
+ },
+ {
+  "slug": "acrylic-sign-fabrication",
+  "title": "Acrylic Sign Fabrication",
+  "order": 2
+ },
+ {
+  "slug": "aquarium-relocations",
+  "title": "Aquarium Relocations",
+  "order": 3
+ },
+ {
+  "slug": "contact",
+  "title": "Contact",
+  "order": 4
+ },
+ {
+  "slug": "custom-builds-installations",
+  "title": "Custom Builds & Installations",
+  "order": 5
+ },
+ {
+  "slug": "emergency-services",
+  "title": "24hr Emergency Services",
+  "order": 6
+ },
+ {
+  "slug": "gallery",
+  "title": "Gallery",
+  "order": 7
+ },
+ {
+  "slug": "glass-tanks",
+  "title": "Glass Tanks",
+  "order": 8
+ },
+ {
+  "slug": "index",
+  "title": "Home",
+  "order": 9
+ },
+ {
+  "slug": "live-corals",
+  "title": "Live Corals",
+  "order": 10
+ },
+ {
+  "slug": "maintenance",
+  "title": "Maintenance Services",
+  "order": 11
+ },
+ {
+  "slug": "pond-design-construction",
+  "title": "Pond Design & Construction",
+  "order": 12
+ },
+ {
+  "slug": "privacy-policy",
+  "title": "Privacy Policy",
+  "order": 13
+ },
+ {
+  "slug": "process",
+  "title": "Our process",
+  "order": 14
+ },
+ {
+  "slug": "quote",
+  "title": "Get a quote",
+  "order": 15
+ },
+ {
+  "slug": "reef-insert-restoration",
+  "title": "Reef Insert Restoration",
+  "order": 16
+ },
+ {
+  "slug": "refund-policy",
+  "title": "Refund & Return Policy",
+  "order": 17
+ },
+ {
+  "slug": "scratch-removal",
+  "title": "Scratch Removal",
+  "order": 18
+ },
+ {
+  "slug": "services",
+  "title": "Our services",
+  "order": 19
+ },
+ {
+  "slug": "sharks",
+  "title": "Sharks",
+  "order": 20
+ },
+ {
+  "slug": "stingrays-eels",
+  "title": "Stingrays & Eels",
+  "order": 21
+ },
+ {
+  "slug": "tropical-fish",
+  "title": "Tropical Fish",
+  "order": 22
+ },
+ {
+  "slug": "videos",
+  "title": "Videos",
+  "order": 23
+ },
+ {
+  "slug": "warranty",
+  "title": "Warranty of Products",
+  "order": 24
+ }
+]

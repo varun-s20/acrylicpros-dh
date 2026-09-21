@@ -1,0 +1,237 @@
+<div class="t-page" data-page>
+<div class="t-page__scroller" data-scroller>
+<main id="main">
+<!-- ============================================================
+     HERO — plain (their contact template)
+     ============================================================ -->
+<section class="m-pageBanner" data-page-hero>
+  <div class="m-pageBanner__media" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="/wp-content/uploads/contact-header-768.webp 768w,
+                              /wp-content/uploads/contact-header-1280.webp 1280w,
+                              /wp-content/uploads/contact-header-1920.webp 1920w" sizes="100vw">
+      <img src="/wp-content/uploads/contact-header.jpg" alt="" width="1920" height="550" fetchpriority="high" decoding="async">
+      </picture>
+  </div>
+  <div class="m-pageBanner__inner">
+    <nav class="m-pageBanner__crumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li aria-current="page">Get a quote</li></ol></nav>
+    <h1 class="m-pageBanner__title" data-page-title><strong>Quote Form</strong></h1>
+  </div>
+</section>
+
+<!-- ============================================================
+     FORM
+     Field names are the contract with whatever endpoint is connected —
+     see README, "Connecting the forms".
+     ============================================================ -->
+<div class="t-contact__content" id="form">
+  <div class="row">
+    <div class="o-contactForm" data-scroll data-scroll-offset="33%,33%" data-dark-ui>
+      <p class="tx-h4 o-contactForm__title">Request a free estimate.<span class="o-contactForm__sub">Contact Us today for a free estimate regarding your new project and to learn more about our aquarium design company.</span></p>
+
+      <form class="o-contactForm__form" data-validate novalidate aria-label="Quote request form">
+        <div class="o-contactForm__leftPanel">
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-name">Your name <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="q-name" name="name" placeholder="ex: Jane Smith" required maxlength="80" autocomplete="name" data-label="Your name">
+            <p class="a-inputField__error" id="q-name-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-company">Company</label>
+            <input type="text" id="q-company" name="company" placeholder="Leave blank for a residential project" maxlength="120" autocomplete="organization" data-label="Company">
+            <p class="a-inputField__error" id="q-company-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="email">Your e-mail <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="email" id="email" name="email" placeholder="ex: jane.smith@gmail.com" required autocomplete="email" inputmode="email" data-label="Your e-mail" data-prefill-email>
+            <p class="a-inputField__error" id="q-email-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-phone">Phone number <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="tel" id="q-phone" name="phone" placeholder="ex: (555) 123-4567" required autocomplete="tel" inputmode="tel" data-label="Phone number">
+            <p class="a-inputField__error" id="q-phone-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-address">Aquarium address <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="q-address" name="address" required autocomplete="street-address" data-label="Aquarium address">
+            <p class="a-inputField__error" id="q-address-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-city">City <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="q-city" name="city" required autocomplete="address-level2" data-label="City">
+            <p class="a-inputField__error" id="q-city-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-state">State <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="q-state" name="state" required autocomplete="address-level1" data-label="State">
+            <p class="a-inputField__error" id="q-state-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-zip">Zip code <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="q-zip" name="zip" required autocomplete="postal-code" inputmode="numeric" data-label="Zip code">
+            <p class="a-inputField__error" id="q-zip-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-country">Country <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <input type="text" id="q-country" name="country" value="United States" required autocomplete="country-name" data-label="Country">
+            <p class="a-inputField__error" id="q-country-error" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="o-contactForm__rightPanel">
+          <fieldset class="a-inputField a-inputRadio">
+            <legend class="a-inputField__label a-labelText -group">Your project is:</legend>
+            <ul class="a-inputField__buttons">
+              <li class="a-inputField__button"><input type="radio" id="q-prem-1" name="premises" value="Residential" checked><label class="a-inputField__value" for="q-prem-1">Residential</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-prem-2" name="premises" value="Business"><label class="a-inputField__value" for="q-prem-2">Business</label></li>
+            </ul>
+          </fieldset>
+          <fieldset class="a-inputField a-inputRadio -divided">
+            <legend class="a-inputField__label a-labelText -group">Preferred way to reach you:</legend>
+            <ul class="a-inputField__buttons">
+              <li class="a-inputField__button"><input type="radio" id="q-pref-1" name="contact_preference" value="Phone" checked><label class="a-inputField__value" for="q-pref-1">Phone</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-pref-2" name="contact_preference" value="Email"><label class="a-inputField__value" for="q-pref-2">E-mail</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-pref-3" name="contact_preference" value="Text"><label class="a-inputField__value" for="q-pref-3">Text</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-pref-4" name="contact_preference" value="WhatsApp"><label class="a-inputField__value" for="q-pref-4">WhatsApp</label></li>
+            </ul>
+          </fieldset>
+
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-service">What do you need? <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            <select id="q-service" name="service" required data-label="Service">
+              <option value="">Please choose&hellip;</option>
+              <option>Scratch Removal &amp; Restoration</option>
+              <option>Custom Build &amp; Installation</option>
+              <option>Acrylic Pool Panels</option>
+              <option>Aquarium Maintenance</option>
+              <option>Pond Design &amp; Construction</option>
+              <option>Aquarium Relocation</option>
+              <option>Emergency Service</option>
+              <option>Reef Insert Restoration</option>
+              <option>Acrylic Sign Fabrication</option>
+              <option>Glass Tanks</option>
+              <option>Livestock (corals, fish, sharks, rays, eels)</option>
+              <option>Something else</option>
+            </select>
+            <p class="a-inputField__error" id="q-service-error" role="alert"></p>
+          </div>
+
+          <fieldset class="a-inputField">
+            <legend class="a-inputField__label tx-p">Aquarium dimensions, in inches</legend>
+            <div class="a-inputField__row">
+              <div class="a-inputField">
+                <label class="a-inputField__label" for="q-length">Length</label>
+                <input type="number" id="q-length" name="length" min="0" step="0.5" inputmode="decimal" data-label="Length">
+                <p class="a-inputField__error" id="q-length-error" role="alert"></p>
+              </div>
+              <div class="a-inputField">
+                <label class="a-inputField__label" for="q-width">Width</label>
+                <input type="number" id="q-width" name="width" min="0" step="0.5" inputmode="decimal" data-label="Width">
+                <p class="a-inputField__error" id="q-width-error" role="alert"></p>
+              </div>
+              <div class="a-inputField">
+                <label class="a-inputField__label" for="q-height">Height</label>
+                <input type="number" id="q-height" name="height" min="0" step="0.5" inputmode="decimal" data-label="Height">
+                <p class="a-inputField__error" id="q-height-error" role="alert"></p>
+              </div>
+            </div>
+            <span class="a-inputField__hint">An approximate size is fine.</span>
+          </fieldset>
+
+          <fieldset class="a-inputField a-inputRadio">
+            <legend class="a-inputField__label a-labelText -group">Type of aquarium:</legend>
+            <ul class="a-inputField__buttons">
+              <li class="a-inputField__button"><input type="radio" id="q-type-1" name="water_type" value="Fresh Water"><label class="a-inputField__value" for="q-type-1">Fresh water</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-type-2" name="water_type" value="Salt Water"><label class="a-inputField__value" for="q-type-2">Salt water</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-type-3" name="water_type" value="Live Reef"><label class="a-inputField__value" for="q-type-3">Live reef</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-type-4" name="water_type" value="Not applicable"><label class="a-inputField__value" for="q-type-4">Not applicable</label></li>
+            </ul>
+          </fieldset>
+
+          <fieldset class="a-inputField a-inputCheckbox -divided">
+            <legend class="a-inputField__label a-labelText -group">For restoration: which panels need refinishing?</legend>
+            <ul class="a-inputField__buttons">
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-1" name="panels" value="Inside Left"><label class="a-inputField__value" for="q-pan-1">Inside left</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-2" name="panels" value="Outside Left"><label class="a-inputField__value" for="q-pan-2">Outside left</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-3" name="panels" value="Inside Right"><label class="a-inputField__value" for="q-pan-3">Inside right</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-4" name="panels" value="Outside Right"><label class="a-inputField__value" for="q-pan-4">Outside right</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-5" name="panels" value="Inside Back"><label class="a-inputField__value" for="q-pan-5">Inside back</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-6" name="panels" value="Outside Back"><label class="a-inputField__value" for="q-pan-6">Outside back</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-7" name="panels" value="Inside Front"><label class="a-inputField__value" for="q-pan-7">Inside front</label></li>
+              <li class="a-inputField__button"><input type="checkbox" id="q-pan-8" name="panels" value="Outside Front"><label class="a-inputField__value" for="q-pan-8">Outside front</label></li>
+            </ul>
+            <span class="a-inputField__hint">Skip this if you are not booking restoration.</span>
+          </fieldset>
+
+          <fieldset class="a-inputField a-inputRadio">
+            <legend class="a-inputField__label a-labelText -group">During the work, the aquarium:</legend>
+            <ul class="a-inputField__buttons">
+              <li class="a-inputField__button"><input type="radio" id="q-ws-1" name="water_state" value="Can be drained"><label class="a-inputField__value" for="q-ws-1">Can be drained</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-ws-2" name="water_state" value="Must stay full and running"><label class="a-inputField__value" for="q-ws-2">Must stay full and running</label></li>
+              <li class="a-inputField__button"><input type="radio" id="q-ws-3" name="water_state" value="Not sure"><label class="a-inputField__value" for="q-ws-3">Not sure</label></li>
+            </ul>
+          </fieldset>
+
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-animals">Description of animals</label>
+            <textarea id="q-animals" name="animals" cols="30" rows="4" placeholder="Fish, corals and invertebrates currently in the system" data-label="Description of animals"></textarea>
+            <p class="a-inputField__error" id="q-animals-error" role="alert"></p>
+          </div>
+          <div class="a-inputField">
+            <label class="a-inputField__label tx-p" for="q-message">Tell us about the project</label>
+            <textarea id="q-message" name="message" cols="30" rows="8" data-label="Project description"></textarea>
+            <p class="a-inputField__error" id="q-message-error" role="alert"></p>
+          </div>
+
+          <!-- Photo upload is intentionally NOT a working file input: there is no
+               backend to receive a file. See README, "Connecting the forms". -->
+          <div class="a-inputField">
+            <p class="a-inputField__label tx-p">Photos of your tank</p>
+            <div class="a-inputField__upload">
+              <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+              <p>You can text photos of your tank to <a href="sms:+15625660150">+1 (562) 566-0150</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="o-contactForm__rgpdPanel">
+          <div class="a-inputField a-inputCheckbox o-contactForm__consent">
+            <div class="a-inputField__button">
+              <input type="checkbox" id="q-consent" name="consent" value="yes" required data-label="Consent">
+              <label class="a-inputField__value" for="q-consent">By ticking this box you agree to Acrylic Pros contacting you about this request &mdash; see our <a href="/privacy-policy/">privacy policy</a>. <abbr class="a-inputField__attr" title="required">*</abbr></label>
+            </div>
+            <p class="a-inputField__error" id="q-consent-error" role="alert"></p>
+          </div>
+          <button class="a-button -primary -bgnavy -boxed" type="submit">
+            <span class="tx-cta">Send my request</span>
+            <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+          </button>
+          <p class="o-contactForm__status" data-form-status role="status" aria-live="polite" tabindex="-1"></p>
+          <p class="o-contactForm__note">Call us at <a href="tel:+15625660150">+1 (562) 566-0150</a> &middot; <a href="mailto:info@acrylicpros.com">info@acrylicpros.com</a></p>
+        </div>
+      </form>
+
+      <ul class="o-contactInformations">
+        <li class="o-contactInformations__item">
+          <h2 class="tx-pxlarge">Custom Builds &amp; Installations</h2>
+          <div class="o-contactInformations__wrapper tx-pxsmall"><p>We provide custom installations, no job is too big or too small.</p></div>
+        </li>
+        <li class="o-contactInformations__item">
+          <h2 class="tx-pxlarge">24hr Emergency services</h2>
+          <div class="o-contactInformations__wrapper tx-pxsmall"><p>We provide 24/7 emergency services, temporary holding tanks and life support systems.</p></div>
+        </li>
+        <li class="o-contactInformations__item">
+          <h2 class="tx-pxlarge">Scratch Removal</h2>
+          <div class="o-contactInformations__wrapper tx-pxsmall"><p>We specialize in removing scratches off your aquarium with or without water 100% fish and coral safe!</p></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</main>
+
+[ap_footer]
+
+</div>
+</div>
