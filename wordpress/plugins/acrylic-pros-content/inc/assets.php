@@ -1,19 +1,11 @@
 <?php
 /**
- * The global stylesheet and script, the <html> and <body> classes the design
- * depends on, and the nav key the header needs.
+ * The per-tier stylesheets and scripts, the <html> and <body> classes the
+ * design depends on, and the nav key the header needs.
  */
 
 defined( 'ABSPATH' ) || exit;
 
-/**
- * Enqueue, after Elementor.
- *
- * The `elementor-frontend` dependency is the whole load-order control we have:
- * it is what puts global.css after the builder's own stylesheet. filemtime()
- * rather than AP_VER as the cache-buster, because the file's own timestamp
- * cannot fall out of step with the file — a hand-bumped constant can, and does.
- */
 /**
  * Which stylesheets and scripts this page needs.
  *
@@ -91,6 +83,15 @@ add_action( 'wp_enqueue_scripts', function () {
 	}
 }, 100 );
 
+/**
+ * Enqueue this page's set, after Elementor.
+ *
+ * filemtime() rather than AP_VER as the cache-buster, because the file's own
+ * timestamp cannot fall out of step with the file — a hand-bumped constant
+ * can, and does. Uploading a new home.css and forgetting to bump AP_VER used
+ * to mean every visitor kept the cached old one; filemtime() makes that
+ * mistake impossible.
+ */
 add_action( 'wp_enqueue_scripts', function () {
 	$set = ap_asset_set();
 
@@ -139,7 +140,7 @@ add_action( 'wp_enqueue_scripts', function () {
  *
  * `is-loading` gates the smoke loader and `js` gates every progressive
  * enhancement in the stylesheet. Both have to be on the element before first
- * paint — adding them from global.js would flash the un-enhanced page first.
+ * paint — adding them from JS would flash the un-enhanced page first.
  */
 add_filter( 'language_attributes', function ( $output ) {
 	return $output . ' class="is-loading js"';
@@ -160,9 +161,10 @@ add_filter( 'body_class', function ( array $classes ) : array {
 /**
  * Hand the nav key to the front end.
  *
- * Priority 1 so it lands before the deferred global.js runs. global.js falls
- * back to deriving the key from the pathname if this is missing, so
- * deactivating the plugin costs the menu highlight and nothing else.
+ * Priority 1 so it lands before the deferred home.js runs -- home.js carries
+ * the nav-highlighting shim, and it falls back to deriving the key from the
+ * pathname if this is missing, so deactivating the plugin costs the menu
+ * highlight and nothing else.
  */
 add_action( 'wp_head', function () {
 	printf(

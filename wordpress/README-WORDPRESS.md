@@ -69,10 +69,16 @@ hundred at a time; it is a flat folder with no duplicate filenames.
 | Contact Form 7 | **later phase** — the forms are not wired yet |
 | Yoast SEO | titles, descriptions, sitemap |
 
-The content plugin carries the stylesheet, the script, the four `.woff2` fonts,
-the loader video and the site footer. That is not tidiness — this host has no
-SFTP, a plugin is the only thing wp-admin can install that ships its own files,
-and the Media Library refuses `.woff2` outright.
+The content plugin carries the stylesheets, the scripts, the four `.woff2`
+fonts, the loader video and the site footer. That is not tidiness — this host
+has no SFTP, a plugin is the only thing wp-admin can install that ships its own
+files, and the Media Library refuses `.woff2` outright.
+
+CSS and JS ship as separate per-tier files (`home.css`/`pages.css`/`legacy.css`,
+`lenis.min.js`/`pages.js`/`home.js`/`main.js`), not one bundle. The static site
+loads different combinations on different pages, and `inc/assets.php` picks the
+matching set from the page's body class — see §"How the page shell works"
+below for why merging them into one file broke the cascade.
 
 It also re-emits the two things that live in `<head>` in the static build and
 therefore cannot travel in a page body: the per-page **JSON-LD graph**
@@ -92,10 +98,11 @@ Do this even though nothing was ever set in them. They ship enabled and write
 `.elementor-kit-NN { font-family: … }` onto `<body>`, which out-specifies a plain
 `body` rule and puts every paragraph on the site in the wrong face.
 
-`global.css` opens with a scoped neutraliser that handles the rest of the theme's
-style layer, so Hello Elementor's pink `a` and `button` rules cannot reach the
-design. It uses specificity, not `!important`, so every rule after it still wins
-— including anything you add later.
+`home.css` — the one stylesheet every page loads — opens with a scoped
+neutraliser that handles the rest of the theme's style layer, so Hello
+Elementor's pink `a` and `button` rules cannot reach the design. It uses
+specificity, not `!important`, so every rule after it still wins — including
+anything you add later.
 
 ### 5. Build the site — one button
 
@@ -150,7 +157,7 @@ Footer: the same, with `chat.html`, HTML Tag `div`.
 > `transform` to an ancestor, and a transformed ancestor becomes the containing
 > block for `position: fixed` children — which breaks the fixed header, the
 > loader and the chat widget at once. The header's own stickiness is already in
-> `global.css`.
+> `home.css`.
 
 The SVG sprite sits at the top of `header.html` and every icon on the site
 resolves against it with `<use href="#i-name">`. Delete it and every icon on all
@@ -216,13 +223,31 @@ a later phase — see `CONVERSION-PLAN.md` §1.
 
 ## How the page shell works
 
-Three pieces have to agree, or the page renders in the wrong palette:
+Four pieces have to agree, or the page renders in the wrong palette:
 
 1. `<html class="is-loading js">` — set by the plugin on `language_attributes`.
    `is-loading` gates the smoke loader; `js` gates every enhancement in the CSS.
 2. `<body class="t-home">` / `t-inner t-about` / `t-inner t-shop` … — set by the
    plugin from `inc/page-map.php`, keyed on the page slug.
 3. `window.AP_NAV` — which menu item is highlighted.
+4. Which CSS and JS files load — `inc/assets.php`'s `ap_asset_set()` reads that
+   same body class and picks one of three sets:
+
+   | Tier | Body class contains | CSS | JS |
+   |---|---|---|---|
+   | home | `t-home` | `home.css` | `lenis.min.js`, `home.js` |
+   | inner | (neither) | + `pages.css` | + `pages.js` |
+   | legacy | `t-legacy` | + `legacy.css` | + `main.js` |
+
+   This exists because the static site loads these combinations, not one
+   bundle for every page. They used to be concatenated into a single
+   `global.css`/`global.js`, and that broke the cascade for any page that did
+   not originally load all three files: two single-class rules that never met
+   started meeting, and load order picked the winner. That is how the homepage
+   picked up `legacy.css`'s body colour, and how an unrelated rule in
+   `pages.css` once overrode a layout rule in `home.css` on the homepage.
+   Keeping the files separate and enqueuing the matching set per page makes the
+   cascade identical to the static site by construction.
 
 `inc/page-map.php` is **generated**. Add a page and it gets `t-inner` and no menu
 highlight: plain, not broken. To give it the right shell, add it to the static
@@ -270,6 +295,22 @@ Elementor and most optimiser plugins behave differently for editors.
 ---
 
 ## Changelog
+
+**1.0.2** — Process: the two top images are now the same height and top-aligned
+(was: same-height columns weren't possible with the old percentage widths,
+since the two images have fixed, unequal aspect ratios — 3:2 and 957:1295 —
+so equal height needed the column widths recalculated to compensate, not
+just a bigger gap). Removed the diagonal stagger.
+
+**1.0.1** — About and Process: the top two images now sit side by side, one
+wider, at every screen width instead of only above 1025px. Split the single
+`global.css`/`global.js` bundle into per-tier files (`home.css`/`pages.css`/
+`legacy.css`, `lenis.min.js`/`pages.js`/`home.js`/`main.js`) enqueued per page
+via `inc/assets.php`, which is also the actual fix for Hello Elementor's pink
+buttons and links — the theme's own stylesheets are dequeued outright, not
+merely out-specified. Nav highlighting no longer sticks on "About" on every
+page. Fixed the LCP preload and JSON-LD `<head>` injection to run per page
+tier.
 
 **1.0.0** — first build. Design, page shells, gallery/Instagram/video content
 types, the footer shortcode, the one-time content import.

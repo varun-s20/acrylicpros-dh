@@ -144,9 +144,17 @@ def main():
     ap.add_argument("--config", help="JSON with tokens/contrast/slugs/forbidden")
     # This build keeps its assets inside the plugin, because the host has
     # no SFTP and a plugin is the only thing wp-admin can install that
-    # ships its own files.
-    ap.add_argument("--css",
-                    default="plugins/acrylic-pros-content/assets/global.css")
+    # ships its own files. There is no single combined stylesheet any more --
+    # home/pages/legacy are enqueued separately per page tier, so checking for
+    # a class needs the union of all three, comma-separated.
+    ap.add_argument(
+        "--css",
+        default=(
+            "plugins/acrylic-pros-content/assets/home.css,"
+            "plugins/acrylic-pros-content/assets/pages.css,"
+            "plugins/acrylic-pros-content/assets/legacy.css"
+        ),
+    )
     args = ap.parse_args()
 
     build = Path(args.build).resolve()
@@ -165,9 +173,14 @@ def main():
     if not pages:
         sys.exit(f"no .html files in {build}")
 
-    css_path = build / args.css
-    css = css_path.read_text(encoding="utf-8") if css_path.exists() else ""
-    check(f"stylesheet found ({args.css})", bool(css), str(css_path))
+    css_rel_paths = [p.strip() for p in args.css.split(",") if p.strip()]
+    css_parts = []
+    for rel in css_rel_paths:
+        p = build / rel
+        if p.exists():
+            css_parts.append(p.read_text(encoding="utf-8"))
+    css = "\n".join(css_parts)
+    check(f"stylesheet(s) found ({args.css})", bool(css), ", ".join(css_rel_paths))
 
     # -- stylesheet parses -------------------------------------------------
     if css:
@@ -284,13 +297,19 @@ def main():
         check("every class in the html has a rule behind it",
               not orphans, f"{len(orphans)} orphans, e.g. {orphans[:6]}")
 
-    # -- js ----------------------------------------------------------------
-    js_path = build / "plugins/acrylic-pros-content/assets/global.js"
-    if js_path.exists():
-        js = js_path.read_text(encoding="utf-8", errors="replace")
-        check("global.js braces balance", js.count("{") == js.count("}"),
+    # -- js ------------------------------------------------------------
+    # Same per-tier split as the CSS above -- no single combined file exists.
+    js_names = ["lenis.min.js", "pages.js", "home.js", "main.js"]
+    js_parts = []
+    for name in js_names:
+        p = build / "plugins/acrylic-pros-content/assets" / name
+        if p.exists():
+            js_parts.append(p.read_text(encoding="utf-8", errors="replace"))
+    if js_parts:
+        js = "\n".join(js_parts)
+        check("js braces balance (all tiers)", js.count("{") == js.count("}"),
               f"{js.count('{')} / {js.count('}')}")
-        warn("global.js has console.log left",
+        warn("js has console.log left",
              "console.log(" not in js,
              f"{js.count('console.log(')} calls - fine while debugging, noise at handover")
 

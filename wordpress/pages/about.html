@@ -51,22 +51,27 @@
             <p class="-tx600">&ldquo;Our team of experts is committed to delivering exceptional customer service and ensuring that our customers have access to the best products and resources to create thriving aquatic environments.&rdquo;</p>
           </div>
         </div>
-        <figure class="a-image -radius o-universeAbout__secondImage">
-          <picture>
-            <source type="image/webp" srcset="/wp-content/uploads/project-15-480.webp 480w,
-                              /wp-content/uploads/project-15-800.webp 800w,
-                              /wp-content/uploads/project-15-953.webp 953w" sizes="(min-width: 1025px) 43vw, 100vw">
-            <img src="/wp-content/uploads/project-15.jpeg" alt="A long in-wall reef aquarium set into a warm brown wall above leather seating." width="953" height="720" loading="lazy" decoding="async" data-fade>
-          </picture>
-        </figure>
-        <figure class="a-image -radius o-universeAbout__thirdImage">
-          <picture>
-            <source type="image/webp" srcset="/wp-content/uploads/project-19-480.webp 480w,
-                              /wp-content/uploads/project-19-800.webp 800w,
-                              /wp-content/uploads/project-19-944.webp 944w" sizes="(min-width: 1025px) 25vw, 50vw">
-            <img src="/wp-content/uploads/project-19.jpeg" alt="An in-wall aquarium framed by a stacked-stone wall." width="944" height="720" loading="lazy" decoding="async" data-fade>
-          </picture>
-        </figure>
+        <!-- Client, 21 Sept: these two used to stack full-width below 1025px
+             and only sit side by side on desktop. Wrapped so the same
+             unequal-width pairing works at every screen size. -->
+        <div class="o-universeAbout__imagePair">
+          <figure class="a-image -radius o-universeAbout__secondImage">
+            <picture>
+              <source type="image/webp" srcset="/wp-content/uploads/project-15-480.webp 480w,
+                                /wp-content/uploads/project-15-800.webp 800w,
+                                /wp-content/uploads/project-15-953.webp 953w" sizes="(min-width: 1025px) 33vw, 60vw">
+              <img src="/wp-content/uploads/project-15.jpeg" alt="A long in-wall reef aquarium set into a warm brown wall above leather seating." width="953" height="720" loading="lazy" decoding="async" data-fade>
+            </picture>
+          </figure>
+          <figure class="a-image -radius o-universeAbout__thirdImage">
+            <picture>
+              <source type="image/webp" srcset="/wp-content/uploads/project-19-480.webp 480w,
+                                /wp-content/uploads/project-19-800.webp 800w,
+                                /wp-content/uploads/project-19-944.webp 944w" sizes="(min-width: 1025px) 19vw, 35vw">
+              <img src="/wp-content/uploads/project-19.jpeg" alt="An in-wall aquarium framed by a stacked-stone wall." width="944" height="720" loading="lazy" decoding="async" data-fade>
+            </picture>
+          </figure>
+        </div>
         <p class="tx-h3 o-universeAbout__quote">At Acrylic Pros, we take pride in our commitment to <strong>quality and innovation.</strong></p>
       </div>
     </div>

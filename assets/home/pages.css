@@ -151,8 +151,12 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
 .o-universeAbout { position: relative; z-index: 1; padding-top: 3.2rem; background-color: #fff; color: var(--clrnavy); scroll-margin-top: 12rem; }
 .o-universeAbout__wrapper { position: relative; }
 .o-universeAbout__firstImage { width: 75%; margin-bottom: 4.8rem; }
-.o-universeAbout__secondImage { width: 100%; margin-top: 12rem; }
-.o-universeAbout__thirdImage { width: 50%; margin: 4.8rem 0 6.4rem 50%; }
+/* Client, 21 Sept: these two used to be full-width, one above the other,
+   below 1025px and only sit side by side on desktop. The pair wrapper now
+   holds them side by side at every width -- see .o-universeAbout__imagePair. */
+.o-universeAbout__imagePair { display: flex; align-items: flex-end; gap: 2.4rem; margin-top: 12rem; }
+.o-universeAbout__secondImage { width: 63.6363636364%; margin: 0; }
+.o-universeAbout__thirdImage { width: 36.3636363636%; margin: 0; }
 .o-universeAbout__quote { margin-top: 0; }
 .o-universeAbout__footer {
   position: relative;
@@ -219,8 +223,6 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
 @media (min-width: 1025px) {
   .o-universeAbout { padding-top: 8rem; }
   .o-universeAbout__firstImage { position: absolute; top: 18.3rem; right: 0; width: 30.7692307692%; margin: 0; }
-  .o-universeAbout__secondImage { width: 53.8461538462%; }
-  .o-universeAbout__thirdImage { width: 30.7692307692%; margin: -9.2rem 0 0 61.5384615385%; }
   .o-universeAbout__quote { width: 61.5384615385%; margin-top: 8rem; }
   .o-universeAbout__footer { margin-top: 11.6rem; padding: 34rem 0 24rem; }
 }
@@ -320,17 +322,30 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
    ===================================================================== */
 .o-expertiseApproach { position: relative; z-index: 1; padding: 3.6rem 0 6.1rem; background-color: #fff; color: var(--clrnavy); scroll-margin-top: 12rem; }
 .o-expertiseApproach__paragraph { margin-bottom: 5rem; }
-.o-expertiseApproach__images { display: grid; gap: 6.4rem; }
-.o-expertiseApproach__image:nth-child(1) { margin-right: 25%; }
-.o-expertiseApproach__image:nth-child(2) { margin: 0 0 5.5rem 25%; }
+/* Client, 21 Sept: these two used to be one-per-row below 1025px and only
+   sit side by side on desktop. grid-template-columns now applies at every
+   width, so the pairing is unconditional -- only the desktop-only stagger
+   below (nth-child(2) margin-top) is a pure aesthetic flourish. */
+/* Client, 21 Sept: same height, top-aligned, no diagonal stagger. The two
+   images have fixed aspect ratios (3:2 and 957:1295 below) that never match
+   each other, so equal height needs the column WIDTHS to compensate. Column
+   width is proportional to its fr share, and height = width / aspect-ratio,
+   so setting the columns to the two images' own aspect-ratio denominators
+   (1295 and 638 = 3/2 x 957/1295, i.e. how many "957 units" fit a 3:2 image
+   of the same height) makes width/aspect-ratio come out identical for both
+   -- exact, not eyeballed. Change either aspect-ratio below and these two
+   numbers need recalculating to match, or the heights drift apart again. */
+.o-expertiseApproach__images {
+  display: grid;
+  grid-template-columns: 1295fr 638fr;
+  column-gap: 4rem;
+}
 .o-expertiseApproach__image img { aspect-ratio: 3 / 2; object-fit: cover; }
 .o-expertiseApproach__image:nth-child(2) img { aspect-ratio: 957 / 1295; }
 @media (min-width: 1025px) {
   .o-expertiseApproach { padding: 8rem 0 5rem; }
   .o-expertiseApproach__paragraph { width: 69.2307692308%; margin-bottom: 12.6rem; }
-  .o-expertiseApproach__images { grid-template-columns: 45.4545454545% 27.2727272727%; gap: 27.2727272727%; width: 84.6153846154%; }
-  .o-expertiseApproach__image:nth-child(1) { margin-right: 0; }
-  .o-expertiseApproach__image:nth-child(2) { margin: 17rem 0 3.6rem; }
+  .o-expertiseApproach__images { width: 84.6153846154%; }
 }
 
 .o-expertiseProcess { position: relative; padding-top: 31rem; color: #fff; scroll-margin-top: -33rem; }
@@ -1427,11 +1442,6 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
 
   .o-universeVision__subtitle, .m-expertiseClients__title { width: 100%; }
   .o-universeAbout__firstImage { width: 88%; margin-inline: auto; }
-  .o-universeAbout__thirdImage { width: 66%; margin: 4.8rem auto 6.4rem; }
-  .o-universeAbout__secondImage { margin-top: 6rem; }
-  /* Same off-axis device on Process: a 25% margin on one side each. */
-  .o-expertiseApproach__image:nth-child(1) { width: 88%; margin: 0 auto; }
-  .o-expertiseApproach__image:nth-child(2) { width: 66%; margin: 0 auto 5.5rem; }
   .o-universeTeam__galleryThirdImage { width: 66%; margin-inline: auto; }
 
   /* The last lone buttons sitting hard left. */

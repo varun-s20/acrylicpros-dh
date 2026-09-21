@@ -8,7 +8,8 @@ Reads the built HTML in the repo root and emits wordpress/ :
     pages/<slug>.html           one Elementor HTML widget per page
     products/<slug>.html        the 69 SKU pages
     media/                      every image, flat, ready to bulk-upload
-    plugins/acrylic-pros-content/assets/global.css, global.js, fonts, video
+    plugins/acrylic-pros-content/assets/home.css, pages.css, legacy.css,
+                                 lenis.min.js, pages.js, home.js, main.js, fonts, video
 
 Run it again after any design change. Nothing here is hand-maintained.
 
@@ -314,11 +315,12 @@ def build_preview(page_files: list[Path], body_classes: dict[str, str],
     out = OUT / "preview"
     out.mkdir(parents=True, exist_ok=True)
 
-    # global.css carries root-relative url(/wp-content/uploads/...) references,
-    # which only resolve on a real WordPress. Served from the repo root they
-    # 404, the backgrounds they paint disappear, and a comparison against this
-    # measures the harness rather than the build. So the preview links its own
-    # copy with just that prefix repointed -- identical in every other byte.
+    # Each stylesheet carries root-relative url(/wp-content/uploads/...)
+    # references, which only resolve on a real WordPress. Served from the repo
+    # root they 404, the backgrounds they paint disappear, and a comparison
+    # against this measures the harness rather than the build. So the preview
+    # links its own copies with just that prefix repointed.
+    #
     # Two kinds of path need repointing, and missing either one silently
     # removes backgrounds from the preview and makes the comparison lie:
     #
@@ -326,7 +328,7 @@ def build_preview(page_files: list[Path], body_classes: dict[str, str],
     #   cloud.png, fonts/x.woff2  relative to the stylesheet, which has moved
     #
     # The relative ones are the easier mistake: they are correct in
-    # plugins/.../assets/global.css and break the moment the file is copied
+    # plugins/.../assets/*.css and break the moment the file is copied
     # somewhere else.
     assets_rel = "../plugins/acrylic-pros-content/assets"
     for name in CSS_FILES:

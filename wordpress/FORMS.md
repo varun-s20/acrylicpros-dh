@@ -46,7 +46,7 @@ customer photos are kept.
    and quote pages rather than CF7's, because CF7's is the one tied to the
    sending.
 4. Keep the inline error presentation. The prototype's is better than CF7's
-   default, and the CSS for it is already in `global.css`.
+   default, and the CSS for it is already in `pages.css`.
 
 ## Email deliverability — the part that actually fails
 

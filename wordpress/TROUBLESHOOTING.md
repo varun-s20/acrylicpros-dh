@@ -11,7 +11,9 @@ WordPress advice. Add to it as you hit things.
 CSS, JS, fonts, the footer — ships inside `acrylic-pros-content`.
 
 Check **Plugins**, then open the page source and confirm
-`/wp-content/plugins/acrylic-pros-content/assets/global.css` returns 200.
+`/wp-content/plugins/acrylic-pros-content/assets/home.css` returns 200. Every
+page loads `home.css`; inner and legacy pages also load `pages.css` and/or
+`legacy.css` — see `inc/assets.php`'s `ap_asset_set()`.
 
 If the plugin is active and the file 404s, the zip was installed with the wrong
 folder name. Reinstall from `plugins/acrylic-pros-content.zip` — it is built to
@@ -33,16 +35,31 @@ so unticking it alone fixes nothing.
 
 ## Buttons and links are pink
 
-Hello Elementor's own `theme.css` paints bare `a` and `button` elements `#C36`.
+Hello Elementor's own `reset.css`/`theme.css` paint bare `a` and `button`
+elements `#C36`, and go further than the colour — they also reset heading and
+paragraph margins and image sizing, which out-specifying alone cannot fully
+undo (`[type=submit]` is an attribute selector; a neutraliser strong enough to
+beat it also beats the design's own single-class button rules).
 
-1. Elementor → Site Settings → Layout → Default Colors **Disable**, Default
-   Fonts **Disable**.
-2. Elementor → Tools → Regenerate CSS & Data.
-3. If it is still pink, the element is outside the neutraliser's container list.
-   Inspect it, find which of `.o-header` / `.o-footer` / `#main` / `.m-chat` /
-   `.o-menu` it should be inside, and add that container to the neutraliser at
-   the top of `tools/build_wordpress.py` — then rebuild. Do not add
-   `!important`; it wins today and blocks the owner's own overrides forever.
+So the actual fix is not specificity, it is **not loading the theme's
+stylesheets at all**: `inc/assets.php` dequeues `hello-elementor`,
+`hello-elementor-theme-style` and `hello-elementor-header-footer` outright, at
+priority 100 (after the theme enqueues them at the default 10). `home.css`
+carries its own complete reset, so nothing depends on the theme's.
+
+1. Confirm the theme's stylesheets are actually gone: view source, there
+   should be no `hello-elementor` or `theme-style` `<link>` at all.
+2. If they are still there, the dequeue did not run — confirm the plugin is
+   active and check for a fatal error earlier in the request (a fatal before
+   priority 100 stops every later hook).
+3. If the theme's stylesheets are gone and something is *still* pink, it is
+   coming from somewhere else (Elementor's own `frontend.css`, a form plugin).
+   The scoped neutraliser at the top of `home.css` is the safety net for that
+   case: find which of `.o-header` / `.o-footer` / `#main` / `.m-chat` /
+   `.o-menu` the element should be inside, add that container to the
+   `NEUTRALISER` constant in `tools/build_wordpress.py`, then rebuild. Do not
+   add `!important`; it wins today and blocks the owner's own overrides
+   forever.
 
 ---
 
@@ -55,7 +72,7 @@ This is the neutraliser winning a fight it should have lost.
 `.o-header .a-button` at (0,2,0) — stripping the background while the label keeps
 its light colour.
 
-The fix is already in `global.css`: the `:hover` variants are wrapped in
+The fix is already in `home.css`: the `:hover` variants are wrapped in
 `:where()`, which contributes zero specificity. If this reappears, someone
 unwrapped them. Put them back.
 
@@ -66,9 +83,9 @@ unwrapped them. Put them back.
 Elementor's Global Fonts wrote `.elementor-kit-NN { font-family: … }` onto
 `<body>`, which out-specifies a plain `body` rule.
 
-Disable Default Fonts as above. `global.css` also carries `:root body {
+Disable Default Fonts as above. `home.css` also carries `:root body {
 font-family: var(--font) }` at (0,1,1) to beat the kit class at (0,1,0), so this
-should not happen — if it does, the kit is being loaded after `global.css`, which
+should not happen — if it does, the kit is being loaded after `home.css`, which
 means the `elementor-frontend` dependency in the enqueue was lost.
 
 ---
@@ -76,8 +93,9 @@ means the `elementor-frontend` dependency in the enqueue was lost.
 ## The smoke loader never goes away
 
 `pages.js` clears the loader, and it must run **before** `home.js`. They are
-concatenated into `global.js` in that order by `tools/build_wordpress.py`
-(`JS_FILES = ["lenis.min.js", "pages.js", "home.js"]`).
+separate enqueued files, in that order, per tier in `inc/assets.php`'s
+`ap_asset_set()` (`JS_FILES = ["lenis.min.js", "pages.js", "home.js"]` in
+`tools/build_wordpress.py` controls the underlying order).
 
 If someone regenerates with that order changed, this is the symptom. It looks
 like a hang and it is a load-order bug.
@@ -89,9 +107,9 @@ like a hang and it is a load-order bug.
 **The script is loading twice** — every handler is bound twice, so the open
 handler runs and then the close handler runs.
 
-Almost always: `global.js` is enqueued by the plugin *and* pasted into Elementor
-→ Custom Code. Use one route only. This build uses the plugin; there should be
-no Custom Code snippet at all.
+Almost always: one of the plugin's scripts (`home.js`, `pages.js`) is enqueued
+by the plugin *and* pasted into Elementor → Custom Code. Use one route only.
+This build uses the plugin; there should be no Custom Code snippet at all.
 
 ---
 
@@ -133,8 +151,9 @@ rename it back or add it to the static site and re-run
 does so for logged-out visitors. This is the single most common way a working
 build breaks a week after launch.
 
-Exclude `global.js` from JS minification, combination and delay in whichever
-caching plugin is installed. Then test in a private window, not just logged out.
+Exclude every `ap-*` script (`home.js`, `pages.js`, `lenis.min.js`, `main.js`)
+from JS minification, combination and delay in whichever caching plugin is
+installed. Then test in a private window, not just logged out.
 
 ---
 
@@ -164,3 +183,47 @@ Thirteen classes are allowlisted in `tests/check-config.json` — all of them we
 already orphans in the static prototype, and most are JavaScript hooks. Anything
 **not** on that list means a CSS rule was lost in the conversion. Fix the rule.
 Do not extend the allowlist.
+
+---
+
+## The wrong page is highlighted in the nav — usually "About", on every page
+
+`header.html` is captured verbatim from one real page (About), so the nav `<ul>`
+ships with `data-nav="about"` baked into the markup. `home.js` corrects this at
+runtime for the real page, but it has to do the whole job itself — clearing every
+`data-nav-item` link and re-applying `-active`/`aria-current` to the right
+one — because `pages.js` (which used to own that job) is enqueued *before*
+`home.js` and would otherwise read the stale baked-in value first.
+
+If this comes back: something reintroduced the highlighting logic into a script
+that runs before `home.js`, or `home.js` failed to load (check the console for
+`window.AP_NAV` — `undefined` means the plugin's `wp_head` output is missing).
+
+---
+
+## I edited a page and re-uploaded the plugin, but nothing changed
+
+Two different things can cause this, and they need different fixes:
+
+**1. The edit changed page markup, not just CSS/JS.** Page bodies are not read
+from the plugin's files at request time — they were written *once* into the
+WordPress database (`_elementor_data`) by **Tools → Acrylic Pros setup → Build
+the site**, from the snapshot in `data/pages/*.html` at the time you pressed the
+button. Re-uploading the plugin updates the files on disk; it does **not**
+re-run that button. Any change to `src/pages/*.body.html` — a new wrapper `<div>`,
+reordered markup, anything beyond a class name already in the DOM — needs
+**Build the site** pressed again afterward, every time. A pure CSS/JS-only
+change (no HTML change) does not need this.
+
+**2. The upload did not actually replace every file.** Dragging the
+`acrylic-pros-content` folder straight into File Manager is not the same
+operation as WordPress's own **Plugins → Add New → Upload → the zip**. A
+folder-by-folder upload can silently create a nested
+`acrylic-pros-content/acrylic-pros-content/` (if the tool uploads the folder
+*into* the existing one instead of merging its contents), or drop files
+partway through on a large tree — this build has already lost 8 of 458 media
+files the same way during a zip extraction. Confirm by viewing the source of
+a live page and checking the `?ver=` query string on `home.css` — if it still
+matches the *previous* deploy's timestamp, the new file never arrived. Prefer
+the zip through **Plugins → Add New → Upload** — it replaces the plugin
+atomically in one operation, with no folder-merge ambiguity.
