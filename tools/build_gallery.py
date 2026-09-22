@@ -105,7 +105,9 @@ VIDEO = """      <div class="m-projectTile -video" style="--a:%(a).4f">
 def build_featured(manifest):
     chapters = json.load(io.open(FEATURED_DATA, encoding="utf-8"))
     out, missing, no = [], [], 0
-    for n, ch in enumerate(chapters, 1):
+    # Chapter 01 is the scratch-removal film, hand-written in the page body
+    # (client, 22 Sept: first), so the generated chapters number from 02.
+    for n, ch in enumerate(chapters, 2):
         rows = []
         for row in ch["rows"]:
             tiles = []

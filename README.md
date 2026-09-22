@@ -27,6 +27,7 @@ Run in this order — `fix_images.py` edits the **sources**, so it must come
 before the pages are assembled:
 
 ```bash
+python tools/fetch_acrylic.py     # acrylic shop <- advancedacrylics.com (network; run first: its photos need WebP sizes)
 python tools/build_images.py      # WebP derivatives + assets/image-manifest.json
 python tools/fix_images.py        # reconcile width/height/srcset in src/ with real files
 python tools/build_legacy_css.py  # assets/home/legacy.css <- assets/css/styles.css
@@ -61,7 +62,7 @@ which makes them suitable for CI.
 | Structured data | `src/schema/<name>.json` |
 | Gallery contents | `data/gallery.json` |
 | Featured Projects page (chapters, photos, the install clip) | `data/featured.json`, then `tools/build_gallery.py` |
-| Acrylic Tanks page (quote-only style cards + tiles) | `data/acrylic-tanks.json`, then `tools/build_products.py` |
+| Acrylic Tanks shop + its product pages | `data/acrylic-products.json` (Advanced Acrylics' catalogue, written by `tools/fetch_acrylic.py`), then `tools/build_images.py` + `tools/build_products.py`. Until it exists the page shows the quote-only styles in `data/acrylic-tanks.json` |
 | Homepage Instagram feed | `data/instagram.json` (post links + short captions), then `tools/build_instagram.py --refresh` |
 | Chat button avatar | replace `assets/images/brand/chat-avatar.png` (square PNG); panel markup is at the end of `src/partials/home-footer.html`, behaviour in `home.js` |
 | Contact address / hours / FAQ answers | `src/pages/contact.body.html` (placeholders marked "To be confirmed" and `[...]`) |

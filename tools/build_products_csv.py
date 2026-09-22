@@ -27,6 +27,7 @@ import argparse
 import csv
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -102,7 +103,30 @@ def main() -> int:
                 image,
             ])
 
-    print(f"wrote {OUT.relative_to(ROOT)} — {len(products)} products")
+        # Advanced Acrylics' catalogue (tools/fetch_acrylic.py), when present.
+        # Simple products: the price is the lowest option, and every option
+        # with its price is listed in the description, as on the static page.
+        # WooCommerce derives each URL from the name, and fetch_acrylic made
+        # the static slugs the same way, so the links on /acrylic-tanks/ land.
+        acrylic_file = ROOT / "data" / "acrylic-products.json"
+        acrylic = json.loads(acrylic_file.read_text(encoding="utf-8")) if acrylic_file.exists() else []
+        if acrylic:
+            sys.path.insert(0, str(Path(__file__).resolve().parent))
+            from fetch_acrylic import GROUPS
+            labels = dict(GROUPS)
+        for a in acrylic:
+            options = "".join(f"<tr><td>{v['title']}</td><td>${v['price']}</td></tr>"
+                              for v in a["variants"])
+            w.writerow([
+                "simple", a["slug"], a["name"], 1, "visible", "",
+                as_html(a["description"]) + (f"\n<table><tbody>{options}</tbody></table>" if options else ""),
+                1,
+                a["price_from"].replace(",", ""),
+                f"Acrylic tanks > {labels[a['group']]}",
+                ", ".join(f"{base}/wp-content/uploads/{Path(i).name}" for i in a["images"]),
+            ])
+
+    print(f"wrote {OUT.relative_to(ROOT)} — {len(products)} glass + {len(acrylic)} acrylic products")
     unknown = {p["range"] for p in products} - set(RANGES)
     if unknown:
         print(f"  note: unmapped ranges used as-is: {sorted(unknown)}")

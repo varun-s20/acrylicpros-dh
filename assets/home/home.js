@@ -931,16 +931,13 @@
   $$('[data-yt-ambient]').forEach(function (box) {
     var id = box.getAttribute('data-yt-ambient');
     var mount = $('[data-yt-ambient-mount]', box);
-    if (reduced) {
-      // no motion wanted: a still frame from the same video instead
-      var still = document.createElement('img');
-      still.src = 'assets/images/video-thumbs/' + id + '.jpg';
-      still.alt = '';
-      still.className = 'b-video__still';
-      box.appendChild(still);
-      return;
-    }
+    // The page carries a still of the same video (.b-video__still) underneath;
+    // with reduced motion that still is all there is.
+    if (reduced) return;
     var frame = document.createElement('iframe');
+    var reveal = 0;
+    var playing = false;
+    var inView = false;
     var send = function (func) {
       if (frame.contentWindow) {
         frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
@@ -961,18 +958,38 @@
       try { data = JSON.parse(e.data); } catch (err) { return; }
       var state = data.event === 'onStateChange' ? data.info
         : (data.info && typeof data.info.playerState === 'number' ? data.info.playerState : null);
-      if (state === 1) box.classList.add('-ready');
+      // Client, 22 Sept: YouTube shows its prev/pause/next buttons for about a
+      // second whenever playback (re)starts, even with controls=0. So the
+      // player only fades in once it has been playing for 4s, and drops back
+      // to the still under it whenever it stops, buffers or loops.
+      // YouTube re-reports "playing" several times a second, so the timer is
+      // started once per play and only cleared when playback really stops.
+      if (state !== null) playing = state === 1;
+      if (state === 1 && !inView) { send('pauseVideo'); return; } // autoplay started it off screen
+      if (state === 1) {
+        if (!reveal) reveal = setTimeout(function () { box.classList.add('-ready'); }, 4000);
+      } else if (state !== null) {
+        clearTimeout(reveal);
+        reveal = 0;
+        box.classList.remove('-ready');
+      }
       if (state === 0) send('playVideo'); // belt and braces for the loop
     });
     frame.addEventListener('load', function () {
       frame.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 'ambient' }), '*');
       send('mute');
-      send('playVideo');
+      if (inView) send('playVideo');
     });
     mount.appendChild(frame);
-    // keep it running whenever it is on screen
+    // Play only while on screen. Off screen it is always paused: Chrome
+    // throttles hidden iframes, and a player left running there flashes its
+    // buttons when it scrolls back in. playVideo is sent only to a stopped
+    // player; sent to a playing one, YouTube flashes its buttons without
+    // reporting any state change.
     new IntersectionObserver(function (entries) {
-      send(entries[0].isIntersecting ? 'playVideo' : 'pauseVideo');
+      inView = entries[0].isIntersecting;
+      if (!inView) send('pauseVideo');
+      else if (!playing) send('playVideo');
     }).observe(box);
   });
 

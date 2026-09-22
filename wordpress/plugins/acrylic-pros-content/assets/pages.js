@@ -903,6 +903,32 @@
   });
 
   /* ------------------------------------------------------------------
+     Acrylic product photos: a swipeable, snap-scrolling track (works with
+     no JS); the thumbnails scroll it and follow it.
+     ------------------------------------------------------------------ */
+  $$('[data-gallery]').forEach(function (g) {
+    var stage = $('[data-gallery-stage]', g);
+    var thumbs = $$('[data-gallery-to]', g);
+    if (!thumbs.length) return;
+    var mark = function (i) {
+      thumbs.forEach(function (t, j) {
+        t.classList.toggle('-active', i === j);
+        t.setAttribute('aria-current', i === j ? 'true' : 'false');
+      });
+    };
+    thumbs.forEach(function (t) {
+      t.addEventListener('click', function () {
+        var i = +t.getAttribute('data-gallery-to');
+        stage.scrollTo({ left: stage.children[i].offsetLeft, behavior: reduced ? 'auto' : 'smooth' });
+        mark(i);
+      });
+    });
+    stage.addEventListener('scroll', function () {
+      mark(Math.round(stage.scrollLeft / stage.clientWidth));
+    }, { passive: true });
+  });
+
+  /* ------------------------------------------------------------------
      Scratch-removal film: the native controls stay in the markup for
      no-JS; with JS the big play button stands in until the first play.
      ------------------------------------------------------------------ */
@@ -934,7 +960,7 @@
     var countEl = $('[data-shop-count]', shop);
     var emptyEl = $('[data-shop-empty]', shop);
     var noun = grid.getAttribute('data-shop-noun') || 'tank';
-    var STEP = 12;
+    var STEP = +grid.getAttribute('data-shop-step') || 12; // acrylic: 24
     var state = { range: 'all', sort: 'featured', limit: STEP };
     cards.forEach(function (c, i) { c.setAttribute('data-order', i); });
 

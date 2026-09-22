@@ -410,8 +410,8 @@
         <a class="m-promo -scratch" href="/scratch-removal/">
           <div class="m-promo__visual" aria-hidden="true">
             <div class="m-promo__ba">
-              <picture><source type="image/webp" srcset="/wp-content/uploads/scratch-13-540.webp 540w" sizes="(min-width: 1025px) 24vw, 80vw"><img src="/wp-content/uploads/scratch-13.jpeg" alt="" width="540" height="720" loading="lazy" decoding="async"></picture>
-              <div class="m-promo__after"><picture><source type="image/webp" srcset="/wp-content/uploads/scratch-14-540.webp 540w" sizes="(min-width: 1025px) 24vw, 80vw"><img src="/wp-content/uploads/scratch-14.jpeg" alt="" width="540" height="720" loading="lazy" decoding="async"></picture></div>
+              <picture><source type="image/webp" srcset="/wp-content/uploads/scratch-21-600.webp 600w, /wp-content/uploads/scratch-21-1000.webp 1000w" sizes="(min-width: 1025px) 24vw, 80vw"><img src="/wp-content/uploads/scratch-21.jpeg" alt="" width="1284" height="1279" loading="lazy" decoding="async"></picture>
+              <div class="m-promo__after"><picture><source type="image/webp" srcset="/wp-content/uploads/scratch-22-600.webp 600w, /wp-content/uploads/scratch-22-1000.webp 1000w" sizes="(min-width: 1025px) 24vw, 80vw"><img src="/wp-content/uploads/scratch-22.jpeg" alt="" width="1284" height="1274" loading="lazy" decoding="async"></picture></div>
               <span class="m-promo__label -before">Before</span><span class="m-promo__label -after">After</span>
               <span class="m-promo__handle"></span>
             </div>
@@ -495,11 +495,29 @@
 </div>
 
 <!-- ============================================================
-     VIDEO BAND
+     VIDEO BAND (client, 22 Sept, round 2): part of the navy builds
+     section above instead of a frame floating between white strips;
+     a heading from the live pond page; cinematic 21:9 on desktop.
+     YouTube flashes its prev/pause/next buttons for the first second
+     of playback (and on buffering/loop) even with controls=0, so a
+     still of the same video sits underneath and the player fades in
+     only once they have gone (home.js). The still is markup, not
+     script, so the WordPress build rewrites its path like any image.
      ============================================================ -->
-<div class="t-home__separator" aria-hidden="true"></div>
-<section class="b-video -ambient" data-yt-ambient="_Xb7Pd0_cWc" aria-label="Koi pond design by Acrylic Pros (video, muted)">
-  <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
+<section class="t-home__film" aria-labelledby="home-film-title">
+  <div class="row">
+    <div class="o-homeFilm__head">
+      <h2 class="tx-h3" id="home-film-title">Backyard <strong>paradise awaits</strong></h2>
+      <div class="o-homeFilm__intro">
+        <p class="tx-p">Let Acrylic Pros bring your dream backyard to life.</p>
+        <a class="a-link tx-cta" href="/pond-design-construction/">Pond design &amp; construction</a>
+      </div>
+    </div>
+    <div class="b-video -ambient" data-yt-ambient="_Xb7Pd0_cWc" aria-label="Koi pond design by Acrylic Pros (video, muted)">
+      <picture><source type="image/webp" srcset="/wp-content/uploads/_Xb7Pd0_cWc-480.webp 480w, /wp-content/uploads/_Xb7Pd0_cWc-800.webp 800w, /wp-content/uploads/_Xb7Pd0_cWc-1280.webp 1280w" sizes="(min-width: 1441px) 1400px, 96vw"><img class="b-video__still" src="/wp-content/uploads/_Xb7Pd0_cWc.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
+      <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
+    </div>
+  </div>
 </section>
 
 <!-- ============================================================
@@ -638,7 +656,7 @@
 
     <section class="o-homeInstagram" aria-labelledby="instagram-title">
       <div class="o-homeInstagram__head">
-        <h2 class="tx-h3" id="instagram-title">Follow us on <strong>Instagram</strong></h2>
+        <h2 class="tx-h3" id="instagram-title">Live updates on <strong>Instagram</strong></h2>
         <a class="o-homeInstagram__handle" href="https://www.instagram.com/acrylic_pros_corp/" target="_blank" rel="noopener"><svg class="a-svg" aria-hidden="true"><use href="#i-instagram"/></svg>@acrylic_pros_corp</a>
       </div>
       <ul class="o-homeInstagram__grid">

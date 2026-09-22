@@ -1634,6 +1634,7 @@ body.is-locked {
   height: 100%;
   object-fit: cover;
 }
+:where(#main) .ba--fill .ba__frame img { aspect-ratio: 3 / 4; object-fit: cover; }
 :where(#main) .ba__label {
   position: absolute;
   top: var(--space-sm);

@@ -2412,6 +2412,10 @@ figcaption {
   object-fit: cover;
 }
 
+/* A pair shot square (scratch-21/22) is cropped to the rail's 3:4 so its
+   caption lines up with its neighbours. */
+.ba--fill .ba__frame img { aspect-ratio: 3 / 4; object-fit: cover; }
+
 .ba__label {
   position: absolute;
   top: var(--space-sm);

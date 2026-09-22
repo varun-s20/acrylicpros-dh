@@ -3,31 +3,93 @@
   "id": "design",
   "title": "Custom aquarium <strong>design</strong>",
   "copy": "If you have a specific vision for your aquarium, our team of experts is ready to bring it to life.",
-  "link": {"href": "custom-builds-installations.html", "label": "Custom builds &amp; installations"},
+  "link": {
+   "href": "custom-builds-installations.html",
+   "label": "Custom builds &amp; installations"
+  },
   "rows": [
    [
-    {"src": "assets/images/featured/featured-in-wall-fireplace.jpg", "title": "In-wall aquarium beside a stone fireplace", "alt": "A large in-wall aquarium in white cabinetry beside a stacked-stone fireplace, a root-style background and large fish inside."},
-    {"src": "assets/images/featured/featured-triple-in-wall.jpg", "title": "Two aquariums in gray cabinetry", "alt": "Two aquariums set into gray built-in cabinetry on either side of a framed painting, beneath a backlit panel."}
+    {
+     "src": "assets/images/featured/featured-curved-office-canopy.jpg",
+     "title": "Curved aquarium with lit canopy",
+     "alt": "A curved-front aquarium with rock columns on a white cabinet, the canopy above lit blue."
+    },
+    {
+     "src": "assets/images/featured/featured-in-wall-reef-white.jpg",
+     "title": "In-wall reef in white paneling",
+     "alt": "A blue-lit reef aquarium set into white paneled cabinetry in a living room, two armchairs in front of it."
+    }
    ],
    [
-    {"src": "assets/images/featured/featured-in-wall-reef-white.jpg", "title": "In-wall reef in white paneling", "alt": "A blue-lit reef aquarium set into white paneled cabinetry in a living room, two armchairs in front of it."},
-    {"src": "assets/images/featured/featured-in-wall-wood-wall.jpg", "title": "In-wall aquarium in a wood-slat wall", "alt": "A blue-lit aquarium set into a wood-slat feature wall, three colored stools on the floor in front."},
-    {"src": "assets/images/featured/featured-curved-office.jpg", "title": "Curved aquarium on white cabinet", "alt": "A tall curved-front aquarium on a white cabinet with a matching canopy in the corner of an office, lit blue."}
+    {
+     "src": "assets/images/featured/featured-in-wall-fireplace.jpg",
+     "title": "In-wall aquarium beside a stone fireplace",
+     "alt": "A large in-wall aquarium in white cabinetry beside a stacked-stone fireplace, a root-style background and large fish inside."
+    },
+    {
+     "src": "assets/images/featured/featured-in-wall-wood-wall.jpg",
+     "title": "In-wall aquarium in a wood-slat wall",
+     "alt": "A blue-lit aquarium set into a wood-slat feature wall, three colored stools on the floor in front."
+    },
+    {
+     "src": "assets/images/featured/featured-curved-office.jpg",
+     "title": "Curved aquarium on white cabinet",
+     "alt": "A tall curved-front aquarium on a white cabinet with a matching canopy in the corner of an office, lit blue."
+    }
    ],
    [
-    {"src": "assets/images/featured/featured-reef-black-cabinet.jpg", "title": "Reef aquarium on black cabinet", "alt": "A rimless reef aquarium with three pendant lights on a black cabinet, a white sofa beside it."},
-    {"src": "assets/images/featured/featured-curved-office-canopy.jpg", "title": "Curved aquarium with lit canopy", "alt": "A curved-front aquarium with rock columns on a white cabinet, the canopy above lit blue."},
-    {"src": "assets/images/featured/featured-turtle-aquarium.jpg", "title": "Turtle aquarium in dark wood cabinetry", "alt": "A long aquarium with a turtle swimming over dark gravel, set into dark wood cabinetry with a matching canopy."}
+    {
+     "src": "assets/images/featured/featured-turtle-aquarium.jpg",
+     "title": "Turtle aquarium in dark wood cabinetry",
+     "alt": "A long aquarium with a turtle swimming over dark gravel, set into dark wood cabinetry with a matching canopy."
+    },
+    {
+     "src": "assets/images/featured/featured-triple-in-wall.jpg",
+     "title": "Two aquariums in gray cabinetry",
+     "alt": "Two aquariums set into gray built-in cabinetry on either side of a framed painting, beneath a backlit panel."
+    },
+    {
+     "src": "assets/images/featured/featured-reef-black-cabinet.jpg",
+     "title": "Reef aquarium on black cabinet",
+     "alt": "A rimless reef aquarium with three pendant lights on a black cabinet, a white sofa beside it."
+    }
    ],
    [
-    {"video": "assets/video/featured-install.mp4", "poster": "assets/images/video-thumbs/featured-install.jpg", "w": 720, "h": 1280, "title": "Rimless aquarium and sump cabinet", "alt": "A rimless aquarium on a white cabinet under a pendant light, the camera moving down to the sump inside the open cabinet."},
-    {"src": "assets/images/featured/featured-reef-ready-sump.jpg", "title": "Aquarium with the sump cabinet open", "alt": "A rimless aquarium under a rail of pendant lights, the black cabinet below open to show a blue-lit sump."},
-    {"src": "assets/images/featured/featured-new-install-white.jpg", "title": "Aquarium on white cabinet", "alt": "A black-trimmed aquarium on a white cabinet in a bright white hallway with an arched window."}
+    {
+     "video": "assets/video/featured-install.mp4",
+     "poster": "assets/images/video-thumbs/featured-install.jpg",
+     "w": 720,
+     "h": 1280,
+     "title": "Rimless aquarium and sump cabinet",
+     "alt": "A rimless aquarium on a white cabinet under a pendant light, the camera moving down to the sump inside the open cabinet."
+    },
+    {
+     "src": "assets/images/featured/featured-reef-ready-sump.jpg",
+     "title": "Aquarium with the sump cabinet open",
+     "alt": "A rimless aquarium under a rail of pendant lights, the black cabinet below open to show a blue-lit sump."
+    },
+    {
+     "src": "assets/images/featured/featured-new-install-white.jpg",
+     "title": "Aquarium on white cabinet",
+     "alt": "A black-trimmed aquarium on a white cabinet in a bright white hallway with an arched window."
+    }
    ],
    [
-    {"src": "assets/images/featured/featured-root-background-build.jpg", "title": "Root background before filling", "alt": "An empty aquarium on a black cabinet with a 3D root background, white sand, driftwood and plants in place."},
-    {"src": "assets/images/featured/featured-root-background-filled.jpg", "title": "Root background aquarium, filled", "alt": "A filled blue-lit aquarium with a 3D root background and plants on a black cabinet in a room with a tiled floor."},
-    {"src": "assets/images/featured/featured-3d-root-background.jpg", "title": "3D root background panel", "alt": "A 3D root background panel beneath an Aquadecor logo."}
+    {
+     "src": "assets/images/featured/featured-root-background-build.jpg",
+     "title": "Root background before filling",
+     "alt": "An empty aquarium on a black cabinet with a 3D root background, white sand, driftwood and plants in place."
+    },
+    {
+     "src": "assets/images/featured/featured-root-background-filled.jpg",
+     "title": "Root background aquarium, filled",
+     "alt": "A filled blue-lit aquarium with a 3D root background and plants on a black cabinet in a room with a tiled floor."
+    },
+    {
+     "src": "assets/images/featured/featured-3d-root-background.jpg",
+     "title": "3D root background panel",
+     "alt": "A 3D root background panel beneath an Aquadecor logo."
+    }
    ]
   ]
  },
@@ -35,12 +97,27 @@
   "id": "fabrication",
   "title": "Aquarium <strong>fabrication</strong>",
   "copy": "Crafting a custom aquarium is more than construction—it's the art of transforming vision into reality. At Acrylic Pros, we design and fabricate aquariums with precision, elegance, and durability, creating a breathtaking centerpiece that will last a lifetime.",
-  "link": {"href": "acrylic-tanks.html", "label": "Acrylic tanks"},
+  "link": {
+   "href": "acrylic-tanks.html",
+   "label": "Acrylic tanks"
+  },
   "rows": [
    [
-    {"src": "assets/images/featured/featured-acrylic-tank-bench.jpg", "title": "Acrylic tank with top bracing", "alt": "A clear acrylic aquarium with a braced top on a workbench in the workshop."},
-    {"src": "assets/images/featured/featured-acrylic-cutout-top.jpg", "title": "Acrylic tank with cut-out top", "alt": "An acrylic aquarium with a white top cut with access openings and a black corner overflow, in the workshop."},
-    {"src": "assets/images/featured/featured-acrylic-overflows.jpg", "title": "Acrylic tank with black overflows", "alt": "A large clear acrylic aquarium with two black overflow columns inside, in the workshop."}
+    {
+     "src": "assets/images/featured/featured-acrylic-tank-bench.jpg",
+     "title": "Acrylic tank with top bracing",
+     "alt": "A clear acrylic aquarium with a braced top on a workbench in the workshop."
+    },
+    {
+     "src": "assets/images/featured/featured-acrylic-cutout-top.jpg",
+     "title": "Acrylic tank with cut-out top",
+     "alt": "An acrylic aquarium with a white top cut with access openings and a black corner overflow, in the workshop."
+    },
+    {
+     "src": "assets/images/featured/featured-acrylic-overflows.jpg",
+     "title": "Acrylic tank with black overflows",
+     "alt": "A large clear acrylic aquarium with two black overflow columns inside, in the workshop."
+    }
    ]
   ]
  },
@@ -48,11 +125,22 @@
   "id": "ponds",
   "title": "Pond <strong>design</strong>",
   "copy": "With our custom Koi pond design services, you'll experience the serenity and beauty of a backyard water feature every day.",
-  "link": {"href": "pond-design-construction.html", "label": "Pond design &amp; construction"},
+  "link": {
+   "href": "pond-design-construction.html",
+   "label": "Pond design &amp; construction"
+  },
   "rows": [
    [
-    {"src": "assets/images/featured/featured-koi-pond-bridge.jpg", "title": "Koi pond with footbridge", "alt": "A koi pond in a courtyard with a clear viewing panel, rock edging and a wooden footbridge leading to the front door."},
-    {"src": "assets/images/featured/featured-koi-pond-overhead.jpg", "title": "Koi pond from above", "alt": "The koi pond seen from above: rockwork, plants and the wooden footbridge crossing the water."}
+    {
+     "src": "assets/images/featured/featured-koi-pond-bridge.jpg",
+     "title": "Koi pond with footbridge",
+     "alt": "A koi pond in a courtyard with a clear viewing panel, rock edging and a wooden footbridge leading to the front door."
+    },
+    {
+     "src": "assets/images/featured/featured-koi-pond-overhead.jpg",
+     "title": "Koi pond from above",
+     "alt": "The koi pond seen from above: rockwork, plants and the wooden footbridge crossing the water."
+    }
    ]
   ]
  }

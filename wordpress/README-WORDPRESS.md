@@ -24,10 +24,10 @@ across all 97 pages, because Theme Builder renders exactly one copy of each.
 | `header.html` | skip link, SVG sprite, loader, header, menu, transition panels | Theme Builder → Header |
 | `chat.html` | the floating chat widget | Theme Builder → Footer |
 | `pages/*.html` | 27 page bodies | one HTML widget per page |
-| `products/*.html` | 69 SKU bodies | reference only — WooCommerce renders these |
+| `products/*.html` | 241 SKU bodies (69 glass, 172 acrylic) | reference only — WooCommerce renders these |
 | `plugins/acrylic-pros-content.zip` | CSS, JS, fonts, CPTs, the footer, and the one-button site builder | Plugins → Add New → Upload |
-| `products.csv` | 69 products | WooCommerce → Products → Import |
-| `media/` | 549 images and videos, flat (`media-upload.zip` is the same, zipped) | Media Library, bulk upload |
+| `products.csv` | 241 products (69 glass, 172 acrylic from Advanced Acrylics) | WooCommerce → Products → Import |
+| `media/` | ~3,200 images and videos, flat (`media-upload.zip` is the same, zipped, ~165 MB) | Media Library, bulk upload |
 | `tests/check.py` | the static checks | run before every deploy |
 
 ---
@@ -82,6 +82,28 @@ an example:
    - `/videos/`
    - the homepage.
 
+### 22 Sept 2026 update: the acrylic shop
+
+The Acrylic Tanks page now lists Advanced Acrylics' catalogue: 172 products
+and 721 photos, pulled by `tools/fetch_acrylic.py` with their permission. On
+an existing install:
+
+1. Rebuild the CSV with the install's URL:
+   `python tools/build_products_csv.py --site-url https://YOUR-URL`.
+2. Rebuild WordPress with `python tools/build_wordpress.py --media-since <commit>`.
+3. Upload `media-update.zip` (about 2,600 files, 60 MB). Every acrylic photo
+   has to be in the Media Library **before** the product import, because the
+   importer matches images by URL.
+4. Install the plugin and run **Build the site**, as in the section above.
+5. Go to **WooCommerce → Products → Import** with `products.csv`, and tick
+   **Update existing products**. The 69 glass tanks update in place and the
+   172 acrylic products are created.
+
+   WooCommerce names each product URL after the product name, and the static
+   build uses the same slugs, so the links on `/acrylic-tanks/` land on them.
+   Each product imports with its lowest price. All its options and prices are
+   in the description, because the build has no cart.
+
 ## Install, in order
 
 The order matters in two places, both flagged below.
@@ -115,7 +137,7 @@ hundred at a time; it is a flat folder with no duplicate filenames.
 |---|---|
 | Elementor + Elementor Pro | Theme Builder and the HTML widgets |
 | `acrylic-pros-content.zip` | the design and the content types — see below |
-| WooCommerce | the 69 products |
+| WooCommerce | the 241 products |
 | Contact Form 7 | **later phase** — the forms are not wired yet |
 | Yoast SEO | titles, descriptions, sitemap |
 

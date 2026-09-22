@@ -268,6 +268,7 @@ safe to write approximate values and let the tool correct them.
 | scratch-15 | scratch-16 | Cylinder tank with rock column |
 | scratch-13 | scratch-14 | **Full tank — water and rockwork still in place** |
 | scratch-19 | scratch-20 | Tapered cylinder |
+| scratch-21 | scratch-22 | Acrylic cube with coral rock column on white cabinet (client, 22 Sept; also the homepage promo) |
 
 Process / standalone shots: `scratch-03`, `04`, `05` (one build sequence),
 `scratch-08` (technician polishing a taped curved tank), `scratch-11`

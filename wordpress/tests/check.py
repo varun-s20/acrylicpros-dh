@@ -222,6 +222,9 @@ def main():
     forbidden = DEFAULT_FORBIDDEN + (cfg.get("forbidden") or [])
     known = set(cfg.get("slugs") or [])
     known |= {"/" + p.stem + "/" for p in pages} | {"/"}
+    # Every generated product body is a real /product/<slug>/ once imported;
+    # the config list only ever named the 69 glass tanks.
+    known |= {"/product/" + p.stem + "/" for p in (build / "products").glob("*.html")}
     chrome_text = {}
 
     for path in pages:

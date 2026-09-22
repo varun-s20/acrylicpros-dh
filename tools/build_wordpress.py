@@ -994,7 +994,10 @@ def build_media_update(since: str) -> None:
 
     used = "".join(
         f.read_text(encoding="utf-8", errors="ignore")
-        for f in [*(OUT / "pages").glob("*.html"), OUT / "header.html",
+        # products/ and products.csv too: the acrylic product photos are only
+        # referenced there (WooCommerce imports them from the CSV).
+        for f in [*(OUT / "pages").glob("*.html"), *(OUT / "products").glob("*.html"),
+                  OUT / "products.csv", OUT / "header.html",
                   OUT / "chat.html", PLUGIN / "templates" / "footer.php",
                   *(PLUGIN / "assets").glob("*.css"), *(PLUGIN / "assets").glob("*.js")]
         if f.exists())

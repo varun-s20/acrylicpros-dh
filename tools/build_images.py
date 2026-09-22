@@ -23,6 +23,7 @@ WIDTHS = {
     "images/hero":            [768, 1280, 1920],
     "images/gallery":         [480, 800, 1400],
     "images/featured":        [600, 1000, 1600],
+    "images/acrylic":         [400, 800],   # Advanced Acrylics catalogue (tools/fetch_acrylic.py)
     "images/scratch-removal": [600, 1000, 1600],
     "images/fabrication":     [600, 1000, 1600],
     "images/pond":            [600, 1000, 1600],
