@@ -46,11 +46,16 @@ LABELS = {
     "fabrication": "Fabrication",
 }
 
+# The title is the button's aria-label, not a visually hidden span. A span
+# relies on .sr-only to clip it, so for the one card above the fold it painted
+# as a full-size heading over the photo until the stylesheet arrived -- the
+# flash reported on 23 Sept. An attribute cannot flash.
 CARD = """      <article class="o-referenceGrid__item" data-card data-category="%(category)s">
         <div class="m-referenceCard -photo">
           <div class="m-referenceCard__link">
-            <h2><button class="m-referenceCard__open" type="button" data-open
-                data-full="%(src)s" data-title="%(title)s" data-alt="%(alt)s"><span class="sr-only">%(title)s</span></button></h2>
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="%(src)s" data-title="%(title)s" data-alt="%(alt)s"
+                aria-label="%(title)s"></button>
           </div>
           <picture>
             <source type="image/webp"
@@ -98,7 +103,7 @@ PHOTO = """      <div class="m-projectTile" data-card style="--a:%(a).4f">
 
 VIDEO = """      <div class="m-projectTile -video" style="--a:%(a).4f">
         <video class="m-projectTile__image" muted loop playsinline preload="none" width="%(w)d" height="%(h)d"
-               poster="%(poster)s" data-lazy-src="%(video)s" aria-label="%(alt)s"></video>
+               data-poster="%(poster)s" data-lazy-src="%(video)s" aria-label="%(alt)s"></video>
       </div>"""
 
 

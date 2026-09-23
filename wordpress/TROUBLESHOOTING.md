@@ -249,6 +249,13 @@ atomically in one operation, with no folder-merge ambiguity.
   "restore" rules to the top of `home.css`, for the footer background, footer
   phone/email underline, video covers, contact button shadow and hairlines.
 
+**Also `iframe { max-width: 100% }` (fixed 23 Sept):** the homepage koi band
+sizes its YouTube player at 200-300% of the frame and scales it back down, so
+YouTube's own title bar and logo fall outside the crop. Elementor's clamp cut
+the player to the frame width before the scale, which left the video playing
+small and centred in the middle of the band. The restore block now carries
+`.b-video__ambient iframe { max-width: none }`.
+
 **If a new one appears,** find the winning rule in DevTools. If it comes from
 `elementor/assets/css/frontend.min.css`, add the element and only the property
 it takes to that restore block, at one class plus the tag.

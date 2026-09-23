@@ -230,7 +230,14 @@ def build_acrylic_catalogue(entry_for):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from fetch_acrylic import GROUPS
     labels = dict(GROUPS)
-    items = json.load(io.open(ACRYLIC_PRODUCTS, encoding="utf-8"))
+    # Products with no photo in Advanced Acrylics' own store are left out: a
+    # blank tile reads as a broken image (client, 22 Sept). They stay in the
+    # JSON and reappear once the store has a photo and fetch_acrylic reruns.
+    items = [it for it in json.load(io.open(ACRYLIC_PRODUCTS, encoding="utf-8")) if it["images"]]
+    for stale in (os.path.join(OUT_DIR, it["slug"] + ".html")
+                  for it in json.load(io.open(ACRYLIC_PRODUCTS, encoding="utf-8")) if not it["images"]):
+        if os.path.isfile(stale):
+            os.remove(stale)
 
     def price_text(it):
         if not it["price_from"]:

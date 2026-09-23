@@ -88,8 +88,11 @@
   var heroVideo = $('[data-hero] video[data-autoplay], [data-page-hero] video[data-autoplay]');
   if (heroVideo) {
     var portrait = window.matchMedia('(orientation: portrait)').matches;
-    if (portrait) heroVideo.poster = heroVideo.getAttribute('data-poster-mobile');
     if (reduced) {
+      // Client, 23 Sept: no still over a video that is about to play. The
+      // poster is set only here, where the video never starts.
+      heroVideo.poster = heroVideo.getAttribute(
+        portrait ? 'data-poster-mobile' : 'data-poster-desktop') || '';
       heroVideo.removeAttribute('autoplay');
     } else {
       heroVideo.src = heroVideo.getAttribute(portrait ? 'data-src-mobile' : 'data-src-desktop');
@@ -392,7 +395,9 @@
       if (mediaLoaded || reduced) return;
       mediaLoaded = true;
       $$('video[data-src]', menu).forEach(function (v) {
-        if (v === smoke || finePointer) v.src = v.getAttribute('data-src');
+        if (v !== smoke && !finePointer) return;
+        v.src = v.getAttribute('data-src');
+        var p = v.play(); if (p) p.catch(function () {});
       });
     };
 
@@ -770,41 +775,22 @@
     var pRoot = products.root;
     var pViewport = $('[data-slider-viewport]', pRoot);
     var dragger = $('[data-dragger]', pRoot);
-    var hoverable = true;
-    var currentCard = null;
-
-    var setVideo = function (card, on) {
-      var video = $('video[data-src]', card);
-      if (!video) return;
-      var fig = video.parentNode;
-      raf(function () {
-        fig.classList.toggle('-hover', on);
-        if (on) {
-          if (!video.getAttribute('src')) {
-            video.src = video.getAttribute('data-src');
-            video.addEventListener('loadeddata', function () {
-              if (fig.classList.contains('-hover')) video.play().catch(function () {});
-            });
-          } else {
-            var p = video.play(); if (p) p.catch(function () {});
-          }
-        } else {
-          video.pause();
-        }
-      });
-    };
-    var leaveCard = function () { if (currentCard) { setVideo(currentCard, false); currentCard = null; } };
-
-    products.api.onDragStart = function () { hoverable = false; leaveCard(); };
-    products.api.onDragEnd = function () { hoverable = true; };
-
-    if (finePointer && !reduced) {
-      pRoot.addEventListener('mouseover', function (e) {
-        var card = e.target.closest ? e.target.closest('[data-products]') : null;
-        if (!card || !hoverable) { leaveCard(); return; }
-        if (card !== currentCard) { leaveCard(); currentCard = card; setVideo(card, true); }
-      });
-      pRoot.addEventListener('mouseleave', leaveCard);
+    // Client, 23 Sept: a card's video plays from the moment it is on screen.
+    // It used to wait for hover, so a touch visitor never saw it and a mouse
+    // visitor only ever saw the one card they were pointing at.
+    if (!reduced) {
+      var cardIO = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var v = entry.target;
+          if (!entry.isIntersecting) { if (v.getAttribute('src')) v.pause(); return; }
+          v.parentNode.classList.add('-hover'); // fades it over the still
+          // play() is what starts the download: these carry preload="none",
+          // so setting src alone fetches nothing.
+          if (!v.getAttribute('src')) v.src = v.getAttribute('data-src');
+          var pr = v.play(); if (pr) pr.catch(function () {});
+        });
+      }, { rootMargin: '200px 0px' });
+      $$('video[data-src]', pRoot).forEach(function (v) { cardIO.observe(v); });
     }
 
     if (finePointer && dragger) {
@@ -988,10 +974,12 @@
     var frame = document.createElement('iframe');
     var reveal = 0;
     var playing = false;
+    var duration = 0;
+    var looping = false;
     var inView = false;
-    var send = function (func) {
+    var send = function (func, args) {
       if (frame.contentWindow) {
-        frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: [] }), '*');
+        frame.contentWindow.postMessage(JSON.stringify({ event: 'command', func: func, args: args || [] }), '*');
       }
     };
     frame.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(id) +
@@ -1010,15 +998,33 @@
       var state = data.event === 'onStateChange' ? data.info
         : (data.info && typeof data.info.playerState === 'number' ? data.info.playerState : null);
       // Client, 22 Sept: YouTube shows its prev/pause/next buttons for about a
-      // second whenever playback (re)starts, even with controls=0. So the
-      // player only fades in once it has been playing for 4s, and drops back
-      // to the still under it whenever it stops, buffers or loops.
+      // second whenever playback (re)starts, even with controls=0, and there is
+      // no still over the frame to hide them (client: "let the video play
+      // only"). So playback starts 1500px before the band is on screen (the
+      // observer below), the player fades in 2s after it starts -- the buttons
+      // are gone by then -- and it fades through dark across the loop (below).
       // YouTube re-reports "playing" several times a second, so the timer is
       // started once per play and only cleared when playback really stops.
+      // YouTube sends the duration once and the time every ~0.5s after that.
+      var info = data.info || {};
+      if (info.duration) duration = info.duration;
+      // The loop restart flashes the buttons like the first start does (a seek
+      // shows them for longer still), so the loop is a fade through the band's
+      // dark: fade out just before the end, and the restart's "playing" below
+      // fades it back in once they have gone. The timeout is a fallback in
+      // case YouTube loops without reporting a state change.
+      if (duration > 3 && info.currentTime > duration - 1 && !looping) {
+        looping = true;
+        box.classList.remove('-ready');
+        setTimeout(function () { if (looping && playing) { looping = false; box.classList.add('-ready'); } }, 8000);
+      }
       if (state !== null) playing = state === 1;
-      if (state === 1 && !inView) { send('pauseVideo'); return; } // autoplay started it off screen
+      if (state === 1 && !inView) { send('pauseVideo'); return; } // autoplay started it too early
       if (state === 1) {
-        if (!reveal) reveal = setTimeout(function () { box.classList.add('-ready'); }, 4000);
+        // buttons last ~1s on the first start, ~3.5s on a loop restart
+        if (!reveal) reveal = setTimeout(function () { looping = false; box.classList.add('-ready'); }, looping ? 4200 : 2000);
+      } else if (state === 3) {
+        // buffering mid-play: keep showing the frame
       } else if (state !== null) {
         clearTimeout(reveal);
         reveal = 0;
@@ -1032,16 +1038,16 @@
       if (inView) send('playVideo');
     });
     mount.appendChild(frame);
-    // Play only while on screen. Off screen it is always paused: Chrome
-    // throttles hidden iframes, and a player left running there flashes its
-    // buttons when it scrolls back in. playVideo is sent only to a stopped
-    // player; sent to a playing one, YouTube flashes its buttons without
-    // reporting any state change.
+    // Play only while on or near the screen (1500px ahead, so it is already
+    // playing when it scrolls in). Far away it is paused: Chrome throttles
+    // hidden iframes, and a player left running there flashes its buttons when
+    // it scrolls back in. playVideo is sent only to a stopped player; sent to a
+    // playing one, YouTube flashes its buttons without reporting any state change.
     new IntersectionObserver(function (entries) {
       inView = entries[0].isIntersecting;
       if (!inView) send('pauseVideo');
       else if (!playing) send('playVideo');
-    }).observe(box);
+    }, { rootMargin: '1500px 0px' }).observe(box);
   });
 
   /* ------------------------------------------------------------------

@@ -14734,6 +14734,160 @@
    }
   ]
  },
+ "images/cards/card-custom-builds.jpg": {
+  "h": 1400,
+  "src": "assets/images/cards/card-custom-builds.jpg",
+  "w": 1050,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/cards/card-custom-builds-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/cards/card-custom-builds-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1400,
+    "path": "assets/images/cards/card-custom-builds-1050.webp",
+    "w": 1050
+   }
+  ]
+ },
+ "images/cards/card-maintenance.jpg": {
+  "h": 1400,
+  "src": "assets/images/cards/card-maintenance.jpg",
+  "w": 1050,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/cards/card-maintenance-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/cards/card-maintenance-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1400,
+    "path": "assets/images/cards/card-maintenance-1050.webp",
+    "w": 1050
+   }
+  ]
+ },
+ "images/cards/card-pond.jpg": {
+  "h": 1024,
+  "src": "assets/images/cards/card-pond.jpg",
+  "w": 1027,
+  "webp": [
+   {
+    "h": 479,
+    "path": "assets/images/cards/card-pond-480.webp",
+    "w": 480
+   },
+   {
+    "h": 798,
+    "path": "assets/images/cards/card-pond-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1024,
+    "path": "assets/images/cards/card-pond-1027.webp",
+    "w": 1027
+   }
+  ]
+ },
+ "images/cards/card-pool-panels.jpg": {
+  "h": 788,
+  "src": "assets/images/cards/card-pool-panels.jpg",
+  "w": 1400,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/cards/card-pool-panels-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/cards/card-pool-panels-800.webp",
+    "w": 800
+   },
+   {
+    "h": 788,
+    "path": "assets/images/cards/card-pool-panels-1400.webp",
+    "w": 1400
+   }
+  ]
+ },
+ "images/cards/card-relocations.jpg": {
+  "h": 1400,
+  "src": "assets/images/cards/card-relocations.jpg",
+  "w": 1050,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/cards/card-relocations-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/cards/card-relocations-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1400,
+    "path": "assets/images/cards/card-relocations-1050.webp",
+    "w": 1050
+   }
+  ]
+ },
+ "images/cards/card-sharks.jpg": {
+  "h": 1400,
+  "src": "assets/images/cards/card-sharks.jpg",
+  "w": 891,
+  "webp": [
+   {
+    "h": 754,
+    "path": "assets/images/cards/card-sharks-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1257,
+    "path": "assets/images/cards/card-sharks-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1400,
+    "path": "assets/images/cards/card-sharks-891.webp",
+    "w": 891
+   }
+  ]
+ },
+ "images/cards/card-stingrays.jpg": {
+  "h": 1281,
+  "src": "assets/images/cards/card-stingrays.jpg",
+  "w": 816,
+  "webp": [
+   {
+    "h": 754,
+    "path": "assets/images/cards/card-stingrays-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1256,
+    "path": "assets/images/cards/card-stingrays-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1281,
+    "path": "assets/images/cards/card-stingrays-816.webp",
+    "w": 816
+   }
+  ]
+ },
  "images/fabrication/cad-renders.jpg": {
   "h": 768,
   "src": "assets/images/fabrication/cad-renders.jpg",
@@ -15948,6 +16102,165 @@
     "h": 1600,
     "path": "assets/images/gallery/project-38-1200.webp",
     "w": 1200
+   }
+  ]
+ },
+ "images/gallery/project-39.jpeg": {
+  "h": 1600,
+  "src": "assets/images/gallery/project-39.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-39-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/gallery/project-39-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/gallery/project-39-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/gallery/project-40.jpeg": {
+  "h": 1280,
+  "src": "assets/images/gallery/project-40.jpeg",
+  "w": 954,
+  "webp": [
+   {
+    "h": 644,
+    "path": "assets/images/gallery/project-40-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1073,
+    "path": "assets/images/gallery/project-40-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1280,
+    "path": "assets/images/gallery/project-40-954.webp",
+    "w": 954
+   }
+  ]
+ },
+ "images/gallery/project-41.jpeg": {
+  "h": 840,
+  "src": "assets/images/gallery/project-41.jpeg",
+  "w": 1123,
+  "webp": [
+   {
+    "h": 359,
+    "path": "assets/images/gallery/project-41-480.webp",
+    "w": 480
+   },
+   {
+    "h": 598,
+    "path": "assets/images/gallery/project-41-800.webp",
+    "w": 800
+   },
+   {
+    "h": 840,
+    "path": "assets/images/gallery/project-41-1123.webp",
+    "w": 1123
+   }
+  ]
+ },
+ "images/gallery/project-42.jpeg": {
+  "h": 1600,
+  "src": "assets/images/gallery/project-42.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-42-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/gallery/project-42-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/gallery/project-42-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/gallery/project-43.jpeg": {
+  "h": 1600,
+  "src": "assets/images/gallery/project-43.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-43-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/gallery/project-43-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/gallery/project-43-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/gallery/project-44.jpeg": {
+  "h": 1600,
+  "src": "assets/images/gallery/project-44.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/gallery/project-44-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/gallery/project-44-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/gallery/project-44-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/gallery/project-45.jpeg": {
+  "h": 1200,
+  "src": "assets/images/gallery/project-45.jpeg",
+  "w": 1600,
+  "webp": [
+   {
+    "h": 360,
+    "path": "assets/images/gallery/project-45-480.webp",
+    "w": 480
+   },
+   {
+    "h": 600,
+    "path": "assets/images/gallery/project-45-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1050,
+    "path": "assets/images/gallery/project-45-1400.webp",
+    "w": 1400
+   },
+   {
+    "h": 1200,
+    "path": "assets/images/gallery/project-45-1600.webp",
+    "w": 1600
    }
   ]
  },
@@ -17360,6 +17673,94 @@
    }
   ]
  },
+ "images/scratch-removal/scratch-23.jpeg": {
+  "h": 1200,
+  "src": "assets/images/scratch-removal/scratch-23.jpeg",
+  "w": 1600,
+  "webp": [
+   {
+    "h": 450,
+    "path": "assets/images/scratch-removal/scratch-23-600.webp",
+    "w": 600
+   },
+   {
+    "h": 750,
+    "path": "assets/images/scratch-removal/scratch-23-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1200,
+    "path": "assets/images/scratch-removal/scratch-23-1600.webp",
+    "w": 1600
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-24.jpeg": {
+  "h": 1600,
+  "src": "assets/images/scratch-removal/scratch-24.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/scratch-removal/scratch-24-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/scratch-removal/scratch-24-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/scratch-removal/scratch-24-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-25.jpeg": {
+  "h": 1600,
+  "src": "assets/images/scratch-removal/scratch-25.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/scratch-removal/scratch-25-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/scratch-removal/scratch-25-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/scratch-removal/scratch-25-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
+ "images/scratch-removal/scratch-26.jpeg": {
+  "h": 1600,
+  "src": "assets/images/scratch-removal/scratch-26.jpeg",
+  "w": 1200,
+  "webp": [
+   {
+    "h": 800,
+    "path": "assets/images/scratch-removal/scratch-26-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1333,
+    "path": "assets/images/scratch-removal/scratch-26-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1600,
+    "path": "assets/images/scratch-removal/scratch-26-1200.webp",
+    "w": 1200
+   }
+  ]
+ },
  "images/video-thumbs/-Zy5pNRdqUo.jpg": {
   "h": 720,
   "src": "assets/images/video-thumbs/-Zy5pNRdqUo.jpg",
@@ -17513,6 +17914,23 @@
     "h": 480,
     "path": "assets/images/video-thumbs/q6UxS0Tbc2o-640.webp",
     "w": 640
+   }
+  ]
+ },
+ "images/video-thumbs/scratch-reel.jpg": {
+  "h": 1280,
+  "src": "assets/images/video-thumbs/scratch-reel.jpg",
+  "w": 720,
+  "webp": [
+   {
+    "h": 853,
+    "path": "assets/images/video-thumbs/scratch-reel-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1280,
+    "path": "assets/images/video-thumbs/scratch-reel-720.webp",
+    "w": 720
    }
   ]
  },

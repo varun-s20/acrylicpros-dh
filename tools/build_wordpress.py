@@ -6,7 +6,8 @@ Reads the built HTML in the repo root and emits wordpress/ :
     header.html                 Elementor Theme Builder -> Header
     chat.html                   Elementor Theme Builder -> Footer
     pages/<slug>.html           one Elementor HTML widget per page
-    products/<slug>.html        the 69 SKU pages
+    products/<slug>.html        one body per SKU; also copied into the
+                                 plugin, which renders them as the product page
     media/                      every image, flat, ready to bulk-upload
     plugins/acrylic-pros-content/assets/home.css, pages.css, legacy.css,
                                  lenis.min.js, pages.js, home.js, main.js, fonts, video
@@ -140,6 +141,25 @@ def extract(html: str, slug: str) -> Extracted:
 
 PAGE_SLUGS: set[str] = set()
 PRODUCT_SLUGS: set[str] = set()
+# static slug -> the slug WordPress will give that product. WooCommerce names a
+# product URL after the product name, and for all but a handful the two agree.
+# Where they do not -- "BETA TANK SYSTEM 34x13x59" writes its dimensions with x
+# in the slug and with the multiplication sign in the name, which sanitize_title
+# strips -- the link has to point at WordPress's answer, not ours.
+WOO_SLUGS: dict[str, str] = {}
+
+
+def load_woo_slugs() -> None:
+    import json
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from fetch_acrylic import sanitize_title
+
+    for name in ("products.json", "acrylic-products.json"):
+        f = ROOT / "data" / name
+        if not f.exists():
+            continue
+        for item in json.loads(f.read_text(encoding="utf-8")):
+            WOO_SLUGS[item["slug"]] = sanitize_title(item["name"])
 
 
 def rewrite(markup: str) -> str:
@@ -156,7 +176,7 @@ def rewrite(markup: str) -> str:
     def page_link(m: re.Match) -> str:
         attr, folder, slug, tail = m.group(1), m.group(2), m.group(3), m.group(4) or ""
         if folder or slug in PRODUCT_SLUGS:
-            return f'{attr}="/product/{slug}/{tail}"'
+            return f'{attr}="/product/{WOO_SLUGS.get(slug, slug)}/{tail}"'
         if slug == "index":
             return f'{attr}="/{tail}"'
         if slug not in PAGE_SLUGS:
@@ -699,6 +719,11 @@ body :where(.o-header, .o-footer, #main, .m-chat, .o-menu)
    overrides still apply. The values mirror home.css / styles.css; found by
    diffing every page with Elementor's element rules removed (21 Sept). */
 img.o-footer__background, img.b-video__cover, img.b-video__still { height: 100%; }
+/* Elementor also clamps embeds: `.elementor iframe { max-width: 100% }`. The
+   ambient band's player is deliberately 200-300% wide and scaled back down so
+   YouTube's chrome falls outside the frame, so the clamp left the koi video
+   playing at half size in the middle of the band (client, 23 Sept). */
+.b-video__ambient iframe { max-width: none; }
 a.o-footer__tel, a.o-footer__mail { text-decoration-line: underline; }
 a.a-buttonContact { box-shadow: 0 8px 10px #0c0a0900; }
 hr.hairline { background: var(--border); }
@@ -1048,10 +1073,15 @@ def main() -> int:
 
     PAGE_SLUGS.update(p.stem for p in ROOT.glob("*.html"))
     PRODUCT_SLUGS.update(p.stem for p in products)
+    load_woo_slugs()
 
     OUT.mkdir(exist_ok=True)
     (OUT / "pages").mkdir(exist_ok=True)
     (OUT / "products").mkdir(exist_ok=True)
+    # A product dropped from the static build must not linger here.
+    for old in (OUT / "products").glob("*.html"):
+        if old.stem not in PRODUCT_SLUGS:
+            old.unlink()
 
     chrome_seen: dict[str, str] = {}
     footer_seen: dict[str, str] = {}
@@ -1080,6 +1110,18 @@ def main() -> int:
         handle(p, OUT / "pages")
     for p in products:
         handle(p, OUT / "products", "product/")
+
+    # The same bodies ship inside the plugin: WooCommerce renders a shop layout
+    # the site does not use, and inc/woocommerce.php routes every product it
+    # finds a file for to templates/single-product.php instead.
+    pdata = PLUGIN / "data" / "products"
+    pdata.mkdir(parents=True, exist_ok=True)
+    kept = {WOO_SLUGS.get(s, s) for s in PRODUCT_SLUGS}
+    for old_body in pdata.glob("*.html"):
+        if old_body.stem not in kept:
+            old_body.unlink()
+    for f in (OUT / "products").glob("*.html"):
+        shutil.copy2(f, pdata / (WOO_SLUGS.get(f.stem, f.stem) + ".html"))
 
     # The whole point of Theme Builder is one copy of the chrome. If the
     # prototype's chrome is not already identical everywhere, pasting it once

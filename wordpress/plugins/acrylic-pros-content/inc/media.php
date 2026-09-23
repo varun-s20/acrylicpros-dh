@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 
 /** How many files to process per click. Metadata generation resizes images,
  *  which is the slow part — small batches keep this under any host's timeout. */
-const AP_MEDIA_BATCH = 40;
+const AP_MEDIA_BATCH = 150;
 
 add_action( 'admin_menu', function () {
 	add_management_page(
@@ -53,6 +53,17 @@ function ap_unregistered_files() : array {
 	$allowed = [ 'jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm' ];
 	$out = [];
 
+	// Every registered filename in one query. Asking per file meant thousands
+	// of queries per page load with a catalogue this size, which is half of
+	// why registering timed out (client, 23 Sept).
+	global $wpdb;
+	$known = [];
+	foreach ( (array) $wpdb->get_col(
+		"SELECT meta_value FROM {$wpdb->postmeta} WHERE meta_key = '_wp_attached_file'"
+	) as $file ) {
+		$known[ basename( $file ) ] = true;
+	}
+
 	foreach ( (array) glob( $base . '*.*' ) as $path ) {
 		if ( ! is_file( $path ) ) {
 			continue;
@@ -64,7 +75,7 @@ function ap_unregistered_files() : array {
 		}
 		// WordPress stores the path relative to the uploads dir, so for a flat
 		// upload that is just the filename.
-		if ( ap_attachment_by_filename( $name ) ) {
+		if ( isset( $known[ $name ] ) ) {
 			continue;
 		}
 		$out[] = $name;
@@ -219,7 +230,7 @@ function ap_media_page() : void {
 	}
 
 	if ( isset( $_POST['ap_media'] ) && check_admin_referer( 'ap_media' ) ) {
-		$r    = ap_register_media( AP_MEDIA_BATCH );
+		$r    = ap_register_media( AP_MEDIA_BATCH, ! empty( $_POST['ap_thumbs'] ) );
 		$auto = ! empty( $_POST['ap_auto'] );
 
 		printf(
@@ -246,6 +257,9 @@ function ap_media_page() : void {
 			wp_nonce_field( 'ap_media' );
 			echo '<input type="hidden" name="ap_media" value="1">';
 			echo '<input type="hidden" name="ap_auto" value="1">';
+			if ( ! empty( $_POST['ap_thumbs'] ) ) {
+				echo '<input type="hidden" name="ap_thumbs" value="1">';
+			}
 			echo '</form>';
 			echo '<script>setTimeout(function(){document.getElementById("ap-auto-form").submit();}, 400);</script>';
 		} elseif ( $auto && $r['remaining'] > 0 ) {
@@ -294,8 +308,18 @@ function ap_media_page() : void {
 
 /**
  * Create attachment posts for up to $limit unregistered files.
+ *
+ * No thumbnails by default. WordPress would rebuild every registered size for
+ * each file -- with WooCommerce installed that is eight or more resizes per
+ * image -- and on shared hosting a batch of those runs past nginx's 60s and
+ * comes back as a 504 (client, 23 Sept). Nothing here needs them: the pages
+ * reference the original files by URL, and WordPress falls back to the full
+ * size wherever a thumbnail is missing. Pass $thumbs to generate them anyway.
+ *
+ * The batch also stops on a time budget, so a slow host cannot time a request
+ * out however big the files are.
  */
-function ap_register_media( int $limit ) : array {
+function ap_register_media( int $limit, bool $thumbs = false, float $budget = 15.0 ) : array {
 	require_once ABSPATH . 'wp-admin/includes/image.php';
 
 	$dir  = wp_get_upload_dir();
@@ -304,8 +328,9 @@ function ap_register_media( int $limit ) : array {
 	$pending = ap_unregistered_files();
 	$batch   = array_slice( $pending, 0, $limit );
 
-	$done   = 0;
-	$errors = [];
+	$done    = 0;
+	$errors  = [];
+	$started = microtime( true );
 
 	foreach ( $batch as $name ) {
 		$path = $base . $name;
@@ -329,10 +354,23 @@ function ap_register_media( int $limit ) : array {
 			continue;
 		}
 
-		// Thumbnails and srcset. Videos have no metadata worth generating, and
-		// attempting it on a 300MB file is how this times out.
+		// Videos have no metadata worth generating, and attempting it on a
+		// large file is how this times out.
 		if ( 0 === strpos( $type['type'], 'image/' ) ) {
-			$meta = wp_generate_attachment_metadata( $id, $path );
+			if ( $thumbs ) {
+				$meta = wp_generate_attachment_metadata( $id, $path );
+			} else {
+				// Just the dimensions: enough for the Media Library, the
+				// importers and WooCommerce, with no resizing at all.
+				$size = @getimagesize( $path );
+				$meta = [
+					'file'       => $name,
+					'width'      => $size ? (int) $size[0] : 0,
+					'height'     => $size ? (int) $size[1] : 0,
+					'sizes'      => [],
+					'image_meta' => [],
+				];
+			}
 			if ( $meta ) {
 				wp_update_attachment_metadata( $id, $meta );
 			}
@@ -341,6 +379,10 @@ function ap_register_media( int $limit ) : array {
 		}
 
 		$done++;
+
+		if ( microtime( true ) - $started > $budget ) {
+			break; // hand the rest to the next request
+		}
 	}
 
 	return [

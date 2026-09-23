@@ -24,9 +24,9 @@ across all 97 pages, because Theme Builder renders exactly one copy of each.
 | `header.html` | skip link, SVG sprite, loader, header, menu, transition panels | Theme Builder → Header |
 | `chat.html` | the floating chat widget | Theme Builder → Footer |
 | `pages/*.html` | 27 page bodies | one HTML widget per page |
-| `products/*.html` | 241 SKU bodies (69 glass, 172 acrylic) | reference only — WooCommerce renders these |
+| `products/*.html` | 237 SKU bodies (69 glass, 168 acrylic) | ship inside the plugin; `templates/single-product.php` renders them |
 | `plugins/acrylic-pros-content.zip` | CSS, JS, fonts, CPTs, the footer, and the one-button site builder | Plugins → Add New → Upload |
-| `products.csv` | 241 products (69 glass, 172 acrylic from Advanced Acrylics) | WooCommerce → Products → Import |
+| `products.csv` | 237 products (69 glass, 168 acrylic from Advanced Acrylics) | WooCommerce → Products → Import |
 | `media/` | ~3,200 images and videos, flat (`media-upload.zip` is the same, zipped, ~165 MB) | Media Library, bulk upload |
 | `tests/check.py` | the static checks | run before every deploy |
 
@@ -95,9 +95,11 @@ an existing install:
    has to be in the Media Library **before** the product import, because the
    importer matches images by URL.
 4. Install the plugin and run **Build the site**, as in the section above.
-5. Go to **WooCommerce → Products → Import** with `products.csv`, and tick
-   **Update existing products**. The 69 glass tanks update in place and the
-   172 acrylic products are created.
+5. Go to **WooCommerce → Products → Import** with `products.csv`. Tick
+   **Update existing products** only if this install already has products —
+   with it ticked, a row with no existing match is skipped ("No matching
+   product exists to update"), so a first import with the box on imports
+   nothing at all.
 
    WooCommerce names each product URL after the product name, and the static
    build uses the same slugs, so the links on `/acrylic-tanks/` land on them.
@@ -137,7 +139,7 @@ hundred at a time; it is a flat folder with no duplicate filenames.
 |---|---|
 | Elementor + Elementor Pro | Theme Builder and the HTML widgets |
 | `acrylic-pros-content.zip` | the design and the content types — see below |
-| WooCommerce | the 241 products |
+| WooCommerce | the 237 products |
 | Contact Form 7 | **later phase** — the forms are not wired yet |
 | Yoast SEO | titles, descriptions, sitemap |
 
@@ -274,7 +276,18 @@ generated grids:
 
 ### 8. Products
 
-**WooCommerce → Products → Import**, and feed it `products.csv`.
+**Install WooCommerce first** (Plugins → Add New → search "WooCommerce" →
+Install → Activate). Then:
+
+1. **Skip the setup wizard** — no address, tax, shipping or payments are needed
+   this phase.
+2. **Settings → Permalinks → Product permalinks → Default**, which reads
+   `/product/sample-product/`. Every product link in the build is
+   `/product/<slug>/`, so any other option 404s all 237 of them.
+3. WooCommerce creates Cart, Checkout and My account pages. Leave them: the
+   plugin redirects all three to the quote form.
+
+**Then WooCommerce → Products → Import**, and feed it `products.csv`.
 
 Regenerate the CSV first with the install's real URL:
 
@@ -290,6 +303,33 @@ Library instead of downloading 69 of them. Nothing it imports carries a domain.
 payment gateway. The products import as a published catalogue whose call to
 action is the quote form, which is what the static site does today. Checkout is
 a later phase — see `CONVERSION-PLAN.md` §1.
+
+`inc/woocommerce.php` keeps it a catalogue, and does nothing until WooCommerce
+is active:
+
+- **Nothing is purchasable** (`woocommerce_is_purchasable` is false), so no
+  add-to-cart button is printed anywhere. Prices still show.
+- **"Request a quote" and the phone** take its place on every product page,
+  prefilled with the product name (`?tank=…`, plus `&kind=acrylic` for anything
+  under the Acrylic tanks category), as the designed pages do.
+- **Cart, checkout and account redirect** to `/quote/`.
+- **Reviews are removed** and the cart-fragments request is dequeued.
+- An acrylic product highlights **Acrylic tanks** in the menu and carries the
+  `t-acrylic` shell; a glass one highlights Glass tanks.
+
+**Product pages are the designed page, not WooCommerce's layout.** The same
+body in `products/<slug>.html` ships inside the plugin, and
+`templates/single-product.php` prints it: the page banner and breadcrumb, the
+`o-tank` grid, the spec accordions, the trust list and the sibling tanks. It is
+matched on the product's slug, falling back to its SKU, so a product added by
+hand in wp-admin — which has no body here — still gets WooCommerce's own
+template. Re-run `tools/build_wordpress.py` and re-upload the plugin after any
+change to a product page.
+
+**Thumbnails.** Tools → Acrylic Pros media registers files without generating
+WordPress's image sizes, so WooCommerce falls back to the full file (every
+catalogue photo is at most 1200px). If a plugin ever insists on real thumbnail
+sizes, tick the box on that screen and run it again.
 
 ---
 

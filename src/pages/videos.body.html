@@ -49,15 +49,26 @@ nav: videos
         </div>
         <!-- The client's own film, self-hosted (not YouTube), so it sits
              outside the card grid that WordPress's [ap_videos] replaces. -->
-        <div class="m-film" data-film>
-          <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
-                 poster="assets/images/video-thumbs/scratch-removal-film-1280.webp"
-                 src="assets/video/scratch-removal-web.mp4"></video>
-          <button class="m-film__play" type="button" data-film-play>
-            <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
-            <span class="tx-ctasmall -txupp -tx600">Play film</span>
-            <span class="sr-only">: Scratch removal specialist</span>
-          </button>
+        <!-- Client, 22 Sept: the film and the before/after reel (IMG_2548) side by side -->
+        <div class="m-filmPair">
+          <div class="m-film" data-film>
+            <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
+                   poster="assets/images/video-thumbs/scratch-removal-film-1280.webp"
+                   src="assets/video/scratch-removal-web.mp4"></video>
+            <button class="m-film__play" type="button" data-film-play>
+              <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
+              <span class="tx-ctasmall -txupp -tx600">Play film</span>
+              <span class="sr-only">: Scratch removal specialist</span>
+            </button>
+          </div>
+          <figure class="m-reel">
+            <video class="m-reel__video" muted loop playsinline preload="none" width="720" height="1280"
+                   poster="assets/images/video-thumbs/scratch-reel.jpg" data-lazy-src="assets/video/scratch-reel.mp4"
+                   aria-label="Scratch removal before and after: a clouded acrylic aquarium polished back to crystal clear"></video>
+            <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+              <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            </button>
+          </figure>
         </div>
         <div class="o-videoLibrary__grid">
         <article class="m-videoCard -featured">
@@ -193,7 +204,9 @@ nav: videos
         <article class="m-videoCard">
           <div class="m-videoCard__player b-video" data-yt="8P91EpgaeNA" data-yt-title="Amazing Koi Pond Done by Acrylic Pros">
             <div class="b-video__placeholder">
-              <picture><source type="image/webp" srcset="assets/images/video-thumbs/8P91EpgaeNA-480.webp 480w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__cover" src="assets/images/video-thumbs/8P91EpgaeNA.jpg" alt="" width="480" height="360" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/images/pond/pond-2-600.webp 600w,
+                              assets/images/pond/pond-2-1000.webp 1000w,
+                              assets/images/pond/pond-2-1024.webp 1024w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__cover" src="assets/images/pond/pond-2.jpg" alt="" width="1024" height="768" loading="lazy" decoding="async"></picture>
               <button class="b-video__playButton" type="button" data-yt-play>
                 <svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg>
                 <span class="tx-ctasmall -txupp -tx600">Play</span>
@@ -210,8 +223,9 @@ nav: videos
         <article class="m-videoCard">
           <div class="m-videoCard__player b-video -external">
             <div class="b-video__placeholder">
-              <picture><source type="image/webp" srcset="assets/images/video-thumbs/q6UxS0Tbc2o-480.webp 480w,
-                              assets/images/video-thumbs/q6UxS0Tbc2o-640.webp 640w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__cover" src="assets/images/video-thumbs/q6UxS0Tbc2o.jpg" alt="" width="640" height="480" loading="lazy" decoding="async"></picture>
+              <picture><source type="image/webp" srcset="assets/images/pond/pond-1-600.webp 600w,
+                              assets/images/pond/pond-1-1000.webp 1000w,
+                              assets/images/pond/pond-1-1024.webp 1024w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__cover" src="assets/images/pond/pond-1.jpg" alt="" width="1024" height="768" loading="lazy" decoding="async"></picture>
               <a class="b-video__playButton" href="https://www.youtube.com/watch?v=q6UxS0Tbc2o" target="_blank" rel="noopener">
                 <svg class="a-svg" aria-hidden="true"><use href="#i-youtube"/></svg>
                 <span class="tx-ctasmall -txupp -tx600">Watch on YouTube</span>
@@ -247,7 +261,7 @@ nav: videos
   <span class="o-prefooter__symbol" aria-hidden="true"></span>
   <div class="row">
     <div class="o-prefooter__logo">
-      <img src="assets/images/brand/logo-stacked-white.png" alt="Acrylic Pros" width="356" height="245" loading="lazy" decoding="async">
+      <picture><source type="image/webp" srcset="assets/images/brand/logo-2026-400.webp 400w, assets/images/brand/logo-2026-800.webp 800w" sizes="28rem"><img src="assets/images/brand/logo-2026.png" alt="Acrylic Pros" width="2070" height="534" loading="lazy" decoding="async"></picture>
     </div>
     <h2 class="tx-h3 o-prefooter__title" id="estimate-title">Request a<br><strong>free estimate</strong></h2>
     <div class="o-prefooter__contentWrapper">

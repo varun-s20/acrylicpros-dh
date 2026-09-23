@@ -1745,19 +1745,18 @@ html:not(.js) .m-film__play { display: none; }
 @media (prefers-reduced-motion: reduce) { .m-film__icon::after { animation: none; opacity: 0; } }
 @media (min-width: 1025px) { .m-film__icon { width: 11.2rem; height: 11.2rem; } }
 .o-featured__chapter.-film .m-film { box-shadow: 0 4rem 8rem -3rem rgba(0, 0, 0, .8); }
-.o-videoLibrary .m-film { margin-bottom: 2.4rem; }
+.o-videoLibrary .m-film, .o-videoLibrary .m-filmPair { margin-bottom: 2.4rem; }
+.o-videoLibrary .m-filmPair .m-film { margin-bottom: 0; }
 
 /* =====================================================================
    ACRYLIC TANKS (21 Sept) — Glass Tanks' layout; tiles and cards are
    photographs rather than cut-outs, and the table is the four steps.
    ===================================================================== */
-.m-rangeTile.-photo { padding: .8rem .8rem 1.6rem; }
-.m-rangeTile.-photo .m-rangeTile__media { overflow: hidden; aspect-ratio: 4 / 5; border-radius: 1rem; }
+.m-rangeTile.-photo .m-rangeTile__media { overflow: hidden; border-radius: 1rem; } /* square, as on Glass Tanks */
 .m-rangeTile.-photo .m-rangeTile__media img { object-fit: cover; mix-blend-mode: normal; transition: transform .8s var(--ease); }
 @media (hover: hover) and (any-pointer: fine) {
   .m-rangeTile.-photo:hover .m-rangeTile__media img { transform: scale(1.05); }
 }
-@media (min-width: 1025px) { .t-acrylic .o-shopRanges__list { grid-template-columns: repeat(5, 1fr); } }
 
 .o-shopSteps { display: grid; gap: 3.2rem; }
 .o-shopSteps li { display: grid; gap: 1rem; align-content: start; padding-top: 2.4rem; border-top: .1rem solid rgba(255, 255, 255, .16); }
@@ -1768,7 +1767,11 @@ html:not(.js) .m-film__play { display: none; }
 @media (min-width: 1025px) { .o-shopSteps { grid-template-columns: repeat(4, 1fr); gap: 4rem; } }
 
 /* ---- acrylic catalogue (client, 22 Sept: Advanced Acrylics' products) ---- */
-@media (min-width: 1025px) { .t-acrylic .o-shopRanges__list { grid-template-columns: repeat(4, 1fr); } }
+/* client, 22 Sept: tiles the size of Glass Tanks' (9 there, 8 groups here) */
+@media (min-width: 1025px) {
+  /* Glass Tanks' exact column width (a ninth of the row), the 8 centred */
+  .t-acrylic .o-shopRanges__list { grid-template-columns: repeat(8, calc((100% - 8 * 1.2rem) / 9)); justify-content: center; }
+}
 /* no photo in the source store: a branded placeholder, not a broken image */
 .m-tankCard__media.-empty { background: var(--clrnavy); }
 .m-tankCard__media.-empty::after {
@@ -1815,3 +1818,124 @@ html:not(.js) .m-film__play { display: none; }
 .m-gallery__thumb.-active, .m-gallery__thumb:hover { opacity: 1; }
 .m-gallery__thumb.-active { outline-color: var(--clrgold); }
 .o-tank__media.-gallery .m-gallery__thumb img { position: static; width: 100%; height: 100%; padding: 0; object-fit: cover; mix-blend-mode: normal; }
+
+/* ---- before/after reel (client, 22 Sept: IMG_2548, portrait) ---- */
+.m-reel {
+  position: relative;
+  overflow: hidden;
+  width: 100%; max-width: 42rem;
+  margin: 0 auto;
+  aspect-ratio: 9 / 16;
+  border-radius: 1.6rem;
+  background-color: #000;
+}
+.m-reel__video { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* the landscape scratch film and the portrait reel side by side: flex-grow
+   in the ratio of their aspect ratios gives both one height, no cropping */
+.m-filmPair { display: grid; gap: 1.6rem; width: 100%; }
+.m-filmPair .m-reel { max-width: 34rem; }
+@media (min-width: 1025px) {
+  .m-filmPair { display: flex; gap: 2rem; align-items: flex-start; }
+  .m-filmPair .m-film { flex: 1.7778 1 0; min-width: 0; }
+  .m-filmPair .m-reel { flex: .5625 1 0; min-width: 0; max-width: none; margin: 0; }
+}
+
+/* =====================================================================
+   ABOUT PAGE LAYOUT
+   Client, 23 Sept: "the whole about page design is good but the layout is
+   not ... text left and image right and everything is not properly formed."
+
+   The Aquatique template placed every image with a negative margin and a
+   percentage offset, so each section was a column of text on the left with
+   a tall image floating beside it and several hundred pixels of empty
+   background wherever the two columns did not happen to end together.
+
+   This replaces those placements, on the About page only, with one grid per
+   section and one spacing scale (4.8 / 8 / 12rem). Nothing moves on any
+   other page: every rule below is scoped to .t-about, which only about.html
+   carries, and the section classes are shared with the service pages.
+   ===================================================================== */
+@media (min-width: 1025px) {
+  /* --- About Acrylic Pros: intro and quote left, photo alongside them --- */
+  .t-about .o-universeAbout__wrapper {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: 6.4rem;
+    align-items: start;
+  }
+  .t-about .o-universeAbout__wrapper > .a-sectionTitle { grid-area: 1 / 1 / 2 / -1; }
+  /* 61.5% of the old full-width wrapper; inside the grid column that is a
+     30-character line, so both the intro and the quote take the column. */
+  .t-about .o-universeAbout__intro,
+  .t-about .o-universeAbout .m-textScroll__content { width: 100%; }
+  .t-about .o-universeAbout__intro { grid-area: 2 / 1 / 3 / 2; margin: 0; }
+  /* was: position absolute, top 18.3rem, right 0 */
+  .t-about .o-universeAbout__firstImage {
+    position: static;
+    grid-area: 2 / 2 / 4 / 3;
+    width: 100%; margin: 0;
+    align-self: center;
+  }
+  .t-about .o-universeAbout .m-textScroll { grid-area: 3 / 1 / 4 / 2; margin-top: 4.8rem; }
+  .t-about .o-universeAbout__imagePair { grid-area: 4 / 1 / 5 / -1; margin-top: 8rem; }
+  .t-about .o-universeAbout__quote {
+    grid-area: 5 / 1 / 6 / -1;
+    width: 100%; max-width: 30ch;
+    margin-top: 8rem;
+  }
+  .t-about .o-universeAbout__footer { margin-top: 10rem; padding: 20rem 0 16rem; }
+
+  /* --- What we offer --- */
+  .t-about .o-universeVision { padding: 10rem 0 16rem; }
+  .t-about .o-universeVision__subtitle { width: 100%; max-width: 28ch; margin-bottom: 4.8rem; }
+  .t-about .o-universeVision .b-twoColumns { width: 100%; margin-bottom: 8rem; }
+  .t-about .o-universeVision__visual { width: 100%; margin: 0 0 8rem; }
+  /* the text and its photo were top-aligned, so a short paragraph left a
+     column of background as tall as the photo beside it */
+  .t-about .o-universeVision__textImage .b-twoColumns { align-items: center; margin-bottom: 0; }
+  .t-about .o-universeVision__textImage .a-image img { aspect-ratio: 4 / 3; object-fit: cover; }
+  .t-about .o-universeVision__contact { width: 100%; margin-top: 8rem; }
+
+  /* --- Our services: rows sized by their own content --- */
+  .t-about .o-universeResponsability { padding: 8rem 0 10rem; }
+  .t-about .o-universeResponsability__introduction { width: 100%; max-width: 60ch; margin: 0 0 6.4rem; }
+  .t-about .o-universeResponsability__visual { width: 100%; margin-bottom: 8rem; }
+  .t-about .o-universeResponsability__section {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 6.4rem;
+    width: 100%;
+  }
+  .t-about .o-universeResponsability__section:not(:last-child) { margin-bottom: 4.8rem; padding-bottom: 4.8rem; }
+
+  /* --- Acrylic Pros clients: one three-up grid, no stagger --- */
+  .t-about .o-universeTeam__subtitle { width: 100%; max-width: 46ch; }
+  .t-about .o-universeTeam__gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.4rem;
+    margin: 4.8rem 0 8rem;
+  }
+  .t-about .o-universeTeam__gallery > .a-image { width: 100%; margin: 0; }
+  .t-about .o-universeTeam .m-textScroll { width: 100%; margin-bottom: 8rem; padding-top: 6.4rem; }
+  .t-about .o-universeTeam .m-textScroll__content { width: 100%; max-width: 46ch; }
+  .t-about .o-universeTeam__members { width: 100%; margin-bottom: 8rem; }
+}
+
+/* The clients section used to open with a full-height photograph, so the
+   cloud edge that hands over from the white section above it had a picture to
+   sit on. With the photograph gone (23 Sept) the cloud fell across "Acrylic
+   Pros is ready to service any call". The cloud is cloud.png at its natural
+   380px, so it is scaled down here as the footer band already does, and the
+   section starts below it. */
+.t-about .o-universeTeam { padding-top: 12rem; }
+.t-about .o-universeTeam > .a-cloud.-top { background-size: 150% min(12rem, 20%); }
+@media (min-width: 1025px) { .t-about .o-universeTeam { padding-top: 18rem; } }
+
+/* The gallery reads as a lead line and then its photographs at every width,
+   rather than a caption wedged between the second and third image. */
+.t-about .o-universeTeam__galleryText { order: -1; grid-column: 1 / -1; width: 100%; max-width: 60ch; margin: 0; }
+.t-about .o-universeTeam__gallery > .a-image img {
+  width: 100%; height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.t-about .o-universeTeam__galleryThirdImage { width: 100%; margin-left: 0; }

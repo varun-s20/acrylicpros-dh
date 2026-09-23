@@ -79,9 +79,12 @@ with sync_playwright() as p:
     pg.wait_for_timeout(900)
     check("reset restores the first batch",
           pg.eval_on_selector_all("[data-card].-active", "els => els.length") == 19)
-    # Live gallery has 35 photos: one "Load more" (+20) reaches the end.
-    pg.click("[data-references-more]")
-    pg.wait_for_timeout(400)
+    # "Load more" adds 20 at a time; click until the end, however many photos.
+    for _ in range((total - 19 + 19) // 20):
+        if not pg.is_visible("[data-references-more]"):
+            break
+        pg.click("[data-references-more]")
+        pg.wait_for_timeout(400)
     check("last page hides the button",
           pg.eval_on_selector_all("[data-card].-active", "els => els.length") == total
           and not pg.is_visible("[data-references-more]"))

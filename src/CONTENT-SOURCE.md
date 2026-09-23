@@ -269,6 +269,8 @@ safe to write approximate values and let the tool correct them.
 | scratch-13 | scratch-14 | **Full tank — water and rockwork still in place** |
 | scratch-19 | scratch-20 | Tapered cylinder |
 | scratch-21 | scratch-22 | Acrylic cube with coral rock column on white cabinet (client, 22 Sept; also the homepage promo) |
+| scratch-23 | scratch-24 | In-wall aquarium, dark wood cabinetry side (client, 22 Sept) |
+| scratch-25 | scratch-26 | Same in-wall aquarium, lounge side (client, 22 Sept) |
 
 Process / standalone shots: `scratch-03`, `04`, `05` (one build sequence),
 `scratch-08` (technician polishing a taped curved tank), `scratch-11`
@@ -310,6 +312,11 @@ emergency call-out · dedicated maintenance photography
 | 8P91EpgaeNA | AMAZING KOI POND DONE BY ACRYLIC PROS |
 | q6UxS0Tbc2o | OUR VERSION OF A KOI POND – check it out! |
 | _Xb7Pd0_cWc | KOI POND DESIGN BY ACRYLIC PROS |
+
+> `8P91EpgaeNA` and `q6UxS0Tbc2o` are old uploads: YouTube holds nothing better
+> than 480x360 and 640x480 for them, so their cards carry our own pond
+> photographs (`assets/images/pond/pond-2.jpg`, `pond-1.jpg`) instead of the
+> YouTube still. Every other card still uses the video's own 1280x720 still.
 
 > The live homepage also embeds `tgbNymZ7vqY`, which resolves to The Muppets'
 > "Bohemian Rhapsody" — a leftover template placeholder. **Never reproduce it.**

@@ -1237,7 +1237,8 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
    mobile column, 2.27cqi the 37.5% column it gets from 1025 up. */
 .o-prefooter__title { font-size: min(5.2rem, 6.1cqi); }
 .o-prefooter__logo { display: flex; width: 100%; margin-bottom: 7.5rem; }
-.o-prefooter__logo img { width: 17.7rem; margin: 0 auto; }
+.o-prefooter__logo picture { width: min(100%, 28rem); margin: 0 auto; } /* full-colour wordmark, 3.9:1 (client, 22 Sept) */
+.o-prefooter__logo img { width: 100%; height: auto; }
 .o-prefooter__title { width: 100%; margin-bottom: 3.75rem; }
 .o-prefooter__contentWrapper { display: flex; flex-direction: column; align-items: center; width: 100%; }
 .o-prefooter__description { margin-bottom: 4.5rem; }
@@ -1941,18 +1942,26 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 
 /* ==== ROUND 8 (client, 22 Sept) ==== */
 /* Full-colour logo (brand/logo-2026, cut out of the client's black-backed PNG
-   by luminance). Client, 22 Sept: the same logo on dark and light bands -- no
-   navy silhouette variant. The file is wider than the old logo (3.9:1), so the
-   box widens to keep the same visual weight. */
-.o-header__logoMark,
-.-dark .o-header__logoMark {
+   by luminance) on dark bands. Client, 22 Sept (round 3): the navy version is
+   back on light bands -- the logo's shape as a mask, filled with currentColor
+   (navy), since its white tagline vanishes on white. The file is wider than
+   the old logo (3.9:1), so the box widens to keep the same visual weight. */
+.o-header__logoMark {
   background: url("../images/brand/logo-2026-800.webp") center .9rem / contain no-repeat;
   -webkit-mask: none;
   mask: none;
 }
+.-dark .o-header__logoMark {
+  background: currentColor;
+  -webkit-mask: url("../images/brand/logo-2026-800.webp") center .9rem / contain no-repeat;
+  mask: url("../images/brand/logo-2026-800.webp") center .9rem / contain no-repeat;
+}
 @media (min-width: 641px) {
-  .o-header__logoMark,
-  .-dark .o-header__logoMark { width: 21rem; background-position: center .4rem; background-size: 21rem auto; }
+  .o-header__logoMark { width: 21rem; background-position: center .4rem; background-size: 21rem auto; }
+  .-dark .o-header__logoMark {
+    -webkit-mask-position: center .4rem; mask-position: center .4rem;
+    -webkit-mask-size: 21rem auto; mask-size: 21rem auto;
+  }
 }
 
 /* Homepage video band (client, 22 Sept, round 2). It continues the navy
@@ -1968,12 +1977,11 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
    frame, whose own letterbox already hides the bars top and bottom. */
 .t-home__film { padding: 6rem 0 8rem; background-color: var(--clrdarkblue); color: #fff; } /* the builds grid's own colour: one dark block */
 .o-homeFilm__head {
-  display: grid; gap: 1.6rem 4rem; justify-items: center;
+  display: grid; gap: 1.6rem; justify-items: center;
   width: 100%; margin-bottom: 3.2rem;
   text-align: center;
 }
-.o-homeFilm__intro { display: grid; gap: 1.2rem; justify-items: center; color: rgba(255, 255, 255, .75); }
-.o-homeFilm__intro .a-link { color: var(--clrgolddark); }
+.o-homeFilm__head .a-link { color: var(--clrgolddark); }
 .t-home__film .b-video.-ambient {
   width: 100%;
   border-radius: 1.6rem;
@@ -1987,6 +1995,9 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   aspect-ratio: 16 / 9;
   transform: translate(-50%, -50%) scale(.4533);
 }
+/* No still over the video (client, 22 Sept): the still is only for visitors
+   who asked for reduced motion, for whom the video never plays. */
+@media (prefers-reduced-motion: no-preference) { .t-home__film .b-video__still { display: none; } }
 .t-home__film + .t-home__footer { position: relative; margin-top: -3.2rem; border-radius: 3.2rem 3.2rem 0 0; }
 /* the builds grid's photo tiles fade out into the film section instead of
    stopping on a hard line */
@@ -1999,8 +2010,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 }
 @media (min-width: 1025px) {
   .t-home__film { padding: 10rem 0 12rem; }
-  .o-homeFilm__head { grid-template-columns: 1fr auto; align-items: end; justify-items: start; margin-bottom: 4.8rem; text-align: left; }
-  .o-homeFilm__intro { justify-items: end; text-align: right; }
+  .o-homeFilm__head { justify-items: start; margin-bottom: 4.8rem; text-align: left; }
   .t-home__film .b-video.-ambient { aspect-ratio: 21 / 9; border-radius: 2.4rem; }
   .t-home__film .b-video__ambient iframe { width: 200%; transform: translate(-50%, -50%) scale(.56); }
 }

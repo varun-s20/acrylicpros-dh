@@ -110,6 +110,7 @@ def main() -> int:
         # the static slugs the same way, so the links on /acrylic-tanks/ land.
         acrylic_file = ROOT / "data" / "acrylic-products.json"
         acrylic = json.loads(acrylic_file.read_text(encoding="utf-8")) if acrylic_file.exists() else []
+        acrylic = [a for a in acrylic if a["images"]]  # as on the static shop: no photo, not listed
         if acrylic:
             sys.path.insert(0, str(Path(__file__).resolve().parent))
             from fetch_acrylic import GROUPS
@@ -125,6 +126,17 @@ def main() -> int:
                 f"Acrylic tanks > {labels[a['group']]}",
                 ", ".join(f"{base}/wp-content/uploads/{Path(i).name}" for i in a["images"]),
             ])
+
+    # WooCommerce derives each URL from the Name, and the plugin finds a
+    # product's designed body by that same slug. A name that does not sanitise
+    # to its slug therefore breaks both the links on /glass-tanks/ and the page
+    # design, silently, so it is worth a line of arithmetic here.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from fetch_acrylic import sanitize_title
+    drift = [p["name"] for p in products if sanitize_title(p["name"]) != p["slug"]]
+    if drift:
+        print(f"  warning: {len(drift)} names do not sanitise to their slug, so "
+              f"WooCommerce will give them a different URL: {drift[:3]}")
 
     print(f"wrote {OUT.relative_to(ROOT)} — {len(products)} glass + {len(acrylic)} acrylic products")
     unknown = {p["range"] for p in products} - set(RANGES)

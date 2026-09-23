@@ -184,7 +184,12 @@ function ap_current_shell() : array {
 	}
 
 	if ( function_exists( 'is_singular' ) && is_singular( 'product' ) ) {
-		return [ ap_product_body_class(), 'glass-tanks' ];
+		// An acrylic tank highlights Acrylic tanks in the menu, and carries the
+		// t-acrylic shell its cards and tiles are styled by.
+		$acrylic = function_exists( 'ap_wc_is_acrylic' ) && ap_wc_is_acrylic( get_queried_object_id() );
+		return $acrylic
+			? [ ap_product_body_class() . ' t-acrylic', 'acrylic-tanks' ]
+			: [ ap_product_body_class(), 'glass-tanks' ];
 	}
 
 	if ( function_exists( 'is_post_type_archive' )

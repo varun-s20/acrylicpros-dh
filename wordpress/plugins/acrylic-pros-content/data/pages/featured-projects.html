@@ -52,15 +52,26 @@
           <a class="a-link tx-cta" href="/scratch-removal/">Scratch removal</a>
         </div>
       </div>
-      <div class="m-film" data-film data-scroll>
-        <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
-               poster="/wp-content/uploads/scratch-removal-film-1280.webp"
-               src="/wp-content/uploads/scratch-removal-web.mp4"></video>
-        <button class="m-film__play" type="button" data-film-play>
-          <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
-          <span class="tx-ctasmall -txupp -tx600">Play film</span>
-          <span class="sr-only">: Scratch removal specialist</span>
-        </button>
+      <!-- Client, 22 Sept: the film and the before/after reel (IMG_2548) side by side -->
+      <div class="m-filmPair" data-scroll>
+        <div class="m-film" data-film>
+          <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
+                 poster="/wp-content/uploads/scratch-removal-film-1280.webp"
+                 src="/wp-content/uploads/scratch-removal-web.mp4"></video>
+          <button class="m-film__play" type="button" data-film-play>
+            <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
+            <span class="tx-ctasmall -txupp -tx600">Play film</span>
+            <span class="sr-only">: Scratch removal specialist</span>
+          </button>
+        </div>
+        <figure class="m-reel">
+          <video class="m-reel__video" muted loop playsinline preload="none" width="720" height="1280"
+                 data-poster="/wp-content/uploads/scratch-reel.jpg" data-lazy-src="/wp-content/uploads/scratch-reel.mp4"
+                 aria-label="Scratch removal before and after: a clouded acrylic aquarium polished back to crystal clear"></video>
+          <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+            <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </button>
+        </figure>
       </div>
     </div>
   </section>
@@ -319,7 +330,7 @@
   <span class="o-prefooter__symbol" aria-hidden="true"></span>
   <div class="row">
     <div class="o-prefooter__logo">
-      <img src="/wp-content/uploads/logo-stacked-white.png" alt="Acrylic Pros" width="356" height="245" loading="lazy" decoding="async">
+      <picture><source type="image/webp" srcset="/wp-content/uploads/logo-2026-400.webp 400w, /wp-content/uploads/logo-2026-800.webp 800w" sizes="28rem"><img src="/wp-content/uploads/logo-2026.png" alt="Acrylic Pros" width="2070" height="534" loading="lazy" decoding="async"></picture>
     </div>
     <h2 class="tx-h3 o-prefooter__title" id="estimate-title">Request a<br><strong>free estimate</strong></h2>
     <div class="o-prefooter__contentWrapper">

@@ -375,7 +375,10 @@
   /* ------------------------------------------------------------------
      Lazy background videos (only fetched once near the viewport)
      ------------------------------------------------------------------ */
-  if (!reduced) {
+  if (reduced) {
+    // The video never plays here, so the still is all there is to show.
+    $$('video[data-poster]').forEach(function (v) { v.poster = v.getAttribute('data-poster'); });
+  } else {
     var lazyVideoIO = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         var v = entry.target;
@@ -388,6 +391,26 @@
       });
     }, { rootMargin: '200px 0px' });
     $$('video[data-lazy-src]').forEach(function (v) { lazyVideoIO.observe(v); });
+  }
+
+  /* ------------------------------------------------------------------
+     Card videos: loaded and played while the card is on screen, paused
+     when it leaves so a long page is not decoding a dozen of them at once.
+     ------------------------------------------------------------------ */
+  function cardVideos(root) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var v = entry.target;
+        if (!entry.isIntersecting) { if (v.getAttribute('src')) v.pause(); return; }
+        v.parentNode.classList.add('-hover'); // the class that fades it over the still
+        // play() before the file has loaded is what starts the download:
+        // these carry preload="none", so setting src alone fetches nothing
+        // and waiting for loadeddata waits forever.
+        if (!v.getAttribute('src')) v.src = v.getAttribute('data-src');
+        play(v);
+      });
+    }, { rootMargin: '200px 0px' });
+    $$('video[data-src]', root).forEach(function (v) { io.observe(v); });
   }
 
   /* ------------------------------------------------------------------
@@ -475,35 +498,11 @@
       if (next) next.focus({ preventScroll: true });
     });
 
-    if (finePointer && !reduced) {
-      var currentCard = null;
-      var setVideo = function (card, on) {
-        var video = $('video[data-src]', card);
-        if (!video) return;
-        var fig = video.parentNode;
-        raf(function () {
-          fig.classList.toggle('-hover', on);
-          if (!on) { video.pause(); return; }
-          if (!video.getAttribute('src')) {
-            video.src = video.getAttribute('data-src');
-            video.addEventListener('loadeddata', function () {
-              if (fig.classList.contains('-hover')) play(video);
-            });
-          } else {
-            play(video);
-          }
-        });
-      };
-      productsGrid.addEventListener('mouseover', function (e) {
-        var card = e.target.closest('[data-products]');
-        if (card === currentCard) return;
-        if (currentCard) setVideo(currentCard, false);
-        currentCard = card;
-        if (card) setVideo(card, true);
-      });
-      productsGrid.addEventListener('mouseleave', function () {
-        if (currentCard) { setVideo(currentCard, false); currentCard = null; }
-      });
+    // Client, 23 Sept: a card's video plays from the moment it is on screen.
+    // It used to wait for hover, which meant a touch visitor never saw it at
+    // all and a mouse visitor only saw the card they were pointing at.
+    if (!reduced) {
+      cardVideos(productsGrid);
     }
   }
 
