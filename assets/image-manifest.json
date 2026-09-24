@@ -16963,6 +16963,28 @@
    }
   ]
  },
+ "images/pond/pool-panel-1.jpg": {
+  "h": 727,
+  "src": "assets/images/pond/pool-panel-1.jpg",
+  "w": 1320,
+  "webp": [
+   {
+    "h": 330,
+    "path": "assets/images/pond/pool-panel-1-600.webp",
+    "w": 600
+   },
+   {
+    "h": 551,
+    "path": "assets/images/pond/pool-panel-1-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 727,
+    "path": "assets/images/pond/pool-panel-1-1320.webp",
+    "w": 1320
+   }
+  ]
+ },
  "images/products/120-GAL-48X24X24-STARPHIRE-GLASS-TANK-BLACK-WOOD-STAND-s-watermark.png": {
   "h": 800,
   "src": "assets/images/products/120-GAL-48X24X24-STARPHIRE-GLASS-TANK-BLACK-WOOD-STAND-s-watermark.png",
@@ -17914,6 +17936,23 @@
     "h": 480,
     "path": "assets/images/video-thumbs/q6UxS0Tbc2o-640.webp",
     "w": 640
+   }
+  ]
+ },
+ "images/video-thumbs/scratch-promo.jpg": {
+  "h": 1280,
+  "src": "assets/images/video-thumbs/scratch-promo.jpg",
+  "w": 720,
+  "webp": [
+   {
+    "h": 853,
+    "path": "assets/images/video-thumbs/scratch-promo-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1280,
+    "path": "assets/images/video-thumbs/scratch-promo-720.webp",
+    "w": 720
    }
   ]
  },

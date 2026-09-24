@@ -26,7 +26,7 @@
 <meta name="twitter:title" content="Got Scratches? We Can Help! — Acrylic Pros">
 <meta name="twitter:description" content="Acrylic Pros — restoring scratched acrylic to crystal-clear perfection.">
 <meta name="twitter:image" content="https://acrylicpros.com/assets/images/scratch-removal/scratch-02.jpeg">
-<link rel="preload" as="image" href="assets/images/headers/scratch-removal-header-1280.webp" type="image/webp" media="(min-width: 641px)" fetchpriority="high"><link rel="preload" as="image" href="assets/images/headers/scratch-removal-header-768.webp" type="image/webp" media="(max-width: 640px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/video-thumbs/scratch-removal-film-1280.webp" type="image/webp" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/plus-jakarta-sans-latin-normal.woff2" crossorigin>
 
 <link rel="stylesheet" href="assets/home/home.css">
@@ -256,10 +256,10 @@
          in that case. One file for both breakpoints: there is no mobile cut of
          acrylic-overview, and home.js requires both attributes. -->
     <video muted loop playsinline autoplay preload="metadata"
-           data-poster-desktop="assets/images/headers/scratch-removal-header-1280.webp"
-           data-poster-mobile="assets/images/headers/scratch-removal-header-768.webp"
-           data-src-desktop="assets/video/acrylic-overview.mp4"
-           data-src-mobile="assets/video/acrylic-overview.mp4"
+           data-poster-desktop="assets/images/video-thumbs/scratch-removal-film-1280.webp"
+           data-poster-mobile="assets/images/video-thumbs/scratch-removal-film-1280.webp"
+           data-src-desktop="assets/video/scratch-removal-web.mp4"
+           data-src-mobile="assets/video/scratch-removal-web.mp4"
            data-autoplay data-inview-play></video>
   </div>
   <div class="m-pageBanner__inner">
@@ -333,16 +333,17 @@
 <section class="section section--deep section--compact">
   <div class="container">
     <div class="split split--offset split--media-first">
-      <figure data-reveal-media>
-        <div class="media media--3-4">
-          <picture>
-            <source type="image/webp" srcset="assets/images/scratch-removal/scratch-13-540.webp 540w"
-                    sizes="(min-width: 62rem) 42vw, 92vw">
-            <img src="assets/images/scratch-removal/scratch-13.jpeg"
-                 alt="A technician polishing an aquarium panel while the tank remains full of water, sand and rockwork."
-                 width="540" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
+      <!-- Client, 24 Sept: the narrated reel makes this claim out loud, so it
+           takes the slot the scratch-13 still held. That photo is unchanged in
+           the before/after grid further down, so nothing is lost. Muted loop;
+           the toggle turns the narration on. pages.js lazy-loads it. -->
+      <figure class="m-reel" data-reveal-media>
+        <video class="m-reel__video" muted loop playsinline preload="none" width="720" height="1280"
+               data-poster="assets/images/video-thumbs/scratch-promo.jpg" data-lazy-src="assets/video/scratch-removal-promo.mp4"
+               aria-label="Acrylic Pros restoring a scratched aquarium panel, with the tank still full"></video>
+        <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+          <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
       </figure>
 
       <div class="stack" data-reveal>
@@ -780,19 +781,6 @@
       </figure>
 
 
-      <figure>
-        <div class="media media--3-4">
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/scratch-removal/scratch-12-600.webp 600w,
-                              assets/images/scratch-removal/scratch-12-960.webp 960w"
-                    sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
-            <img src="assets/images/scratch-removal/scratch-12.jpeg"
-                 alt="An empty acrylic aquarium with dark green trim and clear panels."
-                 width="960" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </figure>
     </div>
   </div>
 </section>
@@ -855,7 +843,7 @@
   <!-- Client, 21 Sept: the film's own audio, off by default (browsers only
        autoplay muted); the button turns it on and off. pages.js. -->
   <figure class="o-universeAbout__footerImage">
-    <video muted loop playsinline preload="none" data-poster="assets/images/video-thumbs/scratch-removal-film-1280.webp" data-lazy-src="assets/video/scratch-removal-web.mp4" aria-label="Scratch removal specialist"></video>
+    <video muted loop playsinline preload="none" data-poster="assets/images/headers/scratch-removal-header-1280.webp" data-lazy-src="assets/video/acrylic-overview.mp4" aria-label="An acrylic aquarium overview"></video>
     <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
       <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
     </button>
@@ -1078,7 +1066,7 @@
   </div>
 
   <div class="row o-footer__lower">
-    <p class="o-footer__credit tx-pxsmall">&copy;2026 - Acrylic Pros - All rights reserved</p>
+    <p class="o-footer__credit tx-pxsmall">&copy;2026 - Acrylic Pros - All rights reserved<br><a class="a-link" href="https://digitalheroesco.com/" target="_blank" rel="noopener">Created with love by Digital Heroes</a></p>
     <ul class="o-footer__socials">
       <li><a class="o-footer__social -instagram" href="https://www.instagram.com/acrylic_pros_corp/" target="_blank" rel="noopener"><svg class="a-svg" aria-hidden="true"><use href="#i-instagram"/></svg><span class="tx-cta">Instagram</span></a></li>
       <li><a class="o-footer__social -facebook" href="https://www.facebook.com/acrylicpros1" target="_blank" rel="noopener"><svg class="a-svg" aria-hidden="true"><use href="#i-facebook"/></svg><span class="tx-cta">Facebook</span></a></li>
