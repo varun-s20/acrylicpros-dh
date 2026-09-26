@@ -222,9 +222,12 @@ def main():
     forbidden = DEFAULT_FORBIDDEN + (cfg.get("forbidden") or [])
     known = set(cfg.get("slugs") or [])
     known |= {"/" + p.stem + "/" for p in pages} | {"/"}
-    # Every generated product body is a real /product/<slug>/ once imported;
-    # the config list only ever named the 69 glass tanks.
-    known |= {"/product/" + p.stem + "/" for p in (build / "products").glob("*.html")}
+    # Every generated product body is a real product once imported; the config
+    # list only ever named the 69 glass tanks. Its URL is the one WordPress
+    # makes from its name, which the plugin's copy of the body is named after --
+    # not always products/<static slug> (3/4" is "3-4" there, "34" here).
+    plugin_products = build / "plugins" / "acrylic-pros-content" / "data" / "products"
+    known |= {"/product/" + p.stem + "/" for p in plugin_products.glob("*.html")}
     chrome_text = {}
 
     for path in pages:

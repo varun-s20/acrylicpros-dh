@@ -142,10 +142,10 @@ def extract(html: str, slug: str) -> Extracted:
 PAGE_SLUGS: set[str] = set()
 PRODUCT_SLUGS: set[str] = set()
 # static slug -> the slug WordPress will give that product. WooCommerce names a
-# product URL after the product name, and for all but a handful the two agree.
-# Where they do not -- "BETA TANK SYSTEM 34x13x59" writes its dimensions with x
-# in the slug and with the multiplication sign in the name, which sanitize_title
-# strips -- the link has to point at WordPress's answer, not ours.
+# product URL after the product name, and the two often differ: WordPress makes
+# 3/4" into "3-4" where the static slug has "34", and the multiplication sign
+# in "BETA TANK SYSTEM 34×13×59" into x. The link has to point at WordPress's
+# answer, not ours.
 WOO_SLUGS: dict[str, str] = {}
 
 

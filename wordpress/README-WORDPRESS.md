@@ -101,10 +101,36 @@ an existing install:
    product exists to update"), so a first import with the box on imports
    nothing at all.
 
-   WooCommerce names each product URL after the product name, and the static
-   build uses the same slugs, so the links on `/acrylic-tanks/` land on them.
+   WooCommerce names each product URL after the product name, and the build
+   links to that URL (`WOO_SLUGS` in `tools/build_wordpress.py`).
    Each product imports with its lowest price. All its options and prices are
    in the description, because the build has no cart.
+
+### 26 Sept 2026 update: broken acrylic links, branded photos hidden (plugin 1.5.0)
+
+- **Links:** 57 acrylic products (every name with a fraction such as 3/4",
+  or a slash) and the Beta Tank linked to a URL WordPress never made, so they
+  404ed. The links now use WordPress's own URL. The plugin also 301s the old
+  URLs to the product. The Beta Tank page also gets its designed layout back.
+- **Hidden:** the 55 products in `data/acrylic-hidden.json`, whose photos show
+  another company's branding (Advanced Acrylics, Oceans Aquarium, Makrolon),
+  are off `/acrylic-tanks/` and the sibling links, and `products.csv` marks
+  them Private.
+- **Category:** "Cube, nano & pico" had been imported as two categories,
+  "Cube" and "nano & pico". The CSV now escapes the comma.
+
+No new media. On the live install:
+
+1. Upload `plugins/acrylic-pros-content.zip` → **Replace current with uploaded**.
+2. **Tools → Acrylic Pros setup → Build the site.**
+3. **WooCommerce → Products → Import** `products.csv` with **Update existing
+   products** ticked.
+4. **Products → Categories:** delete the now-empty "Cube" and "nano & pico".
+5. **Settings → General:** Site Title is still "WordPress", so every product
+   page's title reads "… - WordPress". Set it to "Acrylic Pros", and both
+   addresses to `https://` (the sitemap lists all 292 URLs as `http://`).
+6. Regenerate Elementor CSS and purge the cache, then check `/acrylic-tanks/`
+   (113 products) and one fraction link, e.g. REF# 246AIO (3/8").
 
 ## Install, in order
 

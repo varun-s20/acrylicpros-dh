@@ -119,6 +119,25 @@ add_action( 'plugins_loaded', function () {
 		}
 	} );
 
+	// A product URL that 404s because it is a SKU, not the slug WordPress made
+	// from the name: builds before 1.5.0 linked to ".../tank-34-heavy-duty/"
+	// for what WordPress calls ".../tank-3-4-heavy-duty/". Those links are out
+	// there, so they go to the product -- unless it is private or a draft.
+	add_action( 'template_redirect', function () {
+		if ( ! is_404() ) {
+			return;
+		}
+		$path = (string) wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ), PHP_URL_PATH ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( ! preg_match( '#(?:^|/)product/([a-z0-9-]+)/?$#', $path, $m ) ) {
+			return;
+		}
+		$id = wc_get_product_id_by_sku( $m[1] );
+		if ( $id && 'publish' === get_post_status( $id ) ) {
+			wp_safe_redirect( get_permalink( $id ), 301 );
+			exit;
+		}
+	} );
+
 	// The cart-fragments request runs on every page load for a cart that can
 	// never have anything in it.
 	add_action( 'wp_enqueue_scripts', function () {

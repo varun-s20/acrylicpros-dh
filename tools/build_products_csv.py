@@ -106,39 +106,42 @@ def main() -> int:
         # Advanced Acrylics' catalogue (tools/fetch_acrylic.py), when present.
         # Simple products: the price is the lowest option, and every option
         # with its price is listed in the description, as on the static page.
-        # WooCommerce derives each URL from the name, and fetch_acrylic made
-        # the static slugs the same way, so the links on /acrylic-tanks/ land.
+        # The slug is the SKU; WooCommerce makes the URL from the name.
         acrylic_file = ROOT / "data" / "acrylic-products.json"
         acrylic = json.loads(acrylic_file.read_text(encoding="utf-8")) if acrylic_file.exists() else []
         acrylic = [a for a in acrylic if a["images"]]  # as on the static shop: no photo, not listed
-        if acrylic:
-            sys.path.insert(0, str(Path(__file__).resolve().parent))
-            from fetch_acrylic import GROUPS
-            labels = dict(GROUPS)
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from fetch_acrylic import GROUPS, hidden_slugs
+        labels = dict(GROUPS)
+        # Hidden products stay in the file as Private (Published 0): an import
+        # with "Update existing products" then takes a live one off the site,
+        # which leaving its row out would not. Admins still see it.
+        hidden = hidden_slugs()
         for a in acrylic:
             options = "".join(f"<tr><td>{v['title']}</td><td>${v['price']}</td></tr>"
                               for v in a["variants"])
             w.writerow([
-                "simple", a["slug"], a["name"], 1, "visible", "",
+                "simple", a["slug"], a["name"], 0 if a["slug"] in hidden else 1, "visible", "",
                 as_html(a["description"]) + (f"\n<table><tbody>{options}</tbody></table>" if options else ""),
                 1,
                 a["price_from"].replace(",", ""),
-                f"Acrylic tanks > {labels[a['group']]}",
+                # A bare comma separates categories: "Cube, nano & pico" came in
+                # as "Cube" plus a stray top-level "nano & pico". \, is a comma.
+                "Acrylic tanks > " + labels[a["group"]].replace(",", "\\,"),
                 ", ".join(f"{base}/wp-content/uploads/{Path(i).name}" for i in a["images"]),
             ])
 
-    # WooCommerce derives each URL from the Name, and the plugin finds a
-    # product's designed body by that same slug. A name that does not sanitise
-    # to its slug therefore breaks both the links on /glass-tanks/ and the page
-    # design, silently, so it is worth a line of arithmetic here.
-    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    # WooCommerce derives each URL from the Name, which is not always the slug
+    # (3/4" -> "3-4"). tools/build_wordpress.py links to the URL, not the slug.
     from fetch_acrylic import sanitize_title
-    drift = [p["name"] for p in products if sanitize_title(p["name"]) != p["slug"]]
+    drift = [p for p in products + acrylic if sanitize_title(p["name"]) != p["slug"]]
     if drift:
-        print(f"  warning: {len(drift)} names do not sanitise to their slug, so "
-              f"WooCommerce will give them a different URL: {drift[:3]}")
+        print(f"  note: {len(drift)} products get a WordPress URL other than their slug "
+              f"(e.g. {sanitize_title(drift[0]['name'])}); build_wordpress.py links to that URL")
 
-    print(f"wrote {OUT.relative_to(ROOT)} — {len(products)} glass + {len(acrylic)} acrylic products")
+    print(f"wrote {OUT.relative_to(ROOT)} — {len(products)} glass + {len(acrylic)} acrylic products"
+          + (f", {len(hidden & {a['slug'] for a in acrylic})} of them Private (data/acrylic-hidden.json)"
+             if hidden else ""))
     unknown = {p["range"] for p in products} - set(RANGES)
     if unknown:
         print(f"  note: unmapped ranges used as-is: {sorted(unknown)}")

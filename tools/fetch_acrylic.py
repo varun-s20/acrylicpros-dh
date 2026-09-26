@@ -15,9 +15,12 @@ Shopify serves the whole public catalogue as JSON, so nothing is scraped from
 HTML. Photos are resized to 1200px and saved as JPEG under
 assets/images/acrylic/ (tools/build_images.py then makes the WebP sizes).
 
-Slugs are what WordPress's sanitize_title() makes of the product name, because
-WooCommerce derives each product's URL from its name on import: the static
-links and the WordPress ones then match without a slug column.
+Each product's slug names its static page, its photos and its WooCommerce SKU.
+It is NOT always its WordPress URL: WordPress turns the slash in 3/4" into a
+hyphen (".../tank-3-4-heavy-duty/") where the slug drops it ("tank-34-..."). The
+slugs stay as they are, because the SKUs and photo file names are already live;
+tools/build_wordpress.py points every link at sanitize_title(name) instead,
+which is WordPress's own answer.
 """
 from __future__ import annotations
 
@@ -28,6 +31,7 @@ import json
 import re
 import sys
 import time
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -61,6 +65,16 @@ TITLE_FIXES = {
     "pvcs154": 'REF# PVCS154 (84") - PVC/Hybrid Acrylic Sump',
 }
 
+# Products kept in the data but taken off the site for now (the file says why).
+# Not a field in OUT, because every run of this script rewrites OUT.
+HIDDEN = ROOT / "data" / "acrylic-hidden.json"
+
+
+def hidden_slugs() -> set[str]:
+    if not HIDDEN.exists():
+        return set()
+    return set(json.loads(HIDDEN.read_text(encoding="utf-8"))["slugs"])
+
 
 def get_json(url: str):
     req = urllib.request.Request(url, headers=UA)
@@ -77,8 +91,10 @@ def clean_title(t: str) -> str:
     return t
 
 
-def sanitize_title(t: str) -> str:
-    """What WordPress's sanitize_title_with_dashes() does to a product name."""
+def static_slug(t: str) -> str:
+    """The static page / SKU / photo slug. An earlier, rougher copy of
+    sanitize_title() that drops slashes and non-ASCII outright; kept because
+    what it made is already live (see the module docstring)."""
     s = html.unescape(t).lower()
     s = re.sub(r"<[^>]*>", "", s)
     s = s.replace(".", "-")
@@ -86,6 +102,33 @@ def sanitize_title(t: str) -> str:
     s = re.sub(r"[\s_]+", "-", s)
     s = re.sub(r"-+", "-", s).strip("-")
     return s
+
+
+# sanitize_title_with_dashes(), 'save' context (wp-includes/formatting.php).
+_WP_TO_HYPHEN = ("\u00a0", "\u2013", "\u2014", "&nbsp;", "&#160;", "&ndash;", "&#8211;",
+                 "&mdash;", "&#8212;", "/", *map(chr, range(0x2000, 0x200b)), "\u205f", "\u3000")
+_WP_STRIP = set("\u00ad\u00a1\u00bf\u00ab\u00bb\u2039\u203a\u2018\u2019\u201c\u201d\u201a\u201b"
+                "\u201e\u201f\u2022\u00a9\u00ae\u00b0\u2026\u2122\u00b4\u02ca\u0301\u0341\u0300"
+                "\u0304\u030c\u200b\u200c\u200d\u200e\u200f\u202a\u202b\u202c\u202d\u202e"
+                "\u2060\u2061\u2062\u2063\u2064\u2065\u2066\u2067\u2068\u2069\u206a\u206b"
+                "\u206c\u206d\u206e\u206f\ufeff\ufffc")
+
+
+def sanitize_title(t: str) -> str:
+    """The URL WordPress gives a post with this title (so WooCommerce, a
+    product imported with this name). Slashes and dashes become hyphens, x
+    replaces the multiplication sign, and any other non-ASCII character stays
+    in as its percent-encoded bytes. (WordPress first transliterates accented
+    letters; no product name has one, so that step is not copied.)"""
+    s = re.sub(r"<[^>]*>", "", t).replace("%", "").lower()
+    for ch in _WP_TO_HYPHEN:
+        s = s.replace(ch, "-")
+    s = "".join(c for c in s if c not in _WP_STRIP).replace("\u00d7", "x")
+    s = re.sub(r"&.+?;", "", s).replace(".", "-")
+    s = "".join(c if ord(c) < 128 else urllib.parse.quote(c).lower() for c in s)[:200]
+    s = re.sub(r"[^%a-z0-9 _-]", "", s)
+    s = re.sub(r"\s+", "-", s)
+    return re.sub(r"-+", "-", s).strip("-")
 
 
 def group_of(title: str) -> str:
@@ -167,7 +210,7 @@ def main() -> int:
         name = clean_title(p["title"])
         prices = sorted({float(v["price"]) for v in p["variants"]})
         item = {
-            "slug": sanitize_title(name),
+            "slug": static_slug(name),
             "name": name,
             "group": group_of(name),
             "price_from": price_str(prices[0]) if prices else "",

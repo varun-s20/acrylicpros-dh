@@ -228,14 +228,21 @@ def build_acrylic_catalogue(entry_for):
     prefilled with the product and marked kind=acrylic.
     """
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from fetch_acrylic import GROUPS
+    from fetch_acrylic import GROUPS, HIDDEN, hidden_slugs
     labels = dict(GROUPS)
     # Products with no photo in Advanced Acrylics' own store are left out: a
     # blank tile reads as a broken image (client, 22 Sept). They stay in the
     # JSON and reappear once the store has a photo and fetch_acrylic reruns.
-    items = [it for it in json.load(io.open(ACRYLIC_PRODUCTS, encoding="utf-8")) if it["images"]]
-    for stale in (os.path.join(OUT_DIR, it["slug"] + ".html")
-                  for it in json.load(io.open(ACRYLIC_PRODUCTS, encoding="utf-8")) if not it["images"]):
+    # So are the ones in data/acrylic-hidden.json: no card, no sibling link,
+    # no page, until their slug comes off that list.
+    everything = json.load(io.open(ACRYLIC_PRODUCTS, encoding="utf-8"))
+    hidden = hidden_slugs()
+    unknown = hidden - {it["slug"] for it in everything}
+    if unknown:
+        raise SystemExit("%s names products that are not in the data: %s"
+                         % (os.path.relpath(HIDDEN, ROOT), sorted(unknown)))
+    items = [it for it in everything if it["images"] and it["slug"] not in hidden]
+    for stale in (os.path.join(OUT_DIR, it["slug"] + ".html") for it in everything if it not in items):
         if os.path.isfile(stale):
             os.remove(stale)
 
@@ -411,8 +418,8 @@ def build_acrylic_catalogue(entry_for):
             }
         written += write_if_changed(os.path.join(OUT_DIR, slug + ".html"),
                                     product_page(meta, body, schema, "data/acrylic-products.json"))
-    print("Wrote %d acrylic products, %d group tiles; %d acrylic product pages changed"
-          % (len(items), len(tiles), written))
+    print("Wrote %d acrylic products (%d hidden), %d group tiles; %d acrylic product pages changed"
+          % (len(items), len(hidden), len(tiles), written))
     return changed
 
 
