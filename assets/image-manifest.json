@@ -5381,18 +5381,6 @@
    }
   ]
  },
- "images/acrylic/ref-cl210-cleaner-1.jpg": {
-  "h": 480,
-  "src": "assets/images/acrylic/ref-cl210-cleaner-1.jpg",
-  "w": 360,
-  "webp": [
-   {
-    "h": 480,
-    "path": "assets/images/acrylic/ref-cl210-cleaner-1-360.webp",
-    "w": 360
-   }
-  ]
- },
  "images/acrylic/ref-cob100-pvchybrid-acrylic-combo-sump-ato-reservoir-and-refugium-1.jpg": {
   "h": 675,
   "src": "assets/images/acrylic/ref-cob100-pvchybrid-acrylic-combo-sump-ato-reservoir-and-refugium-1.jpg",
@@ -13176,57 +13164,6 @@
     "h": 675,
     "path": "assets/images/acrylic/ref-s199-diamond-blue-sump-3-1200.webp",
     "w": 1200
-   }
-  ]
- },
- "images/acrylic/ref-sg00-sneeze-guard-1.jpg": {
-  "h": 480,
-  "src": "assets/images/acrylic/ref-sg00-sneeze-guard-1.jpg",
-  "w": 670,
-  "webp": [
-   {
-    "h": 287,
-    "path": "assets/images/acrylic/ref-sg00-sneeze-guard-1-400.webp",
-    "w": 400
-   },
-   {
-    "h": 480,
-    "path": "assets/images/acrylic/ref-sg00-sneeze-guard-1-670.webp",
-    "w": 670
-   }
-  ]
- },
- "images/acrylic/ref-sg00-sneeze-guard-2.jpg": {
-  "h": 480,
-  "src": "assets/images/acrylic/ref-sg00-sneeze-guard-2.jpg",
-  "w": 601,
-  "webp": [
-   {
-    "h": 319,
-    "path": "assets/images/acrylic/ref-sg00-sneeze-guard-2-400.webp",
-    "w": 400
-   },
-   {
-    "h": 480,
-    "path": "assets/images/acrylic/ref-sg00-sneeze-guard-2-601.webp",
-    "w": 601
-   }
-  ]
- },
- "images/acrylic/ref-sg00-sneeze-guard-3.jpg": {
-  "h": 480,
-  "src": "assets/images/acrylic/ref-sg00-sneeze-guard-3.jpg",
-  "w": 529,
-  "webp": [
-   {
-    "h": 363,
-    "path": "assets/images/acrylic/ref-sg00-sneeze-guard-3-400.webp",
-    "w": 400
-   },
-   {
-    "h": 480,
-    "path": "assets/images/acrylic/ref-sg00-sneeze-guard-3-529.webp",
-    "w": 529
    }
   ]
  },
