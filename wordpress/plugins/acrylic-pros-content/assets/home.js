@@ -768,6 +768,56 @@
   }
 
   /* ------------------------------------------------------------------
+     Scratch-removal promo: before/after, draggable everywhere. It used
+     to be hover-only on desktop and a static one-time peek on touch, so
+     it never really worked as a "slider" on a phone. No pointer capture:
+     that makes the browser fire a spurious pointercancel on this element
+     (confirmed — capture on a plain div inside a link cancels the very
+     next move), so this just tracks the pointer the same way the drag
+     stays within the card's own bounds in normal use.
+     ------------------------------------------------------------------ */
+  $$('.m-promo__ba').forEach(function (box) {
+    var link = box.closest('a.m-promo');
+    var dragging = false, moved = false, startX = 0;
+
+    // The images (and the <a> itself) are natively draggable, which hijacks
+    // the gesture into HTML5 drag-and-drop after one pixel of movement and
+    // fires pointercancel — same fix as the carousel's dragstart listener.
+    box.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+    function positionFromEvent(e) {
+      var rect = box.getBoundingClientRect();
+      if (!rect.width) return null;
+      return clamp((e.clientX - rect.left) / rect.width * 100, 3, 97);
+    }
+
+    box.addEventListener('pointerdown', function (e) {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      dragging = true; moved = false; startX = e.clientX;
+      box.classList.add('is-dragging'); // no transition-fight with the cursor from the first pixel
+      var pct = positionFromEvent(e);
+      if (pct !== null) box.style.setProperty('--pos', pct + '%');
+    });
+    box.addEventListener('pointermove', function (e) {
+      if (!dragging) return;
+      if (!moved && Math.abs(e.clientX - startX) > 4) { moved = true; box.classList.add('is-dragging'); }
+      var pct = positionFromEvent(e);
+      if (pct !== null) box.style.setProperty('--pos', pct + '%');
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (type) {
+      box.addEventListener(type, function () {
+        dragging = false;
+        box.classList.remove('is-dragging');
+        if (moved && link) {
+          var stop = function (e) { e.preventDefault(); e.stopPropagation(); link.removeEventListener('click', stop, true); };
+          link.addEventListener('click', stop, true);
+        }
+        moved = false;
+      });
+    });
+  });
+
+  /* ------------------------------------------------------------------
      Services: drag cursor, hover videos, category filter
      ------------------------------------------------------------------ */
   var products = sliderFor('products');

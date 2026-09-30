@@ -17876,6 +17876,28 @@
    }
   ]
  },
+ "images/video-thumbs/scratch-cylinder-restoration.jpg": {
+  "h": 720,
+  "src": "assets/images/video-thumbs/scratch-cylinder-restoration.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 270,
+    "path": "assets/images/video-thumbs/scratch-cylinder-restoration-480.webp",
+    "w": 480
+   },
+   {
+    "h": 450,
+    "path": "assets/images/video-thumbs/scratch-cylinder-restoration-800.webp",
+    "w": 800
+   },
+   {
+    "h": 720,
+    "path": "assets/images/video-thumbs/scratch-cylinder-restoration-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
  "images/video-thumbs/scratch-promo.jpg": {
   "h": 1280,
   "src": "assets/images/video-thumbs/scratch-promo.jpg",
@@ -17893,41 +17915,41 @@
    }
   ]
  },
- "images/video-thumbs/scratch-reel.jpg": {
+ "images/video-thumbs/scratch-reel-v2.jpg": {
   "h": 1280,
-  "src": "assets/images/video-thumbs/scratch-reel.jpg",
+  "src": "assets/images/video-thumbs/scratch-reel-v2.jpg",
   "w": 720,
   "webp": [
    {
     "h": 853,
-    "path": "assets/images/video-thumbs/scratch-reel-480.webp",
+    "path": "assets/images/video-thumbs/scratch-reel-v2-480.webp",
     "w": 480
    },
    {
     "h": 1280,
-    "path": "assets/images/video-thumbs/scratch-reel-720.webp",
+    "path": "assets/images/video-thumbs/scratch-reel-v2-720.webp",
     "w": 720
    }
   ]
  },
- "images/video-thumbs/scratch-removal-film.jpg": {
+ "images/video-thumbs/scratch-removal-film-v2.jpg": {
   "h": 720,
-  "src": "assets/images/video-thumbs/scratch-removal-film.jpg",
+  "src": "assets/images/video-thumbs/scratch-removal-film-v2.jpg",
   "w": 1280,
   "webp": [
    {
     "h": 270,
-    "path": "assets/images/video-thumbs/scratch-removal-film-480.webp",
+    "path": "assets/images/video-thumbs/scratch-removal-film-v2-480.webp",
     "w": 480
    },
    {
     "h": 450,
-    "path": "assets/images/video-thumbs/scratch-removal-film-800.webp",
+    "path": "assets/images/video-thumbs/scratch-removal-film-v2-800.webp",
     "w": 800
    },
    {
     "h": 720,
-    "path": "assets/images/video-thumbs/scratch-removal-film-1280.webp",
+    "path": "assets/images/video-thumbs/scratch-removal-film-v2-1280.webp",
     "w": 1280
    }
   ]

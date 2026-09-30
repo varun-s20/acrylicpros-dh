@@ -2488,14 +2488,14 @@ body.is-locked {
 :where(#main) .section--black .trusted-by img { filter: invert(1) brightness(2); }
 :where(#main) .trusted-by a:hover img { opacity: 1; }
 :where(#main) .steps { display: grid; gap: 0; }
-:where(#main) .step {
+:where(#main) .steps .step {
   display: grid;
   gap: var(--space-sm);
   padding-block: var(--space-lg);
   border-top: 1px solid var(--border);
 }
-:where(#main) .step:last-child { border-bottom: 1px solid var(--border); }
-:where(#main) .step__num {
+:where(#main) .steps .step:last-child { border-bottom: 1px solid var(--border); }
+:where(#main) .steps .step__num {
   font-family: var(--font-display);
   font-size: clamp(3.6rem, 5vw, 5.6rem);
   font-weight: 700;
@@ -2506,14 +2506,14 @@ body.is-locked {
 }
 :where(#main) .section--deep .step__num,
 :where(#main) .section--black .step__num { opacity: 0.95; }
-:where(#main) .step__title {
+:where(#main) .steps .step__title {
   font-family: var(--font-display);
   font-size: var(--step-h6);
   font-weight: 700;
   line-height: 1.3;
   color: var(--ink);
 }
-:where(#main) .step__text { max-width: 52ch; }
+:where(#main) .steps .step__text { max-width: 52ch; }
 :where(#main) .creature-grid { display: grid; gap: var(--space-sm); }
 :where(#main) .creature {
   position: relative;
@@ -2564,6 +2564,7 @@ body.is-locked {
   display: grid;
   gap: var(--space-md);
 }
+:where(#main) .rail + .m-film { margin-top: var(--space-lg); }
 :where(#main) .rail__card {
   display: grid;
   gap: var(--space-sm);
@@ -2647,7 +2648,7 @@ body.is-locked {
   :where(#main) .trust-strip { grid-template-columns: repeat(2, 1fr); gap: 0 var(--space-lg); }
   :where(#main) .rail { grid-template-columns: repeat(2, 1fr); }
   :where(#main) .cta-final { justify-items: start; }
-  :where(#main) .step {
+  :where(#main) .steps .step {
     grid-template-columns: 9.6rem 1fr;
     gap: var(--space-lg);
     align-items: start;
@@ -3812,13 +3813,12 @@ body.is-locked {
 :where(#main) #main summary,
 :where(#main) #main .breadcrumbs,
 :where(#main) #main .step,
+:where(#main) #main .step__title,
 :where(#main) #main form p { text-align: left; }
   :where(#main) #main .prose ul,
 :where(#main) #main .prose ol { display: inline-block; text-align: left; }
   :where(#main) #main :is(h1, h2, h3, h4, h5),
-:where(#main) #main .section__head,
-:where(#main) #main .step { text-align: center; }
-  :where(#main) #main .step { justify-items: center; }
+:where(#main) #main .section__head { text-align: center; }
 }
 
 /* ---- defaults the old markup expects (home.css resets them globally) ---- */

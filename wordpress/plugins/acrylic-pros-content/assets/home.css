@@ -816,18 +816,12 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   margin: 3.2rem auto 0;
 }
 .m-hero__scrollDown .a-svg { transform: rotate(90deg); }
-.m-hero__lastShow {
-  position: relative; z-index: 3;
-  display: inline-block;
-  margin: 4.5rem 1.4rem 2.25rem;
-  padding: 1.2rem 2.6rem;
-  border-radius: 5rem;
-  background-color: #ffffff1a;
-  opacity: 0;
-  transition: opacity 1s var(--ease) 1s, transform 1s var(--ease) 1s;
-  transform: translateY(100%);
+
+.m-hero__kicker {
+  margin-bottom: 1.6rem;
+  color: var(--clrgold);
+  letter-spacing: .16em;
 }
-html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; transform: translateY(0); }
 
 .m-hero__background {
   position: absolute; top: 0; left: 0; z-index: -1;
@@ -859,7 +853,6 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   .m-hero .m-moreContent { width: 82%; padding: 0; }
   .m-accordeon__content > p { width: 80%; margin: 0 auto; }
   .m-hero__scrollDown { position: absolute; bottom: 2.4rem; left: 50%; margin: 0; transform: translateX(-50%); }
-  .m-hero__lastShow { position: absolute; right: 2rem; bottom: 3rem; margin: 0; }
   .m-hero__cloudVideo video { width: 100%; height: auto; }
 }
 
@@ -1531,8 +1524,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   .js .m-hero .tx-h1 { opacity: 1; }
   .js .o-homeMagic .a-image img,
   .js .o-homeShows__grid,
-  .js .o-homeShows .a-button,
-  .m-hero__lastShow { opacity: 1; transform: none; transition: none; }
+  .js .o-homeShows .a-button { opacity: 1; transform: none; transition: none; }
   .js .o-homeShows__grid { opacity: .7; }
   .m-hero__background { transform: none; }
   .js .a-loader, .m-hero__cloudVideo, .o-menu__smoke { display: none; }
@@ -1705,10 +1697,22 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
 }
 .-glass .m-promo__visual img { position: relative; width: min(100%, 44rem); mix-blend-mode: multiply; transition: transform .8s var(--ease);
   -webkit-mask-image: radial-gradient(closest-side, #000 78%, transparent 100%); mask-image: radial-gradient(closest-side, #000 78%, transparent 100%); }
-.m-promo__ba { position: relative; overflow: hidden; width: min(100%, 36rem); aspect-ratio: 3 / 4; border-radius: 1.6rem; box-shadow: 0 3rem 5rem -2rem rgba(0, 0, 0, .6); }
+.m-promo__ba {
+  position: relative; overflow: hidden;
+  width: min(100%, 36rem); aspect-ratio: 3 / 4;
+  border-radius: 1.6rem;
+  box-shadow: 0 3rem 5rem -2rem rgba(0, 0, 0, .6);
+  touch-action: pan-y;
+  cursor: ew-resize;
+  user-select: none; -webkit-user-select: none;
+  --pos: 55%;
+}
 .m-promo__ba img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-.m-promo__after { position: absolute; top: 0; left: 0; width: 100%; height: 100%; clip-path: inset(0 0 0 55%); transition: clip-path 1.2s var(--ease); }
-.m-promo__handle { position: absolute; top: 0; bottom: 0; left: 55%; width: .2rem; background-color: #fff; box-shadow: 0 0 1.2rem rgba(0, 0, 0, .5); transition: left 1.2s var(--ease); }
+/* pointer-events: none on every child — the drag target is always .m-promo__ba
+   itself, never the (animating, moving) handle or label under the cursor. */
+.m-promo__after { position: absolute; top: 0; left: 0; width: 100%; height: 100%; clip-path: inset(0 0 0 var(--pos)); transition: clip-path 1.2s var(--ease); pointer-events: none; }
+.m-promo__handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: .2rem; background-color: #fff; box-shadow: 0 0 1.2rem rgba(0, 0, 0, .5); transition: left 1.2s var(--ease); pointer-events: none; }
+.m-promo__ba.is-dragging .m-promo__after, .m-promo__ba.is-dragging .m-promo__handle { transition: none; }
 .m-promo__handle::after {
   content: "";
   position: absolute; top: 50%; left: 50%;
@@ -1725,6 +1729,7 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   background-color: rgba(0, 13, 26, .6);
   color: #fff;
   font-weight: 600; font-size: 1.1rem; letter-spacing: .08em; text-transform: uppercase;
+  pointer-events: none;
 }
 .m-promo__label.-before { left: 1.2rem; }
 .m-promo__label.-after { right: 1.2rem; background-color: var(--clrgold); }
@@ -1732,13 +1737,14 @@ html:not(.js) .m-hero__lastShow, .is-inview .m-hero__lastShow { opacity: 1; tran
   .m-promo:hover { transform: translateY(-.6rem); box-shadow: 0 3.6rem 6rem -3rem rgba(0, 13, 26, .45); }
   .m-promo:hover .m-promo__cta { gap: 1.6rem; background-color: var(--clrgolddark); }
   .-glass:hover .m-promo__visual img { transform: scale(1.05) translateY(-.6rem); }
-  .-scratch:hover .m-promo__after { clip-path: inset(0 0 0 12%); }
-  .-scratch:hover .m-promo__handle { left: 12%; }
+  .-scratch:hover .m-promo__ba { --pos: 12%; }
 }
-/* touch: the reveal plays once when the banner scrolls in */
+/* touch: the reveal plays once when the banner scrolls in, then it's
+   draggable (data-promo-ba in home.js) — the inline --pos it sets on
+   drag outranks this rule for good, exactly like leaving a real slider
+   where you dropped it. */
 @media (hover: none) {
-  .is-inview .-scratch .m-promo__after { clip-path: inset(0 0 0 20%); }
-  .is-inview .-scratch .m-promo__handle { left: 20%; }
+  .is-inview .-scratch .m-promo__ba { --pos: 20%; }
 }
 .m-promo:focus-visible { outline: 3px solid var(--clrgold); outline-offset: 4px; }
 @media (min-width: 1025px) {

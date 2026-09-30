@@ -1707,7 +1707,7 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
 
 /* ---- film (Featured Projects, Videos): big play button until first play ---- */
 .m-film { position: relative; overflow: hidden; width: 100%; border-radius: 1.2rem; background-color: #000; }
-.m-film__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; }
+.m-film__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .m-film__play {
   position: absolute; inset: 0;
   display: flex; flex-direction: column; gap: 1.6rem; align-items: center; justify-content: center;

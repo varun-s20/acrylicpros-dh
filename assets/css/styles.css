@@ -3503,16 +3503,22 @@ figcaption {
 /* --- Process steps ------------------------------------------------- */
 .steps { display: grid; gap: 0; }
 
-.step {
+/* Qualified with .steps (its only wrapper): .step-track further down
+   the file defines its own, unrelated .step/.step__title/.step__text
+   for a completely different rail-based component, and being declared
+   later would otherwise win ties on every shared property (gap,
+   font-size, font-weight, line-height, color) against this simple
+   numbered list. */
+.steps .step {
   display: grid;
   gap: var(--space-sm);
   padding-block: var(--space-lg);
   border-top: 1px solid var(--border);
 }
 
-.step:last-child { border-bottom: 1px solid var(--border); }
+.steps .step:last-child { border-bottom: 1px solid var(--border); }
 
-.step__num {
+.steps .step__num {
   font-family: var(--font-display);
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   font-weight: 700;
@@ -3526,7 +3532,7 @@ figcaption {
 .section--deep .step__num,
 .section--black .step__num { opacity: 0.95; }
 
-.step__title {
+.steps .step__title {
   font-family: var(--font-display);
   font-size: var(--step-h6);
   font-weight: 700;
@@ -3534,7 +3540,7 @@ figcaption {
   color: var(--ink);
 }
 
-.step__text { max-width: 52ch; }
+.steps .step__text { max-width: 52ch; }
 
 /* --- Livestock panels ---------------------------------------------- */
 .creature-grid { display: grid; gap: var(--space-sm); }
@@ -3596,6 +3602,7 @@ figcaption {
   display: grid;
   gap: var(--space-md);
 }
+.rail + .m-film { margin-top: var(--space-lg); }
 
 .rail__card {
   display: grid;
@@ -3717,7 +3724,7 @@ figcaption {
   .rail { grid-template-columns: repeat(2, 1fr); }
   .cta-final { justify-items: start; }
 
-  .step {
+  .steps .step {
     grid-template-columns: 6rem 1fr;
     gap: var(--space-lg);
     align-items: start;
@@ -5404,15 +5411,16 @@ figcaption {
   #main label, #main input, #main textarea, #main select,
   #main th, #main td, #main caption,
   #main summary,
-  #main .breadcrumbs, #main .step,
+  #main .breadcrumbs, #main .step, #main .step__title,
   #main form p { text-align: left; }
 
   #main .prose ul, #main .prose ol { display: inline-block; text-align: left; }
 
   /* Headings follow the copy onto the centre axis — leaving them left while
-     the prose under them centres is worse than either on its own. */
+     the prose under them centres is worse than either on its own. Not
+     .step: it's a numbered list (grouped with li/label above), and this
+     duplicate selector was fighting that rule, centring the title under a
+     left-aligned number. */
   #main :is(h1, h2, h3, h4, h5),
-  #main .section__head,
-  #main .step { text-align: center; }
-  #main .step { justify-items: center; }
+  #main .section__head { text-align: center; }
 }
