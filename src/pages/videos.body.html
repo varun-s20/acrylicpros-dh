@@ -51,16 +51,15 @@ nav: videos
              outside the card grid that WordPress's [ap_videos] replaces. -->
         <!-- Client, 22 Sept: the film and the before/after reel (IMG_2548) side by side -->
         <div class="m-filmPair">
-          <div class="m-film" data-film>
-            <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
+          <figure class="m-film">
+            <video class="m-film__video" muted loop playsinline autoplay preload="none" width="1280" height="720"
                    poster="assets/images/video-thumbs/scratch-removal-film-v2.jpg"
-                   src="assets/video/scratch-removal-web-v2.mp4"></video>
-            <button class="m-film__play" type="button" data-film-play>
-              <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
-              <span class="tx-ctasmall -txupp -tx600">Play film</span>
-              <span class="sr-only">: Scratch removal specialist</span>
+                   data-lazy-src="assets/video/scratch-removal-web-v2.mp4"
+                   aria-label="Scratch removal specialist"></video>
+            <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+              <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
             </button>
-          </div>
+          </figure>
           <figure class="m-reel">
             <video class="m-reel__video" muted loop playsinline preload="none" width="720" height="1280"
                    poster="assets/images/video-thumbs/scratch-reel-v2.jpg" data-lazy-src="assets/video/scratch-reel-v2.mp4"
@@ -71,30 +70,23 @@ nav: videos
           </figure>
         </div>
         <!-- Another self-hosted clip, same reason it sits outside the grid above. -->
-        <div class="m-film" data-film>
-          <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
+        <figure class="m-film">
+          <video class="m-film__video" muted loop playsinline autoplay preload="none" width="1280" height="720"
                  poster="assets/images/video-thumbs/scratch-cylinder-restoration.jpg"
-                 src="assets/video/scratch-cylinder-restoration.mp4"></video>
-          <button class="m-film__play" type="button" data-film-play>
-            <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
-            <span class="tx-ctasmall -txupp -tx600">Play</span>
-            <span class="sr-only">: Restoring a heavily scratched cylinder tank</span>
+                 data-lazy-src="assets/video/scratch-cylinder-restoration.mp4"
+                 aria-label="Restoring a heavily scratched cylinder tank"></video>
+          <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+            <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </button>
-        </div>
+        </figure>
         <div class="o-videoLibrary__grid">
         <article class="m-videoCard -featured">
-          <div class="m-videoCard__player b-video" data-yt="-Zy5pNRdqUo" data-yt-title="Aquarium Scratch Removal w/ Fishes 100% Safe!">
-            <div class="b-video__placeholder">
-              <picture><source type="image/webp" srcset="assets/images/video-thumbs/-Zy5pNRdqUo-480.webp 480w,
+          <div class="m-videoCard__player b-video -ambient" data-yt-ambient="-Zy5pNRdqUo" data-yt-ambient-near="400px 0px"
+               aria-label="Aquarium Scratch Removal w/ Fishes 100% Safe! (video, muted)">
+            <picture><source type="image/webp" srcset="assets/images/video-thumbs/-Zy5pNRdqUo-480.webp 480w,
                               assets/images/video-thumbs/-Zy5pNRdqUo-800.webp 800w,
-                              assets/images/video-thumbs/-Zy5pNRdqUo-1280.webp 1280w" sizes="(min-width: 1025px) 90vw, 94vw"><img class="b-video__cover" src="assets/images/video-thumbs/-Zy5pNRdqUo.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
-              <button class="b-video__playButton" type="button" data-yt-play>
-                <svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg>
-                <span class="tx-ctasmall -txupp -tx600">Play</span>
-                <span class="sr-only">: Aquarium Scratch Removal w/ Fishes 100% Safe!</span>
-              </button>
-            </div>
-            <div class="b-video__iframe" data-yt-mount></div>
+                              assets/images/video-thumbs/-Zy5pNRdqUo-1280.webp 1280w" sizes="(min-width: 1025px) 90vw, 94vw"><img class="b-video__still" src="assets/images/video-thumbs/-Zy5pNRdqUo.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
+            <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
           </div>
           <div class="m-videoCard__meta">
             <h3 class="m-videoCard__title">Aquarium Scratch Removal w/ Fishes 100% Safe!</h3>
@@ -102,18 +94,12 @@ nav: videos
           </div>
         </article>
         <article class="m-videoCard">
-          <div class="m-videoCard__player b-video" data-yt="MJFgcdNB0dA" data-yt-title="Aquarium Scratch Removal w/ Fishes & Corals, 100% Safe!">
-            <div class="b-video__placeholder">
-              <picture><source type="image/webp" srcset="assets/images/video-thumbs/MJFgcdNB0dA-480.webp 480w,
+          <div class="m-videoCard__player b-video -ambient" data-yt-ambient="MJFgcdNB0dA" data-yt-ambient-near="400px 0px"
+               aria-label="Aquarium Scratch Removal w/ Fishes & Corals, 100% Safe! (video, muted)">
+            <picture><source type="image/webp" srcset="assets/images/video-thumbs/MJFgcdNB0dA-480.webp 480w,
                               assets/images/video-thumbs/MJFgcdNB0dA-800.webp 800w,
-                              assets/images/video-thumbs/MJFgcdNB0dA-1280.webp 1280w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__cover" src="assets/images/video-thumbs/MJFgcdNB0dA.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
-              <button class="b-video__playButton" type="button" data-yt-play>
-                <svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg>
-                <span class="tx-ctasmall -txupp -tx600">Play</span>
-                <span class="sr-only">: Aquarium Scratch Removal w/ Fishes &amp; Corals, 100% Safe!</span>
-              </button>
-            </div>
-            <div class="b-video__iframe" data-yt-mount></div>
+                              assets/images/video-thumbs/MJFgcdNB0dA-1280.webp 1280w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__still" src="assets/images/video-thumbs/MJFgcdNB0dA.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
+            <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
           </div>
           <div class="m-videoCard__meta">
             <h3 class="m-videoCard__title">Aquarium Scratch Removal w/ Fishes &amp; Corals, 100% Safe!</h3>
@@ -148,18 +134,12 @@ nav: videos
         </div>
         <div class="o-videoLibrary__grid">
         <article class="m-videoCard -featured">
-          <div class="m-videoCard__player b-video" data-yt="txtw546G9_8" data-yt-title="Custom 600 Gallon Shark Tank "WOW"">
-            <div class="b-video__placeholder">
-              <picture><source type="image/webp" srcset="assets/images/video-thumbs/txtw546G9_8-480.webp 480w,
+          <div class="m-videoCard__player b-video -ambient" data-yt-ambient="txtw546G9_8" data-yt-ambient-near="400px 0px"
+               aria-label="Custom 600 Gallon Shark Tank &ldquo;WOW&rdquo; (video, muted)">
+            <picture><source type="image/webp" srcset="assets/images/video-thumbs/txtw546G9_8-480.webp 480w,
                               assets/images/video-thumbs/txtw546G9_8-800.webp 800w,
-                              assets/images/video-thumbs/txtw546G9_8-1280.webp 1280w" sizes="(min-width: 1025px) 90vw, 94vw"><img class="b-video__cover" src="assets/images/video-thumbs/txtw546G9_8.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
-              <button class="b-video__playButton" type="button" data-yt-play>
-                <svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg>
-                <span class="tx-ctasmall -txupp -tx600">Play</span>
-                <span class="sr-only">: Custom 600 Gallon Shark Tank &ldquo;WOW&rdquo;</span>
-              </button>
-            </div>
-            <div class="b-video__iframe" data-yt-mount></div>
+                              assets/images/video-thumbs/txtw546G9_8-1280.webp 1280w" sizes="(min-width: 1025px) 90vw, 94vw"><img class="b-video__still" src="assets/images/video-thumbs/txtw546G9_8.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
+            <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
           </div>
           <div class="m-videoCard__meta">
             <h3 class="m-videoCard__title">Custom 600 Gallon Shark Tank &ldquo;WOW&rdquo;</h3>
@@ -167,18 +147,12 @@ nav: videos
           </div>
         </article>
         <article class="m-videoCard">
-          <div class="m-videoCard__player b-video" data-yt="5GzYcYq7j4A" data-yt-title="Awesome Shark Moat">
-            <div class="b-video__placeholder">
-              <picture><source type="image/webp" srcset="assets/images/video-thumbs/5GzYcYq7j4A-480.webp 480w,
+          <div class="m-videoCard__player b-video -ambient" data-yt-ambient="5GzYcYq7j4A" data-yt-ambient-near="400px 0px"
+               aria-label="Awesome Shark Moat (video, muted)">
+            <picture><source type="image/webp" srcset="assets/images/video-thumbs/5GzYcYq7j4A-480.webp 480w,
                               assets/images/video-thumbs/5GzYcYq7j4A-800.webp 800w,
-                              assets/images/video-thumbs/5GzYcYq7j4A-1280.webp 1280w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__cover" src="assets/images/video-thumbs/5GzYcYq7j4A.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
-              <button class="b-video__playButton" type="button" data-yt-play>
-                <svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg>
-                <span class="tx-ctasmall -txupp -tx600">Play</span>
-                <span class="sr-only">: Awesome Shark Moat</span>
-              </button>
-            </div>
-            <div class="b-video__iframe" data-yt-mount></div>
+                              assets/images/video-thumbs/5GzYcYq7j4A-1280.webp 1280w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__still" src="assets/images/video-thumbs/5GzYcYq7j4A.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
+            <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
           </div>
           <div class="m-videoCard__meta">
             <h3 class="m-videoCard__title">Awesome Shark Moat</h3>
@@ -213,18 +187,12 @@ nav: videos
         </div>
         <div class="o-videoLibrary__grid">
         <article class="m-videoCard">
-          <div class="m-videoCard__player b-video" data-yt="8P91EpgaeNA" data-yt-title="Amazing Koi Pond Done by Acrylic Pros">
-            <div class="b-video__placeholder">
-              <picture><source type="image/webp" srcset="assets/images/pond/pond-2-600.webp 600w,
+          <div class="m-videoCard__player b-video -ambient" data-yt-ambient="8P91EpgaeNA" data-yt-ambient-near="400px 0px"
+               aria-label="Amazing Koi Pond Done by Acrylic Pros (video, muted)">
+            <picture><source type="image/webp" srcset="assets/images/pond/pond-2-600.webp 600w,
                               assets/images/pond/pond-2-1000.webp 1000w,
-                              assets/images/pond/pond-2-1024.webp 1024w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__cover" src="assets/images/pond/pond-2.jpg" alt="" width="1024" height="768" loading="lazy" decoding="async"></picture>
-              <button class="b-video__playButton" type="button" data-yt-play>
-                <svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg>
-                <span class="tx-ctasmall -txupp -tx600">Play</span>
-                <span class="sr-only">: Amazing Koi Pond Done by Acrylic Pros</span>
-              </button>
-            </div>
-            <div class="b-video__iframe" data-yt-mount></div>
+                              assets/images/pond/pond-2-1024.webp 1024w" sizes="(min-width: 1025px) 45vw, 94vw"><img class="b-video__still" src="assets/images/pond/pond-2.jpg" alt="" width="1024" height="768" loading="lazy" decoding="async"></picture>
+            <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
           </div>
           <div class="m-videoCard__meta">
             <h3 class="m-videoCard__title">Amazing Koi Pond Done by Acrylic Pros</h3>

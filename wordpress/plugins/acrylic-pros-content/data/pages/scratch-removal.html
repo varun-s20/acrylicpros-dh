@@ -649,59 +649,49 @@
     </div>
     <div class="rail" data-reveal-stagger>
       <figure>
-        <button class="video-facade" type="button" data-youtube="uwtV-Dp0kc8"
-                data-title="Scratch Removal Services" aria-label="Play: Scratch Removal Services">
-          <img src="/wp-content/uploads/uwtV-Dp0kc8.jpg" alt=""
-               width="1280" height="720" loading="lazy" decoding="async">
+        <!-- YouTube error 150 on this one: the owner has embedding turned off,
+             so it cannot autoplay here. Link-out until that is changed in
+             YouTube Studio (Edit video -> Allow embedding). -->
+        <a class="video-facade -external" href="https://www.youtube.com/watch?v=uwtV-Dp0kc8"
+           target="_blank" rel="noopener">
+          <img src="/wp-content/uploads/uwtV-Dp0kc8.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
           <span class="video-facade__play"><span>
             <svg width="18" height="20" viewBox="0 0 18 20" fill="currentColor" aria-hidden="true">
               <path d="M0 0v20l18-10z"/>
             </svg>
           </span></span>
-        </button>
+          <span class="sr-only">Watch Scratch Removal Services on YouTube (opens in a new tab)</span>
+        </a>
         <figcaption>Scratch Removal Services</figcaption>
       </figure>
       <figure>
-        <button class="video-facade" type="button" data-youtube="-Zy5pNRdqUo"
-                data-title="Aquarium Scratch Removal w/ Fishes 100% SAFE!"
-                aria-label="Play: Aquarium Scratch Removal w/ Fishes 100% SAFE!">
-          <img src="/wp-content/uploads/-Zy5pNRdqUo.jpg" alt=""
-               width="1280" height="720" loading="lazy" decoding="async">
-          <span class="video-facade__play"><span>
-            <svg width="18" height="20" viewBox="0 0 18 20" fill="currentColor" aria-hidden="true">
-              <path d="M0 0v20l18-10z"/>
-            </svg>
-          </span></span>
-        </button>
+        <div class="video-facade -ambient b-video" data-yt-ambient="-Zy5pNRdqUo" data-yt-ambient-near="400px 0px"
+                aria-label="Aquarium Scratch Removal w/ Fishes 100% SAFE! (video, muted)">
+          <img class="b-video__still" src="/wp-content/uploads/-Zy5pNRdqUo.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
+        </div>
         <figcaption>Aquarium Scratch Removal w/ Fishes 100% SAFE!</figcaption>
       </figure>
       <figure>
-        <button class="video-facade" type="button" data-youtube="MJFgcdNB0dA"
-                data-title="Aquarium Scratch Removal W/ Fishes &amp; Corals, 100% Safe!"
-                aria-label="Play: Aquarium Scratch Removal W/ Fishes &amp; Corals, 100% Safe!">
-          <img src="/wp-content/uploads/MJFgcdNB0dA.jpg" alt=""
-               width="1280" height="720" loading="lazy" decoding="async">
-          <span class="video-facade__play"><span>
-            <svg width="18" height="20" viewBox="0 0 18 20" fill="currentColor" aria-hidden="true">
-              <path d="M0 0v20l18-10z"/>
-            </svg>
-          </span></span>
-        </button>
+        <div class="video-facade -ambient b-video" data-yt-ambient="MJFgcdNB0dA" data-yt-ambient-near="400px 0px"
+                aria-label="Aquarium Scratch Removal W/ Fishes &amp; Corals, 100% Safe! (video, muted)">
+          <img class="b-video__still" src="/wp-content/uploads/MJFgcdNB0dA.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+          <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
+        </div>
         <figcaption>Aquarium Scratch Removal W/ Fishes &amp; Corals, 100% Safe!</figcaption>
       </figure>
     </div>
 
     <!-- The client's own film, self-hosted (not YouTube). -->
-    <div class="m-film" data-film>
-      <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
+    <figure class="m-film">
+      <video class="m-film__video" muted loop playsinline autoplay preload="none" width="1280" height="720"
              poster="/wp-content/uploads/scratch-removal-film-v2.jpg"
-             src="/wp-content/uploads/scratch-removal-web-v2.mp4"></video>
-      <button class="m-film__play" type="button" data-film-play>
-        <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
-        <span class="tx-ctasmall -txupp -tx600">Play film</span>
-        <span class="sr-only">: Scratch removal specialist</span>
+             data-lazy-src="/wp-content/uploads/scratch-removal-web-v2.mp4"
+             aria-label="Scratch removal specialist"></video>
+      <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+        <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       </button>
-    </div>
+    </figure>
   </div>
 </section>
 

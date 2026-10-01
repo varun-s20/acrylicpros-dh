@@ -54,16 +54,15 @@
       </div>
       <!-- Client, 22 Sept: the film and the before/after reel (IMG_2548) side by side -->
       <div class="m-filmPair" data-scroll>
-        <div class="m-film" data-film>
-          <video class="m-film__video" controls preload="none" playsinline width="1280" height="720"
+        <figure class="m-film">
+          <video class="m-film__video" muted loop playsinline autoplay preload="none" width="1280" height="720"
                  poster="/wp-content/uploads/scratch-removal-film-v2.jpg"
-                 src="/wp-content/uploads/scratch-removal-web-v2.mp4"></video>
-          <button class="m-film__play" type="button" data-film-play>
-            <span class="m-film__icon"><svg class="a-svg" aria-hidden="true"><use href="#i-play"/></svg></span>
-            <span class="tx-ctasmall -txupp -tx600">Play film</span>
-            <span class="sr-only">: Scratch removal specialist</span>
+                 data-lazy-src="/wp-content/uploads/scratch-removal-web-v2.mp4"
+                 aria-label="Scratch removal specialist"></video>
+          <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+            <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
           </button>
-        </div>
+        </figure>
         <figure class="m-reel">
           <video class="m-reel__video" muted loop playsinline preload="none" width="720" height="1280"
                  data-poster="/wp-content/uploads/scratch-reel-v2.jpg" data-lazy-src="/wp-content/uploads/scratch-reel-v2.mp4"
@@ -137,12 +136,12 @@
         </button>
       </div>
     </div>
-    <div class="m-justified" data-scroll style="--sum:3.3333">
+    <div class="m-justified" data-scroll style="--sum:2.3333">
       <div class="m-projectTile" data-card style="--a:1.0000">
         <button class="m-projectTile__open" type="button" data-open aria-label="Enlarge: Turtle aquarium in dark wood cabinetry"
             data-full="/wp-content/uploads/featured-turtle-aquarium.jpg" data-title="Turtle aquarium in dark wood cabinetry" data-alt="A long aquarium with a turtle swimming over dark gravel, set into dark wood cabinetry with a matching canopy.">
           <picture>
-            <source type="image/webp" srcset="/wp-content/uploads/featured-turtle-aquarium-600.webp 600w, /wp-content/uploads/featured-turtle-aquarium-960.webp 960w" sizes="(min-width: 1441px) 432px, (min-width: 641px) 30vw, 100vw">
+            <source type="image/webp" srcset="/wp-content/uploads/featured-turtle-aquarium-600.webp 600w, /wp-content/uploads/featured-turtle-aquarium-960.webp 960w" sizes="(min-width: 1441px) 617px, (min-width: 641px) 43vw, 100vw">
             <img class="m-projectTile__image" src="/wp-content/uploads/featured-turtle-aquarium.jpg" alt="" width="960" height="960" loading="lazy" decoding="async">
           </picture>
         </button>
@@ -151,31 +150,18 @@
         <button class="m-projectTile__open" type="button" data-open aria-label="Enlarge: Two aquariums in gray cabinetry"
             data-full="/wp-content/uploads/featured-triple-in-wall.jpg" data-title="Two aquariums in gray cabinetry" data-alt="Two aquariums set into gray built-in cabinetry on either side of a framed painting, beneath a backlit panel.">
           <picture>
-            <source type="image/webp" srcset="/wp-content/uploads/featured-triple-in-wall-600.webp 600w, /wp-content/uploads/featured-triple-in-wall-1000.webp 1000w, /wp-content/uploads/featured-triple-in-wall-1600.webp 1600w, /wp-content/uploads/featured-triple-in-wall-1800.webp 1800w" sizes="(min-width: 1441px) 576px, (min-width: 641px) 40vw, 100vw">
+            <source type="image/webp" srcset="/wp-content/uploads/featured-triple-in-wall-600.webp 600w, /wp-content/uploads/featured-triple-in-wall-1000.webp 1000w, /wp-content/uploads/featured-triple-in-wall-1600.webp 1600w, /wp-content/uploads/featured-triple-in-wall-1800.webp 1800w" sizes="(min-width: 1441px) 823px, (min-width: 641px) 57vw, 100vw">
             <img class="m-projectTile__image" src="/wp-content/uploads/featured-triple-in-wall.jpg" alt="" width="1800" height="1350" loading="lazy" decoding="async">
           </picture>
         </button>
       </div>
-      <div class="m-projectTile" data-card style="--a:1.0000">
-        <button class="m-projectTile__open" type="button" data-open aria-label="Enlarge: Reef aquarium on black cabinet"
-            data-full="/wp-content/uploads/featured-reef-black-cabinet.jpg" data-title="Reef aquarium on black cabinet" data-alt="A rimless reef aquarium with three pendant lights on a black cabinet, a white sofa beside it.">
-          <picture>
-            <source type="image/webp" srcset="/wp-content/uploads/featured-reef-black-cabinet-600.webp 600w, /wp-content/uploads/featured-reef-black-cabinet-1000.webp 1000w" sizes="(min-width: 1441px) 432px, (min-width: 641px) 30vw, 100vw">
-            <img class="m-projectTile__image" src="/wp-content/uploads/featured-reef-black-cabinet.jpg" alt="" width="1000" height="1000" loading="lazy" decoding="async">
-          </picture>
-        </button>
-      </div>
     </div>
-    <div class="m-justified" data-scroll style="--sum:2.0625">
-      <div class="m-projectTile -video" style="--a:0.5625">
-        <video class="m-projectTile__image" muted loop playsinline preload="none" width="720" height="1280"
-               data-poster="/wp-content/uploads/featured-install.jpg" data-lazy-src="/wp-content/uploads/featured-install.mp4" aria-label="A rimless aquarium on a white cabinet under a pendant light, the camera moving down to the sump inside the open cabinet."></video>
-      </div>
+    <div class="m-justified" data-scroll style="--sum:1.5000">
       <div class="m-projectTile" data-card style="--a:0.7500">
         <button class="m-projectTile__open" type="button" data-open aria-label="Enlarge: Aquarium with the sump cabinet open"
             data-full="/wp-content/uploads/featured-reef-ready-sump.jpg" data-title="Aquarium with the sump cabinet open" data-alt="A rimless aquarium under a rail of pendant lights, the black cabinet below open to show a blue-lit sump.">
           <picture>
-            <source type="image/webp" srcset="/wp-content/uploads/featured-reef-ready-sump-600.webp 600w, /wp-content/uploads/featured-reef-ready-sump-1000.webp 1000w, /wp-content/uploads/featured-reef-ready-sump-1350.webp 1350w" sizes="(min-width: 1441px) 524px, (min-width: 641px) 36vw, 100vw">
+            <source type="image/webp" srcset="/wp-content/uploads/featured-reef-ready-sump-600.webp 600w, /wp-content/uploads/featured-reef-ready-sump-1000.webp 1000w, /wp-content/uploads/featured-reef-ready-sump-1350.webp 1350w" sizes="(min-width: 1441px) 720px, (min-width: 641px) 50vw, 100vw">
             <img class="m-projectTile__image" src="/wp-content/uploads/featured-reef-ready-sump.jpg" alt="" width="1350" height="1800" loading="lazy" decoding="async">
           </picture>
         </button>
@@ -184,7 +170,7 @@
         <button class="m-projectTile__open" type="button" data-open aria-label="Enlarge: Aquarium on white cabinet"
             data-full="/wp-content/uploads/featured-new-install-white.jpg" data-title="Aquarium on white cabinet" data-alt="A black-trimmed aquarium on a white cabinet in a bright white hallway with an arched window.">
           <picture>
-            <source type="image/webp" srcset="/wp-content/uploads/featured-new-install-white-600.webp 600w, /wp-content/uploads/featured-new-install-white-1000.webp 1000w, /wp-content/uploads/featured-new-install-white-1350.webp 1350w" sizes="(min-width: 1441px) 524px, (min-width: 641px) 36vw, 100vw">
+            <source type="image/webp" srcset="/wp-content/uploads/featured-new-install-white-600.webp 600w, /wp-content/uploads/featured-new-install-white-1000.webp 1000w, /wp-content/uploads/featured-new-install-white-1350.webp 1350w" sizes="(min-width: 1441px) 720px, (min-width: 641px) 50vw, 100vw">
             <img class="m-projectTile__image" src="/wp-content/uploads/featured-new-install-white.jpg" alt="" width="1350" height="1800" loading="lazy" decoding="async">
           </picture>
         </button>
@@ -297,6 +283,22 @@
   </div>
 </section>
 
+
+  <!-- Pond film (client, 1 Oct): closes the pond chapter above. Same koi-pond
+       video as the homepage band -- muted, looping, no player chrome, so it
+       plays itself like every other video on the site. The still underneath is
+       markup, not script, so the WordPress build rewrites its path like any
+       image. This chapter has no head and no bottom padding: it is the tail of
+       the pond chapter, and .o-featured's own padding-bottom closes the page. -->
+  <section class="o-featured__chapter -pondFilm" aria-label="Koi pond design video">
+    <div class="row">
+      <div class="b-video -ambient" data-yt-ambient="_Xb7Pd0_cWc" data-scroll
+           aria-label="Koi pond design by Acrylic Pros (video, muted)">
+        <picture><source type="image/webp" srcset="/wp-content/uploads/_Xb7Pd0_cWc-480.webp 480w, /wp-content/uploads/_Xb7Pd0_cWc-800.webp 800w, /wp-content/uploads/_Xb7Pd0_cWc-1280.webp 1280w" sizes="(min-width: 1441px) 1400px, 96vw"><img class="b-video__still" src="/wp-content/uploads/_Xb7Pd0_cWc.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async"></picture>
+        <div class="b-video__ambient" data-yt-ambient-mount aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
 
 </div>
 

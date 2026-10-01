@@ -658,14 +658,18 @@
       if (!dragging) return;
       dragging = false;
       viewport.classList.remove('-dragging');
-      var moved = pos - drag.pos;
-      var projected = moved + drag.v * 120;
-      // skipSnaps: false — a drag moves at most one snap.
-      var dir = Math.abs(moved) > 20 || Math.abs(projected) > slideW / 2 ? (projected < 0 ? 1 : -1) : 0;
+      // Client, 1 Oct: carry the drag. This used to jump to startIndex +/- 1
+      // whatever you did -- drag four cards and it sprang back to one, nudge it
+      // a little and it sprang back to where it started. Now the release keeps
+      // the position the drag reached, coasts on with the flick, and settles on
+      // the snap nearest to that. The coast is capped so a hard flick stays
+      // readable rather than firing across the whole track.
+      var coast = clamp(drag.v * 220, -slideW * 3, slideW * 3);
+      var projected = pos + coast;
       if (loop) {
-        target = drag.target - dir * slideW;
+        target = Math.round(projected / slideW) * slideW;
       } else {
-        target = snaps[clamp(drag.startIndex + dir, 0, snaps.length - 1)];
+        target = snaps[nearestIndex(clamp(projected, minPos, 0))];
       }
       suppressClick = drag.moved;
       updateDots();
@@ -690,6 +694,26 @@
     [viewport, root, root.parentNode, root.closest('section')].forEach(function (el) {
       if (el) el.addEventListener('scroll', function () { el.scrollLeft = 0; });
     });
+
+    // Trackpads: a horizontal two-finger scroll moves the slider directly. The
+    // viewport is not natively scrollable (the scroll listeners above pin
+    // scrollLeft to 0), so without this a trackpad could not move it at all --
+    // part of why it felt like the track refused to go anywhere. Vertical
+    // gestures are left alone so the page still scrolls normally over it.
+    var wheelSettle = 0;
+    viewport.addEventListener('wheel', function (e) {
+      if (!snaps.length || Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      var p = pos - e.deltaX;
+      pos = target = loop ? p : clamp(p, minPos, 0);
+      render();
+      clearTimeout(wheelSettle);
+      wheelSettle = setTimeout(function () {   // settle onto a snap once it stops
+        target = loop ? Math.round(pos / slideW) * slideW : snaps[nearestIndex(pos)];
+        updateDots();
+        kick();
+      }, 140);
+    }, { passive: false });
 
     if (prevBtn) prevBtn.addEventListener('click', function () { step(-1); });
     if (nextBtn) nextBtn.addEventListener('click', function () { step(1); });
@@ -1036,7 +1060,16 @@
       send('mute');
       if (inView) send('playVideo');
     });
-    mount.appendChild(frame);
+    // The frame is built but not attached: a detached iframe fetches nothing,
+    // so it costs only the element until the band is actually approached. It
+    // is mounted on the first intersection -- which matters on the homepage,
+    // where five of these sit in the videos slider and only the slide on
+    // screen should ever load a player (the margin below is 0 horizontally,
+    // so a slide translated off to the side does not intersect).
+    // A grid of these (Videos, Scratch Removal, Ponds, Sharks, Custom Builds)
+    // sets data-yt-ambient-near to a short margin, so a page of twelve videos
+    // only ever has the few on screen loaded rather than all of them.
+    var mounted = false;
     // Play only while on or near the screen (1500px ahead, so it is already
     // playing when it scrolls in). Far away it is paused: Chrome throttles
     // hidden iframes, and a player left running there flashes its buttons when
@@ -1044,9 +1077,15 @@
     // playing one, YouTube flashes its buttons without reporting any state change.
     new IntersectionObserver(function (entries) {
       inView = entries[0].isIntersecting;
+      if (!mounted) {
+        if (!inView) return;
+        mounted = true;
+        mount.appendChild(frame); // the load handler below starts playback
+        return;
+      }
       if (!inView) send('pauseVideo');
       else if (!playing) send('playVideo');
-    }, { rootMargin: '1500px 0px' }).observe(box);
+    }, { rootMargin: box.getAttribute('data-yt-ambient-near') || '1500px 0px' }).observe(box);
   });
 
   /* ------------------------------------------------------------------
@@ -1106,6 +1145,67 @@
       setTimeout(function () { if (chatPanel.hidden) nudge.hidden = false; }, 6000);
       setTimeout(function () { nudge.hidden = true; }, 16000);
     }
+  }
+
+  /* ------------------------------------------------------------------
+     Keep the self-playing videos playing (client, 1 Oct).
+
+     Autoplay is a request, not a guarantee: iOS Low Power Mode, Android
+     Data Saver, a background tab and Safari's own policy all pause or
+     refuse it, and each one fails silently. Nothing in the page can
+     force a decode — but every one of those states does allow play()
+     again once the visitor has interacted with the page, so the fix is
+     to keep asking: on the first gesture, when the tab comes back, and
+     whenever a video pauses itself while still on screen.
+
+     prefers-reduced-motion is deliberately NOT overridden here. That is
+     an explicit accessibility setting, and those visitors get the poster.
+     ------------------------------------------------------------------ */
+  if (!reduced) {
+    var AUTOPLAY_SEL = 'video[autoplay], video[data-autoplay], video[data-lazy-src], video[data-inview-play]';
+
+    function onScreen(v) {
+      var r = v.getBoundingClientRect();
+      return r.bottom > 0 && r.top < (window.innerHeight || 0) && r.width > 0;
+    }
+
+    function nudge(v) {
+      // No source yet means the lazy observer has not reached it; leave it alone.
+      if (!v.getAttribute('src') && !v.currentSrc) return;
+      if (!v.paused || v.ended) return;
+      if (!onScreen(v)) return;
+      v.muted = true;            // a muted video is the only kind allowed to resume unprompted
+      var p = v.play();
+      if (p) p.catch(function () {});
+    }
+
+    function nudgeAll() { $$(AUTOPLAY_SEL).forEach(nudge); }
+
+    // A gesture anywhere lifts the Low Power Mode / autoplay block for the
+    // rest of the visit, so the first one is the one that matters most.
+    ['pointerdown', 'touchstart', 'keydown', 'scroll'].forEach(function (type) {
+      window.addEventListener(type, nudgeAll, { passive: true });
+    });
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) nudgeAll();
+    });
+    window.addEventListener('pageshow', nudgeAll);
+
+    // A video that stops on its own (power saving, decoder pressure) is put
+    // back; a video the sound toggle unmuted is left alone, since an unmuted
+    // one can only have been started by the visitor.
+    document.addEventListener('play', function (e) {
+      var v = e.target;
+      if (!v.matches || !v.matches(AUTOPLAY_SEL)) return;
+      if (v.dataset.apWatch) return;
+      v.dataset.apWatch = '1';
+      v.addEventListener('pause', function () {
+        if (!v.muted) return;
+        setTimeout(function () { nudge(v); }, 120);
+      });
+    }, true);
+
+    setInterval(nudgeAll, 4000);
   }
 
   /* ------------------------------------------------------------------

@@ -575,8 +575,11 @@
         matches.forEach(function (it) { if (it.classList.contains('-active')) it.classList.add('-visible'); });
       });
     };
+    // Client, 1 Oct: the tiles come in as soon as the page is ready. There
+    // used to be a 600ms hold on the centred "Gallery" title first, which
+    // read as the page showing a word and only then loading.
     if (reduced) enter();
-    else pageReady(function () { setTimeout(enter, 600); });
+    else pageReady(enter);
 
     loadMore.addEventListener('click', function () {
       var next = matches.filter(function (it) { return !it.classList.contains('-active'); }).slice(0, STEP);
@@ -925,21 +928,6 @@
     stage.addEventListener('scroll', function () {
       mark(Math.round(stage.scrollLeft / stage.clientWidth));
     }, { passive: true });
-  });
-
-  /* ------------------------------------------------------------------
-     Scratch-removal film: the native controls stay in the markup for
-     no-JS; with JS the big play button stands in until the first play.
-     ------------------------------------------------------------------ */
-  $$('[data-film]').forEach(function (film) {
-    var video = $('video', film);
-    video.controls = false;
-    $('[data-film-play]', film).addEventListener('click', function () {
-      film.classList.add('is-playing');
-      video.controls = true;
-      play(video);
-      video.focus({ preventScroll: true });
-    });
   });
 
   /* ------------------------------------------------------------------

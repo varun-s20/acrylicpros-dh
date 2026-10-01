@@ -504,8 +504,16 @@ img[data-fade] { transition: opacity .15s ease-in-out; }
   pointer-events: none;
   transform: translate(-50%, -50%);
 }
-.o-referenceGrid__title { font-weight: 600; white-space: nowrap; }
-.o-referenceGrid.-ready .o-referenceGrid__title { opacity: 0; transition: opacity .4s ease-out; }
+/* Client, 1 Oct: the centred "Gallery" word no longer shows at all -- the
+   grid is the page. The h1 stays in the DOM for the document outline and for
+   screen readers; only .o-referenceGrid__noResults still uses the centred
+   position above. */
+.o-referenceGrid__title {
+  font-weight: 600; white-space: nowrap;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
 .o-referenceGrid__list { position: relative; display: grid; grid-template-columns: 1fr; gap: 2rem; width: 100%; }
 .o-referenceGrid__item { position: relative; z-index: 1; display: none; width: 100%; opacity: 0; }
 html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
@@ -1543,7 +1551,8 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
    page, outlined gold chapter numbers, justified rows that keep every
    photo at its own proportions, numbered captions, shared lightbox.
    ===================================================================== */
-.o-featured { background-color: var(--clrdarkblue); color: #fff; padding-bottom: 10rem; }
+.o-featured { background-color: var(--clrdarkblue); color: #fff; padding-bottom: 4rem; }  /* was 10rem: with the pond film closing the column the gap above the
+     prefooter read as empty space (client, 1 Oct) */
 .o-featured .row { row-gap: 0; }
 
 /* ---- intro: one live sentence set large, the rest beside it ----
@@ -1705,48 +1714,51 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
   .js .m-justified .m-projectTile, .js .o-featured__head > *, .js .o-featuredIntro [data-scroll] { transform: none; }
 }
 
-/* ---- film (Featured Projects, Videos): big play button until first play ---- */
+/* ---- film (Featured Projects, Videos): plays itself, muted, on view.
+     The play-button overlay went with it (client, 1 Oct); sound is the
+     only control left, same toggle the reels use. ---- */
 .m-film { position: relative; overflow: hidden; width: 100%; border-radius: 1.2rem; background-color: #000; }
 .m-film__video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
-.m-film__play {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; gap: 1.6rem; align-items: center; justify-content: center;
-  background: linear-gradient(180deg, rgba(0, 13, 26, 0) 35%, rgba(0, 13, 26, .55));
-  color: #fff;
-  cursor: pointer;
-  transition: opacity .6s var(--ease);
-}
-.m-film__icon {
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-  width: 8rem; height: 8rem;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, .14);
-  outline: .1rem solid rgba(255, 255, 255, .5);
-  -webkit-backdrop-filter: blur(1.2rem);
-  backdrop-filter: blur(1.2rem);
-  transition: transform .6s var(--ease), background-color .4s var(--ease);
-}
-.m-film__icon::after {
-  content: "";
-  position: absolute; inset: -.1rem;
-  border: .1rem solid rgba(255, 255, 255, .5);
-  border-radius: 50%;
-  animation: film-ring 2.4s var(--ease) infinite;
-}
-@keyframes film-ring { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(1.6); } }
-.m-film__icon .a-svg { width: 2.2rem; height: 2.2rem; margin-left: .3rem; }
-.m-film__play:focus-visible { outline: 2px solid var(--clrgold); outline-offset: -4px; }
-@media (hover: hover) and (any-pointer: fine) {
-  .m-film__play:hover .m-film__icon { transform: scale(1.08); background-color: var(--clrgold); outline-color: var(--clrgold); }
-}
-.m-film.is-playing .m-film__play { opacity: 0; pointer-events: none; }
-html:not(.js) .m-film__play { display: none; }
-@media (prefers-reduced-motion: reduce) { .m-film__icon::after { animation: none; opacity: 0; } }
-@media (min-width: 1025px) { .m-film__icon { width: 11.2rem; height: 11.2rem; } }
 .o-featured__chapter.-film .m-film { box-shadow: 0 4rem 8rem -3rem rgba(0, 0, 0, .8); }
 .o-videoLibrary .m-film, .o-videoLibrary .m-filmPair { margin-bottom: 2.4rem; }
 .o-videoLibrary .m-filmPair .m-film { margin-bottom: 0; }
+
+/* ---- pond film (Featured Projects): the koi-pond video that closes the pond
+     chapter. Same ambient player as the homepage band -- muted, looping, no
+     controls -- so it needs no chrome of its own. It carries no top or bottom
+     padding: the pond chapter's own padding-bottom is the gap above it, and
+     .o-featured's padding-bottom closes the page below it. ---- */
+.o-featured__chapter.-pondFilm { padding-top: 0; padding-bottom: 0; }
+/* and pulled up into the pond chapter's own bottom padding, so the video
+   sits close under the last photo rather than a chapter apart (client, 1 Oct) */
+.o-featured__chapter.-pondFilm { margin-top: -4rem; }
+.o-featured__chapter.-pondFilm .b-video.-ambient {
+  width: 100%;
+  border-radius: 1.6rem;
+  aspect-ratio: 16 / 9;
+  box-shadow: 0 4rem 8rem -3rem rgba(0, 0, 0, .6);
+  outline: .1rem solid rgba(255, 255, 255, .08);
+}
+/* phones: laid out at 3x (their screens are 2-3x their CSS width), 1.36x crop,
+   same arithmetic as the homepage band */
+.o-featured__chapter.-pondFilm .b-video__ambient iframe {
+  width: 300%; height: auto;
+  aspect-ratio: 16 / 9;
+  transform: translate(-50%, -50%) scale(.4533);
+}
+/* The still is only for visitors who asked for reduced motion, for whom the
+   video never plays. */
+@media (prefers-reduced-motion: no-preference) {
+  .o-featured__chapter.-pondFilm .b-video__still { display: none; }
+}
+@media (min-width: 641px) {
+  .o-featured__chapter.-pondFilm { margin-top: -5rem; }
+  .o-featured__chapter.-pondFilm .b-video.-ambient { aspect-ratio: 21 / 9; border-radius: 2.4rem; }
+  .o-featured__chapter.-pondFilm .b-video__ambient iframe {
+    width: 200%;
+    transform: translate(-50%, -50%) scale(.56);
+  }
+}
 
 /* =====================================================================
    ACRYLIC TANKS (21 Sept) — Glass Tanks' layout; tiles and cards are

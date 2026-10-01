@@ -136,9 +136,9 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
    tracked tight for lowercase; capitals have no descenders and more sidebearing,
    so the negative tracking has to come back off or the words clot together.
    Not .tx-h5 — on this site that class carries video titles and full sentences,
-   and a sentence in capitals is slow to read. Not the overlay menu either:
-   that is navigation, not a heading. */
-:is(.tx-h1, .tx-h2, .tx-h3, .tx-h4, .m-promo__title, .m-pageBanner__title):not(.o-menu__link, .m-textScroll__content) {
+   and a sentence in capitals is slow to read. The overlay menu is in (client,
+   1 Oct): its links read as caps alongside the headings. */
+:is(.tx-h1, .tx-h2, .tx-h3, .tx-h4, .m-promo__title, .m-pageBanner__title):not(.m-textScroll__content) {
   text-transform: uppercase;
   /* Without this the words clot: capitals have no ascender/descender gaps to
      read a word boundary by, so the default space is too narrow at display
@@ -540,6 +540,11 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 .o-menu__mainItem { overflow: hidden; text-align: center; }
 .o-menu__link {
   display: inline-block;
+  /* One line, always: the item is an overflow mask the link slides up through,
+     so a label that wraps ("Featured projects") reads as two separate entries
+     and only its last line is revealed. The size below is what keeps the
+     longest label on one line on a phone (client, 1 Oct). */
+  white-space: nowrap;
   padding-bottom: .12em; /* keeps descenders inside the mask (1rem gap minus this) */
   transition: font-variation-settings 1s var(--ease), opacity 1s var(--ease), letter-spacing 1s var(--ease);
   transform: translateY(100%);
@@ -552,7 +557,9 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   font-variation-settings: "wght" 600, "wdth" 50;
 }
 .o-menu__subnav { margin-top: auto; }
-.o-menu__subnav ul { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; }
+/* Caps to match the main menu links above them (client, 1 Oct). */
+.o-menu__subnav .a-link { text-transform: uppercase; letter-spacing: .04em; }
+.o-menu__subnav ul { display: flex; flex-wrap: wrap; gap: 1rem 1.8rem; align-items: center; justify-content: center; }
 .o-menu__subnav .a-link, .o-menu__secondary .a-link { opacity: 0; transform: translateY(100%); }
 .o-menu__secondaryMenuWrapper {
   display: flex; flex-direction: column; gap: 2rem; justify-content: center;
@@ -708,12 +715,6 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   margin: 3.2rem auto 0;
 }
 .m-hero__scrollDown .a-svg { transform: rotate(90deg); }
-
-.m-hero__kicker {
-  margin-bottom: 1.6rem;
-  color: var(--clrgold);
-  letter-spacing: .16em;
-}
 
 .m-hero__background {
   position: absolute; top: 0; left: 0; z-index: -1;
@@ -1151,6 +1152,27 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   margin: .8rem .4rem 2.4rem;
 }
 .m-homeNewsItem__player { overflow: hidden; margin-bottom: 2.4rem; border-radius: 1.6rem; }
+/* The five slides play themselves, muted and without chrome, like the pond
+   band above (client, 1 Oct). Only the slide on screen ever loads a player --
+   home.js attaches the iframe on first intersection, and the observer's
+   margin is 0 horizontally, so slides parked off to the side stay empty.
+   "Watch on YouTube" beside each one is where sound lives now. */
+.m-homeNewsItem__player.-ambient { aspect-ratio: 16 / 9; }
+.m-homeNewsItem__player.-ambient .b-video__ambient iframe {
+  width: 300%; height: auto;
+  aspect-ratio: 16 / 9;
+  transform: translate(-50%, -50%) scale(.4533);
+}
+@media (min-width: 641px) {
+  .m-homeNewsItem__player.-ambient .b-video__ambient iframe {
+    width: 200%;
+    transform: translate(-50%, -50%) scale(.56);
+  }
+}
+/* The still is only for visitors who asked for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .m-homeNewsItem__player.-ambient .b-video__still { display: none; }
+}
 .o-homeNews .m-slider__viewport { cursor: default; }
 .o-homeNews .m-slider__controls { display: none; }
 .m-homeNewsItem { width: 100%; text-align: center; }
@@ -2020,3 +2042,62 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   .t-home__film .b-video.-ambient { aspect-ratio: 21 / 9; border-radius: 2.4rem; }
   .t-home__film .b-video__ambient iframe { width: 200%; transform: translate(-50%, -50%) scale(.56); }
 }
+
+/* ---------------------------------------------------------------------
+   Menu sizing (client, 1 Oct): "Featured projects" was wrapping, which read
+   as two separate entries -- the item is an overflow mask the link slides up
+   through, so only its last line was revealed. .o-menu__link is nowrap now,
+   and these two rules make sure nowrap never means clipped instead:
+
+   - max-content columns, so the two-column desktop grid always sizes to its
+     longest label rather than squeezing it into an even split;
+   - a font size that keeps the longest label inside the 56.25% the nav gets
+     on desktop, and inside the screen on a phone.
+   --------------------------------------------------------------------- */
+.o-menu__mainNav .o-menu__link.tx-h3 { font-size: clamp(2.2rem, 7.2vw, 3rem); }
+@media (min-width: 641px) {
+  .o-menu__mainNav { grid-auto-columns: max-content; }
+  .o-menu__mainNav .o-menu__link.tx-h3 { font-size: clamp(2.8rem, 2.85vw, 4.6rem); }
+}
+
+/* ---------------------------------------------------------------------
+   Every YouTube video on the site plays itself (client, 1 Oct). The
+   click-to-play facades are gone -- the Videos grid, Scratch Removal,
+   Ponds, Sharks and Custom Builds all use the ambient player now, muted
+   and looping with no controls, same as the homepage band.
+
+   These carry data-yt-ambient-near, a short load margin, because they sit
+   in grids: only the handful on screen ever loads a player, instead of a
+   page of twelve starting at once. The crop below is the homepage band's,
+   oversized so YouTube's title bar and logo fall outside the frame.
+   --------------------------------------------------------------------- */
+.b-video.-ambient[data-yt-ambient-near] .b-video__ambient iframe {
+  /* top/left are restated because the legacy pages' own
+     ":where(#main) .video-facade iframe { inset: 0 }" outranks the base
+     .b-video__ambient rule and pins the frame to the corner. The oversized
+     frame then hung off the top left and only its bottom-right quarter was
+     visible -- the "weird shape" on Scratch Removal, Ponds, Sharks and
+     Custom Builds (client, 1 Oct). It has to stay centred to crop evenly. */
+  top: 50%; left: 50%; right: auto; bottom: auto;
+  width: 300%; height: auto;
+  aspect-ratio: 16 / 9;
+  transform: translate(-50%, -50%) scale(.4533);
+}
+@media (min-width: 641px) {
+  .b-video.-ambient[data-yt-ambient-near] .b-video__ambient iframe {
+    width: 200%;
+    transform: translate(-50%, -50%) scale(.56);
+  }
+}
+/* The still is only for visitors who asked for reduced motion, for whom the
+   video never plays. */
+@media (prefers-reduced-motion: no-preference) {
+  .b-video.-ambient[data-yt-ambient-near] .b-video__still { display: none; }
+}
+/* The legacy pages' facade is a <div> now, not a button: nothing to click. */
+.video-facade.-ambient { cursor: default; }
+.video-facade.-ambient .b-video__still { opacity: 1; }
+/* Except the three YouTube refuses to embed (error 150, embedding disabled by
+   the owner): those stay a link out to YouTube, so they show their thumbnail
+   and a play badge rather than an empty black box. */
+.video-facade.-external { display: block; cursor: pointer; }
