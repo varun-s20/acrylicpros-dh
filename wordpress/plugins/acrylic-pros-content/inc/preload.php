@@ -25,7 +25,6 @@ function ap_preloads() : array {
 		'maintenance' => '<link rel="preload" as="image" href="/wp-content/uploads/project-20-960.webp" type="image/webp" fetchpriority="high">',
 		'pond-design-construction' => '<link rel="preload" as="image" href="/wp-content/uploads/koi-pond-lilies-1600.webp" type="image/webp" fetchpriority="high">',
 		'reef-insert-restoration' => '<link rel="preload" as="image" href="/wp-content/uploads/coral-closeup-header-1920.webp" type="image/webp" fetchpriority="high">',
-		'scratch-removal' => '<link rel="preload" as="image" href="/wp-content/uploads/scratch-removal-film-v2.jpg" type="image/jpeg" fetchpriority="high">',
 		'sharks' => '<link rel="preload" as="image" href="/wp-content/uploads/underwater-godrays-bg-1920.webp" type="image/webp" fetchpriority="high">',
 		'stingrays-eels' => '<link rel="preload" as="image" href="/wp-content/uploads/underwater-godrays-bg-1920.webp" type="image/webp" fetchpriority="high">',
 		'tropical-fish' => '<link rel="preload" as="image" href="/wp-content/uploads/coral-closeup-header-1280.webp" type="image/webp" fetchpriority="high">',

@@ -65,10 +65,10 @@
   --navy-raised: #04335f;   
   --violet:      #221c35;   
   --near-black:  #0c0a09;
-  --accent-base:  #c79d47;
-  --accent-dark:  #a9822f;   
-  --accent-light: #cea95d;   
-  --accent-ink:   #ffffff;   
+  --accent-base:  var(--clraccent);
+  --accent-dark:  var(--clraccentdeep);    
+  --accent-light: var(--clraccentlight);   
+  --accent-ink:   var(--clraccentink);     
   --water:        #4180c9;   
   --water-pale:   #9fc6f0;   
   --coral-purple: #6541cb;   
@@ -84,7 +84,10 @@
   --ink:            var(--navy);
   --text-secondary: rgba(0, 40, 77, 0.78);
   --text-muted:     rgba(0, 40, 77, 0.55);
-  --accent: var(--accent-base);
+  --accent: var(--accent-dark);
+  --cta:       var(--clrcta);
+  --cta-ink:   var(--clrctaink);
+  --cta-hover: var(--clrctahover);
   --border: rgba(0, 40, 77, 0.14);
   --tile:   var(--tint);
   --text-on-dark:       #ffffff;
@@ -163,7 +166,10 @@
   --ink:            #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.78);
   --text-muted:     rgba(255, 255, 255, 0.58);
-  --accent: var(--accent-light);
+  --accent: var(--accent-base);   
+  --cta:       var(--accent-base);
+  --cta-ink:   var(--accent-ink);
+  --cta-hover: var(--accent-light);
   --border: rgba(255, 255, 255, 0.2);
   --tile:   #ffffff;
   color: var(--text-secondary);
@@ -625,8 +631,8 @@ body.is-locked {
   height: 4.4rem;
   padding: 0 2.24rem;
   border-radius: var(--radius-pill);
-  background: var(--accent-base);
-  color: var(--accent-ink);
+  background: var(--cta);
+  color: var(--cta-ink);
   font-size: var(--step-cta);
   font-weight: var(--w-ui);
   letter-spacing: 0.06em;
@@ -638,7 +644,7 @@ body.is-locked {
               box-shadow var(--dur) var(--ease-out);
 }
 :where(#main) .contact-pill:hover {
-  background: var(--accent-light);
+  background: var(--cta-hover);
   box-shadow: var(--shadow-sm);
 }
 :where(#main) .contact-pill__icon {
@@ -1091,9 +1097,9 @@ body.is-locked {
   line-height: 1.5;
 }
 :where(#main) .btn {
-  --btn-bg: var(--accent-base);
-  --btn-fg: var(--accent-ink);
-  --btn-bg-hover: var(--accent-light);
+  --btn-bg: var(--cta);
+  --btn-fg: var(--cta-ink);
+  --btn-bg-hover: var(--cta-hover);
   position: relative;
   display: inline-flex;
   align-items: center;
@@ -2012,8 +2018,8 @@ body.is-locked {
   width: 5.6rem;
   height: 5.6rem;
   border-radius: 50%;
-  background: var(--accent-base);
-  color: var(--accent-ink);
+  background: var(--cta);
+  color: var(--cta-ink);
   box-shadow: var(--shadow-md);
   transition: transform var(--dur) var(--ease-out),
               background var(--dur) var(--ease-out);
@@ -2125,7 +2131,7 @@ body.is-locked {
   text-transform: uppercase;
   text-decoration: none;
 }
-:where(#main) .sticky-cta__btn--primary { background: var(--accent-base); color: var(--accent-ink); }
+:where(#main) .sticky-cta__btn--primary { background: var(--cta); color: var(--cta-ink); }
 :where(#main) .sticky-cta__btn--signal { background: var(--brand-signal); color: #20160a; }
 @media (min-width: 62rem) {
   :where(#main) .sticky-cta { display: none; }
@@ -2810,7 +2816,7 @@ body.is-locked {
   text-transform: uppercase;
   white-space: nowrap;
 }
-:where(#main) .tag--gold { background: var(--accent-base); }
+:where(#main) .tag--gold { background: var(--accent-base); color: var(--accent-ink); }
 :where(#main) .tag--water { background: var(--water); }
 :where(#main) .tag--purple { background: var(--coral-purple); }
 :where(#main) .tag--onLight {
@@ -3201,8 +3207,8 @@ body.is-locked {
 }
 :where(#main) .gold-band {
   padding-block: clamp(4.8rem, 5.2vw, 7.5rem) clamp(4rem, 4.2vw, 6rem);
-  background: var(--accent-base);
-  color: #ffffff;
+  background: var(--clrcta);
+  color: var(--clrctaink);
 }
 :where(#main) .gold-band__inner {
   display: grid;
@@ -3211,7 +3217,7 @@ body.is-locked {
 }
 :where(#main) .gold-band__title {
   margin: 0;
-  color: #ffffff;
+  color: var(--clrctaink);
   font-size: min(var(--step-h3), 4.16rem);
   font-weight: var(--w-display);
   line-height: 1.04;
@@ -3219,7 +3225,7 @@ body.is-locked {
 }
 :where(#main) .gold-band__text {
   margin: 0 0 var(--space-md);
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--clrctaink);
   font-size: var(--step-small);
   line-height: 1.5;
 }
@@ -3819,6 +3825,90 @@ body.is-locked {
 :where(#main) #main .prose ol { display: inline-block; text-align: left; }
   :where(#main) #main :is(h1, h2, h3, h4, h5),
 :where(#main) #main .section__head { text-align: center; }
+}
+:where(#main) .sanding-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg) var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:where(#main) .sanding-step figure {
+  display: grid;
+  gap: 1.4rem;
+  margin: 0;
+}
+:where(#main) .sanding-step img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: clamp(12px, 1.6vw, 20px);   
+  box-shadow: 0 2rem 4rem -2.4rem rgba(0, 20, 40, 0.5);
+}
+:where(#main) .sanding-step figcaption {
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  color: var(--ink);
+  font-weight: var(--w-ui);
+  font-size: 1.6rem;
+  letter-spacing: 0.01em;
+}
+:where(#main) .sanding-step__num {
+  color: var(--accent);
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+:where(#main) .sanding-step:last-child img { outline: 2px solid var(--accent-base); outline-offset: 3px; }
+@media (min-width: 62em) {
+  :where(#main) .sanding-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+:where(#main) .page-film { padding-block-start: var(--space-lg); }
+:where(#main) .sanding {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+:where(#main) .sanding__reel { max-width: 32rem; }
+:where(#main) .sanding .sanding-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
+:where(#main) .sanding .sanding-step figure { position: relative; display: block; }
+:where(#main) .sanding .sanding-step img { aspect-ratio: 1 / 1; }
+:where(#main) .sanding .sanding-step figcaption {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  padding: 0.6rem 1.4rem 0.6rem 1.2rem;
+  border-radius: 999px;
+  background: rgba(0, 13, 26, 0.74);
+  color: #ffffff;
+  font-size: 1.4rem;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+:where(#main) .sanding .sanding-step__num { color: var(--accent-base); }
+@media (min-width: 62em) {
+  :where(#main) .sanding { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+  :where(#main) .sanding__reel { max-width: none; }
+  :where(#main) .sanding .sanding-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+:where(#main) .ba-extra { display: grid; gap: var(--space-md); margin-top: var(--space-xl); }
+:where(#main) .ba-extra__title {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--step-small);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+:where(#main) .ba-extra__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
+:where(#main) .ba-extra__grid figure { margin: 0; }
+:where(#main) .ba-extra__grid .media { border-radius: clamp(12px, 1.6vw, 20px); overflow: hidden; }
+@media (min-width: 62em) {
+  :where(#main) .ba-extra__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 /* ---- defaults the old markup expects (home.css resets them globally) ---- */

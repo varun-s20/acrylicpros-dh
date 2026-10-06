@@ -33,6 +33,7 @@ mistype a slug.
 | `/payment/` | `/contact/` | 301 |
 | `/thank-you/` | `/` | 301 |
 | `/shark-king/` | `/sharks/` | 301 |
+| `/featured-projects/` | `/scratch-removal/` | 301 |
 | `/blog/` and everything under it | `/` | 410 |
 
 ## The 410, deliberately

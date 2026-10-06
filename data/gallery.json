@@ -6,16 +6,16 @@
     "alt": "A tall curved-front aquarium on a white cabinet in the corner of an office, lit blue."
   },
   {
-    "src": "assets/images/gallery/project-37.jpeg",
-    "category": "custom-aquariums commercial",
-    "title": "Coral aquarium framed in cherry wood",
-    "alt": "A long blue-lit aquarium set into a cherry-wood frame, colorful coral formations along the bottom and a staircase reflected in the front panel."
-  },
-  {
     "src": "assets/images/gallery/project-38.jpeg",
     "category": "custom-aquariums commercial",
     "title": "In-wall aquarium in a lobby",
     "alt": "A wide blue-lit aquarium set into a cherry-wood surround in a lobby wall, fish swimming over colorful coral, leather armchairs in the foreground."
+  },
+  {
+    "src": "assets/images/gallery/project-37.jpeg",
+    "category": "custom-aquariums commercial",
+    "title": "Coral aquarium framed in cherry wood",
+    "alt": "A long blue-lit aquarium set into a cherry-wood frame, colorful coral formations along the bottom and a staircase reflected in the front panel."
   },
   {
     "src": "assets/images/gallery/project-39.jpeg",
@@ -24,40 +24,10 @@
     "alt": "A kitchen island glowing blue with light from an aquarium set into the white paneled wall behind it, beneath a backlit calligraphy panel."
   },
   {
-    "src": "assets/images/gallery/project-40.jpeg",
-    "category": "custom-aquariums",
-    "title": "Planted rimless aquarium with sump",
-    "alt": "A planted rimless aquarium with fish over rockwork under two pendant lights, the open cabinet below showing the sump and filtration."
-  },
-  {
-    "src": "assets/images/gallery/project-41.jpeg",
-    "category": "custom-aquariums",
-    "title": "Rimless planted aquascape",
-    "alt": "A rimless aquarium seen from the corner, planted with grasses among rocks on golden gravel, in a dark room."
-  },
-  {
     "src": "assets/images/gallery/project-42.jpeg",
     "category": "fabrication",
     "title": "Acrylic tank beneath a shark mural",
     "alt": "An empty clear acrylic aquarium with a cut-out top on a white metal stand, a great white shark mural painted on the wall above it."
-  },
-  {
-    "src": "assets/images/gallery/project-43.jpeg",
-    "category": "custom-aquariums residential",
-    "title": "Aquarium coffee table",
-    "alt": "A long, low planted aquarium with a raised glass top built as a coffee table, in a living room with tall windows and a wood floor."
-  },
-  {
-    "src": "assets/images/scratch-removal/scratch-24.jpeg",
-    "category": "restoration residential",
-    "title": "In-wall aquarium after scratch removal",
-    "alt": "After: the same aquarium in dark wood cabinetry with a crystal-clear front panel, lit blue."
-  },
-  {
-    "src": "assets/images/scratch-removal/scratch-26.jpeg",
-    "category": "restoration residential",
-    "title": "Aquarium viewing side after scratch removal",
-    "alt": "After: the same side from the lounge, the aquarium clear and lit blue above a coffee table."
   },
   {
     "src": "assets/images/gallery/project-03.jpeg",
@@ -94,6 +64,90 @@
     "category": "custom-aquariums",
     "title": "Aquarium on white cabinet with LED lights",
     "alt": "A blue-lit aquarium with three rock formations on a white cabinet, three LED lights on a black bar above."
+  },
+  {
+    "src": "assets/images/gallery/project-36.jpg",
+    "category": "custom-aquariums",
+    "title": "Aquarium in ornate white cabinetry",
+    "alt": "A blue-lit aquarium with rock formations in ornate white cabinetry, a decorated canopy above."
+  },
+  {
+    "src": "assets/images/gallery/project-19.jpeg",
+    "category": "custom-aquariums commercial",
+    "title": "In-wall aquarium in a stacked-stone wall",
+    "alt": "A wood-framed aquarium set into a stacked-stone wall behind a white reception counter."
+  },
+  {
+    "src": "assets/images/gallery/project-20.jpeg",
+    "category": "custom-aquariums commercial",
+    "title": "Aquarium in a reception area",
+    "alt": "A blue-lit aquarium with rock formations on a tall white cabinet in a reception area with green chairs."
+  },
+  {
+    "src": "assets/images/gallery/project-21.jpeg",
+    "category": "custom-aquariums",
+    "title": "Aquarium beside a staircase",
+    "alt": "A long blue-lit aquarium with corals on a white cabinet with a matching canopy, beside a staircase."
+  },
+  {
+    "src": "assets/images/gallery/project-22.jpeg",
+    "category": "custom-aquariums",
+    "title": "Curved-end aquarium in gray cabinetry",
+    "alt": "A blue-lit aquarium with a curved end, built into gray cabinetry with a matching canopy."
+  },
+  {
+    "src": "assets/images/gallery/project-23.jpeg",
+    "category": "custom-aquariums",
+    "title": "Corner aquarium in white cabinetry",
+    "alt": "A tall two-sided aquarium with driftwood and a bubble column, built into white cabinetry at the end of a hallway."
+  },
+  {
+    "src": "assets/images/gallery/project-25.jpeg",
+    "category": "custom-aquariums residential",
+    "title": "Outdoor aquarium beside a pool",
+    "alt": "An aquarium with large fish set into the wall of a backyard building with barn doors, beside a swimming pool."
+  },
+  {
+    "src": "assets/images/gallery/project-27.jpeg",
+    "category": "custom-aquariums",
+    "title": "Long aquarium with driftwood",
+    "alt": "A long aquarium with fish, driftwood and plants on a dark cabinet, potted plants above."
+  },
+  {
+    "src": "assets/images/gallery/project-26.jpeg",
+    "category": "custom-aquariums residential",
+    "title": "Two aquariums beside a TV",
+    "alt": "Two wood-framed, blue-lit aquariums on either side of a wall-mounted TV in a family room."
+  },
+  {
+    "src": "assets/images/gallery/project-40.jpeg",
+    "category": "custom-aquariums",
+    "title": "Planted rimless aquarium with sump",
+    "alt": "A planted rimless aquarium with fish over rockwork under two pendant lights, the open cabinet below showing the sump and filtration."
+  },
+  {
+    "src": "assets/images/gallery/project-41.jpeg",
+    "category": "custom-aquariums",
+    "title": "Rimless planted aquascape",
+    "alt": "A rimless aquarium seen from the corner, planted with grasses among rocks on golden gravel, in a dark room."
+  },
+  {
+    "src": "assets/images/gallery/project-43.jpeg",
+    "category": "custom-aquariums residential",
+    "title": "Aquarium coffee table",
+    "alt": "A long, low planted aquarium with a raised glass top built as a coffee table, in a living room with tall windows and a wood floor."
+  },
+  {
+    "src": "assets/images/scratch-removal/scratch-24.jpeg",
+    "category": "restoration residential",
+    "title": "In-wall aquarium after scratch removal",
+    "alt": "After: the same aquarium in dark wood cabinetry with a crystal-clear front panel, lit blue."
+  },
+  {
+    "src": "assets/images/scratch-removal/scratch-26.jpeg",
+    "category": "restoration residential",
+    "title": "Aquarium viewing side after scratch removal",
+    "alt": "After: the same side from the lounge, the aquarium clear and lit blue above a coffee table."
   },
   {
     "src": "assets/images/gallery/project-09.jpeg",
@@ -138,70 +192,16 @@
     "alt": "An aquarium with a rock arch, lit pink and purple, beneath a pink neon sign."
   },
   {
-    "src": "assets/images/gallery/project-36.jpg",
-    "category": "custom-aquariums",
-    "title": "Aquarium in ornate white cabinetry",
-    "alt": "A blue-lit aquarium with rock formations in ornate white cabinetry, a decorated canopy above."
-  },
-  {
     "src": "assets/images/gallery/project-18.jpeg",
     "category": "custom-aquariums",
     "title": "Aquarium with equipment below",
     "alt": "A blue-lit aquarium on a white cabinet, its doors open to show the filtration equipment inside."
   },
   {
-    "src": "assets/images/gallery/project-19.jpeg",
-    "category": "custom-aquariums commercial",
-    "title": "In-wall aquarium in a stacked-stone wall",
-    "alt": "A wood-framed aquarium set into a stacked-stone wall behind a white reception counter."
-  },
-  {
-    "src": "assets/images/gallery/project-20.jpeg",
-    "category": "custom-aquariums commercial",
-    "title": "Aquarium in a reception area",
-    "alt": "A blue-lit aquarium with rock formations on a tall white cabinet in a reception area with green chairs."
-  },
-  {
-    "src": "assets/images/gallery/project-21.jpeg",
-    "category": "custom-aquariums",
-    "title": "Aquarium beside a staircase",
-    "alt": "A long blue-lit aquarium with corals on a white cabinet with a matching canopy, beside a staircase."
-  },
-  {
-    "src": "assets/images/gallery/project-22.jpeg",
-    "category": "custom-aquariums",
-    "title": "Curved-end aquarium in gray cabinetry",
-    "alt": "A blue-lit aquarium with a curved end, built into gray cabinetry with a matching canopy."
-  },
-  {
-    "src": "assets/images/gallery/project-23.jpeg",
-    "category": "custom-aquariums",
-    "title": "Corner aquarium in white cabinetry",
-    "alt": "A tall two-sided aquarium with driftwood and a bubble column, built into white cabinetry at the end of a hallway."
-  },
-  {
     "src": "assets/images/gallery/project-24.jpeg",
     "category": "custom-aquariums",
     "title": "Large aquarium with rock-effect background",
     "alt": "A large, empty aquarium with a textured rock-effect background on a black stand, beneath three arched windows."
-  },
-  {
-    "src": "assets/images/gallery/project-25.jpeg",
-    "category": "custom-aquariums residential",
-    "title": "Outdoor aquarium beside a pool",
-    "alt": "An aquarium with large fish set into the wall of a backyard building with barn doors, beside a swimming pool."
-  },
-  {
-    "src": "assets/images/gallery/project-26.jpeg",
-    "category": "custom-aquariums residential",
-    "title": "Two aquariums beside a TV",
-    "alt": "Two wood-framed, blue-lit aquariums on either side of a wall-mounted TV in a family room."
-  },
-  {
-    "src": "assets/images/gallery/project-27.jpeg",
-    "category": "custom-aquariums",
-    "title": "Long aquarium with driftwood",
-    "alt": "A long aquarium with fish, driftwood and plants on a dark cabinet, potted plants above."
   },
   {
     "src": "assets/images/gallery/project-28.jpeg",

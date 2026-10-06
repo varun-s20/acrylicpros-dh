@@ -147,8 +147,40 @@ hr.hairline { background: var(--border); }
   --vr: 3rem;
   --clrfontaine: #4180C9;
   --clraquatique: #6541CB;
-  --clrgold: #C79D47;
-  --clrgolddark: #CEA95D;
+  /* Accent (client, 3 Oct): this was gold. One set of tokens now drives every
+     accent on the site -- fills, accent text on the dark bands, focus rings,
+     tags, the chat fish -- across home.css, pages.css and legacy.css, so the
+     palette changes here and nowhere else.
+       --clraccent       fills, and accent text on navy / dark blue
+       --clraccentlight  hover, and links on navy (the old --clrgolddark,
+                         which despite the name was the lighter gold)
+       --clraccentdeep   accent text on white -- must hold 4.5:1
+       --clraccentink    text and icons that sit ON an accent fill        */
+  /* The logo's own blue (client, 3 Oct): after gold, coral, steel and royal
+     blue, the accent is now the light blue of the 2026 logo itself --
+     #02C9FF is the median of the logo's blue pixels (hue 192deg). It is the
+     colour of highlights: eyebrows and labels on navy, tags, the before/after
+     label, focus rings, the page-transition sheet and the chat fish.
+       on navy          7.66:1     navy text on it   7.66:1
+     It is too light to carry white text or to read on white, so small text
+     on white uses --clraccentdeep (5.12:1), and it is never a button fill on
+     a light ground -- buttons are navy (below). */
+  --clraccent: #02C9FF;
+  --clraccentlight: #93E6FF;
+  --clraccentdeep: #0074AD;
+  --clraccentink: #00284D;
+  /* Call-to-action fills (client, 3 Oct): "keep the CTA background dark".
+     Buttons, the header contact pill and the estimate band are navy with
+     white text (14.9:1). On a DARK ground a navy button would disappear, so
+     there the CTA takes the logo blue with navy text instead -- see the
+     .-dark header rule, the dark promo card and the legacy --cta tokens. */
+  --clrcta: #00284D;
+  --clrctahover: #0B3D6E;
+  --clrctaink: #FFFFFF;
+  /* Old names, kept as aliases: page bodies already pasted into WordPress
+     carry data-color="var(--clraccentlight)" inline. */
+  --clrgold: var(--clraccent);
+  --clrgolddark: var(--clraccentlight);
   --clrdarkblue: #000D1A;
   --clrnavy: #00284D;
   --ease: cubic-bezier(.23, 1, .32, 1);
@@ -206,7 +238,7 @@ html.lenis, html.lenis body { height: auto; }
   transform: translateY(-200%);
 }
 .skip-link:focus { transform: none; }
-:focus-visible { outline: 2px solid var(--clrgold); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--clraccent); outline-offset: 3px; }
 
 .svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 .a-svg { display: block; flex-shrink: 0; width: 1.3rem; height: 1.3rem; fill: currentColor; }
@@ -329,9 +361,11 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 .a-button:active { transform: scale(.97); }
 .a-button.-bgwhite { background-color: #fff; color: var(--clrdarkblue); transition: background-color 1s var(--ease); }
 .a-button.-bgnavy { background-color: var(--clrnavy); color: #fff; }
+/* the CTA on a dark ground: logo blue, navy text (navy would vanish there) */
+.a-button.-bgaccent { background-color: var(--clraccent); color: var(--clraccentink); }
 .a-button.-bgdarkblue { background-color: var(--clrdarkblue); color: #fff; }
 .a-button.-boxed { min-width: 22.1rem; }
-.a-button.-outline { border: 1px solid var(--clrgold); background-color: #fff; color: var(--clrgold); }
+.a-button.-outline { border: 1px solid var(--clraccent); background-color: #fff; color: var(--clraccentdeep); } /* deep, not the accent itself: button-size text on white needs 4.5:1 (client, 3 Oct) */
 .a-button.-secondary {
   border-radius: 5rem;
   background-color: #ffffff1a;
@@ -366,7 +400,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 }
 
 .a-buttonSlider {
-  --slider-border-color: var(--clrgold);
+  --slider-border-color: var(--clraccent);
   --slider-icon-color: var(--clrnavy);
   position: relative;
   display: flex; align-items: center; justify-content: center;
@@ -426,7 +460,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 }
 .a-tag.-fontaine { --color1: #4180C9; }
 .a-tag.-aquatique { --color1: #6541CB; }
-.a-tag.-golddark { --color1: rgba(206, 169, 93, .6); }
+.a-tag.-golddark { --color1: color-mix(in srgb, var(--clraccentlight) 60%, transparent); }
 
 /* =====================================================================
    Loader — white panel wipes down, smoke trails over the page
@@ -515,6 +549,8 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   transform: translateY(-50%);
 }
 .-dark .o-header__call { background-color: rgba(0, 13, 26, .7); }
+/* The contact pill stays the logo blue over every section (client, 3 Oct:
+   "keep it light only"); it does not switch to navy on light pages. */
 .o-header__call:active { transform: translateY(-50%) scale(.97); }
 @media (min-width: 1025px) { .o-header__call { display: none; } }
 
@@ -525,8 +561,8 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   width: 4rem; height: 4rem;
   padding: 1.4rem 2rem;
   border-radius: 4.4rem;
-  background-color: var(--clrgold);
-  color: #fff;
+  background-color: var(--clraccent);   /* always light, on every section */
+  color: var(--clraccentink);
   font-weight: 600;
   text-transform: uppercase;
   white-space: nowrap;
@@ -930,9 +966,9 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 .o-homeProducts > .row > .a-button { margin-top: 3rem; margin-left: auto; }
 
 .m-catSelector {
-  --color: var(--clraquatique);
+  --color: var(--clrdarkblue);   /* "All" is active on load; the scripts only set this on change */
   --offset: 0;
-  --items-count: 4;
+  --items-count: 3;   /* the scripts set the real count; this is the no-JS default */
   position: relative;
   width: 100%;
 }
@@ -958,12 +994,12 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 .m-catSelector__button {
   position: relative; z-index: 3;
   border-radius: 4rem;
-  color: #c5c5c5;
+  color: #5f6b78;   /* was #c5c5c5: 1.7:1 on the #fafafa track; this is 5.2:1 */
   outline: 1px solid transparent;
   transition: outline .1s var(--ease), color .4s var(--ease);
 }
 .m-catSelector__button:not(.-active):hover {
-  color: #4f4f4f;
+  color: var(--clrnavy);
   outline: 1px solid rgba(79, 79, 79, .1);
   transition: outline 1s var(--ease), color .4s var(--ease);
 }
@@ -1349,8 +1385,8 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   position: relative;
   overflow: hidden;
   padding: 6rem 0;
-  background-color: var(--clrgold);
-  color: #fff;
+  background-color: var(--clrcta);   /* dark CTA band: the logo's blue reads on it */
+  color: var(--clrctaink);
   text-align: center;
 }
 .o-prefooter .row { z-index: 2; container-type: inline-size; }
@@ -1605,7 +1641,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   background-color: #faf7f1;
   text-align: left;
 }
-.m-testimonial__quote { width: 4.2rem; height: 3.3rem; color: var(--clrgold); }
+.m-testimonial__quote { width: 4.2rem; height: 3.3rem; color: var(--clraccent); }
 .m-testimonial__text { flex: 1; margin: 0; color: var(--clrdarkblue); font-size: 1.8rem; line-height: 1.55; }
 .m-testimonial__author {
   display: flex; gap: 1.4rem; align-items: center;
@@ -1694,7 +1730,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   font-weight: 600; font-size: 1.1rem; letter-spacing: .08em; text-transform: uppercase;
 }
 .-scratch .m-promo__eyebrow { background-color: rgba(255, 255, 255, .12); }
-.m-promo__eyebrow .a-tag__fin { width: 1.4rem; height: .9rem; color: var(--clrgold); }
+.m-promo__eyebrow .a-tag__fin { width: 1.4rem; height: .9rem; color: var(--clraccent); }
 .m-promo__title { font-weight: 300; font-size: clamp(3.2rem, 3.4vw, 5.2rem); line-height: 1.02; letter-spacing: -.04em; }
 .m-promo__title strong { font-weight: 600; }
 .m-promo__lede { max-width: 48rem; font-size: 1.7rem; line-height: 1.5; opacity: .8; }
@@ -1704,11 +1740,13 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   display: inline-flex; gap: 1rem; align-items: center;
   margin-top: .6rem; padding: 1.6rem 2.4rem;
   border-radius: 5rem;
-  background-color: var(--clrgold);
-  color: #fff;
+  background-color: var(--clrcta);
+  color: var(--clrctaink);
   font-weight: 600; font-size: 1.4rem;
   transition: background-color .4s var(--ease), gap .4s var(--ease);
 }
+/* on the dark scratch card a navy button would vanish: logo blue, navy text */
+.m-promo.-scratch .m-promo__cta { background-color: var(--clraccent); color: var(--clraccentink); }
 .m-promo__visual { position: relative; display: grid; place-items: center; min-height: 26rem; }
 .m-promo__glow {
   position: absolute; top: 50%; left: 50%;
@@ -1717,8 +1755,11 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   background: radial-gradient(circle, #fff 0%, rgba(255, 255, 255, 0) 70%);
   transform: translate(-50%, -50%);
 }
-.-glass .m-promo__visual img { position: relative; width: min(100%, 44rem); mix-blend-mode: multiply; transition: transform .8s var(--ease);
-  -webkit-mask-image: radial-gradient(closest-side, #000 78%, transparent 100%); mask-image: radial-gradient(closest-side, #000 78%, transparent 100%); }
+/* No mask (client, 3 Oct): a radial fade used to sit on this image, and the
+   tank's top corners fell outside its circle, so they dissolved into the card
+   and read as smoke. multiply is all the blending the photo needs -- its
+   background is pure white, which multiplies away into the card. */
+.-glass .m-promo__visual img { position: relative; width: min(100%, 44rem); mix-blend-mode: multiply; transition: transform .8s var(--ease); }
 .m-promo__ba {
   position: relative; overflow: hidden;
   width: min(100%, 36rem); aspect-ratio: 3 / 4;
@@ -1754,10 +1795,11 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   pointer-events: none;
 }
 .m-promo__label.-before { left: 1.2rem; }
-.m-promo__label.-after { right: 1.2rem; background-color: var(--clrgold); }
+.m-promo__label.-after { right: 1.2rem; background-color: var(--clraccent); color: var(--clraccentink); }
 @media (hover: hover) and (any-pointer: fine) {
   .m-promo:hover { transform: translateY(-.6rem); box-shadow: 0 3.6rem 6rem -3rem rgba(0, 13, 26, .45); }
-  .m-promo:hover .m-promo__cta { gap: 1.6rem; background-color: var(--clrgolddark); }
+  .m-promo:hover .m-promo__cta { gap: 1.6rem; background-color: var(--clrctahover); }
+  .m-promo.-scratch:hover .m-promo__cta { background-color: var(--clraccentlight); }
   .-glass:hover .m-promo__visual img { transform: scale(1.05) translateY(-.6rem); }
   .-scratch:hover .m-promo__ba { --pos: 12%; }
 }
@@ -1768,7 +1810,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 @media (hover: none) {
   .is-inview .-scratch .m-promo__ba { --pos: 20%; }
 }
-.m-promo:focus-visible { outline: 3px solid var(--clrgold); outline-offset: 4px; }
+.m-promo:focus-visible { outline: 3px solid var(--clraccent); outline-offset: 4px; }
 @media (min-width: 1025px) {
   .o-homePromos { gap: 2.4rem; padding: 4rem 0 10rem; }
   .m-promo { grid-template-columns: 1.1fr .9fr; align-items: center; min-height: 46rem; padding: 4.8rem 6.4rem; }
@@ -1823,7 +1865,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   .m-igTile a:hover img { transform: scale(1.06); }
   .m-igTile a:hover::after { opacity: 1; }
 }
-.m-igTile a:focus-visible { outline: 3px solid var(--clrgold); outline-offset: 3px; }
+.m-igTile a:focus-visible { outline: 3px solid var(--clraccent); outline-offset: 3px; }
 @media (min-width: 641px) { .o-homeInstagram__grid { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 1025px) {
   .o-homeInstagram__head { grid-template-columns: 1fr auto; gap: 4rem; align-items: center; }
@@ -1851,12 +1893,17 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   position: absolute; top: 0; left: 0;
   width: 100%; height: 100%;
   border-radius: inherit;
-  box-shadow: 0 0 0 0 rgba(199, 157, 71, .55);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--clraccent) 55%, transparent);
   animation: chat-pulse 2.6s ease-out infinite;
 }
-@keyframes chat-pulse { 0% { box-shadow: 0 0 0 0 rgba(199, 157, 71, .55); } 70%, 100% { box-shadow: 0 0 0 1.4rem rgba(199, 157, 71, 0); } }
+@keyframes chat-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--clraccent) 55%, transparent); } 70%, 100% { box-shadow: 0 0 0 1.4rem color-mix(in srgb, var(--clraccent) 0%, transparent); } }
+/* The fish's body follows the accent (client, 3 Oct). The stops are classed
+   rather than given stop-color attributes so the palette lives in CSS. */
+.m-chat__fishTone { stop-color: var(--clraccent); }
+.m-chat__fishTone.-light { stop-color: color-mix(in srgb, var(--clraccent), #fff 30%); }
+.m-chat__fishTone.-deep { stop-color: var(--clraccentdeep); }
 .m-chat__launcher:hover { transform: translateY(-.3rem); }
-.m-chat__launcher:focus-visible { outline: 3px solid var(--clrgold); outline-offset: 3px; }
+.m-chat__launcher:focus-visible { outline: 3px solid var(--clraccent); outline-offset: 3px; }
 .m-chat__launcherLabel { display: none; padding-right: 1.4rem; font-weight: 600; font-size: 1.4rem; white-space: nowrap; }
 .m-chat__avatar { position: relative; display: block; flex-shrink: 0; width: 5.2rem; height: 5.2rem; }
 .m-chat__avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; animation: chat-bob 4s ease-in-out infinite; }
@@ -1925,7 +1972,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   font: inherit; font-size: 1.5rem; line-height: 1.4;
   resize: none;
 }
-.m-chat__form textarea:focus { outline: 2px solid var(--clrgold); outline-offset: 0; border-color: transparent; }
+.m-chat__form textarea:focus { outline: 2px solid var(--clraccent); outline-offset: 0; border-color: transparent; }
 .m-chat__hint { color: #b3261e; font-size: 1.3rem; }
 .m-chat__send { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
 .m-chat__btn {
@@ -1942,7 +1989,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 .m-chat__btn:hover { filter: brightness(1.06); transform: translateY(-.1rem); }
 .m-chat__foot { display: flex; gap: 1.6rem; align-items: center; justify-content: space-between; padding: 1.4rem 2rem; border-top: .1rem solid rgba(0, 13, 26, .08); font-weight: 600; font-size: 1.35rem; }
 .m-chat__foot a { display: inline-flex; gap: .6rem; align-items: center; color: var(--clrnavy); }
-.m-chat__foot a:last-child { color: var(--clrgold); }
+.m-chat__foot a:last-child { color: var(--clraccent); }
 .m-chat__foot a:hover { text-decoration: underline; }
 @media (min-width: 1025px) {
   .m-chat { right: 2.4rem; bottom: 2.4rem; }
@@ -1975,7 +2022,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
 }
 .m-chat__launcher::before { display: none; }
 .m-chat__launcher:hover { transform: none; }
-.m-chat__launcher:focus-visible { outline: 3px solid var(--clrgold); outline-offset: 4px; border-radius: 1.6rem; }
+.m-chat__launcher:focus-visible { outline: 3px solid var(--clraccent); outline-offset: 4px; border-radius: 1.6rem; }
 .m-chat__fish {
   position: relative; z-index: 1;
   width: 100%; height: 100%;
@@ -2067,7 +2114,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   .o-menu__mainNav {
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(5, auto);
+    grid-template-rows: repeat(4, auto);   /* 6 items: 4 + 2, so opening Shop tanks only pushes what is below it */
     gap: .3rem 6rem;
     justify-content: center;
   }
@@ -2117,7 +2164,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   width: 100%; margin-bottom: 3.2rem;
   text-align: center;
 }
-.o-homeFilm__head .a-link { color: var(--clrgolddark); }
+.o-homeFilm__head .a-link { color: var(--clraccentlight); }
 .t-home__film .b-video.-ambient {
   width: 100%;
   border-radius: 1.6rem;
@@ -2197,11 +2244,9 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
     transform: translate(-50%, -50%) scale(.56);
   }
 }
-/* The still is only for visitors who asked for reduced motion, for whom the
-   video never plays. */
-@media (prefers-reduced-motion: no-preference) {
-  .b-video.-ambient[data-yt-ambient-near] .b-video__still { display: none; }
-}
+/* The still stays underneath (client, 3 Oct): the player fades in over it once
+   it is playing, so a grid of videos shows thumbnails rather than empty dark
+   boxes while YouTube loads. (The homepage band keeps its own rule.) */
 /* The legacy pages' facade is a <div> now, not a button: nothing to click. */
 .video-facade.-ambient { cursor: default; }
 .video-facade.-ambient .b-video__still { opacity: 1; }
@@ -2209,3 +2254,40 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
    the owner): those stay a link out to YouTube, so they show their thumbnail
    and a play badge rather than an empty black box. */
 .video-facade.-external { display: block; cursor: pointer; }
+
+/* ---------------------------------------------------------------------
+   "Shop tanks" dropdown (client, 3 Oct). The toggle is a button styled as
+   a menu link (it is the 4th data-menu-link, so it slides in with the others
+   and keeps the 4th preview card); its two sub-links open beneath it.
+   Without script the list simply shows, so both pages stay reachable.
+   --------------------------------------------------------------------- */
+.o-menu__dropToggle {
+  display: inline-flex; gap: .28em; align-items: center;
+  padding: 0 0 .12em;
+  border: 0; background: none;
+  color: inherit; text-align: left;
+  cursor: pointer;
+}
+.o-menu__dropIcon { flex: none; width: .5em; height: .5em; transition: transform .4s var(--ease); }
+.o-menu__mainItem.-open .o-menu__dropIcon { transform: rotate(180deg); }
+.o-menu__dropList { display: grid; gap: .4rem; justify-items: center; padding: .6rem .2rem 1.4rem; }
+.js .o-menu__mainItem.-drop:not(.-open) .o-menu__dropList { display: none; }
+.o-menu__subLink {
+  display: inline-block;
+  padding: .3rem 0;
+  font-weight: 500; font-size: clamp(1.7rem, 1.5vw, 2.2rem);
+  letter-spacing: .08em; text-transform: uppercase;
+  opacity: .8;
+  transition: opacity .4s var(--ease);
+}
+/* the same dimming the main links get: only the current page stays full */
+.o-menu__mainNav.-active .o-menu__subLink { opacity: .35; }
+.o-menu__subLink:hover, .o-menu__subLink:focus-visible,
+.o-menu__mainNav .o-menu__subLink.-active { opacity: 1; }
+.o-menu__subLink:focus-visible { outline: .1rem solid currentColor; outline-offset: .3rem; }
+@media (min-width: 641px) { .o-menu__dropList { justify-items: start; padding-left: .1em; } }
+@media (prefers-reduced-motion: no-preference) {
+  .o-menu__mainItem.-open .o-menu__subLink { animation: menu-sub-in .5s var(--ease) both; }
+  .o-menu__mainItem.-open li + li .o-menu__subLink { animation-delay: .07s; }
+}
+@keyframes menu-sub-in { from { opacity: 0; transform: translateY(-.5em); } }

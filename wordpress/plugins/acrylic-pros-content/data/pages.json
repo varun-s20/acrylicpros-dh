@@ -40,98 +40,93 @@
   "order": 7
  },
  {
-  "slug": "featured-projects",
-  "title": "Featured Projects",
-  "order": 8
- },
- {
   "slug": "gallery",
   "title": "Gallery",
-  "order": 9
+  "order": 8
  },
  {
   "slug": "glass-tanks",
   "title": "Glass Tanks",
-  "order": 10
+  "order": 9
  },
  {
   "slug": "index",
   "title": "Home",
-  "order": 11
+  "order": 10
  },
  {
   "slug": "live-corals",
   "title": "Live Corals",
-  "order": 12
+  "order": 11
  },
  {
   "slug": "maintenance",
   "title": "Maintenance Services",
-  "order": 13
+  "order": 12
  },
  {
   "slug": "pond-design-construction",
   "title": "Pond Design & Construction",
-  "order": 14
+  "order": 13
  },
  {
   "slug": "privacy-policy",
   "title": "Privacy Policy",
-  "order": 15
+  "order": 14
  },
  {
   "slug": "process",
   "title": "Our process",
-  "order": 16
+  "order": 15
  },
  {
   "slug": "quote",
   "title": "Get a quote",
-  "order": 17
+  "order": 16
  },
  {
   "slug": "reef-insert-restoration",
   "title": "Reef Insert Restoration",
-  "order": 18
+  "order": 17
  },
  {
   "slug": "refund-policy",
   "title": "Refund & Return Policy",
-  "order": 19
+  "order": 18
  },
  {
   "slug": "scratch-removal",
   "title": "Scratch Removal",
-  "order": 20
+  "order": 19
  },
  {
   "slug": "services",
   "title": "Our services",
-  "order": 21
+  "order": 20
  },
  {
   "slug": "sharks",
   "title": "Sharks",
-  "order": 22
+  "order": 21
  },
  {
   "slug": "stingrays-eels",
   "title": "Stingrays & Eels",
-  "order": 23
+  "order": 22
  },
  {
   "slug": "tropical-fish",
   "title": "Tropical Fish",
-  "order": 24
+  "order": 23
  },
  {
   "slug": "videos",
   "title": "Videos",
-  "order": 25
+  "order": 24
  },
  {
   "slug": "warranty",
   "title": "Warranty of Products",
-  "order": 26
+  "order": 25
  }
 ]

@@ -83,7 +83,8 @@ captured verbatim from acrylicpros.com on 2026-09-16 and re-checked on 2026-09-1
 > Live Coral Reef & Invertebrates.
 
 **Tropical Fish**
-> No one offers a better selection of tropical fish than Acrylic Pros. From Neon Tetras, to Angelfish, clownfish, Sharks and more… The finest Tropical Fish in the world are just a click away.
+> No one offers a better selection of tropical fish than Acrylic Pros. From Surgeonfish, to angelfish, clownfish, sharks and more… The finest Tropical Fish in the world are just a click away.
+> *(Client, 3 Oct: "Neon Tetras" replaced with "Surgeonfish". The live site still says Neon Tetras.)*
 
 **Sharks**
 > We carry a large selection of sharks, from horn shark, white tip reef shark, smooth hound shark, bamboo shark, Epaulette shark, and more.
@@ -95,7 +96,7 @@ captured verbatim from acrylicpros.com on 2026-09-16 and re-checked on 2026-09-1
 > Tired of looking at a dead no color reef insert, we got you covered our team will give your coral reef insert the love and detail it needs, we offer bright new colors that brighten up with your blue actinic lighting for a more natural real look.
 
 ### Livestock detail cards (homepage, verbatim)
-- Sharks — "World Wide Shipping": White Tips, Smooth Hounds, Black Tips
+- Sharks — "Nationwide Shipping": White Tips, Smooth Hounds, Black Tips *(client, 3 Oct: was "World Wide Shipping")*
 - Need Corals — "Best Prices In Town!": Zoanthids, Acropora, Euphyllia
 - Stingrays & EELS — "Beautiful Selection": FreshWater, SaltWater
 

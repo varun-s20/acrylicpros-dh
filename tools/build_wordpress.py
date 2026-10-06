@@ -800,7 +800,7 @@ NAV_SHIM = """/* ===============================================================
     if (p === '') key = 'home';
     else if (p === 'about' || p === 'process' || p === 'gallery' ||
              p === 'videos' || p === 'services' ||
-             p === 'featured-projects' || p === 'acrylic-tanks') key = p;
+             p === 'scratch-removal' || p === 'acrylic-tanks') key = p;   // Featured Projects merged into Scratch Removal (3 Oct)
     else if (p === 'glass-tanks' || p.indexOf('product/') === 0) key = 'glass-tanks';
     else if (['contact', 'quote', 'warranty', 'refund-policy',
               'privacy-policy'].indexOf(p) >= 0) key = '';

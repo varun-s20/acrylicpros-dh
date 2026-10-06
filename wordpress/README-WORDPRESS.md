@@ -132,6 +132,36 @@ No new media. On the live install:
 6. Regenerate Elementor CSS and purge the cache, then check `/acrylic-tanks/`
    (113 products) and one fraction link, e.g. REF# 246AIO (3/8").
 
+### 3 Oct 2026 update: client round, 30 Sept to 3 Oct (plugin 1.6.0)
+
+Everything since commit `c802db4`: the logo-blue palette with navy buttons, the
+new menu (Shop tanks dropdown, Scratch removal), Featured Projects merged into
+Scratch Removal, self-playing videos sitewide, the gallery reorder and removals,
+the services cards, the sharks and tropical fish copy, and the SG00 and CL210
+products removed.
+
+1. **Media:** `python tools/build_wordpress.py --media-since c802db4` writes
+   `media-update.zip`: 37 files, 38 MB, all new filenames, so nothing replaces
+   an existing upload. Upload it flat, as in step 2 below.
+2. **Plugin:** upload `plugins/acrylic-pros-content.zip` → **Replace current
+   with uploaded**. Plugins should then show 1.6.0.
+3. **Tools → Acrylic Pros setup → Build the site.** It should report 26
+   updated, 0 created. This rewrites the 12 changed page bodies, the header
+   (new menu) and the chat footer.
+4. **Pages:** trash Featured Projects. The setup tool never deletes, and the
+   plugin 301s `/featured-projects/` to `/scratch-removal/` once it is gone.
+5. **Products:** trash REF# SG00 Sneeze Guard and REF# CL210 Cleaner. No CSV
+   re-import is needed; no other product row changed.
+6. **Yoast:** update the titles and descriptions for Process, Sharks and
+   Tropical Fish, the social title for the homepage and the social image for
+   the Gallery. The new values are in each page's meta block.
+7. **Elementor → Tools → Regenerate CSS & Data**, purge LiteSpeed, then check
+   the homepage, `/scratch-removal/`, `/gallery/` and the menu.
+
+YouTube refuses to embed three videos (error 150). They show as play-badge
+links until the owner ticks **Allow embedding** in YouTube Studio:
+`uwtV-Dp0kc8`, `q6UxS0Tbc2o` and `1p2a0Rf8mAA`.
+
 ## Install, in order
 
 The order matters in two places, both flagged below.

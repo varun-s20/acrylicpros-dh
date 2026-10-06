@@ -50,6 +50,17 @@
     if (link) {
       link.classList.add('-active');
       link.setAttribute('aria-current', 'page');
+      // On Glass or Acrylic tanks the current page sits in the dropdown:
+      // open it, and light the Shop tanks button too.
+      var drop = link.closest('[data-menu-drop]');
+      if (drop) {
+        drop.classList.add('-open');
+        var dropToggle = $('[data-menu-drop-toggle]', drop);
+        if (dropToggle) {
+          dropToggle.classList.add('-active');
+          dropToggle.setAttribute('aria-expanded', 'true');
+        }
+      }
     } else {
       nav.classList.remove('-active');
     }
@@ -419,6 +430,9 @@
   function catSelector(root, onChange) {
     var buttons = $$('[data-cat-list] button', root);
     var select = $('[data-cat-select]', root);
+    // The sliding highlight is one button wide: size it from the buttons
+    // there are, so removing a category can never leave it mis-sized.
+    root.style.setProperty('--items-count', buttons.length);
     function mark(value, moveTo) {
       buttons.forEach(function (b) {
         var on = b.getAttribute('data-value') === value;

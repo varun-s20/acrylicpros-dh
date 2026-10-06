@@ -153,30 +153,17 @@
           <img src="assets/images/gallery/project-04.jpeg" alt="" width="546" height="720" loading="lazy" decoding="async">
         </picture>
       </figure>
+      <!-- Scratch removal: the same before/after reel its service card plays (client, 3 Oct). -->
       <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="assets/images/featured/featured-in-wall-fireplace-600.webp 600w,
-                              assets/images/featured/featured-in-wall-fireplace-1000.webp 1000w" sizes="342px">
-          <img src="assets/images/featured/featured-in-wall-fireplace.jpg" alt="" width="1800" height="1800" loading="lazy" decoding="async">
-        </picture>
+        <video muted loop playsinline preload="none" data-src="assets/video/scratch-reel-v2.mp4"></video>
       </figure>
-      <!-- Glass tanks: a finished rimless glass build with the glass filtration
-           below it. shop-header.jpg was here, but it is the same scene as the
-           About us card (a 1920x550 crop of it) and a 3.5:1 strip squeezed into
-           a 3:4 card showed almost nothing of it (client, 1 Oct). -->
+      <!-- Shop tanks: the lit curved aquarium on a white cabinet. Shop tanks, Glass tanks and Acrylic tanks each have their own card (client, 3 Oct: "all 3 should be different"). -->
       <figure class="o-menu__videoCard" data-menu-card>
         <picture>
-          <source type="image/webp" srcset="assets/images/gallery/project-40-480.webp 480w,
-                              assets/images/gallery/project-40-800.webp 800w,
-                              assets/images/gallery/project-40-954.webp 954w" sizes="342px">
-          <img src="assets/images/gallery/project-40.jpeg" alt="" width="954" height="1280" loading="lazy" decoding="async">
-        </picture>
-      </figure>
-      <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="assets/images/featured/featured-acrylic-tank-bench-600.webp 600w,
-                              assets/images/featured/featured-acrylic-tank-bench-1000.webp 1000w" sizes="342px">
-          <img src="assets/images/featured/featured-acrylic-tank-bench.jpg" alt="" width="1284" height="956" loading="lazy" decoding="async">
+          <source type="image/webp" srcset="assets/images/featured/featured-curved-office-600.webp 600w,
+                              assets/images/featured/featured-curved-office-1000.webp 1000w,
+                              assets/images/featured/featured-curved-office-1350.webp 1350w" sizes="342px">
+          <img src="assets/images/featured/featured-curved-office.jpg" alt="" width="1350" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
       <figure class="o-menu__videoCard" data-menu-card>
@@ -191,15 +178,41 @@
           <img src="assets/images/featured/featured-in-wall-reef-white.jpg" alt="" width="1414" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
+      <!-- Acrylic tanks: a rimless acrylic cube from the acrylic range. Shown by its sub-link (data-menu-sublink="6"), not by position. -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-400.webp 400w,
+                              assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-800.webp 800w,
+                              assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-1005.webp 1005w" sizes="342px">
+          <img src="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1.jpg" alt="" width="1005" height="1200" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <!-- Glass tanks: the 190-gallon Starphire glass tank on a white stand. Shown by its sub-link (data-menu-sublink="7"). -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-400.webp 400w,
+                              assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-800.webp 800w,
+                              assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-1254.webp 1254w" sizes="342px">
+          <img src="assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated.jpg" alt="" width="1254" height="1254" loading="lazy" decoding="async">
+        </picture>
+      </figure>
     </div>
 
     <nav class="o-menu__mainNavWrapper" aria-label="Main" data-menu-nav>
       <ul class="o-menu__mainNav -active" data-nav="gallery">
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="index.html" data-menu-link data-nav-item="home">Home page</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="index.html" data-menu-link data-nav-item="home">Home</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="gallery.html" data-menu-link data-nav-item="gallery">Gallery</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="featured-projects.html" data-menu-link data-nav-item="featured-projects">Featured projects</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="glass-tanks.html" data-menu-link data-nav-item="glass-tanks">Glass tanks</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="acrylic-tanks.html" data-menu-link data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="scratch-removal.html" data-menu-link data-nav-item="scratch-removal">Scratch removal</a></li>
+        <!-- Client, 3 Oct: "Shop tanks" opens Glass tanks and Acrylic tanks. The
+             button is the 4th data-menu-link, so it keeps the 4th preview card
+             (the curved aquarium); each sub-link names its own card by index. -->
+        <li class="o-menu__mainItem -drop" data-menu-drop>
+          <button class="o-menu__link tx-h3 o-menu__dropToggle" type="button" aria-expanded="false" aria-controls="menu-tanks" data-menu-link data-menu-drop-toggle>Shop tanks<svg class="o-menu__dropIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="o-menu__dropList" id="menu-tanks">
+            <li><a class="o-menu__subLink" href="glass-tanks.html" data-menu-sublink="7" data-nav-item="glass-tanks">Glass tanks</a></li>
+            <li><a class="o-menu__subLink" href="acrylic-tanks.html" data-menu-sublink="6" data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
+          </ul>
+        </li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="process.html" data-menu-link data-nav-item="process">Our process</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="about.html" data-menu-link data-nav-item="about">About us</a></li>
       </ul>
@@ -266,24 +279,6 @@
         <div class="m-referenceCard -photo">
           <div class="m-referenceCard__link">
             <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-37.jpeg" data-title="Coral aquarium framed in cherry wood" data-alt="A long blue-lit aquarium set into a cherry-wood frame, colorful coral formations along the bottom and a staircase reflected in the front panel."
-                aria-label="Coral aquarium framed in cherry wood"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-37-480.webp 480w,
-                      assets/images/gallery/project-37-800.webp 800w,
-                      assets/images/gallery/project-37-1200.webp 1200w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-37.jpeg" alt=""
-                 width="1200" height="1600" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums commercial">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
                 data-full="assets/images/gallery/project-38.jpeg" data-title="In-wall aquarium in a lobby" data-alt="A wide blue-lit aquarium set into a cherry-wood surround in a lobby wall, fish swimming over colorful coral, leather armchairs in the foreground."
                 aria-label="In-wall aquarium in a lobby"></button>
           </div>
@@ -294,6 +289,24 @@
                       assets/images/gallery/project-38-1200.webp 1200w"
                     sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
             <img class="m-referenceCard__image" src="assets/images/gallery/project-38.jpeg" alt=""
+                 width="1200" height="1600" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums commercial">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-37.jpeg" data-title="Coral aquarium framed in cherry wood" data-alt="A long blue-lit aquarium set into a cherry-wood frame, colorful coral formations along the bottom and a staircase reflected in the front panel."
+                aria-label="Coral aquarium framed in cherry wood"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-37-480.webp 480w,
+                      assets/images/gallery/project-37-800.webp 800w,
+                      assets/images/gallery/project-37-1200.webp 1200w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-37.jpeg" alt=""
                  width="1200" height="1600" loading="lazy" decoding="async">
           </picture>
         </div>
@@ -316,42 +329,6 @@
           </picture>
         </div>
       </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-40.jpeg" data-title="Planted rimless aquarium with sump" data-alt="A planted rimless aquarium with fish over rockwork under two pendant lights, the open cabinet below showing the sump and filtration."
-                aria-label="Planted rimless aquarium with sump"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-40-480.webp 480w,
-                      assets/images/gallery/project-40-800.webp 800w,
-                      assets/images/gallery/project-40-954.webp 954w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-40.jpeg" alt=""
-                 width="954" height="1280" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-41.jpeg" data-title="Rimless planted aquascape" data-alt="A rimless aquarium seen from the corner, planted with grasses among rocks on golden gravel, in a dark room."
-                aria-label="Rimless planted aquascape"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-41-480.webp 480w,
-                      assets/images/gallery/project-41-800.webp 800w,
-                      assets/images/gallery/project-41-1123.webp 1123w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-41.jpeg" alt=""
-                 width="1123" height="840" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
       <article class="o-referenceGrid__item" data-card data-category="fabrication">
         <div class="m-referenceCard -photo">
           <div class="m-referenceCard__link">
@@ -366,60 +343,6 @@
                       assets/images/gallery/project-42-1200.webp 1200w"
                     sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
             <img class="m-referenceCard__image" src="assets/images/gallery/project-42.jpeg" alt=""
-                 width="1200" height="1600" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums residential">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-43.jpeg" data-title="Aquarium coffee table" data-alt="A long, low planted aquarium with a raised glass top built as a coffee table, in a living room with tall windows and a wood floor."
-                aria-label="Aquarium coffee table"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-43-480.webp 480w,
-                      assets/images/gallery/project-43-800.webp 800w,
-                      assets/images/gallery/project-43-1200.webp 1200w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-43.jpeg" alt=""
-                 width="1200" height="1600" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="restoration residential">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/scratch-removal/scratch-24.jpeg" data-title="In-wall aquarium after scratch removal" data-alt="After: the same aquarium in dark wood cabinetry with a crystal-clear front panel, lit blue."
-                aria-label="In-wall aquarium after scratch removal"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/scratch-removal/scratch-24-600.webp 600w,
-                      assets/images/scratch-removal/scratch-24-1000.webp 1000w,
-                      assets/images/scratch-removal/scratch-24-1200.webp 1200w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/scratch-removal/scratch-24.jpeg" alt=""
-                 width="1200" height="1600" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="restoration residential">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/scratch-removal/scratch-26.jpeg" data-title="Aquarium viewing side after scratch removal" data-alt="After: the same side from the lounge, the aquarium clear and lit blue above a coffee table."
-                aria-label="Aquarium viewing side after scratch removal"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/scratch-removal/scratch-26-600.webp 600w,
-                      assets/images/scratch-removal/scratch-26-1000.webp 1000w,
-                      assets/images/scratch-removal/scratch-26-1200.webp 1200w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/scratch-removal/scratch-26.jpeg" alt=""
                  width="1200" height="1600" loading="lazy" decoding="async">
           </picture>
         </div>
@@ -525,6 +448,250 @@
                     sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
             <img class="m-referenceCard__image" src="assets/images/gallery/project-08.jpeg" alt=""
                  width="817" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-36.jpg" data-title="Aquarium in ornate white cabinetry" data-alt="A blue-lit aquarium with rock formations in ornate white cabinetry, a decorated canopy above."
+                aria-label="Aquarium in ornate white cabinetry"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-36-480.webp 480w,
+                      assets/images/gallery/project-36-756.webp 756w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-36.jpg" alt=""
+                 width="756" height="1008" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums commercial">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-19.jpeg" data-title="In-wall aquarium in a stacked-stone wall" data-alt="A wood-framed aquarium set into a stacked-stone wall behind a white reception counter."
+                aria-label="In-wall aquarium in a stacked-stone wall"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-19-480.webp 480w,
+                      assets/images/gallery/project-19-800.webp 800w,
+                      assets/images/gallery/project-19-944.webp 944w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-19.jpeg" alt=""
+                 width="944" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums commercial">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-20.jpeg" data-title="Aquarium in a reception area" data-alt="A blue-lit aquarium with rock formations on a tall white cabinet in a reception area with green chairs."
+                aria-label="Aquarium in a reception area"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-20-480.webp 480w,
+                      assets/images/gallery/project-20-800.webp 800w,
+                      assets/images/gallery/project-20-960.webp 960w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-20.jpeg" alt=""
+                 width="960" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-21.jpeg" data-title="Aquarium beside a staircase" data-alt="A long blue-lit aquarium with corals on a white cabinet with a matching canopy, beside a staircase."
+                aria-label="Aquarium beside a staircase"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-21-480.webp 480w,
+                      assets/images/gallery/project-21-540.webp 540w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-21.jpeg" alt=""
+                 width="540" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-22.jpeg" data-title="Curved-end aquarium in gray cabinetry" data-alt="A blue-lit aquarium with a curved end, built into gray cabinetry with a matching canopy."
+                aria-label="Curved-end aquarium in gray cabinetry"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-22-406.webp 406w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-22.jpeg" alt=""
+                 width="406" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-23.jpeg" data-title="Corner aquarium in white cabinetry" data-alt="A tall two-sided aquarium with driftwood and a bubble column, built into white cabinetry at the end of a hallway."
+                aria-label="Corner aquarium in white cabinetry"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-23-458.webp 458w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-23.jpeg" alt=""
+                 width="458" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums residential">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-25.jpeg" data-title="Outdoor aquarium beside a pool" data-alt="An aquarium with large fish set into the wall of a backyard building with barn doors, beside a swimming pool."
+                aria-label="Outdoor aquarium beside a pool"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-25-480.webp 480w,
+                      assets/images/gallery/project-25-800.webp 800w,
+                      assets/images/gallery/project-25-960.webp 960w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-25.jpeg" alt=""
+                 width="960" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-27.jpeg" data-title="Long aquarium with driftwood" data-alt="A long aquarium with fish, driftwood and plants on a dark cabinet, potted plants above."
+                aria-label="Long aquarium with driftwood"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-27-480.webp 480w,
+                      assets/images/gallery/project-27-540.webp 540w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-27.jpeg" alt=""
+                 width="540" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums residential">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-26.jpeg" data-title="Two aquariums beside a TV" data-alt="Two wood-framed, blue-lit aquariums on either side of a wall-mounted TV in a family room."
+                aria-label="Two aquariums beside a TV"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-26-480.webp 480w,
+                      assets/images/gallery/project-26-540.webp 540w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-26.jpeg" alt=""
+                 width="540" height="720" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-40.jpeg" data-title="Planted rimless aquarium with sump" data-alt="A planted rimless aquarium with fish over rockwork under two pendant lights, the open cabinet below showing the sump and filtration."
+                aria-label="Planted rimless aquarium with sump"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-40-480.webp 480w,
+                      assets/images/gallery/project-40-800.webp 800w,
+                      assets/images/gallery/project-40-954.webp 954w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-40.jpeg" alt=""
+                 width="954" height="1280" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-41.jpeg" data-title="Rimless planted aquascape" data-alt="A rimless aquarium seen from the corner, planted with grasses among rocks on golden gravel, in a dark room."
+                aria-label="Rimless planted aquascape"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-41-480.webp 480w,
+                      assets/images/gallery/project-41-800.webp 800w,
+                      assets/images/gallery/project-41-1123.webp 1123w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-41.jpeg" alt=""
+                 width="1123" height="840" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums residential">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/gallery/project-43.jpeg" data-title="Aquarium coffee table" data-alt="A long, low planted aquarium with a raised glass top built as a coffee table, in a living room with tall windows and a wood floor."
+                aria-label="Aquarium coffee table"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/gallery/project-43-480.webp 480w,
+                      assets/images/gallery/project-43-800.webp 800w,
+                      assets/images/gallery/project-43-1200.webp 1200w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/gallery/project-43.jpeg" alt=""
+                 width="1200" height="1600" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="restoration residential">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/scratch-removal/scratch-24.jpeg" data-title="In-wall aquarium after scratch removal" data-alt="After: the same aquarium in dark wood cabinetry with a crystal-clear front panel, lit blue."
+                aria-label="In-wall aquarium after scratch removal"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/scratch-removal/scratch-24-600.webp 600w,
+                      assets/images/scratch-removal/scratch-24-1000.webp 1000w,
+                      assets/images/scratch-removal/scratch-24-1200.webp 1200w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/scratch-removal/scratch-24.jpeg" alt=""
+                 width="1200" height="1600" loading="lazy" decoding="async">
+          </picture>
+        </div>
+      </article>
+      <article class="o-referenceGrid__item" data-card data-category="restoration residential">
+        <div class="m-referenceCard -photo">
+          <div class="m-referenceCard__link">
+            <button class="m-referenceCard__open" type="button" data-open
+                data-full="assets/images/scratch-removal/scratch-26.jpeg" data-title="Aquarium viewing side after scratch removal" data-alt="After: the same side from the lounge, the aquarium clear and lit blue above a coffee table."
+                aria-label="Aquarium viewing side after scratch removal"></button>
+          </div>
+          <picture>
+            <source type="image/webp"
+                    srcset="assets/images/scratch-removal/scratch-26-600.webp 600w,
+                      assets/images/scratch-removal/scratch-26-1000.webp 1000w,
+                      assets/images/scratch-removal/scratch-26-1200.webp 1200w"
+                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
+            <img class="m-referenceCard__image" src="assets/images/scratch-removal/scratch-26.jpeg" alt=""
+                 width="1200" height="1600" loading="lazy" decoding="async">
           </picture>
         </div>
       </article>
@@ -652,23 +819,6 @@
         <div class="m-referenceCard -photo">
           <div class="m-referenceCard__link">
             <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-36.jpg" data-title="Aquarium in ornate white cabinetry" data-alt="A blue-lit aquarium with rock formations in ornate white cabinetry, a decorated canopy above."
-                aria-label="Aquarium in ornate white cabinetry"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-36-480.webp 480w,
-                      assets/images/gallery/project-36-756.webp 756w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-36.jpg" alt=""
-                 width="756" height="1008" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
                 data-full="assets/images/gallery/project-18.jpeg" data-title="Aquarium with equipment below" data-alt="A blue-lit aquarium on a white cabinet, its doors open to show the filtration equipment inside."
                 aria-label="Aquarium with equipment below"></button>
           </div>
@@ -679,91 +829,6 @@
                     sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
             <img class="m-referenceCard__image" src="assets/images/gallery/project-18.jpeg" alt=""
                  width="540" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums commercial">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-19.jpeg" data-title="In-wall aquarium in a stacked-stone wall" data-alt="A wood-framed aquarium set into a stacked-stone wall behind a white reception counter."
-                aria-label="In-wall aquarium in a stacked-stone wall"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-19-480.webp 480w,
-                      assets/images/gallery/project-19-800.webp 800w,
-                      assets/images/gallery/project-19-944.webp 944w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-19.jpeg" alt=""
-                 width="944" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums commercial">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-20.jpeg" data-title="Aquarium in a reception area" data-alt="A blue-lit aquarium with rock formations on a tall white cabinet in a reception area with green chairs."
-                aria-label="Aquarium in a reception area"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-20-480.webp 480w,
-                      assets/images/gallery/project-20-800.webp 800w,
-                      assets/images/gallery/project-20-960.webp 960w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-20.jpeg" alt=""
-                 width="960" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-21.jpeg" data-title="Aquarium beside a staircase" data-alt="A long blue-lit aquarium with corals on a white cabinet with a matching canopy, beside a staircase."
-                aria-label="Aquarium beside a staircase"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-21-480.webp 480w,
-                      assets/images/gallery/project-21-540.webp 540w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-21.jpeg" alt=""
-                 width="540" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-22.jpeg" data-title="Curved-end aquarium in gray cabinetry" data-alt="A blue-lit aquarium with a curved end, built into gray cabinetry with a matching canopy."
-                aria-label="Curved-end aquarium in gray cabinetry"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-22-406.webp 406w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-22.jpeg" alt=""
-                 width="406" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-23.jpeg" data-title="Corner aquarium in white cabinetry" data-alt="A tall two-sided aquarium with driftwood and a bubble column, built into white cabinetry at the end of a hallway."
-                aria-label="Corner aquarium in white cabinetry"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-23-458.webp 458w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-23.jpeg" alt=""
-                 width="458" height="720" loading="lazy" decoding="async">
           </picture>
         </div>
       </article>
@@ -782,58 +847,6 @@
                     sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
             <img class="m-referenceCard__image" src="assets/images/gallery/project-24.jpeg" alt=""
                  width="960" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums residential">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-25.jpeg" data-title="Outdoor aquarium beside a pool" data-alt="An aquarium with large fish set into the wall of a backyard building with barn doors, beside a swimming pool."
-                aria-label="Outdoor aquarium beside a pool"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-25-480.webp 480w,
-                      assets/images/gallery/project-25-800.webp 800w,
-                      assets/images/gallery/project-25-960.webp 960w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-25.jpeg" alt=""
-                 width="960" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums residential">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-26.jpeg" data-title="Two aquariums beside a TV" data-alt="Two wood-framed, blue-lit aquariums on either side of a wall-mounted TV in a family room."
-                aria-label="Two aquariums beside a TV"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-26-480.webp 480w,
-                      assets/images/gallery/project-26-540.webp 540w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-26.jpeg" alt=""
-                 width="540" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </article>
-      <article class="o-referenceGrid__item" data-card data-category="custom-aquariums">
-        <div class="m-referenceCard -photo">
-          <div class="m-referenceCard__link">
-            <button class="m-referenceCard__open" type="button" data-open
-                data-full="assets/images/gallery/project-27.jpeg" data-title="Long aquarium with driftwood" data-alt="A long aquarium with fish, driftwood and plants on a dark cabinet, potted plants above."
-                aria-label="Long aquarium with driftwood"></button>
-          </div>
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/gallery/project-27-480.webp 480w,
-                      assets/images/gallery/project-27-540.webp 540w"
-                    sizes="(min-width: 1367px) 24vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 94vw">
-            <img class="m-referenceCard__image" src="assets/images/gallery/project-27.jpeg" alt=""
-                 width="540" height="720" loading="lazy" decoding="async">
           </picture>
         </div>
       </article>
@@ -1036,7 +1049,7 @@
         <li><a class="a-link tx-cta" href="warranty.html">Warranty</a></li>
         <li><a class="a-link tx-cta" href="gallery.html">Gallery</a></li>
         <li><a class="a-link tx-cta" href="refund-policy.html">Refund policy</a></li>
-        <li><a class="a-link tx-cta" href="featured-projects.html">Featured projects</a></li>
+        <li><a class="a-link tx-cta" href="scratch-removal.html">Scratch removal</a></li>
         <li><a class="a-link tx-cta" href="privacy-policy.html">Privacy policy</a></li>
         <li><a class="a-link tx-cta" href="videos.html">Videos</a></li>
         <li><a class="a-link tx-cta" href="contact.html">Contact</a></li>
@@ -1125,7 +1138,7 @@
     <svg class="m-chat__fish" viewBox="0 0 120 90" aria-hidden="true">
       <defs>
         <linearGradient id="fish-body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#e2bd6c"/><stop offset=".55" stop-color="#c79d47"/><stop offset="1" stop-color="#a47a2c"/>
+          <stop offset="0" class="m-chat__fishTone -light"/><stop offset=".55" class="m-chat__fishTone"/><stop offset="1" class="m-chat__fishTone -deep"/>
         </linearGradient>
         <linearGradient id="fish-fin" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#1b5a95"/><stop offset="1" stop-color="#00284d"/>

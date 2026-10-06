@@ -146,8 +146,10 @@ table {
    Their system, verbatim from their compiled stylesheet:
 
      --clrdarkblue  #000D1A   deepest ground, menu overlay, hero scrim
-     --clrgold      #C79D47   the single accent - CTA pill, eyebrows
-     --clrgolddark  #CEA95D   its lighter / hover state
+     --clraccent       #02C9FF   the logo's blue - eyebrows, tags, highlights
+     --clrcta          #00284D   button and CTA-band fills (navy)
+     (logo blue + navy CTAs since 3 Oct; it was gold, --clrgold #C79D47 / #CEA95D. The
+     values live in home.css now and the --accent-* tokens below follow.)
      --clrfontaine  #4180C9   blue
      --clraquatique #6541CB   purple - active state on the pill selector
      #00284D                  the navy that carries heading ink on white,
@@ -172,13 +174,14 @@ table {
   --violet:      #221c35;   /* the html ground behind the rounded page */
   --near-black:  #0c0a09;
 
-  /* --- accent: gold is the only one -------------------------------
-     #C79D47 on white is 3.1:1 - fine for large display type and for
-     fills, never for body copy. Body copy never uses it. */
-  --accent-base:  #c79d47;
-  --accent-dark:  #a9822f;   /* pressed state, and gold text on white  */
-  --accent-light: #cea95d;   /* their --clrgolddark: hover / on navy   */
-  --accent-ink:   #ffffff;   /* text on a gold fill                    */
+  /* --- accent: the only one ----------------------------------------
+     Client, 3 Oct: no longer defined here. These follow the --clraccent*
+     tokens in home.css, which loads before this file on every page (and
+     in every WordPress tier), so the palette is set in one place. */
+  --accent-base:  var(--clraccent);
+  --accent-dark:  var(--clraccentdeep);    /* pressed state, accent text on white */
+  --accent-light: var(--clraccentlight);   /* hover / on navy                     */
+  --accent-ink:   var(--clraccentink);     /* text on an accent fill              */
 
   --water:        #4180c9;   /* their --clrfontaine                    */
   --water-pale:   #9fc6f0;   /* lightened for links on navy            */
@@ -202,7 +205,16 @@ table {
   --text-secondary: rgba(0, 40, 77, 0.78);
   --text-muted:     rgba(0, 40, 77, 0.55);
 
-  --accent: var(--accent-base);
+  /* Text and rings on light grounds take the deep shade: these are 14px
+     eyebrows and numerals, which need 4.5:1 on white. The accent itself
+     manages 3.0:1 there (and the old gold 2.5:1). Fills keep
+     --accent-base; dark bands redefine this as --accent-light below. */
+  --accent: var(--accent-dark);
+  /* Call to action (client, 3 Oct): navy on light grounds; the dark bands
+     redefine these to the logo blue below, where navy would vanish. */
+  --cta:       var(--clrcta);
+  --cta-ink:   var(--clrctaink);
+  --cta-hover: var(--clrctahover);
   --border: rgba(0, 40, 77, 0.14);
   --tile:   var(--tint);
 
@@ -333,7 +345,10 @@ table {
   --text-secondary: rgba(255, 255, 255, 0.78);
   --text-muted:     rgba(255, 255, 255, 0.58);
 
-  --accent: var(--accent-light);
+  --accent: var(--accent-base);   /* the logo's own blue reads on navy at 7.7:1 */
+  --cta:       var(--accent-base);
+  --cta-ink:   var(--accent-ink);
+  --cta-hover: var(--accent-light);
   --border: rgba(255, 255, 255, 0.2);
   --tile:   #ffffff;
 
@@ -1055,8 +1070,8 @@ strong, b { font-weight: var(--w-emphasis); }
   height: 2.75rem;
   padding: 0 1.4rem;
   border-radius: var(--radius-pill);
-  background: var(--accent-base);
-  color: var(--accent-ink);
+  background: var(--cta);
+  color: var(--cta-ink);
   font-size: var(--step-cta);
   font-weight: var(--w-ui);
   letter-spacing: 0.06em;
@@ -1069,7 +1084,7 @@ strong, b { font-weight: var(--w-emphasis); }
 }
 
 .contact-pill:hover {
-  background: var(--accent-light);
+  background: var(--cta-hover);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1722,9 +1737,9 @@ strong, b { font-weight: var(--w-emphasis); }
    ===================================================================== */
 
 .btn {
-  --btn-bg: var(--accent-base);
-  --btn-fg: var(--accent-ink);
-  --btn-bg-hover: var(--accent-light);
+  --btn-bg: var(--cta);
+  --btn-fg: var(--cta-ink);
+  --btn-bg-hover: var(--cta-hover);
 
   position: relative;
   display: inline-flex;
@@ -2890,8 +2905,8 @@ figcaption {
   width: 3.5rem;
   height: 3.5rem;
   border-radius: 50%;
-  background: var(--accent-base);
-  color: var(--accent-ink);
+  background: var(--cta);
+  color: var(--cta-ink);
   box-shadow: var(--shadow-md);
   transition: transform var(--dur) var(--ease-out),
               background var(--dur) var(--ease-out);
@@ -3020,7 +3035,7 @@ figcaption {
   text-decoration: none;
 }
 
-.sticky-cta__btn--primary { background: var(--accent-base); color: var(--accent-ink); }
+.sticky-cta__btn--primary { background: var(--cta); color: var(--cta-ink); }
 .sticky-cta__btn--signal  { background: var(--brand-signal); color: #20160a; }
 
 @media (min-width: 62rem) {
@@ -3968,7 +3983,7 @@ figcaption {
   white-space: nowrap;
 }
 
-.tag--gold    { background: var(--accent-base); }
+.tag--gold    { background: var(--accent-base); color: var(--accent-ink); }
 .tag--water   { background: var(--water); }
 .tag--purple  { background: var(--coral-purple); }
 
@@ -4495,16 +4510,17 @@ figcaption {
 /* =====================================================================
    .gold-band - o-prefooter
 
-   The one saturated band on the page: solid #C79D47, white type, their
-   measured 75px / 60px padding. Three things on one horizontal line -
+   The call-to-action band: navy since 3 Oct (it was solid gold), white
+   type, their measured 75px / 60px padding. Dark, like every CTA fill on
+   the site now, so the logo on it shows in its own blue. Three things on one horizontal line -
    a mark, the title, and a short paragraph with its button - never a
    heading on one side facing text on the other.
    ===================================================================== */
 
 .gold-band {
   padding-block: clamp(3rem, 5.2vw, 4.6875rem) clamp(2.5rem, 4.2vw, 3.75rem);
-  background: var(--accent-base);
-  color: #ffffff;
+  background: var(--clrcta);
+  color: var(--clrctaink);
 }
 
 .gold-band__inner {
@@ -4515,7 +4531,7 @@ figcaption {
 
 .gold-band__title {
   margin: 0;
-  color: #ffffff;
+  color: var(--clrctaink);
   /* The slogan sets in two rows here exactly as it does in the homepage hero.
      Capped rather than run up to --step-h3: its column is the 1fr between a
      fixed logo and a fixed button stack, so the full h3 size would push
@@ -4528,7 +4544,7 @@ figcaption {
 
 .gold-band__text {
   margin: 0 0 var(--space-md);
-  color: rgba(255, 255, 255, 0.92);
+  color: var(--clrctaink);
   font-size: var(--step-small);
   line-height: 1.5;
 }
@@ -5423,4 +5439,119 @@ figcaption {
      left-aligned number. */
   #main :is(h1, h2, h3, h4, h5),
   #main .section__head { text-align: center; }
+}
+
+
+/* =====================================================================
+   WATER SANDING, STEP BY STEP (client, 3 Oct) -- Scratch Removal.
+   Four stills from the before/after reel, in the order they happen:
+   before, water sanding, polishing, after. A real sequence, so the
+   numbers carry information. Two by two on phones, four across from 62em.
+   ===================================================================== */
+.sanding-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg) var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sanding-step figure {
+  display: grid;
+  gap: 0.875rem;
+  margin: 0;
+}
+
+.sanding-step img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: clamp(12px, 1.6vw, 20px);   /* --radius-lg (32px) is too round at phone width */
+  box-shadow: 0 1.25rem 2.5rem -1.5rem rgba(0, 20, 40, 0.5);
+}
+
+.sanding-step figcaption {
+  display: flex;
+  gap: 0.625rem;
+  align-items: baseline;
+  color: var(--ink);
+  font-weight: var(--w-ui);
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.sanding-step__num {
+  color: var(--accent);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+
+/* the last frame is the point: a thin accent ring marks the finished panel */
+.sanding-step:last-child img { outline: 2px solid var(--accent-base); outline-offset: 3px; }
+
+@media (min-width: 62em) {
+  .sanding-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* the specialist film leads the page: a little less air above it */
+.page-film { padding-block-start: var(--space-lg); }
+
+/* the specialist film's heading uses the shared .section__head, so it matches
+   every other heading on the page (client, 3 Oct). */
+
+/* Water sanding, redesigned (client, 3 Oct): the 11-second reel beside the
+   four stills taken from it. Phones: the reel first, phone-sized and
+   centred, then the stills two by two. From 62em: reel 4 parts, stills
+   7 parts, so a 9:16 reel and a 2x2 of square stills come out about the
+   same height. The step labels sit on the photos. */
+.sanding {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+.sanding__reel { max-width: 20rem; }
+.sanding .sanding-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
+.sanding .sanding-step figure { position: relative; display: block; }
+.sanding .sanding-step img { aspect-ratio: 1 / 1; }
+.sanding .sanding-step figcaption {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  padding: 0.375rem 0.875rem 0.375rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(0, 13, 26, 0.74);
+  color: #ffffff;
+  font-size: 0.875rem;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+.sanding .sanding-step__num { color: var(--accent-base); }
+
+@media (min-width: 62em) {
+  .sanding { grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
+  .sanding__reel { max-width: none; }
+  .sanding .sanding-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Before / after (client, 3 Oct): the four photos that are not sliders sit in
+   their own row -- four across from 62em, two by two below -- instead of
+   trailing the 3x3 of sliders with one left alone on the last line. */
+.ba-extra { display: grid; gap: var(--space-md); margin-top: var(--space-xl); }
+.ba-extra__title {
+  margin: 0;
+  color: var(--ink);
+  font-size: var(--step-small);
+  font-weight: var(--w-ui);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.ba-extra__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-md); }
+.ba-extra__grid figure { margin: 0; }
+.ba-extra__grid .media { border-radius: clamp(12px, 1.6vw, 20px); overflow: hidden; }
+@media (min-width: 62em) {
+  .ba-extra__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }

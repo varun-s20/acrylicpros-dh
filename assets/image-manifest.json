@@ -14693,6 +14693,23 @@
    }
   ]
  },
+ "images/cards/card-maintenance-v2.jpg": {
+  "h": 1080,
+  "src": "assets/images/cards/card-maintenance-v2.jpg",
+  "w": 720,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/cards/card-maintenance-v2-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1080,
+    "path": "assets/images/cards/card-maintenance-v2-720.webp",
+    "w": 720
+   }
+  ]
+ },
  "images/cards/card-maintenance.jpg": {
   "h": 1400,
   "src": "assets/images/cards/card-maintenance.jpg",
@@ -14737,6 +14754,23 @@
    }
   ]
  },
+ "images/cards/card-pool-panels-v2.jpg": {
+  "h": 960,
+  "src": "assets/images/cards/card-pool-panels-v2.jpg",
+  "w": 640,
+  "webp": [
+   {
+    "h": 720,
+    "path": "assets/images/cards/card-pool-panels-v2-480.webp",
+    "w": 480
+   },
+   {
+    "h": 960,
+    "path": "assets/images/cards/card-pool-panels-v2-640.webp",
+    "w": 640
+   }
+  ]
+ },
  "images/cards/card-pool-panels.jpg": {
   "h": 788,
   "src": "assets/images/cards/card-pool-panels.jpg",
@@ -14759,6 +14793,28 @@
    }
   ]
  },
+ "images/cards/card-relocations-v2.jpg": {
+  "h": 1400,
+  "src": "assets/images/cards/card-relocations-v2.jpg",
+  "w": 1050,
+  "webp": [
+   {
+    "h": 640,
+    "path": "assets/images/cards/card-relocations-v2-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1067,
+    "path": "assets/images/cards/card-relocations-v2-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1400,
+    "path": "assets/images/cards/card-relocations-v2-1050.webp",
+    "w": 1050
+   }
+  ]
+ },
  "images/cards/card-relocations.jpg": {
   "h": 1400,
   "src": "assets/images/cards/card-relocations.jpg",
@@ -14778,6 +14834,28 @@
     "h": 1400,
     "path": "assets/images/cards/card-relocations-1050.webp",
     "w": 1050
+   }
+  ]
+ },
+ "images/cards/card-sharks-v2.jpg": {
+  "h": 1400,
+  "src": "assets/images/cards/card-sharks-v2.jpg",
+  "w": 891,
+  "webp": [
+   {
+    "h": 754,
+    "path": "assets/images/cards/card-sharks-v2-480.webp",
+    "w": 480
+   },
+   {
+    "h": 1257,
+    "path": "assets/images/cards/card-sharks-v2-800.webp",
+    "w": 800
+   },
+   {
+    "h": 1400,
+    "path": "assets/images/cards/card-sharks-v2-891.webp",
+    "w": 891
    }
   ]
  },
@@ -16311,6 +16389,23 @@
    }
   ]
  },
+ "images/headers/scratch-removal-reef-header.jpg": {
+  "h": 720,
+  "src": "assets/images/headers/scratch-removal-reef-header.jpg",
+  "w": 1280,
+  "webp": [
+   {
+    "h": 432,
+    "path": "assets/images/headers/scratch-removal-reef-header-768.webp",
+    "w": 768
+   },
+   {
+    "h": 720,
+    "path": "assets/images/headers/scratch-removal-reef-header-1280.webp",
+    "w": 1280
+   }
+  ]
+ },
  "images/headers/shop-header.jpg": {
   "h": 550,
   "src": "assets/images/headers/shop-header.jpg",
@@ -17325,6 +17420,94 @@
     "h": 800,
     "path": "assets/images/products/black-color-aqua-800.webp",
     "w": 800
+   }
+  ]
+ },
+ "images/scratch-removal/sanding-1-before.jpg": {
+  "h": 1350,
+  "src": "assets/images/scratch-removal/sanding-1-before.jpg",
+  "w": 1080,
+  "webp": [
+   {
+    "h": 750,
+    "path": "assets/images/scratch-removal/sanding-1-before-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1250,
+    "path": "assets/images/scratch-removal/sanding-1-before-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/scratch-removal/sanding-1-before-1080.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "images/scratch-removal/sanding-2-water-sanding.jpg": {
+  "h": 1350,
+  "src": "assets/images/scratch-removal/sanding-2-water-sanding.jpg",
+  "w": 1080,
+  "webp": [
+   {
+    "h": 750,
+    "path": "assets/images/scratch-removal/sanding-2-water-sanding-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1250,
+    "path": "assets/images/scratch-removal/sanding-2-water-sanding-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/scratch-removal/sanding-2-water-sanding-1080.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "images/scratch-removal/sanding-3-polishing.jpg": {
+  "h": 1350,
+  "src": "assets/images/scratch-removal/sanding-3-polishing.jpg",
+  "w": 1080,
+  "webp": [
+   {
+    "h": 750,
+    "path": "assets/images/scratch-removal/sanding-3-polishing-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1250,
+    "path": "assets/images/scratch-removal/sanding-3-polishing-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/scratch-removal/sanding-3-polishing-1080.webp",
+    "w": 1080
+   }
+  ]
+ },
+ "images/scratch-removal/sanding-4-after.jpg": {
+  "h": 1350,
+  "src": "assets/images/scratch-removal/sanding-4-after.jpg",
+  "w": 1080,
+  "webp": [
+   {
+    "h": 750,
+    "path": "assets/images/scratch-removal/sanding-4-after-600.webp",
+    "w": 600
+   },
+   {
+    "h": 1250,
+    "path": "assets/images/scratch-removal/sanding-4-after-1000.webp",
+    "w": 1000
+   },
+   {
+    "h": 1350,
+    "path": "assets/images/scratch-removal/sanding-4-after-1080.webp",
+    "w": 1080
    }
   ]
  },

@@ -139,30 +139,17 @@
           <img src="assets/images/gallery/project-04.jpeg" alt="" width="546" height="720" loading="lazy" decoding="async">
         </picture>
       </figure>
+      <!-- Scratch removal: the same before/after reel its service card plays (client, 3 Oct). -->
       <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="assets/images/featured/featured-in-wall-fireplace-600.webp 600w,
-                              assets/images/featured/featured-in-wall-fireplace-1000.webp 1000w" sizes="342px">
-          <img src="assets/images/featured/featured-in-wall-fireplace.jpg" alt="" width="1800" height="1800" loading="lazy" decoding="async">
-        </picture>
+        <video muted loop playsinline preload="none" data-src="assets/video/scratch-reel-v2.mp4"></video>
       </figure>
-      <!-- Glass tanks: a finished rimless glass build with the glass filtration
-           below it. shop-header.jpg was here, but it is the same scene as the
-           About us card (a 1920x550 crop of it) and a 3.5:1 strip squeezed into
-           a 3:4 card showed almost nothing of it (client, 1 Oct). -->
+      <!-- Shop tanks: the lit curved aquarium on a white cabinet. Shop tanks, Glass tanks and Acrylic tanks each have their own card (client, 3 Oct: "all 3 should be different"). -->
       <figure class="o-menu__videoCard" data-menu-card>
         <picture>
-          <source type="image/webp" srcset="assets/images/gallery/project-40-480.webp 480w,
-                              assets/images/gallery/project-40-800.webp 800w,
-                              assets/images/gallery/project-40-954.webp 954w" sizes="342px">
-          <img src="assets/images/gallery/project-40.jpeg" alt="" width="954" height="1280" loading="lazy" decoding="async">
-        </picture>
-      </figure>
-      <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="assets/images/featured/featured-acrylic-tank-bench-600.webp 600w,
-                              assets/images/featured/featured-acrylic-tank-bench-1000.webp 1000w" sizes="342px">
-          <img src="assets/images/featured/featured-acrylic-tank-bench.jpg" alt="" width="1284" height="956" loading="lazy" decoding="async">
+          <source type="image/webp" srcset="assets/images/featured/featured-curved-office-600.webp 600w,
+                              assets/images/featured/featured-curved-office-1000.webp 1000w,
+                              assets/images/featured/featured-curved-office-1350.webp 1350w" sizes="342px">
+          <img src="assets/images/featured/featured-curved-office.jpg" alt="" width="1350" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
       <figure class="o-menu__videoCard" data-menu-card>
@@ -177,15 +164,41 @@
           <img src="assets/images/featured/featured-in-wall-reef-white.jpg" alt="" width="1414" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
+      <!-- Acrylic tanks: a rimless acrylic cube from the acrylic range. Shown by its sub-link (data-menu-sublink="6"), not by position. -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-400.webp 400w,
+                              assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-800.webp 800w,
+                              assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-1005.webp 1005w" sizes="342px">
+          <img src="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1.jpg" alt="" width="1005" height="1200" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <!-- Glass tanks: the 190-gallon Starphire glass tank on a white stand. Shown by its sub-link (data-menu-sublink="7"). -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-400.webp 400w,
+                              assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-800.webp 800w,
+                              assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-1254.webp 1254w" sizes="342px">
+          <img src="assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated.jpg" alt="" width="1254" height="1254" loading="lazy" decoding="async">
+        </picture>
+      </figure>
     </div>
 
     <nav class="o-menu__mainNavWrapper" aria-label="Main" data-menu-nav>
       <ul class="o-menu__mainNav -active">
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3 -active" href="index.html" aria-current="page" data-menu-link>Home page</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3 -active" href="index.html" aria-current="page" data-menu-link>Home</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="gallery.html" data-menu-link>Gallery</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="featured-projects.html" data-menu-link>Featured projects</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="glass-tanks.html" data-menu-link>Glass tanks</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="acrylic-tanks.html" data-menu-link>Acrylic tanks</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="scratch-removal.html" data-menu-link>Scratch removal</a></li>
+        <!-- Client, 3 Oct: "Shop tanks" opens Glass tanks and Acrylic tanks. The
+             button is the 4th data-menu-link, so it keeps the 4th preview card
+             (the curved aquarium); each sub-link names its own card by index. -->
+        <li class="o-menu__mainItem -drop" data-menu-drop>
+          <button class="o-menu__link tx-h3 o-menu__dropToggle" type="button" aria-expanded="false" aria-controls="menu-tanks" data-menu-link data-menu-drop-toggle>Shop tanks<svg class="o-menu__dropIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="o-menu__dropList" id="menu-tanks">
+            <li><a class="o-menu__subLink" href="glass-tanks.html" data-menu-sublink="7">Glass tanks</a></li>
+            <li><a class="o-menu__subLink" href="acrylic-tanks.html" data-menu-sublink="6">Acrylic tanks</a></li>
+          </ul>
+        </li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="process.html" data-menu-link>Our process</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="about.html" data-menu-link>About us</a></li>
       </ul>
@@ -319,14 +332,12 @@
           <select class="m-catSelector__selector tx-plarge" id="service-filter" data-cat-select>
             <option value="all">All</option>
             <option value="build">Design &amp; build</option>
-            <option value="care">Restoration &amp; care</option>
             <option value="livestock">Livestock</option>
           </select>
           <div class="m-catSelector__list" role="group" aria-label="Filter services" data-cat-list>
             <button class="m-catSelector__button tx-plarge -active" type="button" aria-pressed="true" data-value="all" data-index="0" data-color="var(--clrdarkblue)">All</button>
-            <button class="m-catSelector__button tx-plarge" type="button" aria-pressed="false" data-value="build" data-index="1" data-color="var(--clrfontaine)">Design &amp; build</button>
-            <button class="m-catSelector__button tx-plarge" type="button" aria-pressed="false" data-value="care" data-index="2" data-color="var(--clraquatique)">Restoration &amp; care</button>
-            <button class="m-catSelector__button tx-plarge" type="button" aria-pressed="false" data-value="livestock" data-index="3" data-color="var(--clrgolddark)">Livestock</button>
+            <button class="m-catSelector__button tx-plarge" type="button" aria-pressed="false" data-value="build" data-index="1" data-color="#1B5A95">Design &amp; build</button>
+            <button class="m-catSelector__button tx-plarge" type="button" aria-pressed="false" data-value="livestock" data-index="2" data-color="var(--clraccentdeep)">Livestock</button>
           </div>
         </div>
       </div>
@@ -366,7 +377,6 @@
                   </figure>
                   <figure class="a-video -cover"><video muted loop playsinline preload="none" data-src="assets/video/scratch-reel-v2.mp4"></video></figure>
                   <div class="m-sliderProducts__slideContent">
-                    <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -aquatique"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Restoration &amp; care</span></li></ul>
                     <h3 class="tx-h4"><strong>Scratch</strong><br>removal</h3>
                     <p class="tx-uni14">We specialize in removing scratches off your aquarium with or without water, 100% fish and coral safe!</p>
                   </div>
@@ -379,13 +389,13 @@
                 <div class="m-sliderProducts__slideInner">
                   <figure class="a-image -cover">
                     <picture>
-                      <!-- client, 22 Sept: new card photo; the page itself is unchanged -->
-                      <source type="image/webp" srcset="assets/images/cards/card-pool-panels-480.webp 480w,
-                                                  assets/images/cards/card-pool-panels-800.webp 800w,
-                                                  assets/images/cards/card-pool-panels-1400.webp 1400w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
-                      <img src="assets/images/cards/card-pool-panels.jpg" alt="" width="1400" height="788" loading="lazy" decoding="async">
+                      <!-- client, 3 Oct: still from the night pool video (792); the video below plays over it -->
+                      <source type="image/webp" srcset="assets/images/cards/card-pool-panels-v2-480.webp 480w,
+                                                  assets/images/cards/card-pool-panels-v2-640.webp 640w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
+                      <img src="assets/images/cards/card-pool-panels-v2.jpg" alt="" width="640" height="960" loading="lazy" decoding="async">
                     </picture>
                   </figure>
+                  <figure class="a-video -cover"><video muted loop playsinline preload="none" data-src="assets/video/pool-panels-night.mp4"></video></figure>
                   <div class="m-sliderProducts__slideContent">
                     <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -fontaine"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Design &amp; build</span></li></ul>
                     <h3 class="tx-h4"><strong>Acrylic pool</strong><br>panels</h3>
@@ -421,15 +431,14 @@
                 <div class="m-sliderProducts__slideInner">
                   <figure class="a-image -cover">
                     <picture>
-                      <!-- client, 22 Sept: new card photo; the page itself is unchanged -->
-                      <source type="image/webp" srcset="assets/images/cards/card-maintenance-480.webp 480w,
-                                                  assets/images/cards/card-maintenance-800.webp 800w,
-                                                  assets/images/cards/card-maintenance-1050.webp 1050w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
-                      <img src="assets/images/cards/card-maintenance.jpg" alt="" width="1050" height="1400" loading="lazy" decoding="async">
+                      <!-- client, 3 Oct: still from IMG_2913, the in-wall reef; the video below plays over it -->
+                      <source type="image/webp" srcset="assets/images/cards/card-maintenance-v2-480.webp 480w,
+                                                  assets/images/cards/card-maintenance-v2-720.webp 720w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
+                      <img src="assets/images/cards/card-maintenance-v2.jpg" alt="" width="720" height="1080" loading="lazy" decoding="async">
                     </picture>
                   </figure>
+                  <figure class="a-video -cover"><video muted loop playsinline preload="none" data-src="assets/video/maintenance-reef.mp4"></video></figure>
                   <div class="m-sliderProducts__slideContent">
-                    <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -aquatique"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Restoration &amp; care</span></li></ul>
                     <h3 class="tx-h4"><strong>Maintenance</strong><br>services</h3>
                     <p class="tx-uni14">Professional aquarium maintenance for the long-term health and vitality of your aquatic life.</p>
                   </div>
@@ -467,7 +476,6 @@
                     </picture>
                   </figure>
                   <div class="m-sliderProducts__slideContent">
-                    <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -aquatique"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Restoration &amp; care</span></li></ul>
                     <h3 class="tx-h4"><strong>Reef insert</strong><br>restoration</h3>
                     <p class="tx-uni14">Bright new colors that brighten up with your blue actinic lighting.</p>
                   </div>
@@ -480,15 +488,14 @@
                 <div class="m-sliderProducts__slideInner">
                   <figure class="a-image -cover">
                     <picture>
-                      <!-- client, 22 Sept: new card photo; the page itself is unchanged -->
-                      <source type="image/webp" srcset="assets/images/cards/card-relocations-480.webp 480w,
-                                                  assets/images/cards/card-relocations-800.webp 800w,
-                                                  assets/images/cards/card-relocations-1050.webp 1050w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
-                      <img src="assets/images/cards/card-relocations.jpg" alt="" width="1050" height="1400" loading="lazy" decoding="async">
+                      <!-- client, 3 Oct: the team carrying an acrylic tank in through a window -->
+                      <source type="image/webp" srcset="assets/images/cards/card-relocations-v2-480.webp 480w,
+                                                  assets/images/cards/card-relocations-v2-800.webp 800w,
+                                                  assets/images/cards/card-relocations-v2-1050.webp 1050w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
+                      <img src="assets/images/cards/card-relocations-v2.jpg" alt="" width="1050" height="1400" loading="lazy" decoding="async">
                     </picture>
                   </figure>
                   <div class="m-sliderProducts__slideContent">
-                    <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -aquatique"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Restoration &amp; care</span></li></ul>
                     <h3 class="tx-h4"><strong>Aquarium</strong><br>relocations</h3>
                     <p class="tx-uni14">We move your aquarium from point A to point B, with temporary holding tanks and 24/7 fish support systems.</p>
                   </div>
@@ -507,7 +514,6 @@
                     </picture>
                   </figure>
                   <div class="m-sliderProducts__slideContent">
-                    <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -aquatique"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Restoration &amp; care</span></li></ul>
                     <h3 class="tx-h4"><strong>24hr emergency</strong><br>services</h3>
                     <p class="tx-uni14">24/7 emergency services, temporary holding tanks and life support systems.</p>
                   </div>
@@ -549,7 +555,7 @@
                   <div class="m-sliderProducts__slideContent">
                     <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -golddark"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Livestock</span></li></ul>
                     <h3 class="tx-h4"><strong>Tropical</strong><br>fish</h3>
-                    <p class="tx-uni14">From Neon Tetras, to Angelfish, clownfish, Sharks and more&hellip;</p>
+                    <p class="tx-uni14">From Surgeonfish, to angelfish, clownfish, sharks and more&hellip;</p>
                   </div>
                 </div>
               </a>
@@ -560,17 +566,19 @@
                 <div class="m-sliderProducts__slideInner">
                   <figure class="a-image -cover">
                     <picture>
-                      <!-- client, 22 Sept: new card photo; the page itself is unchanged -->
-                      <source type="image/webp" srcset="assets/images/cards/card-sharks-480.webp 480w,
-                                                  assets/images/cards/card-sharks-800.webp 800w,
-                                                  assets/images/cards/card-sharks-891.webp 891w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
-                      <img src="assets/images/cards/card-sharks.jpg" alt="" width="891" height="1400" loading="lazy" decoding="async">
+                      <!-- client, 3 Oct: blacktip reef shark, cropped from a 612x408 landscape to the
+                           card's 891:1400 (source window x48-299, y14-408). New filename so
+                           WordPress cannot keep serving the old card-sharks.jpg. -->
+                      <source type="image/webp" srcset="assets/images/cards/card-sharks-v2-480.webp 480w,
+                                                  assets/images/cards/card-sharks-v2-800.webp 800w,
+                                                  assets/images/cards/card-sharks-v2-891.webp 891w" sizes="(min-width: 1367px) 22vw, (min-width: 1025px) 32vw, (min-width: 641px) 48vw, 90vw">
+                      <img src="assets/images/cards/card-sharks-v2.jpg" alt="" width="891" height="1400" loading="lazy" decoding="async">
                     </picture>
                   </figure>
                   <div class="m-sliderProducts__slideContent">
                     <ul class="m-sliderProducts__categoriesList"><li class="a-tag -icon -golddark"><span class="a-tag__iconWrapper"><span class="a-tag__fin"></span></span><span class="a-tag__text">Livestock</span></li></ul>
                     <h3 class="tx-h4"><strong>Sharks</strong></h3>
-                    <p class="tx-uni14">World wide shipping. White Tips, Smooth Hounds, Black Tips.</p>
+                    <p class="tx-uni14">Nationwide shipping. White Tips, Smooth Hounds, Black Tips.</p>
                   </div>
                 </div>
               </a>
@@ -954,7 +962,7 @@
         <li><a class="a-link tx-cta" href="warranty.html">Warranty</a></li>
         <li><a class="a-link tx-cta" href="gallery.html">Gallery</a></li>
         <li><a class="a-link tx-cta" href="refund-policy.html">Refund policy</a></li>
-        <li><a class="a-link tx-cta" href="featured-projects.html">Featured projects</a></li>
+        <li><a class="a-link tx-cta" href="scratch-removal.html">Scratch removal</a></li>
         <li><a class="a-link tx-cta" href="privacy-policy.html">Privacy policy</a></li>
         <li><a class="a-link tx-cta" href="videos.html">Videos</a></li>
         <li><a class="a-link tx-cta" href="contact.html">Contact</a></li>
@@ -1043,7 +1051,7 @@
     <svg class="m-chat__fish" viewBox="0 0 120 90" aria-hidden="true">
       <defs>
         <linearGradient id="fish-body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#e2bd6c"/><stop offset=".55" stop-color="#c79d47"/><stop offset="1" stop-color="#a47a2c"/>
+          <stop offset="0" class="m-chat__fishTone -light"/><stop offset=".55" class="m-chat__fishTone"/><stop offset="1" class="m-chat__fishTone -deep"/>
         </linearGradient>
         <linearGradient id="fish-fin" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#1b5a95"/><stop offset="1" stop-color="#00284d"/>

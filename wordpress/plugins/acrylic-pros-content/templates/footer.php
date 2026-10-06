@@ -26,7 +26,7 @@
         <li><a class="a-link tx-cta" href="/warranty/">Warranty</a></li>
         <li><a class="a-link tx-cta" href="/gallery/">Gallery</a></li>
         <li><a class="a-link tx-cta" href="/refund-policy/">Refund policy</a></li>
-        <li><a class="a-link tx-cta" href="/featured-projects/">Featured projects</a></li>
+        <li><a class="a-link tx-cta" href="/scratch-removal/">Scratch removal</a></li>
         <li><a class="a-link tx-cta" href="/privacy-policy/">Privacy policy</a></li>
         <li><a class="a-link tx-cta" href="/videos/">Videos</a></li>
         <li><a class="a-link tx-cta" href="/contact/">Contact</a></li>

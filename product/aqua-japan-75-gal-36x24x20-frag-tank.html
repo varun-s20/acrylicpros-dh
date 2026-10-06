@@ -153,30 +153,17 @@
           <img src="../assets/images/gallery/project-04.jpeg" alt="" width="546" height="720" loading="lazy" decoding="async">
         </picture>
       </figure>
+      <!-- Scratch removal: the same before/after reel its service card plays (client, 3 Oct). -->
       <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="../assets/images/featured/featured-in-wall-fireplace-600.webp 600w,
-                              ../assets/images/featured/featured-in-wall-fireplace-1000.webp 1000w" sizes="342px">
-          <img src="../assets/images/featured/featured-in-wall-fireplace.jpg" alt="" width="1800" height="1800" loading="lazy" decoding="async">
-        </picture>
+        <video muted loop playsinline preload="none" data-src="../assets/video/scratch-reel-v2.mp4"></video>
       </figure>
-      <!-- Glass tanks: a finished rimless glass build with the glass filtration
-           below it. shop-header.jpg was here, but it is the same scene as the
-           About us card (a 1920x550 crop of it) and a 3.5:1 strip squeezed into
-           a 3:4 card showed almost nothing of it (client, 1 Oct). -->
+      <!-- Shop tanks: the lit curved aquarium on a white cabinet. Shop tanks, Glass tanks and Acrylic tanks each have their own card (client, 3 Oct: "all 3 should be different"). -->
       <figure class="o-menu__videoCard" data-menu-card>
         <picture>
-          <source type="image/webp" srcset="../assets/images/gallery/project-40-480.webp 480w,
-                              ../assets/images/gallery/project-40-800.webp 800w,
-                              ../assets/images/gallery/project-40-954.webp 954w" sizes="342px">
-          <img src="../assets/images/gallery/project-40.jpeg" alt="" width="954" height="1280" loading="lazy" decoding="async">
-        </picture>
-      </figure>
-      <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="../assets/images/featured/featured-acrylic-tank-bench-600.webp 600w,
-                              ../assets/images/featured/featured-acrylic-tank-bench-1000.webp 1000w" sizes="342px">
-          <img src="../assets/images/featured/featured-acrylic-tank-bench.jpg" alt="" width="1284" height="956" loading="lazy" decoding="async">
+          <source type="image/webp" srcset="../assets/images/featured/featured-curved-office-600.webp 600w,
+                              ../assets/images/featured/featured-curved-office-1000.webp 1000w,
+                              ../assets/images/featured/featured-curved-office-1350.webp 1350w" sizes="342px">
+          <img src="../assets/images/featured/featured-curved-office.jpg" alt="" width="1350" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
       <figure class="o-menu__videoCard" data-menu-card>
@@ -191,15 +178,41 @@
           <img src="../assets/images/featured/featured-in-wall-reef-white.jpg" alt="" width="1414" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
+      <!-- Acrylic tanks: a rimless acrylic cube from the acrylic range. Shown by its sub-link (data-menu-sublink="6"), not by position. -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="../assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-400.webp 400w,
+                              ../assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-800.webp 800w,
+                              ../assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-1005.webp 1005w" sizes="342px">
+          <img src="../assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1.jpg" alt="" width="1005" height="1200" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <!-- Glass tanks: the 190-gallon Starphire glass tank on a white stand. Shown by its sub-link (data-menu-sublink="7"). -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="../assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-400.webp 400w,
+                              ../assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-800.webp 800w,
+                              ../assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-1254.webp 1254w" sizes="342px">
+          <img src="../assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated.jpg" alt="" width="1254" height="1254" loading="lazy" decoding="async">
+        </picture>
+      </figure>
     </div>
 
     <nav class="o-menu__mainNavWrapper" aria-label="Main" data-menu-nav>
       <ul class="o-menu__mainNav -active" data-nav="glass-tanks">
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../index.html" data-menu-link data-nav-item="home">Home page</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../index.html" data-menu-link data-nav-item="home">Home</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../gallery.html" data-menu-link data-nav-item="gallery">Gallery</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../featured-projects.html" data-menu-link data-nav-item="featured-projects">Featured projects</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../glass-tanks.html" data-menu-link data-nav-item="glass-tanks">Glass tanks</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../acrylic-tanks.html" data-menu-link data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../scratch-removal.html" data-menu-link data-nav-item="scratch-removal">Scratch removal</a></li>
+        <!-- Client, 3 Oct: "Shop tanks" opens Glass tanks and Acrylic tanks. The
+             button is the 4th data-menu-link, so it keeps the 4th preview card
+             (the curved aquarium); each sub-link names its own card by index. -->
+        <li class="o-menu__mainItem -drop" data-menu-drop>
+          <button class="o-menu__link tx-h3 o-menu__dropToggle" type="button" aria-expanded="false" aria-controls="menu-tanks" data-menu-link data-menu-drop-toggle>Shop tanks<svg class="o-menu__dropIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <ul class="o-menu__dropList" id="menu-tanks">
+            <li><a class="o-menu__subLink" href="../glass-tanks.html" data-menu-sublink="7" data-nav-item="glass-tanks">Glass tanks</a></li>
+            <li><a class="o-menu__subLink" href="../acrylic-tanks.html" data-menu-sublink="6" data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
+          </ul>
+        </li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../process.html" data-menu-link data-nav-item="process">Our process</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="../about.html" data-menu-link data-nav-item="about">About us</a></li>
       </ul>
@@ -365,7 +378,7 @@
         <li><a class="a-link tx-cta" href="../warranty.html">Warranty</a></li>
         <li><a class="a-link tx-cta" href="../gallery.html">Gallery</a></li>
         <li><a class="a-link tx-cta" href="../refund-policy.html">Refund policy</a></li>
-        <li><a class="a-link tx-cta" href="../featured-projects.html">Featured projects</a></li>
+        <li><a class="a-link tx-cta" href="../scratch-removal.html">Scratch removal</a></li>
         <li><a class="a-link tx-cta" href="../privacy-policy.html">Privacy policy</a></li>
         <li><a class="a-link tx-cta" href="../videos.html">Videos</a></li>
         <li><a class="a-link tx-cta" href="../contact.html">Contact</a></li>
@@ -454,7 +467,7 @@
     <svg class="m-chat__fish" viewBox="0 0 120 90" aria-hidden="true">
       <defs>
         <linearGradient id="fish-body" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stop-color="#e2bd6c"/><stop offset=".55" stop-color="#c79d47"/><stop offset="1" stop-color="#a47a2c"/>
+          <stop offset="0" class="m-chat__fishTone -light"/><stop offset=".55" class="m-chat__fishTone"/><stop offset="1" class="m-chat__fishTone -deep"/>
         </linearGradient>
         <linearGradient id="fish-fin" x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stop-color="#1b5a95"/><stop offset="1" stop-color="#00284d"/>

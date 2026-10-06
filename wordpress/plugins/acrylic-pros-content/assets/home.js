@@ -29,7 +29,7 @@
     if (p === '') key = 'home';
     else if (p === 'about' || p === 'process' || p === 'gallery' ||
              p === 'videos' || p === 'services' ||
-             p === 'featured-projects' || p === 'acrylic-tanks') key = p;
+             p === 'scratch-removal' || p === 'acrylic-tanks') key = p;   // Featured Projects merged into Scratch Removal (3 Oct)
     else if (p === 'glass-tanks' || p.indexOf('product/') === 0) key = 'glass-tanks';
     else if (['contact', 'quote', 'warranty', 'refund-policy',
               'privacy-policy'].indexOf(p) >= 0) key = '';
@@ -494,10 +494,28 @@
       if (e.key === 'Escape' && menuOpen) { closeMenu(); burger.focus(); }
     });
 
+    // "Shop tanks" dropdown (client, 3 Oct): the button opens its sub-links.
+    $$('[data-menu-drop]', menu).forEach(function (item) {
+      var toggle = $('[data-menu-drop-toggle]', item);
+      if (!toggle) return;
+      toggle.addEventListener('click', function () {
+        var open = !item.classList.contains('-open');
+        item.classList.toggle('-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+    });
+
     // Hover cards: swing in from the right of the links, out to the left.
+    // Main links take their card by position; a dropdown sub-link names its
+    // card by index (data-menu-sublink), since it is not in that order.
     if (finePointer) {
-      links.forEach(function (link, i) {
-        var card = cards[i];
+      var triggers = links.map(function (link, i) { return [link, cards[i]]; });
+      $$('[data-menu-sublink]', menu).forEach(function (sub) {
+        triggers.push([sub, cards[+sub.getAttribute('data-menu-sublink')]]);
+      });
+      triggers.forEach(function (pair) {
+        var link = pair[0];
+        var card = pair[1];
         if (!card) return;
         var video = $('video', card);
         link.addEventListener('mouseenter', function () {
@@ -892,6 +910,9 @@
       var buttons = $$('[data-cat-list] button', cat);
       var select = $('[data-cat-select]', cat);
       var filterRun = 0;
+      // The sliding highlight is one button wide: size it from the buttons
+      // there are, so removing a category can never leave it mis-sized.
+      cat.style.setProperty('--items-count', buttons.length);
 
       var markActive = function (value) {
         buttons.forEach(function (b) {

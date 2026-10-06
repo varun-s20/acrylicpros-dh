@@ -7,11 +7,10 @@ og_image: assets/images/scratch-removal/scratch-02.jpeg
 og_image_alt: A long acrylic aquarium with clear, polished panels.
 body_class: t-inner t-legacy -overlay page page--scratch-removal
 schema: scratch-removal
-preload: <link rel="preload" as="image" href="assets/images/video-thumbs/scratch-removal-film-v2.jpg" type="image/jpeg" fetchpriority="high">
 head: legacy-head
 header: page-header
 footer: home-footer
-nav: services
+nav: scratch-removal
 -->
 
 <!-- ============================================================
@@ -19,22 +18,49 @@ nav: services
      ============================================================ -->
 <section class="m-pageBanner" data-page-hero>
   <div class="m-pageBanner__media" aria-hidden="true">
-    <!-- Client, 19 Sept: the banner plays the overview video behind the title,
-         the same treatment the Videos page banner uses. The header photo stays
-         as the poster, so it is still what paints first and what stands in
-         under prefers-reduced-motion — home.js does not touch the video at all
-         in that case. One file for both breakpoints: there is no mobile cut of
-         acrylic-overview, and home.js requires both attributes. -->
-    <video muted loop playsinline autoplay preload="metadata"
-           data-poster-desktop="assets/images/video-thumbs/scratch-removal-film-v2.jpg"
-           data-poster-mobile="assets/images/video-thumbs/scratch-removal-film-v2.jpg"
-           data-src-desktop="assets/video/scratch-removal-web-v2.mp4"
-           data-src-mobile="assets/video/scratch-removal-web-v2.mp4"
-           data-autoplay data-inview-play></video>
+    <!-- Client, 3 Oct: the restored coral-habitat tank from the specialist film
+         (a still at 0:38) -- crystal-clear acrylic, full of coral and fish, which is
+         what the service delivers. It replaced the header photo of a rock wall.
+         New filename, so WordPress cannot keep serving an older image. -->
+    <picture>
+      <source type="image/webp" srcset="assets/images/headers/scratch-removal-reef-header-768.webp 768w,
+                              assets/images/headers/scratch-removal-reef-header-1280.webp 1280w" sizes="100vw">
+      <img src="assets/images/headers/scratch-removal-reef-header.jpg" alt="" width="1280" height="720" fetchpriority="high" decoding="async">
+    </picture>
   </div>
   <div class="m-pageBanner__inner">
     <nav class="m-pageBanner__crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li><li aria-current="page">Scratch Removal</li></ol></nav>
+    <span class="m-pageBanner__tag">Scratch removal</span>
     <h1 class="m-pageBanner__title" data-page-title>Got scratches? <span class="hl">We can help!</span></h1>
+    <p class="m-pageBanner__lede">We specialize in removing scratches off your aquarium with or without water, 100% fish and coral safe!</p>
+    <div class="m-pageBanner__actions">
+      <a class="a-button -primary -bgaccent" href="quote.html"><span class="tx-cta">Request a free estimate</span><svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+      <a class="a-button -secondary" href="tel:+15625660150"><span class="tx-cta">Call +1 (562) 566-0150</span></a>
+    </div>
+    <ul class="m-pageBanner__chips"><li>With or without water</li><li>Fish &amp; coral safe</li><li>20+ years of proven methods</li></ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     THE SPECIALIST, UP TOP (client, 3 Oct: Featured Projects merged
+     into this page, with this film leading). It plays itself, muted;
+     the button turns the sound on.
+     ============================================================ -->
+<section class="section section--compact page-film" aria-labelledby="film-title">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">Scratch removal specialist</span>
+      <h2 id="film-title">Restoring scratched acrylic <span class="hl">to crystal&#8209;clear perfection.</span></h2>
+    </div>
+    <figure class="m-film">
+      <video class="m-film__video" muted loop playsinline autoplay preload="none" width="1280" height="720"
+             poster="assets/images/video-thumbs/scratch-removal-film-v2.jpg"
+             data-lazy-src="assets/video/scratch-removal-web-v2.mp4"
+             aria-label="Scratch removal specialist"></video>
+      <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
+        <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+    </figure>
   </div>
 </section>
 
@@ -43,11 +69,14 @@ nav: services
      ============================================================ -->
 <section class="section">
   <div class="container">
+    <!-- Client, 3 Oct: the reel that sat beside this copy is now the four
+         water-sanding stills below, so the copy splits across both columns. -->
     <div class="split split--editorial">
       <div class="stack" data-reveal>
         <span class="eyebrow eyebrow--rule">Southern California and nationwide</span>
         <h2>From fine surface scratches and scuffs to deep, stubborn scratches.</h2>
-        <p class="lede">We specialize in removing scratches off your aquarium with or without water, 100% fish and coral safe!</p>
+      </div>
+      <div class="stack" data-reveal>
         <div class="prose">
           <p>
             Acrylic Pros is a leading acrylic scratch removal and restoration company
@@ -79,10 +108,26 @@ nav: services
           </a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
-      <!-- Client, 22 Sept: the before/after reel (IMG_2548) in place of the
-           still of a technician polishing. Muted loop, sound on request. -->
-      <figure class="m-reel" data-reveal-media>
+<!-- ============================================================
+     WATER SANDING, STEP BY STEP (client, 3 Oct): four stills from the
+     before/after reel (IMG_2548), in the order they happen -- a real
+     sequence, so the numbers carry information.
+     ============================================================ -->
+<section class="section section--tint" aria-labelledby="sanding-heading">
+  <div class="container">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">Water sanding</span>
+      <h2 id="sanding-heading">From scratched <span class="hl">to crystal clear.</span></h2>
+    </div>
+    <div class="sanding">
+      <!-- Client, 3 Oct: the 11-second before/after reel (the Scratch removal
+           service card's video) is back, beside the four stills taken from it:
+           the video shows it happen, the stills slow it down. -->
+      <figure class="m-reel sanding__reel" data-reveal-media>
         <video class="m-reel__video" muted loop playsinline preload="none" width="720" height="1280"
                data-poster="assets/images/video-thumbs/scratch-reel-v2.jpg" data-lazy-src="assets/video/scratch-reel-v2.mp4"
                aria-label="Scratch removal before and after: a clouded acrylic aquarium polished back to crystal clear"></video>
@@ -90,6 +135,48 @@ nav: services
           <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
         </button>
       </figure>
+      <ol class="sanding-steps" data-reveal-stagger>
+        <li class="sanding-step">
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="assets/images/scratch-removal/sanding-1-before-600.webp 600w, assets/images/scratch-removal/sanding-1-before-1000.webp 1000w"
+                      sizes="(min-width: 62em) 26vw, 46vw">
+              <img src="assets/images/scratch-removal/sanding-1-before.jpg" alt="Before: the acrylic panel clouded and pitted with scratches." width="1080" height="1350" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><span class="sanding-step__num">01</span>Before</figcaption>
+          </figure>
+        </li>
+        <li class="sanding-step">
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="assets/images/scratch-removal/sanding-2-water-sanding-600.webp 600w, assets/images/scratch-removal/sanding-2-water-sanding-1000.webp 1000w"
+                      sizes="(min-width: 62em) 26vw, 46vw">
+              <img src="assets/images/scratch-removal/sanding-2-water-sanding.jpg" alt="Water sanding: the panel covered in milky sanding swirls, with a cleared test patch in the middle." width="1080" height="1350" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><span class="sanding-step__num">02</span>Water sanding</figcaption>
+          </figure>
+        </li>
+        <li class="sanding-step">
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="assets/images/scratch-removal/sanding-3-polishing-600.webp 600w, assets/images/scratch-removal/sanding-3-polishing-1000.webp 1000w"
+                      sizes="(min-width: 62em) 26vw, 46vw">
+              <img src="assets/images/scratch-removal/sanding-3-polishing.jpg" alt="Polishing: the panel part-way back to clear, the rockwork showing through." width="1080" height="1350" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><span class="sanding-step__num">03</span>Polishing</figcaption>
+          </figure>
+        </li>
+        <li class="sanding-step">
+          <figure>
+            <picture>
+              <source type="image/webp" srcset="assets/images/scratch-removal/sanding-4-after-600.webp 600w, assets/images/scratch-removal/sanding-4-after-1000.webp 1000w"
+                      sizes="(min-width: 62em) 26vw, 46vw">
+              <img src="assets/images/scratch-removal/sanding-4-after.jpg" alt="After: the aquarium refilled and lit, the acrylic crystal clear." width="1080" height="1350" loading="lazy" decoding="async">
+            </picture>
+            <figcaption><span class="sanding-step__num">04</span>After</figcaption>
+          </figure>
+        </li>
+      </ol>
     </div>
   </div>
 </section>
@@ -142,7 +229,7 @@ nav: services
     <div class="section__head">
       <div>
         <span class="eyebrow">Scratch Removal</span>
-        <h2 id="ba-heading">Restoring scratched acrylic <span class="hl">to crystal-clear perfection.</span></h2>
+        <h2 id="ba-heading">Before <span class="hl">and after.</span></h2>
       </div>
       <p class="lede">
         Drag each slider to compare before and after.
@@ -185,9 +272,6 @@ nav: services
                  aria-label="Reveal the restored panel — aquarium with coral rock column"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
       <!-- Client, 22 Sept (11:40): the same in-wall aquarium from both sides. -->
@@ -224,9 +308,6 @@ nav: services
                  aria-label="Reveal the restored panel — in-wall aquarium, cabinetry side"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
       <figure>
@@ -262,11 +343,7 @@ nav: services
                  aria-label="Reveal the restored panel — in-wall aquarium, lounge side"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
-
 
       <figure>
         <div class="ba" data-before-after>
@@ -301,9 +378,6 @@ nav: services
                  aria-label="Reveal the restored panel — long acrylic aquarium"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
       <figure>
@@ -339,9 +413,6 @@ nav: services
                  aria-label="Reveal the restored panel — corner acrylic aquarium"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
       <figure>
@@ -377,9 +448,6 @@ nav: services
                  aria-label="Reveal the restored panel — rectangular acrylic tank"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
       <figure>
@@ -415,9 +483,6 @@ nav: services
                  aria-label="Reveal the restored panel — cylindrical acrylic tank"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
       <figure>
@@ -453,9 +518,6 @@ nav: services
                  aria-label="Reveal the restored panel — filled acrylic aquarium"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
       <figure>
@@ -491,66 +553,67 @@ nav: services
                  aria-label="Reveal the restored panel — acrylic cylinder"
                  aria-valuetext="50% restored">
         </div>
-        <figcaption class="ba__caption">
-          <span>Scratch Removal</span><span>Before &amp; After</span>
-        </figcaption>
       </figure>
 
-      <figure>
-        <div class="media media--3-4">
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/scratch-removal/scratch-03-600.webp 600w,
-                              assets/images/scratch-removal/scratch-03-960.webp 960w"
-                    sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
-            <img src="assets/images/scratch-removal/scratch-03.jpeg"
-                 alt="An empty acrylic aquarium with hazy panels on a steel stand, beneath arched windows."
-                 width="960" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </figure>
+    </div>
 
-      <figure>
-        <div class="media media--3-4">
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/scratch-removal/scratch-04-600.webp 600w,
-                              assets/images/scratch-removal/scratch-04-960.webp 960w"
-                    sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
-            <img src="assets/images/scratch-removal/scratch-04.jpeg"
-                 alt="The same empty aquarium with clear panels, on its steel stand beneath arched windows."
-                 width="960" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </figure>
-
-      <figure>
-        <div class="media media--3-4">
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/scratch-removal/scratch-09-459.webp 459w"
-                    sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
-            <img src="assets/images/scratch-removal/scratch-09.jpeg"
-                 alt="An empty curved-front acrylic aquarium lit blue, set into grey cabinetry."
-                 width="459" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </figure>
-
-      <figure>
-        <div class="media media--3-4">
-          <picture>
-            <source type="image/webp"
-                    srcset="assets/images/scratch-removal/scratch-10-406.webp 406w"
-                    sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
-            <img src="assets/images/scratch-removal/scratch-10.jpeg"
-                 alt="A curved-front aquarium set into grey cabinetry, lit blue and aquascaped with coral."
-                 width="406" height="720" loading="lazy" decoding="async">
-          </picture>
-        </div>
-      </figure>
-
-
+    <!-- Client, 3 Oct: the four restored tanks that are photos rather than
+         sliders get their own row of four, instead of trailing the nine
+         sliders and leaving one alone on the last line. -->
+    <div class="ba-extra">
+      <h3 class="ba-extra__title">More restorations</h3>
+      <div class="ba-extra__grid" data-reveal-stagger>
+        <figure>
+          <div class="media media--3-4">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/scratch-removal/scratch-03-600.webp 600w,
+                                assets/images/scratch-removal/scratch-03-960.webp 960w"
+                      sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
+              <img src="assets/images/scratch-removal/scratch-03.jpeg"
+                   alt="An empty acrylic aquarium with hazy panels on a steel stand, beneath arched windows."
+                   width="960" height="720" loading="lazy" decoding="async">
+            </picture>
+          </div>
+        </figure>
+        <figure>
+          <div class="media media--3-4">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/scratch-removal/scratch-04-600.webp 600w,
+                                assets/images/scratch-removal/scratch-04-960.webp 960w"
+                      sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
+              <img src="assets/images/scratch-removal/scratch-04.jpeg"
+                   alt="The same empty aquarium with clear panels, on its steel stand beneath arched windows."
+                   width="960" height="720" loading="lazy" decoding="async">
+            </picture>
+          </div>
+        </figure>
+        <figure>
+          <div class="media media--3-4">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/scratch-removal/scratch-09-459.webp 459w"
+                      sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
+              <img src="assets/images/scratch-removal/scratch-09.jpeg"
+                   alt="An empty curved-front acrylic aquarium lit blue, set into grey cabinetry."
+                   width="459" height="720" loading="lazy" decoding="async">
+            </picture>
+          </div>
+        </figure>
+        <figure>
+          <div class="media media--3-4">
+            <picture>
+              <source type="image/webp"
+                      srcset="assets/images/scratch-removal/scratch-10-406.webp 406w"
+                      sizes="(min-width: 62rem) 30vw, (min-width: 40rem) 46vw, 92vw">
+              <img src="assets/images/scratch-removal/scratch-10.jpeg"
+                   alt="A curved-front aquarium set into grey cabinetry, lit blue and aquascaped with coral."
+                   width="406" height="720" loading="lazy" decoding="async">
+            </picture>
+          </div>
+        </figure>
+      </div>
     </div>
   </div>
 </section>
@@ -609,7 +672,8 @@ nav: services
      (muted loop) instead of the generic overview; the Videos and Featured
      Projects pages carry the same film with sound.
      ============================================================ -->
-<div class="o-universeAbout__footer -media -film">
+<!-- Client, 3 Oct: no cloud edges here; they read as smoke. -->
+<div class="o-universeAbout__footer -media -film -clean">
   <!-- Client, 21 Sept: the film's own audio, off by default (browsers only
        autoplay muted); the button turns it on and off. pages.js. -->
   <figure class="o-universeAbout__footerImage">
@@ -618,8 +682,6 @@ nav: services
       <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
     </button>
   </figure>
-  <div class="a-cloud -top" aria-hidden="true"></div>
-  <div class="a-cloud -bottom" aria-hidden="true"></div>
 </div>
 
 <!-- ============================================================
@@ -646,8 +708,6 @@ nav: services
           restoration services in Southern California and across the United States.
         </p>
       </div>
-      <hr class="hairline">
-      <p class="lede">Acrylic Pros — restoring scratched acrylic to crystal-clear perfection.</p>
     </div>
   </div>
 </section>
@@ -694,17 +754,6 @@ nav: services
         <figcaption>Aquarium Scratch Removal W/ Fishes &amp; Corals, 100% Safe!</figcaption>
       </figure>
     </div>
-
-    <!-- The client's own film, self-hosted (not YouTube). -->
-    <figure class="m-film">
-      <video class="m-film__video" muted loop playsinline autoplay preload="none" width="1280" height="720"
-             poster="assets/images/video-thumbs/scratch-removal-film-v2.jpg"
-             data-lazy-src="assets/video/scratch-removal-web-v2.mp4"
-             aria-label="Scratch removal specialist"></video>
-      <button class="m-soundToggle" type="button" data-sound-toggle aria-pressed="false" aria-label="Sound">
-        <svg class="a-svg" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="m-soundToggle__waves" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="m-soundToggle__off" d="m16 9 6 6m0-6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-      </button>
-    </figure>
   </div>
 </section>
 

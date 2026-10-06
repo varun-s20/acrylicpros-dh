@@ -5,7 +5,7 @@
       "@type": "CollectionPage",
       "@id": "https://acrylicpros.com/tropical-fish.html#page",
       "name": "Tropical Fish",
-      "description": "No one offers a better selection of tropical fish than Acrylic Pros. From Neon Tetras, to Angelfish, clownfish, Sharks and more…",
+      "description": "No one offers a better selection of tropical fish than Acrylic Pros. From Surgeonfish, to angelfish, clownfish, sharks and more…",
       "url": "https://acrylicpros.com/tropical-fish.html",
       "publisher": { "@id": "https://acrylicpros.com/#business" },
       "primaryImageOfPage": {
@@ -15,7 +15,7 @@
         "height": 870
       },
       "about": [
-        { "@type": "Thing", "name": "Neon Tetras" },
+        { "@type": "Thing", "name": "Surgeonfish" },
         { "@type": "Thing", "name": "Angelfish" },
         { "@type": "Thing", "name": "Clownfish" },
         { "@type": "Thing", "name": "Sharks" }
