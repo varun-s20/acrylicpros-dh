@@ -90,24 +90,49 @@
     return '-' + parts[1] + '% 0px -' + parts[0] + '% 0px';
   }
 
-  var darkCount = 0;
   $$('[data-scroll]').forEach(function (el) {
     if (el === hero) return; // the intro reveals the hero
-    var dark = el.hasAttribute('data-dark-ui');
-    var wasIn = false;
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) el.classList.add('is-inview');
-        if (dark && entry.isIntersecting !== wasIn) {
-          wasIn = entry.isIntersecting;
-          darkCount += wasIn ? 1 : -1;
-          raf(function () { body.classList.toggle('-dark', darkCount > 0); });
-        }
-        if (!dark && entry.isIntersecting) io.disconnect();
+        if (entry.isIntersecting) { el.classList.add('is-inview'); io.disconnect(); }
       });
     }, { rootMargin: rootMarginFor(el) });
     io.observe(el);
   });
+
+  /* ------------------------------------------------------------------
+     Header tone: a light band turns the header navy only while it sits
+     under the header itself. Watching the whole viewport flipped it as
+     soon as the band peeked in at the bottom, which on a tall monitor left
+     a navy Menu pill and logo on the navy hero (client, 6 Oct).
+     ------------------------------------------------------------------ */
+  var darkEls = $$('[data-dark-ui]');
+  var darkIO = null;
+  function watchHeaderTone() {
+    if (darkIO) darkIO.disconnect();
+    var burgerEl = $('[data-burger]');
+    var r = burgerEl && burgerEl.getBoundingClientRect();
+    var line = r && r.height ? Math.round(r.top + r.height / 2) : 60;
+    var under = [];
+    // A 1px-tall root at the burger's centre line.
+    darkIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var i = under.indexOf(entry.target);
+        if (entry.isIntersecting && i < 0) under.push(entry.target);
+        else if (!entry.isIntersecting && i >= 0) under.splice(i, 1);
+      });
+      raf(function () { body.classList.toggle('-dark', under.length > 0); });
+    }, { rootMargin: '-' + line + 'px 0px -' + Math.max(window.innerHeight - line - 1, 0) + 'px 0px' });
+    darkEls.forEach(function (el) { darkIO.observe(el); });
+  }
+  if (darkEls.length) {
+    watchHeaderTone();
+    var toneTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(toneTimer);
+      toneTimer = setTimeout(watchHeaderTone, 200);
+    });
+  }
 
   // Background videos only play while on screen.
   if (!reduced) {

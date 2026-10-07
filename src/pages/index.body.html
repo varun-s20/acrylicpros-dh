@@ -157,7 +157,9 @@ preload: <link rel="preload" as="image" href="assets/images/hero/hero-poster-des
                       <img src="assets/images/scratch-removal/scratch-08.jpeg" alt="" width="480" height="720" loading="lazy" decoding="async">
                     </picture>
                   </figure>
-                  <figure class="a-video -cover"><video muted loop playsinline preload="none" data-src="assets/video/scratch-reel-v2.mp4"></video></figure>
+                  <!-- Client, 6 Oct: the acrylic-overview footage (the sanding pad under water) replaces scratch-reel-v2 on this card,
+                       re-encoded as scratch-overview-smooth.mp4: the source repeated 31 frames, which read as lag. -->
+                  <figure class="a-video -cover"><video muted loop playsinline preload="none" data-src="assets/video/scratch-overview-smooth.mp4"></video></figure>
                   <div class="m-sliderProducts__slideContent">
                     <h3 class="tx-h4"><strong>Scratch</strong><br>removal</h3>
                     <p class="tx-uni14">We specialize in removing scratches off your aquarium with or without water, 100% fish and coral safe!</p>

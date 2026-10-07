@@ -107,6 +107,14 @@ html {
   text-size-adjust: 100%;
   scrollbar-gutter: stable;
 }
+/* Monitors (client, 6 Oct): the site is laid out on a 1440px canvas in rem,
+   so past 1440 it held that size and left wide empty margins with small
+   type. From there the root grows with the viewport (10px at 1440, 0.6944vw
+   = 10/1440), scaling the whole approved layout up evenly. Capped at the
+   2560 size so ultrawide screens do not get oversized. */
+@media (min-width: 1441px) {
+  html { font-size: min(.6944vw, 17.78px); }
+}
 html.is-loading { cursor: progress; }
 html.is-loading body { pointer-events: none; }
 body { font-size: 1.6rem; line-height: 1.5; text-rendering: geometricprecision; }
@@ -819,6 +827,10 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   position: absolute; bottom: -.1rem; left: 0; z-index: 0;
   width: 100%; height: 100%;
   background: url("cloud.png") bottom center no-repeat;
+  /* Its drawn width (2690 at 1440), scaling with the root on monitors and
+     never narrower than the screen: at its natural size it stopped short
+     of both edges on wide monitors (client, 6 Oct). */
+  background-size: max(100%, 269rem) auto;
   pointer-events: none;
 }
 .o-homeMagic .row { z-index: 1; justify-content: center; }

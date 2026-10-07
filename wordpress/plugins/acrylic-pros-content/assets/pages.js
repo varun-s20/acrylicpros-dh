@@ -91,8 +91,14 @@
       if (doc.classList.contains('menu-open')) return;
       // Sample under the burger and under the logo; either on a light band
       // means the glass pills would vanish, so switch to the dark UI.
-      var light = [60, window.innerWidth / 2].some(function (x) {
-        var hit = document.elementsFromPoint(x, 60).filter(function (el) {
+      // The header grows with the type on monitors, so sample at the
+      // burger's real centre rather than a fixed 60px.
+      var burgerEl = $('[data-burger]');
+      var r = burgerEl && burgerEl.getBoundingClientRect();
+      var x0 = r && r.width ? r.left + r.width / 2 : 60;
+      var y = r && r.height ? r.top + r.height / 2 : 60;
+      var light = [x0, window.innerWidth / 2].some(function (x) {
+        var hit = document.elementsFromPoint(x, y).filter(function (el) {
           return !el.closest(CHROME);
         })[0];
         return lightness(hit) > 0.6;
