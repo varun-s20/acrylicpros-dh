@@ -84,6 +84,17 @@ add_action( 'wp_enqueue_scripts', function () {
 }, 100 );
 
 /**
+ * Drop Hello Elementor's own "Skip to content" link (client, 7 Oct: "there
+ * should be no skip to content at all").
+ *
+ * The site's own skip link is gone from the header chrome; the theme prints
+ * another right after <body>, pointing at #content -- an id none of these
+ * pages has. home.css also hides .skip-link outright, in case a theme version
+ * ignores this filter.
+ */
+add_filter( 'hello_elementor_enable_skip_link', '__return_false' );
+
+/**
  * Enqueue this page's set, after Elementor.
  *
  * filemtime() rather than AP_VER as the cache-buster, because the file's own

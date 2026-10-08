@@ -131,13 +131,10 @@ html.lenis, html.lenis body { height: auto; }
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
-.skip-link {
-  position: fixed; top: 1rem; left: 1rem; z-index: 100000;
-  padding: 1rem 1.6rem; border-radius: 4.4rem;
-  background: #fff; color: var(--clrdarkblue); font-size: 1.4rem; font-weight: 600;
-  transform: translateY(-200%);
-}
-.skip-link:focus { transform: none; }
+/* No skip link anywhere (client, 7 Oct: "there should be no skip to content at
+   all"). The site's own was taken out of the head partials; this hides any
+   other, e.g. a WordPress theme's, should one ever be printed. */
+.skip-link { display: none !important; }
 :focus-visible { outline: 2px solid var(--clraccent); outline-offset: 3px; }
 
 .svg-sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
@@ -2018,7 +2015,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   .o-menu__mainNav {
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(4, auto);   /* 6 items: 4 + 2, so opening Shop tanks only pushes what is below it */
+    grid-template-rows: repeat(5, auto);   /* 7 items: 5 + 2. Rows are shared by both columns, so Shop tanks (5th) has to sit on the last row: opening it then pushes nothing beside it */
     gap: .3rem 6rem;
     justify-content: center;
   }

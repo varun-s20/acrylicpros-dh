@@ -188,8 +188,9 @@ def main():
             if not labelled:
                 err(page, "unlabelled form control: %s" % tag[:90])
 
-        if "skip-link" not in body:
-            warn(page, "no skip-to-content link")
+        # Client, 7 Oct: no skip-to-content link anywhere.
+        if "skip-link" in body:
+            warn(page, "skip-to-content link present (client asked for none)")
 
         # --- hygiene -----------------------------------------------
         # Custom properties only are data, not styling: the Featured Projects

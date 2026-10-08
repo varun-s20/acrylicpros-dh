@@ -74,7 +74,7 @@
     // home.js would also flip the header from data-dark-ui markers; with the
     // short page banners those fire too early, so this check owns it here.
     $$('[data-dark-ui]').forEach(function (el) { el.removeAttribute('data-dark-ui'); });
-    var CHROME = '.o-header, .a-loader, .o-menu, .a-panel, .skip-link';
+    var CHROME = '.o-header, .a-loader, .o-menu, .a-panel';
     var lightness = function (el) {
       for (; el && el !== body && el !== doc; el = el.parentElement) {
         if (/^(IMG|VIDEO|IFRAME|CANVAS)$/.test(el.tagName)) return 0;
