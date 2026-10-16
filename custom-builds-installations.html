@@ -145,23 +145,11 @@
 <div class="o-menu" id="site-menu" aria-hidden="true" data-menu>
   <div class="o-menu__row">
     <div class="o-menu__videosWrapper" aria-hidden="true">
+      <!-- Cards follow the main links' order, which hover-matches them by position
+           (client, 9 Oct: Home, Scratch removal, Shop tanks, Gallery, Videos, Our process,
+           About us); the last two belong to the Shop tanks sub-links, by index. -->
       <figure class="o-menu__videoCard" data-menu-card>
         <video muted loop playsinline preload="none" data-src="assets/video/hero-mobile.mp4"></video>
-      </figure>
-      <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="assets/images/gallery/project-04-480.webp 480w,
-                              assets/images/gallery/project-04-546.webp 546w" sizes="342px">
-          <img src="assets/images/gallery/project-04.jpeg" alt="" width="546" height="720" loading="lazy" decoding="async">
-        </picture>
-      </figure>
-      <!-- Videos (client, 7 Oct: moved up from the bottom row to sit after Gallery): a still of the reef from the scratch removal film. -->
-      <figure class="o-menu__videoCard" data-menu-card>
-        <picture>
-          <source type="image/webp" srcset="assets/images/video-thumbs/scratch-removal-film-v2-480.webp 480w,
-                              assets/images/video-thumbs/scratch-removal-film-v2-800.webp 800w" sizes="342px">
-          <img src="assets/images/video-thumbs/scratch-removal-film-v2.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
-        </picture>
       </figure>
       <!-- Scratch removal: the same before/after reel its service card plays (client, 3 Oct). -->
       <figure class="o-menu__videoCard" data-menu-card>
@@ -174,6 +162,21 @@
                               assets/images/featured/featured-curved-office-1000.webp 1000w,
                               assets/images/featured/featured-curved-office-1350.webp 1350w" sizes="342px">
           <img src="assets/images/featured/featured-curved-office.jpg" alt="" width="1350" height="1800" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/gallery/project-04-480.webp 480w,
+                              assets/images/gallery/project-04-546.webp 546w" sizes="342px">
+          <img src="assets/images/gallery/project-04.jpeg" alt="" width="546" height="720" loading="lazy" decoding="async">
+        </picture>
+      </figure>
+      <!-- Videos (client, 7 Oct: moved up from the bottom row into the main links): a still of the reef from the scratch removal film. -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/video-thumbs/scratch-removal-film-v2-480.webp 480w,
+                              assets/images/video-thumbs/scratch-removal-film-v2-800.webp 800w" sizes="342px">
+          <img src="assets/images/video-thumbs/scratch-removal-film-v2.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
         </picture>
       </figure>
       <figure class="o-menu__videoCard" data-menu-card>
@@ -211,11 +214,9 @@
     <nav class="o-menu__mainNavWrapper" aria-label="Main" data-menu-nav>
       <ul class="o-menu__mainNav -active" data-nav="services">
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="index.html" data-menu-link data-nav-item="home">Home</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="gallery.html" data-menu-link data-nav-item="gallery">Gallery</a></li>
-        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="videos.html" data-menu-link data-nav-item="videos">Videos</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="scratch-removal.html" data-menu-link data-nav-item="scratch-removal">Scratch removal</a></li>
         <!-- Client, 3 Oct: "Shop tanks" opens Glass tanks and Acrylic tanks. The
-             button is the 5th data-menu-link, so it keeps the 5th preview card
+             button is the 3rd data-menu-link, so it keeps the 3rd preview card
              (the curved aquarium); each sub-link names its own card by index. -->
         <li class="o-menu__mainItem -drop" data-menu-drop>
           <button class="o-menu__link tx-h3 o-menu__dropToggle" type="button" aria-expanded="false" aria-controls="menu-tanks" data-menu-link data-menu-drop-toggle>Shop tanks<svg class="o-menu__dropIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -224,6 +225,8 @@
             <li><a class="o-menu__subLink" href="acrylic-tanks.html" data-menu-sublink="7" data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
           </ul>
         </li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="gallery.html" data-menu-link data-nav-item="gallery">Gallery</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="videos.html" data-menu-link data-nav-item="videos">Videos</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="process.html" data-menu-link data-nav-item="process">Our process</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="about.html" data-menu-link data-nav-item="about">About us</a></li>
       </ul>

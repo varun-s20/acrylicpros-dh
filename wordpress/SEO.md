@@ -27,10 +27,13 @@ overwritten on the next build.
 
 Yoast still does titles, meta descriptions, the XML sitemap, and OG/Twitter tags.
 
-- **Titles and descriptions** come from each page's meta block in
-  `src/pages/*.body.html`. Port them page by page; they are written and not
-  placeholders.
-- **OG image** per page is already named in the same meta block.
+- **Titles, descriptions and share tags are automatic** (plugin 1.7.0). The
+  build reads each page's `<title>`, meta description and og: tags into
+  `inc/seo-map.php`, and `inc/seo.php` hands them to Yoast — nothing to port by
+  hand. Anything typed into a page's Yoast box still wins over them. Without
+  Yoast, the plugin prints them itself. Products use Yoast's default template
+  (`<product name> - Acrylic Pros`), so **Settings → General → Site Title must
+  be "Acrylic Pros"**.
 - **Search appearance → Content types → Media → redirect attachment URLs to the
   parent: Yes.** With 458 images uploaded, leaving this off publishes 458 thin
   attachment pages, each one a URL Google can index instead of a real page.

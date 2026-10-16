@@ -12,6 +12,32 @@ therefore a safety net, not the mechanism.
 
 ---
 
+## GoDaddy specifics (checked 12 Oct 2026)
+
+- **Hosting:** acrylicpros.com is on GoDaddy's managed WordPress (Deluxe), behind
+  GoDaddy's own cache. DNS is GoDaddy (`ns45/46.domaincontrol.com`).
+- **Email is Microsoft 365, provisioned through GoDaddy**, with Proofpoint
+  filtering inbound mail. **Do not touch the MX or TXT records** during the move.
+  The SPF record is strict
+  (`v=spf1 a:dispatch-us.ppe-hosted.com include:secureserver.net -all`), and
+  there is no DMARC record yet.
+- **Form mail:** install WP Mail SMTP and use its Microsoft 365 / Outlook mailer
+  with the `info@acrylicpros.com` mailbox. Until then enquiries are still saved
+  under **Enquiries** in wp-admin, but nobody is emailed.
+- **"Build the site" now handles** the 404 template, WordPress's sample pages
+  (to the Trash, which also fixes staging's `/privacy-policy-2/`), the site
+  title, tagline and icon, and the Yoast basics (plugin 1.7.0).
+- **After the move, untick Settings → Reading → "Discourage search engines".**
+  Staging is built with it ticked and the migration copies it; on the live
+  domain wp-admin shows a red warning until it is unticked.
+- **Elementor Pro must be licensed on acrylicpros.com.** The header, menu and
+  footer are Theme Builder templates and do not render without Pro.
+- **Already built in, nothing to set up:** the redirects (`REDIRECTS.md`), the
+  client's GA4 `G-1TS8M2DGC4` (loads on the live domain only) and the Search
+  Console verification tag (`inc/tracking.php`).
+- **Store:** quote-only, by client decision (12 Oct). No payment gateway,
+  shipping or tax to configure.
+
 ## Before the day
 
 - [ ] `python wordpress/tests/check.py wordpress/ --config wordpress/tests/check-config.json` passes
@@ -23,9 +49,9 @@ therefore a safety net, not the mechanism.
 - [ ] Legal pages read by the client: `/warranty/`, `/refund-policy/`,
       `/privacy-policy/` reproduce the old site's text verbatim, including its
       original grammar
-- [ ] Redirect map loaded (`REDIRECTS.md`) — **before** the switch, not after
-- [ ] SMTP configured and a test email received, or the forms are still carrying
-      the "not connected" notice on purpose
+- [ ] Redirects: built into the plugin — just test them after the switch (`REDIRECTS.md`)
+- [ ] WP Mail SMTP connected to the Microsoft 365 mailbox and a test enquiry
+      received (the forms themselves are wired — `FORMS.md`)
 - [ ] **The client's existing WordPress has been scanned and cleaned.** See the
       warning at the bottom of this file.
 - [ ] Full backup of the client's current live site, downloaded and verified —

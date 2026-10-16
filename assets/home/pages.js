@@ -6,9 +6,10 @@
 (function () {
   'use strict';
 
-  // Set to a real endpoint to connect the forms. While null, a form NEVER
-  // reports success — nothing was sent, so it says so and offers the phone.
-  var FORM_ENDPOINT = null;
+  // The forms send to this endpoint; WordPress (the plugin's inc/forms.php)
+  // supplies it. While null -- the static site -- a form NEVER reports
+  // success: nothing was sent, so it says so and offers the phone.
+  var FORM_ENDPOINT = window.AP_FORM_ENDPOINT || null;
   var PHONE_DISPLAY = '+1 (562) 566-0150';
   var PHONE_HREF = 'tel:+15625660150';
   var EMAIL = 'info@acrylicpros.com';
@@ -785,6 +786,37 @@
     var status = $('[data-form-status]', form);
     var submitBtn = $('button[type="submit"]', form);
     var submitting = false;
+    var loadedAt = Date.now();
+
+    // Honeypot, read by inc/forms.php: off-screen and out of the Tab order, so
+    // a person never fills it and a form-filling bot usually does.
+    if (FORM_ENDPOINT) {
+      var hp = document.createElement('input');
+      hp.type = 'text';
+      hp.name = '_hp';
+      hp.tabIndex = -1;
+      hp.autocomplete = 'off';
+      hp.setAttribute('aria-hidden', 'true');
+      hp.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;opacity:0;';
+      form.appendChild(hp);
+    }
+
+    // What the endpoint reads. A checkbox group (interest, panels) shares one
+    // name; PHP keeps only the last of a repeated name unless it ends in [].
+    var payload = function () {
+      var groups = {};
+      $$('input[type="checkbox"][name]', form).forEach(function (c) {
+        groups[c.name] = (groups[c.name] || 0) + 1;
+      });
+      var data = new FormData();
+      new FormData(form).forEach(function (value, key) {
+        data.append(groups[key] > 1 ? key + '[]' : key, value);
+      });
+      data.append('_form', form.getAttribute('data-form') || '');
+      data.append('_t', String(Math.round((Date.now() - loadedAt) / 1000)));
+      data.append('_page', location.pathname);
+      return data;
+    };
 
     var wrapperFor = function (control) { return control.closest('.a-inputField'); };
 
@@ -869,11 +901,31 @@
       submitting = true;
       if (submitBtn) submitBtn.setAttribute('aria-disabled', 'true');
       say('info', 'Sending your request&hellip;');
-      fetch(FORM_ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
+      fetch(FORM_ENDPOINT, { method: 'POST', headers: { Accept: 'application/json' }, body: payload() })
         .then(function (response) {
-          if (!response.ok) throw new Error('Request failed: ' + response.status);
-          form.reset();
-          say('success', 'Thank you &mdash; your request has been sent. We will be in touch shortly.');
+          return response.json().catch(function () { return {}; }).then(function (json) {
+            // The server re-checks every field; show what it refused where
+            // the visitor can fix it.
+            if (response.status === 422 && json.errors) {
+              var first = null;
+              Object.keys(json.errors).forEach(function (name) {
+                var control = form.querySelector('[name="' + name + '"]');
+                if (!control) return;
+                setError(control, json.errors[name]);
+                if (!first) first = control;
+              });
+              say('error', 'Please correct the highlighted fields and try again.');
+              if (first) first.focus();
+              return;
+            }
+            if (!response.ok || !json.ok) throw new Error('Request failed: ' + response.status);
+            form.reset();
+            say('success', 'Thank you &mdash; your request has been sent. We will be in touch shortly.');
+            // Conversion tracking: GA4's recommended lead event, once GA4 is on the site.
+            var formName = form.getAttribute('data-form') || 'form';
+            if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form_name: formName });
+            (window.dataLayer = window.dataLayer || []).push({ event: 'ap_form_submit', form_name: formName });
+          });
         })
         .catch(function () {
           say('error', 'Sorry, your request could not be sent. Please call ' +

@@ -208,6 +208,13 @@ function ap_current_shell() : array {
 		return $map['glass-tanks'] ?? [ 't-inner t-shop', 'glass-tanks' ];
 	}
 
+	// The designed 404 (Theme Builder 404 template, built by the setup button)
+	// is written for the legacy shell; without it the page loads the wrong
+	// stylesheet set. Old-site URLs answered with 410 go through here too.
+	if ( is_404() && isset( $map['404'] ) ) {
+		return $map['404'];
+	}
+
 	$post = get_queried_object();
 	if ( $post instanceof WP_Post && isset( $map[ $post->post_name ] ) ) {
 		return $map[ $post->post_name ];
@@ -218,3 +225,26 @@ function ap_current_shell() : array {
 	// right way for an unknown page to fail.
 	return [ 't-inner', '' ];
 }
+
+/**
+ * Contact Form 7 and its reCAPTCHA only where a CF7 form actually is.
+ *
+ * The client's existing site keeps Contact Form 7 (and its saved entries), but
+ * none of this site's pages has a CF7 form -- the contact and quote forms post
+ * to inc/forms.php. CF7 still loaded its script, styles and Google reCAPTCHA
+ * on every page, and reCAPTCHA's badge sat over the chat button in the
+ * bottom-right corner (live site, 13 Oct). A page that does contain a CF7
+ * shortcode keeps all of it.
+ */
+add_action( 'wp_enqueue_scripts', function () {
+	if ( is_singular() ) {
+		$post = get_post();
+		if ( $post && has_shortcode( (string) $post->post_content, 'contact-form-7' ) ) {
+			return;
+		}
+	}
+	foreach ( [ 'google-recaptcha', 'wpcf7-recaptcha', 'contact-form-7', 'swv' ] as $handle ) {
+		wp_dequeue_script( $handle );
+	}
+	wp_dequeue_style( 'contact-form-7' );
+}, 100 );

@@ -68,13 +68,22 @@ def main() -> int:
         help="Base URL of the install being imported into, e.g. "
              "https://staging.example.com (no trailing slash)",
     )
+    ap.add_argument(
+        "--acrylic-only",
+        action="store_true",
+        help="Leave the 69 glass tanks out (writes wordpress/products-acrylic.csv). "
+             "For a store that already has them -- the client's own site (13 Oct): "
+             "their SKUs need not match ours, so importing them again could "
+             "create duplicates instead of updating.",
+    )
     args = ap.parse_args()
     base = args.site_url.rstrip("/")
+    out = OUT.with_name("products-acrylic.csv") if args.acrylic_only else OUT
 
     products = json.loads((ROOT / "data" / "products.json").read_text(encoding="utf-8"))
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    with OUT.open("w", newline="", encoding="utf-8-sig") as fh:
+    out.parent.mkdir(parents=True, exist_ok=True)
+    with out.open("w", newline="", encoding="utf-8-sig") as fh:
         # utf-8-sig: WooCommerce's importer reads the BOM as the encoding hint,
         # and without it the ″ inch marks in every tank description arrive as
         # mojibake in the product copy.
@@ -85,7 +94,7 @@ def main() -> int:
             "Regular price", "Categories", "Images",
         ])
 
-        for p in products:
+        for p in ([] if args.acrylic_only else products):
             image = f"{base}/wp-content/uploads/{Path(p['image']).name}"
             w.writerow([
                 "simple",
@@ -139,7 +148,7 @@ def main() -> int:
         print(f"  note: {len(drift)} products get a WordPress URL other than their slug "
               f"(e.g. {sanitize_title(drift[0]['name'])}); build_wordpress.py links to that URL")
 
-    print(f"wrote {OUT.relative_to(ROOT)} — {len(products)} glass + {len(acrylic)} acrylic products"
+    print(f"wrote {out.relative_to(ROOT)} — {0 if args.acrylic_only else len(products)} glass + {len(acrylic)} acrylic products"
           + (f", {len(hidden & {a['slug'] for a in acrylic})} of them Private (data/acrylic-hidden.json)"
              if hidden else ""))
     unknown = {p["range"] for p in products} - set(RANGES)

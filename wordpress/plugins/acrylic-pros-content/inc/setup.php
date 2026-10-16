@@ -15,12 +15,19 @@
  * whose body changed in the build gets refreshed by re-running this, which is
  * how a design change reaches the install.
  *
+ * It also builds the Theme Builder 404 template, and fills the settings the
+ * pages assume (ap_setup_settings): site title, tagline and icon while they
+ * are still WordPress's defaults, the privacy page, Yoast's organisation,
+ * media-page redirect and the noindex on cart/checkout/account, and -- on
+ * staging only -- "discourage search engines".
+ *
  * What it deliberately does NOT do:
  *   - touch anything without _ap_managed, so a page the owner made by hand is
- *     never overwritten
- *   - delete anything, ever
- *   - create the 404 template, which lives in Theme Builder under a different
- *     template type and is a single manual step
+ *     never overwritten. One exception: WordPress's own sample content
+ *     (Sample Page, "Hello world!", the default Privacy Policy page) goes to
+ *     the Trash, because it holds slugs our pages need
+ *   - delete anything permanently; the Trash is as far as it goes
+ *   - change "discourage search engines" on the live domain
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -143,13 +150,20 @@ function ap_setup_page() : void {
 				esc_html( $r['templates'] )
 			) . '</p></div>';
 
+		if ( $r['done'] ) {
+			echo '<div class="notice notice-info"><p><strong>Also done:</strong></p><ul style="list-style:disc;margin-left:2em">';
+			foreach ( $r['done'] as $line ) {
+				printf( '<li>%s</li>', esc_html( $line ) );
+			}
+			echo '</ul></div>';
+		}
+
 		foreach ( $r['notes'] as $note ) {
 			printf( '<div class="notice notice-warning"><p>%s</p></div>', esc_html( $note ) );
 		}
 
 		echo '<p><strong>Now do these by hand — they are the only steps left:</strong></p><ol>'
-			. '<li>Templates → Theme Builder → check the header and footer both show <em>Entire Site</em> under Display Conditions.</li>'
-			. '<li>Theme Builder → Add New → <strong>404 Page</strong>, one HTML widget, paste <code>wordpress/pages/404.html</code> if you want the designed 404.</li>'
+			. '<li>Templates → Theme Builder → check the header and footer show <em>Entire Site</em>, and the 404 shows <em>404 Page</em>, under Display Conditions.</li>'
 			. '<li>Tools → <strong>Acrylic Pros import</strong> for the gallery, Instagram and videos.</li>'
 			. '<li>WooCommerce → Products → Import for <code>products.csv</code>.</li>'
 			. '</ol>';
@@ -175,7 +189,7 @@ function ap_setup_page() : void {
 	echo '<p>Creates the Theme Builder header and footer, and all '
 		. count( $manifest ) . ' pages — each with its slug, Elementor Full Width layout, hidden title and its body already in an HTML widget. Sets the front page too.</p>';
 	echo '<p><strong>Safe to run more than once.</strong> It only ever touches what it created itself, matched on slug; anything you made by hand is left alone. Re-run it after a new build to push updated page bodies.</p>';
-	echo '<p>It does not delete anything.</p>';
+	echo '<p>It never deletes anything permanently. WordPress\'s own sample content (Sample Page, "Hello world!", the default Privacy Policy page) is moved to the Trash so our pages get their proper addresses. It also builds the 404 page and fills in the site title, icon and Yoast basics where they are still WordPress\'s defaults.</p>';
 
 	echo '<form method="post">';
 	wp_nonce_field( 'ap_setup' );
@@ -193,7 +207,12 @@ function ap_setup_manifest() : array {
 }
 
 function ap_run_setup() : array {
-	$out = [ 'created' => 0, 'updated' => 0, 'templates' => '', 'notes' => [] ];
+	$out = [ 'created' => 0, 'updated' => 0, 'templates' => '', 'notes' => [], 'done' => [] ];
+
+	// --- WordPress's own sample content out of the way first -------------
+	// so our pages get their proper slugs (the default Privacy Policy page is
+	// why staging grew a /privacy-policy-2/).
+	ap_setup_cleanup( $out['done'] );
 
 	// --- pages -----------------------------------------------------------
 	$front_id = 0;
@@ -266,8 +285,11 @@ function ap_run_setup() : array {
 		update_option( 'page_on_front', $front_id );
 	}
 
-	// --- Theme Builder header and footer ---------------------------------
+	// --- Theme Builder header, footer and 404 ----------------------------
 	$out['templates'] = ap_build_templates( $out['notes'] );
+
+	// --- settings the custom site's pages assume -------------------------
+	ap_setup_settings( $out['done'], $out['notes'] );
 
 	// --- housekeeping ----------------------------------------------------
 	// Elementor caches the CSS it generates per post; without this the new
@@ -284,6 +306,194 @@ function ap_run_setup() : array {
 }
 
 /**
+ * Move WordPress's own sample content to the Trash.
+ *
+ * Only ever: the "Sample Page", the "Hello world!" post, and the default
+ * Privacy Policy page WordPress creates -- and only when this plugin did not
+ * make them. Trash, not delete: all of it can be restored from the Trash.
+ *
+ * Then gives back the proper address to any of our pages that landed on
+ * "<slug>-2" because one of those held the slug, and moves the extra copies
+ * an earlier run made because of it to the Trash.
+ */
+function ap_setup_cleanup( array &$done ) : void {
+	$unmanaged = function ( $post ) : bool {
+		return $post instanceof WP_Post && 'trash' !== $post->post_status
+			&& ! get_post_meta( $post->ID, '_ap_managed', true );
+	};
+
+	$samples = [
+		[ 'sample-page', 'page', 'Sample Page' ],
+		[ 'hello-world', 'post', '"Hello world!" post' ],
+	];
+	foreach ( $samples as [ $slug, $type, $label ] ) {
+		$post = get_page_by_path( $slug, OBJECT, $type );
+		if ( $unmanaged( $post ) ) {
+			wp_trash_post( $post->ID );
+			$done[] = "Moved WordPress's sample $label to the Trash.";
+		}
+	}
+
+	// WordPress's default privacy page is the one Settings -> Privacy points
+	// at; ours replaces it.
+	$default = get_post( (int) get_option( 'wp_page_for_privacy_policy' ) );
+	// Only while it is still WordPress's untouched draft: a published one is
+	// the site's own text, and is set aside below instead.
+	if ( $unmanaged( $default ) && 'page' === $default->post_type && 'draft' === $default->post_status
+		&& 0 === strpos( $default->post_name, 'privacy-policy' ) ) {
+		wp_trash_post( $default->ID );
+		$done[] = "Moved WordPress's default Privacy Policy page to the Trash (the site's own one replaces it).";
+	}
+
+	// Clear each of our page addresses of anything else holding it. Pages and
+	// media share one address space in WordPress, so this is both:
+	//   - a Media Library item named after the file (scratch-removal.mp4 takes
+	//     /scratch-removal/; client staging, 13 Oct). Its own address is
+	//     unused -- Yoast sends media pages to the file -- so it is renamed.
+	//   - a page of the old site at that address. The redesign replaces it:
+	//     it is set aside as a Draft at old-<slug>, nothing deleted.
+	foreach ( ap_setup_manifest() as $item ) {
+		$slug = sanitize_title( (string) ( $item['slug'] ?? '' ) );
+		$slug = ( 'index' === $slug ) ? 'home' : $slug;
+		if ( '' === $slug ) {
+			continue;
+		}
+		$media = get_posts( [
+			'post_type'   => 'attachment',
+			'name'        => $slug,
+			'post_status' => 'any',
+			'numberposts' => -1,
+		] );
+		foreach ( $media as $file ) {
+			wp_update_post( [ 'ID' => $file->ID, 'post_name' => $slug . '-file' ] );
+			$done[] = "Media item \"{$file->post_title}\" was using the /$slug/ address; renamed to /$slug-file/ (the file itself is unchanged).";
+		}
+		$old = get_page_by_path( $slug );
+		if ( $unmanaged( $old ) && ! ap_find_managed( $slug, 'page' ) ) {
+			wp_update_post( [ 'ID' => $old->ID, 'post_name' => 'old-' . $slug, 'post_status' => 'draft' ] );
+			$done[] = "The old site's \"{$old->post_title}\" page was at /$slug/; set aside as a Draft at old-$slug (nothing deleted).";
+		}
+	}
+
+	foreach ( ap_setup_manifest() as $item ) {
+		$slug = sanitize_title( (string) ( $item['slug'] ?? '' ) );
+		$slug = ( 'index' === $slug ) ? 'home' : $slug;
+		if ( '' === $slug || ap_find_managed( $slug, 'page' ) ) {
+			continue;
+		}
+		$copies = get_posts( [
+			'post_type'   => 'page',
+			'post_status' => [ 'publish', 'draft', 'private' ],
+			'numberposts' => -1,
+			'orderby'     => 'ID',
+			'order'       => 'ASC',
+			'meta_query'  => [ [ 'key' => '_ap_managed', 'compare' => 'EXISTS' ] ],
+		] );
+		$copies = array_values( array_filter( $copies, function ( $p ) use ( $slug ) {
+			return (bool) preg_match( '/^' . preg_quote( $slug, '/' ) . '-\d+$/', $p->post_name );
+		} ) );
+		if ( ! $copies || get_page_by_path( $slug ) ) {
+			continue; // nothing to fix, or the address is still taken
+		}
+		$keep = array_shift( $copies );
+		$from = $keep->post_name;
+		wp_update_post( [ 'ID' => $keep->ID, 'post_name' => $slug ] );
+		$done[] = "Moved the $slug page from /$from/ back to /$slug/.";
+		foreach ( $copies as $extra ) {
+			wp_trash_post( $extra->ID );
+			$done[] = "Moved an extra copy of $slug (/{$extra->post_name}/) to the Trash.";
+		}
+	}
+}
+
+/**
+ * The WordPress and Yoast settings the custom site's pages assume.
+ *
+ * Each one only fills a default: a site title someone already changed, a site
+ * icon already chosen, a Yoast organisation already named, are left alone.
+ */
+function ap_setup_settings( array &$done, array &$notes ) : void {
+	// Site identity: products and any page without its own title use it.
+	$default_names = [ '', 'WordPress', 'My WordPress Website', 'My WordPress Site', 'My Blog' ];
+	if ( in_array( trim( (string) get_option( 'blogname' ) ), $default_names, true ) ) {
+		update_option( 'blogname', 'Acrylic Pros' );
+		$done[] = 'Site title set to "Acrylic Pros".';
+	}
+	if ( in_array( trim( (string) get_option( 'blogdescription' ) ), [ '', 'Just another WordPress site' ], true ) ) {
+		update_option( 'blogdescription', 'Aquarium Design & Restoration' );
+		$done[] = 'Tagline set to "Aquarium Design & Restoration".';
+	}
+
+	$find = function ( string $file ) : int {
+		return function_exists( 'ap_attachment_by_filename' ) ? (int) ap_attachment_by_filename( $file ) : 0;
+	};
+
+	if ( ! get_option( 'site_icon' ) ) {
+		$icon = $find( 'favicon-fin.png' );
+		if ( $icon ) {
+			update_option( 'site_icon', $icon );
+			$done[] = 'Browser-tab icon set to favicon-fin.png.';
+		} else {
+			$notes[] = 'Browser-tab icon not set: favicon-fin.png is not in the Media Library. Upload it from wordpress/media/ and run this again.';
+		}
+	}
+
+	// Our privacy page is the site's privacy policy.
+	$privacy = ap_find_managed( 'privacy-policy', 'page' );
+	if ( $privacy && (int) get_option( 'wp_page_for_privacy_policy' ) !== $privacy ) {
+		update_option( 'wp_page_for_privacy_policy', $privacy );
+		$done[] = "Settings → Privacy now points at the site's Privacy Policy page.";
+	}
+
+	// Staging stays out of Google. The live domain is never touched here:
+	// there, inc/tracking.php shows a warning while search engines are blocked.
+	if ( function_exists( 'ap_is_production' ) && ! ap_is_production()
+		&& '0' !== (string) get_option( 'blog_public' ) ) {
+		update_option( 'blog_public', '0' );
+		$done[] = 'Search engines blocked on this staging copy (Settings → Reading). Untick it on the live site after the move.';
+	}
+
+	if ( ! defined( 'WPSEO_VERSION' ) ) {
+		$notes[] = 'Yoast SEO is not active. Page titles and descriptions still work (the plugin prints them), but install Yoast for the sitemap.';
+		return;
+	}
+
+	$titles  = (array) get_option( 'wpseo_titles', [] );
+	$changed = false;
+	if ( empty( $titles['disable-attachment'] ) ) {
+		$titles['disable-attachment'] = true; // otherwise one thin page per image
+		$changed = true;
+		$done[]  = 'Yoast: media pages redirect to the file itself.';
+	}
+	if ( empty( $titles['company_name'] ) ) {
+		$titles['company_or_person'] = 'company';
+		$titles['company_name']      = 'Acrylic Pros';
+		$logo = $find( 'logo-2026-800.webp' );
+		if ( $logo ) {
+			$titles['company_logo']    = wp_get_attachment_url( $logo );
+			$titles['company_logo_id'] = $logo;
+		}
+		$changed = true;
+		$done[]  = 'Yoast: organisation set to Acrylic Pros' . ( $logo ? ', with the logo.' : ' (logo-2026-800.webp is not in the Media Library, so no logo).' );
+	}
+	if ( $changed ) {
+		update_option( 'wpseo_titles', $titles );
+	}
+
+	// Cart, checkout and account answer with the quote form; keep them out of
+	// search results.
+	if ( function_exists( 'wc_get_page_id' ) ) {
+		foreach ( [ 'cart', 'checkout', 'myaccount' ] as $wc ) {
+			$id = (int) wc_get_page_id( $wc );
+			if ( $id > 0 && '1' !== (string) get_post_meta( $id, '_yoast_wpseo_meta-robots-noindex', true ) ) {
+				update_post_meta( $id, '_yoast_wpseo_meta-robots-noindex', '1' );
+				$done[] = "Yoast: the $wc page is hidden from search results.";
+			}
+		}
+	}
+}
+
+/**
  * The Theme Builder header and footer.
  *
  * These are `elementor_library` posts whose template type is header/footer.
@@ -293,12 +503,15 @@ function ap_run_setup() : array {
 function ap_build_templates( array &$notes ) : string {
 	$made = [];
 
+	// type => [ title, body file, display conditions ]. include/general is
+	// "Entire Site"; include/singular/not_found404 is Singular -> 404 Page.
 	$templates = [
-		'header' => [ 'Acrylic Pros header', 'chrome/header.html' ],
-		'footer' => [ 'Acrylic Pros footer', 'chrome/chat.html' ],
+		'header'    => [ 'Acrylic Pros header', 'chrome/header.html', [ 'include/general' ] ],
+		'footer'    => [ 'Acrylic Pros footer', 'chrome/chat.html', [ 'include/general' ] ],
+		'error-404' => [ 'Acrylic Pros 404', 'chrome/404.html', [ 'include/singular/not_found404' ] ],
 	];
 
-	foreach ( $templates as $type => [ $title, $rel ] ) {
+	foreach ( $templates as $type => [ $title, $rel, $conditions ] ) {
 		$file = AP_DIR . 'data/' . $rel;
 		if ( ! file_exists( $file ) ) {
 			$notes[] = "Missing $rel — $type template not created.";
@@ -332,11 +545,11 @@ function ap_build_templates( array &$notes ) : string {
 		// Elementor also keys templates by a taxonomy term.
 		wp_set_object_terms( (int) $id, $type, 'elementor_library_type' );
 
-		// "Entire Site". This is Pro-only; on free Elementor the meta is
+		// Display conditions are Pro-only; on free Elementor the meta is
 		// simply ignored and the template never displays.
-		update_post_meta( $id, '_elementor_conditions', [ 'include/general' ] );
+		update_post_meta( $id, '_elementor_conditions', $conditions );
 
-		$made[] = $type;
+		$made[] = 'error-404' === $type ? '404' : $type;
 	}
 
 	// Elementor Pro does not read _elementor_conditions on every request — it
@@ -350,7 +563,7 @@ function ap_build_templates( array &$notes ) : string {
 		return 'none created';
 	}
 
-	return implode( ' and ', $made ) . ' created';
+	return implode( ', ', $made ) . ' created';
 }
 
 /**

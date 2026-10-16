@@ -3,8 +3,12 @@
 Load these **before** the domain switch, not after. Every one of them is a URL
 that is currently indexed and currently earning traffic.
 
-Use the Redirection plugin, or Yoast Premium's redirect manager. Either is fine;
-doing it in `.htaccess` is also fine but harder for the client to inspect later.
+**They are built into the plugin** (`inc/redirects.php`, plugin 1.7.0), so they
+go live with the site and need no redirect plugin. Nothing to load on the day.
+The table below is what that file does; change both together. It covers every
+URL the old acrylicpros.com published in its sitemaps (checked 12 Oct 2026), and
+was tested on a local WordPress: each old URL, uppercase variants, query strings,
+and the unchanged pages (which must not be redirected).
 
 ## Why most of the list is short
 
@@ -24,17 +28,35 @@ mistype a slug.
 | `/fabrication/` | `/custom-builds-installations/` | 301 |
 | `/pond-design/` | `/pond-design-construction/` | 301 |
 | `/about-us/` | `/about/` | 301 |
-| `/videos/`, `/video/` | `/videos/` | 301 |
+| `/video/` | `/videos/` | 301 |
 | `/shop/` | `/glass-tanks/` | 301 |
+| `/product-category/aquarium-tanks/` | `/glass-tanks/` | 301 |
+| `/product-category/acrylic-tanks/` | `/acrylic-tanks/` | 301 |
+| `/product-category/acrylic-tanks/<range>/` (frag-tanks, rimless-tanks, …) | `/acrylic-tanks/?range=<range>` (the catalogue opens on that range) | 301 |
+| `/product-category/…` (any other category, e.g. uncategorized) | `/glass-tanks/` | 301 |
+| author pages, date archives, `/?s=` search | `/` | 301 (undesigned WordPress pages; the site has no blog or search) |
 | `/warranty-of-products/` | `/warranty/` | 301 |
 | `/refund-and-return-policy/` | `/refund-policy/` | 301 |
 | `/privacy/` | `/privacy-policy/` | 301 |
 | `/request-quote/` | `/quote/` | 301 |
 | `/payment/` | `/contact/` | 301 |
 | `/thank-you/` | `/` | 301 |
+| `/new-homepage/` | `/` | 301 (old site's unfinished second homepage, page 1092) |
 | `/shark-king/` | `/sharks/` | 301 |
 | `/featured-projects/` | `/scratch-removal/` | 301 |
-| `/blog/` and everything under it | `/` | 410 |
+| `/wpt-testimonial/…` (3 pages) | `/about/` | 301 |
+| `/blog/` and everything under it | — | 410 |
+| The 4 old blog posts, which sat at the site root (`/unlocking-the-secrets-of-aquarium-maintenance/`, `/dive-into-the-depths-elevating-your-aquarium-experience-with-acrylic-pros/`, `/mastering-the-art-of-aquarium-maintenance/`, `/unlocking-the-secrets-of-thriving-aquariums-a-guide-for-beginners/`) | — | 410 |
+| `/invoice/…` (Easy Invoice pages — public, with customers' names and emails) | — | 410 |
+| `/category/…` (fashion, man, woman, tips — not this business) | — | 410 |
+
+`/videos/`, `/contact/`, `/gallery/`, `/privacy-policy/` and every
+`/product/<slug>/` are unchanged and deliberately **not** in the map. (An
+earlier version listed `/videos/ → /videos/`, which would have looped.)
+
+`/cart/`, `/checkout/` and `/my-account/` are handled by `inc/woocommerce.php`:
+the site is quote-only (client decision, 12 Oct), so they answer with the
+quote form.
 
 ## The 410, deliberately
 

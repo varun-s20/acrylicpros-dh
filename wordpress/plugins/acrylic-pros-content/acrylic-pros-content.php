@@ -6,7 +6,7 @@
  *                    and the gallery, Instagram and video content types the owner
  *                    edits. Everything lives here rather than in the theme, so a
  *                    theme change cannot take the design or the content with it.
- * Version:           1.6.0
+ * Version:           1.7.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Digital Heroes
@@ -20,7 +20,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'AP_VER', '1.6.0' );
+define( 'AP_VER', '1.7.0' );
 define( 'AP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'AP_URL', plugin_dir_url( __FILE__ ) );
 
@@ -33,6 +33,11 @@ require_once AP_DIR . 'inc/shortcodes.php';
 require_once AP_DIR . 'inc/preload.php';
 require_once AP_DIR . 'inc/schema.php';
 require_once AP_DIR . 'inc/woocommerce.php'; // no-op until WooCommerce is active
+require_once AP_DIR . 'inc/forms.php';       // contact + quote forms: saved under Enquiries, emailed
+require_once AP_DIR . 'inc/redirects.php';   // old acrylicpros.com URLs -> new pages (301) or gone (410)
+require_once AP_DIR . 'inc/tracking.php';    // the client's GA4 + Search Console, live domain only
+require_once AP_DIR . 'inc/seo-map.php';     // generated: each page's title, description, share tags
+require_once AP_DIR . 'inc/seo.php';         // hands them to Yoast (a title typed in Yoast still wins)
 
 // One-time content seeding. Delete inc/import.php and this line after
 // handover -- see the note at the top of that file.

@@ -39,6 +39,7 @@ function ap_page_map() : array {
 		'tropical-fish' => [ 't-inner t-legacy -overlay page page--tropical-fish', 'services' ],
 		'videos' => [ 't-inner t-videos', 'videos' ],
 		'warranty' => [ 't-inner t-legacy -overlay page page--warranty', '' ],
+		'404' => [ 't-inner t-legacy -overlay page page--404', '' ],
 	];
 }
 

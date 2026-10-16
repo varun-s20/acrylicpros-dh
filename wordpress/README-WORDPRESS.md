@@ -258,8 +258,12 @@ Then check the two things it cannot confirm for itself:
 1. Templates → Theme Builder → the header and footer both show **Entire Site**
    under Display Conditions. Conditions are Elementor **Pro**; on free Elementor
    the setting is ignored and the templates never appear.
-2. The 404 template is still manual — Theme Builder → Add New → 404 Page, one
-   HTML widget, paste `pages/404.html`.
+2. The 404 template is built by the button too (plugin 1.7.0) — Theme Builder
+   should list **Acrylic Pros 404** with the condition *404 Page*. The button
+   also moves WordPress's Sample Page, "Hello world!" and default Privacy Policy
+   page to the Trash, sets the site title, tagline and icon if they are still
+   defaults, fills the Yoast basics, and ticks "Discourage search engines" on
+   any domain other than acrylicpros.com. Its result screen lists each change.
 
 > **This has not been run against a live WordPress from here.** It is built to
 > Elementor's documented data format, and the payload it generates is covered by

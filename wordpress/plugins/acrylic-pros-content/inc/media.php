@@ -61,7 +61,10 @@ function ap_unregistered_files() : array {
 	foreach ( (array) $wpdb->get_col(
 		"SELECT meta_value FROM {$wpdb->postmeta} WHERE meta_key = '_wp_attached_file'"
 	) as $file ) {
-		$known[ basename( $file ) ] = true;
+		// The full stored path, not the bare name: on an existing site an old
+		// upload in a dated folder (2025/10/x.jpg) can share a name with one
+		// of ours in the root, and must not hide it.
+		$known[ $file ] = true;
 	}
 
 	foreach ( (array) glob( $base . '*.*' ) as $path ) {
@@ -71,6 +74,12 @@ function ap_unregistered_files() : array {
 		$name = basename( $path );
 		$ext  = strtolower( pathinfo( $name, PATHINFO_EXTENSION ) );
 		if ( ! in_array( $ext, $allowed, true ) ) {
+			continue;
+		}
+		// A size WordPress generated from another image (…-150x150.png, like
+		// the WooCommerce placeholders): not a file of its own. None of the
+		// build's names end like this.
+		if ( preg_match( '/-\d+x\d+\.[a-z0-9]+$/i', $name ) ) {
 			continue;
 		}
 		// WordPress stores the path relative to the uploads dir, so for a flat
@@ -91,7 +100,22 @@ function ap_unregistered_files() : array {
  * zip that extracted one level too deep.
  */
 function ap_reserved_upload_dirs() : array {
-	return [ 'elementor', 'wpcf7_uploads', 'woocommerce_uploads', 'wc-logs', 'sites' ];
+	return [
+		'elementor', 'wpcf7_uploads', 'woocommerce_uploads', 'wc-logs', 'sites',
+		// Plugins on the client's existing site (13 Oct): their own caches,
+		// never ours to move.
+		'sb-instagram-feed-images', 'spotlight-insta', 'wpforms', 'cfdb7_uploads',
+		'ai1wm-backups', 'easy-invoice', 'yith-wcaj', 'cache', 'wp-mail-smtp',
+	];
+}
+
+/**
+ * Files only this build ships. A folder counts as "our media, extracted one
+ * level too deep" only if it holds at least one of these -- a plugin's own
+ * folder of images never does.
+ */
+function ap_media_signature_files() : array {
+	return [ 'hero-poster-desktop-1280.webp', 'favicon-fin.png', 'logo-2026-800.webp', 'scratch-overview-smooth.mp4' ];
 }
 
 /**
@@ -119,7 +143,10 @@ function ap_misplaced_uploads() : array {
 		}
 
 		$files = ap_media_files_in( $path );
-		if ( count( $files ) > 5 ) {
+		// Lots of images is not enough: on an existing site plugins keep
+		// image folders here too (Smash Balloon, Spotlight). Only a folder
+		// holding our own files is a mis-extracted zip.
+		if ( count( $files ) > 5 && array_intersect( ap_media_signature_files(), $files ) ) {
 			$out[ $name ] = count( $files );
 		}
 	}
@@ -186,6 +213,99 @@ function ap_move_uploads_up( string $subfolder ) : array {
 	return [ 'moved' => $moved, 'skipped' => $skipped, 'errors' => $errors ];
 }
 
+/**
+ * Zips sitting in the uploads root, waiting to be unpacked.
+ *
+ * For hosts whose file manager uploads but cannot extract (GoDaddy's File
+ * Browser, client, 13 Oct): upload wordpress/media-parts/*.zip into uploads,
+ * then this unpacks them on the server.
+ */
+function ap_media_zips() : array {
+	$base = trailingslashit( wp_get_upload_dir()['basedir'] );
+	$zips = glob( $base . '*.zip' );
+	return $zips ? array_map( 'basename', $zips ) : [];
+}
+
+/**
+ * Unpack one zip into the uploads root.
+ *
+ * Only plain image and video files at the top of the zip are written: an
+ * entry with a folder path, "..", or any other extension (a .php, say) is
+ * refused, so a zip can never place a script or escape the uploads folder.
+ * Existing files are never overwritten. The zip is deleted once everything in
+ * it is accounted for, to keep the hosting plan's storage down.
+ */
+function ap_extract_media_zip( string $name ) : array {
+	$out  = [ 'written' => 0, 'existed' => 0, 'refused' => [], 'error' => '', 'deleted' => false ];
+	$base = trailingslashit( wp_get_upload_dir()['basedir'] );
+	$name = basename( $name );
+	$path = $base . $name;
+
+	if ( '.zip' !== strtolower( substr( $name, -4 ) ) || ! is_file( $path ) ) {
+		$out['error'] = 'Not found.';
+		return $out;
+	}
+	if ( ! class_exists( 'ZipArchive' ) ) {
+		$out['error'] = 'This server has no ZipArchive (PHP zip extension). Upload the files by SFTP instead.';
+		return $out;
+	}
+
+	$allowed = [ 'jpg', 'jpeg', 'png', 'webp', 'gif', 'svg', 'mp4', 'webm' ];
+	$zip     = new ZipArchive();
+	if ( true !== $zip->open( $path ) ) {
+		$out['error'] = 'Could not open the zip. Was the upload complete?';
+		return $out;
+	}
+
+	if ( function_exists( 'set_time_limit' ) ) {
+		@set_time_limit( 300 ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+	}
+
+	for ( $i = 0; $i < $zip->numFiles; $i++ ) {
+		$entry = (string) $zip->getNameIndex( $i );
+		$ext   = strtolower( pathinfo( $entry, PATHINFO_EXTENSION ) );
+		// A plain name of letters, digits, dot, dash and underscore. Not
+		// sanitize_file_name(): it strips a leading "-" or "_", and the YouTube
+		// thumbnails are named after their video IDs (-Zy5pNRdqUo.jpg).
+		if ( ! preg_match( '/^[A-Za-z0-9_\-][A-Za-z0-9._\-]*$/', $entry ) || false !== strpos( $entry, '..' )
+			|| ! in_array( $ext, $allowed, true ) ) {
+			$out['refused'][] = $entry;
+			continue;
+		}
+		$target = $base . $entry;
+		if ( file_exists( $target ) ) {
+			$out['existed']++;
+			continue;
+		}
+		$in = $zip->getStream( $entry );
+		$fh = $in ? fopen( $target, 'wb' ) : false;
+		if ( ! $in || ! $fh ) {
+			$out['refused'][] = $entry . ' (could not write)';
+			continue;
+		}
+		stream_copy_to_stream( $in, $fh );
+		fclose( $fh );
+		fclose( $in );
+		$out['written']++;
+	}
+	$zip->close();
+
+	if ( ! $out['refused'] ) {
+		// Uploaded through Media -> Add New, the zip is also a Media Library
+		// item; remove that with it, or the library keeps an empty entry.
+		global $wpdb;
+		$attachment = (int) $wpdb->get_var( $wpdb->prepare(
+			"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = '_wp_attached_file' AND meta_value = %s LIMIT 1",
+			$name
+		) );
+		if ( $attachment ) {
+			wp_delete_attachment( $attachment, true ); // deletes the file too
+		}
+		$out['deleted'] = ! file_exists( $path ) || @unlink( $path ); // phpcs:ignore WordPress.PHP.NoSilencedErrors
+	}
+	return $out;
+}
+
 function ap_media_page() : void {
 	if ( ! current_user_can( 'manage_options' ) ) {
 		wp_die( 'You do not have permission to do this.' );
@@ -194,6 +314,40 @@ function ap_media_page() : void {
 	$dir = wp_get_upload_dir();
 
 	echo '<div class="wrap"><h1>Acrylic Pros media</h1>';
+
+	// --- uploaded zips: unpack on the server -------------------------------
+	if ( isset( $_POST['ap_unzip'] ) && check_admin_referer( 'ap_media' ) ) {
+		foreach ( ap_media_zips() as $zip_name ) {
+			$x = ap_extract_media_zip( $zip_name );
+			if ( $x['error'] ) {
+				printf( '<div class="notice notice-error"><p><strong>%s:</strong> %s</p></div>', esc_html( $zip_name ), esc_html( $x['error'] ) );
+				continue;
+			}
+			printf(
+				'<div class="notice notice-%s"><p><strong>%s:</strong> %d file(s) extracted%s%s%s</p></div>',
+				$x['refused'] ? 'warning' : 'success',
+				esc_html( $zip_name ),
+				(int) $x['written'],
+				$x['existed'] ? ', ' . (int) $x['existed'] . ' already there (left as they were)' : '',
+				$x['refused'] ? '. Skipped (not a plain image/video file): ' . esc_html( implode( ', ', array_slice( $x['refused'], 0, 5 ) ) ) : '',
+				$x['deleted'] ? '. Zip deleted.' : ''
+			);
+		}
+	}
+
+	$zips = ap_media_zips();
+	if ( $zips ) {
+		echo '<div class="notice notice-info"><p><strong>Zip files found in uploads:</strong> <code>'
+			. esc_html( implode( '</code>, <code>', $zips ) ) . '</code></p>';
+		echo '<form method="post">';
+		wp_nonce_field( 'ap_media' );
+		printf(
+			'<p><button class="button button-primary button-hero" name="ap_unzip" value="1">Extract %d zip file(s) here</button></p>',
+			count( $zips )
+		);
+		echo '<p class="description">Unpacks them on the server, flat into uploads, then deletes each zip. Only image and video files are written; nothing is overwritten.</p>';
+		echo '</form></div>';
+	}
 
 	if ( isset( $_POST['ap_move'] ) && check_admin_referer( 'ap_media' ) ) {
 		$sub = sanitize_file_name( wp_unslash( $_POST['ap_move'] ) );
@@ -271,8 +425,8 @@ function ap_media_page() : void {
 
 	echo '<h2>How to get the files here</h2><ol>';
 	echo '<li><strong>Settings → Media → untick “Organize my uploads into month- and year-based folders”.</strong> Do this first; the build expects flat paths.</li>';
-	echo '<li>Zip the contents of <code>wordpress/media/</code> — the files themselves, not the folder.</li>';
-	echo '<li>In your host’s File Manager, upload that zip into <code>' . esc_html( $dir['basedir'] ) . '</code> and extract it there.</li>';
+	echo '<li>Upload the zips from <code>wordpress/media-parts/</code> (each under 100 MB) into <code>' . esc_html( $dir['basedir'] ) . '</code> with your host’s file manager.</li>';
+	echo '<li>If the file manager can extract, extract them there. If it cannot (GoDaddy’s File Browser), come back here and press <strong>Extract</strong> — it appears at the top once the zips are uploaded.</li>';
 	echo '<li>Come back and press the button below until it reports nothing left.</li>';
 	echo '</ol>';
 

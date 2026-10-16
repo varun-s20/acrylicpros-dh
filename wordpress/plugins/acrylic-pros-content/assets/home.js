@@ -47,6 +47,23 @@
     link.classList.add('-active');
     link.setAttribute('aria-current', 'page');
   }
+  // With no current page in the menu (Contact, Quote, the policies) no link
+  // is dimmed, as on the static site.
+  nav.classList.toggle('-active', !!link);
+
+  // Glass and Acrylic tanks sit in the Shop tanks dropdown: open it and light
+  // its button, which pages.js does on the static site. pages.js read the
+  // stale baked-in value above, so its dropdown state is reset first.
+  var drops = nav.querySelectorAll('[data-menu-drop]');
+  for (var j = 0; j < drops.length; j++) {
+    var t = drops[j].querySelector('[data-menu-drop-toggle]');
+    var here = !!(link && drops[j].contains(link));
+    drops[j].classList.toggle('-open', here);
+    if (t) {
+      t.classList.toggle('-active', here);
+      t.setAttribute('aria-expanded', String(here));
+    }
+  }
 })();
 
 /* =====================================================================

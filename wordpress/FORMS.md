@@ -1,19 +1,34 @@
 # Forms
 
-**Status: not wired.** The forms render and validate; they do not send. This is
-the deferred phase — see `CONVERSION-PLAN.md` §7 and §10.1.
+**Status: wired (plugin 1.7.0, 12 Oct).** The contact and quote forms send to
+the plugin's own endpoint, `inc/forms.php` — not Contact Form 7. Every
+submission is **saved in wp-admin under Enquiries** and **emailed** to the
+address under Enquiries → Settings (`info@acrylicpros.com` by default).
 
-## What ships today
+## How it works
 
-Both forms carry the static site's own behaviour: full client-side validation
-with inline error messages, then a notice telling the visitor the form is not
-connected and offering the phone number and email instead.
+- `inc/forms.php` registers `POST /wp-json/ap/v1/enquiry` and prints
+  `window.AP_FORM_ENDPOINT` into the page head. `pages.js` posts the form there
+  when that is set; on the static site it is not, so the honest "not connected —
+  call us" notice still shows there.
+- The prototype's markup and inline validation are untouched. The server checks
+  every field again against a whitelist per form; anything it refuses comes back
+  as a message under that field.
+- Bots: a hidden honeypot field, a 3-second minimum on the page, and five
+  submissions per visitor per ten minutes. No nonce, on purpose: page caching
+  would serve a stale one and fail real visitors.
+- Each enquiry is a private `ap_enquiry` post. The list shows the form, email,
+  phone and an **Emailed** column; "Not sent" there means the site cannot send
+  mail yet (see below) — the enquiry itself is still safe.
+- Email: Reply-To is the visitor, From stays on the site's own domain.
+- Conversion tracking: on success `pages.js` fires GA4's `generate_lead` event
+  (and pushes `ap_form_submit` to `dataLayer`), so it counts as soon as GA4 is on
+  the site.
+- Tested on a local WordPress (Docker): valid and invalid submissions, the
+  honeypot, the rate limit, forged option values, `&`, quotes and backslashes,
+  both forms from a real browser, and the admin list and settings screens.
 
-That is deliberate. Showing "thank you, we'll be in touch" for a message that was
-never sent is worse than having no form, and it is the failure the client would
-discover from a customer rather than from us.
-
-## The fields, when they are wired
+## The fields
 
 Preserve these `name` attributes exactly. The markup already uses them, the quote
 form's `?tank=` prefill depends on them, and changing one silently breaks
@@ -34,26 +49,20 @@ for photos by reply email or text instead. Add a real `<input type="file">` only
 once there is somewhere to store what it receives, and a decision about how long
 customer photos are kept.
 
-## When Contact Form 7 goes in
+## Why not Contact Form 7
 
-1. Install Contact Form 7. Build each form with the field names above.
-2. The plugin already runs `do_shortcode` inside Elementor HTML widgets, so the
-   CF7 shortcode works when pasted into the page body. Without that filter it
-   would print as literal text.
-3. **Turn off the prototype's own validation on those two pages.** CF7 validates
-   as well, and running both double-reports every error — the visitor sees each
-   message twice. `pages.js` owns this; disable its form handling for the contact
-   and quote pages rather than CF7's, because CF7's is the one tied to the
-   sending.
-4. Keep the inline error presentation. The prototype's is better than CF7's
-   default, and the CSS for it is already in `pages.css`.
+The original plan was CF7. It would have meant rebuilding both forms in CF7's
+editor and switching off the prototype's validation to avoid double-reported
+errors. The endpoint keeps the markup and validation exactly as built and adds
+the saved copy in wp-admin, which CF7 does not keep.
 
 ## Email deliverability — the part that actually fails
 
-Do not connect a form until SMTP is set up. PHP's own `mail()` sends unsigned
+Set up SMTP before launch. PHP's own `mail()` sends unsigned
 mail from a shared host, and Gmail and Outlook drop it **silently** — no bounce,
 no error in WordPress, nothing in any log the client can see. The form appears to
-work perfectly and the enquiries simply never arrive.
+work perfectly and the enquiries simply never arrive by email — here they are at
+least saved under Enquiries, but nobody is notified.
 
 The order:
 
@@ -72,9 +81,9 @@ The order:
 
 ## Where the mail goes
 
-**Not yet decided.** Until the client confirms a destination, the working
-assumption is `info@acrylicpros.com`, which is the address published across the
-site today. Confirm before wiring, and record the answer here.
+`info@acrylicpros.com`, the address published across the site (confirmed with
+the team, 12 Oct). Change it under **Enquiries → Settings**; several addresses
+can be comma-separated.
 
 ## The chat widget
 
