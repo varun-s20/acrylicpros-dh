@@ -81,6 +81,7 @@ nav: glass-tanks
         <button class="o-shop__chip" type="button" data-shop-range="marine" aria-pressed="false">Marine</button>
         <button class="o-shop__chip" type="button" data-shop-range="aio" aria-pressed="false">All-in-One</button>
         <button class="o-shop__chip" type="button" data-shop-range="specialty" aria-pressed="false">Specialty</button>
+        <button class="o-shop__chip" type="button" data-shop-range="retail" aria-pressed="false">Retail</button>
       </div>
       <label class="o-shop__sort">
         <span>Sort by</span>
@@ -97,6 +98,12 @@ nav: glass-tanks
 
     <div class="o-shop__grid" data-shop-grid>
 {{> product-grid}}
+      <!-- Shown by pages.js only while its range is selected (client, 16 Oct). -->
+      <div class="m-soonCard" data-shop-soon="specialty" hidden>
+        <p class="m-tankCard__range">Specialty</p>
+        <p class="m-soonCard__title">More items coming soon</p>
+        <p class="m-soonCard__text">Looking for something specific? <a href="quote.html">Ask us for a quote</a></p>
+      </div>
     </div>
     <p class="o-shop__empty" data-shop-empty hidden>No tanks in this range yet.</p>
     <div class="o-shop__more">
@@ -150,9 +157,6 @@ nav: glass-tanks
 <section class="o-prefooter" aria-labelledby="estimate-title">
   <span class="o-prefooter__symbol" aria-hidden="true"></span>
   <div class="row">
-    <div class="o-prefooter__logo">
-      <picture><source type="image/webp" srcset="assets/images/brand/logo-2026-400.webp 400w, assets/images/brand/logo-2026-800.webp 800w" sizes="28rem"><img src="assets/images/brand/logo-2026.png" alt="Acrylic Pros" width="2070" height="534" loading="lazy" decoding="async"></picture>
-    </div>
     <h2 class="tx-h3 o-prefooter__title" id="estimate-title">Request a<br><strong>free estimate</strong></h2>
     <div class="o-prefooter__contentWrapper">
       <p class="tx-p o-prefooter__description">Contact us today for a free estimate regarding your new project and to learn more about our aquarium design company.</p>

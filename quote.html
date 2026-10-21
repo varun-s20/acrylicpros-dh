@@ -148,6 +148,14 @@
       <figure class="o-menu__videoCard" data-menu-card>
         <video muted loop playsinline preload="none" data-src="assets/video/hero-mobile.mp4"></video>
       </figure>
+      <!-- Services (client, 16 Oct: second in the menu, after Home): the coral close-up from the Services page header. Wide photo in a tall card, so it asks for a wider file than the 342px card. -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/headers/coral-closeup-header-768.webp 768w,
+                              assets/images/headers/coral-closeup-header-1280.webp 1280w" sizes="1100px">
+          <img src="assets/images/headers/coral-closeup-header.jpg" alt="" width="2148" height="895" loading="lazy" decoding="async">
+        </picture>
+      </figure>
       <!-- Scratch removal: the same before/after reel its service card plays (client, 3 Oct). -->
       <figure class="o-menu__videoCard" data-menu-card>
         <video muted loop playsinline preload="none" data-src="assets/video/scratch-reel-v2.mp4"></video>
@@ -188,7 +196,7 @@
           <img src="assets/images/featured/featured-in-wall-reef-white.jpg" alt="" width="1414" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
-      <!-- Acrylic tanks: a rimless acrylic cube from the acrylic range. Shown by its sub-link (data-menu-sublink="7"), not by position. -->
+      <!-- Acrylic tanks: a rimless acrylic cube from the acrylic range. Shown by its sub-link (data-menu-sublink="8"), not by position. -->
       <figure class="o-menu__videoCard" data-menu-card>
         <picture>
           <source type="image/webp" srcset="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-400.webp 400w,
@@ -197,7 +205,7 @@
           <img src="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1.jpg" alt="" width="1005" height="1200" loading="lazy" decoding="async">
         </picture>
       </figure>
-      <!-- Glass tanks: the 190-gallon Starphire glass tank on a white stand. Shown by its sub-link (data-menu-sublink="8"). -->
+      <!-- Glass tanks: the 190-gallon Starphire glass tank on a white stand. Shown by its sub-link (data-menu-sublink="9"). -->
       <figure class="o-menu__videoCard" data-menu-card>
         <picture>
           <source type="image/webp" srcset="assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-400.webp 400w,
@@ -211,15 +219,16 @@
     <nav class="o-menu__mainNavWrapper" aria-label="Main" data-menu-nav>
       <ul class="o-menu__mainNav -active" data-nav="">
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="index.html" data-menu-link data-nav-item="home">Home</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="services.html" data-menu-link data-nav-item="services">Services</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="scratch-removal.html" data-menu-link data-nav-item="scratch-removal">Scratch removal</a></li>
         <!-- Client, 3 Oct: "Shop tanks" opens Glass tanks and Acrylic tanks. The
-             button is the 3rd data-menu-link, so it keeps the 3rd preview card
+             button is the 4th data-menu-link, so it keeps the 4th preview card
              (the curved aquarium); each sub-link names its own card by index. -->
         <li class="o-menu__mainItem -drop" data-menu-drop>
           <button class="o-menu__link tx-h3 o-menu__dropToggle" type="button" aria-expanded="false" aria-controls="menu-tanks" data-menu-link data-menu-drop-toggle>Shop tanks<svg class="o-menu__dropIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <ul class="o-menu__dropList" id="menu-tanks">
-            <li><a class="o-menu__subLink" href="glass-tanks.html" data-menu-sublink="8" data-nav-item="glass-tanks">Glass tanks</a></li>
-            <li><a class="o-menu__subLink" href="acrylic-tanks.html" data-menu-sublink="7" data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
+            <li><a class="o-menu__subLink" href="glass-tanks.html" data-menu-sublink="9" data-nav-item="glass-tanks">Glass tanks</a></li>
+            <li><a class="o-menu__subLink" href="acrylic-tanks.html" data-menu-sublink="8" data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
           </ul>
         </li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="gallery.html" data-menu-link data-nav-item="gallery">Gallery</a></li>
@@ -231,7 +240,6 @@
 
     <nav class="o-menu__subnav" aria-label="More pages">
       <ul>
-        <li><a class="a-link tx-cta" href="services.html" data-menu-secondary>Services</a></li>
         <li><a class="a-link tx-cta" href="quote.html" data-menu-secondary>Get a quote</a></li>
         <li><a class="a-link tx-cta" href="contact.html" data-menu-secondary>Contact</a></li>
       </ul>

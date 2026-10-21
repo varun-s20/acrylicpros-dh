@@ -29,6 +29,8 @@ RANGES = [
     ("marine", r"\bMARINE AQUARIUM\b"),
     ("aio", r"\bAIO TANK\b"),
     ("starphire", r"\bSTARPHIRE|STAPHIRE\b"),
+    # Store display systems (client, 16 Oct: their own "Retail" range).
+    ("retail", r"\bRETAIL AQUARIUM SYSTEM\b|\bBETA TANK SYSTEM\b"),
     ("specialty", r".*"),
 ]
 

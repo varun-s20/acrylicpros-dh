@@ -1191,6 +1191,23 @@ html:not(.js) .o-referenceGrid__item { display: block; opacity: 1; }
   .o-shop__toolbar { flex-wrap: nowrap; }
 }
 
+/* "More items coming soon" (client, 16 Oct): the last cell of the Specialty
+   listing, the size of a tank card's photo so the row stays even. */
+.m-soonCard {
+  display: flex; flex-direction: column; gap: .8rem; align-items: center; justify-content: center;
+  aspect-ratio: 1;
+  padding: 2.4rem;
+  border: .15rem dashed rgba(0, 13, 26, .18);
+  border-radius: 1.6rem;
+  background: radial-gradient(circle at 50% 40%, #fff 0%, #eef2f6 70%);
+  color: var(--clrdarkblue);
+  text-align: center;
+}
+.m-soonCard[hidden] { display: none; }
+.m-soonCard__title { font-weight: 500; font-size: 2rem; line-height: 1.2; }
+.m-soonCard__text { color: #6b7580; font-size: 1.4rem; }
+.m-soonCard__text a { color: var(--clrnavy); font-weight: 600; text-decoration: underline; }
+
 /* ---- tank card ---- */
 .m-tankCard[hidden] { display: none; }
 .m-tankCard__link { display: flex; flex-direction: column; height: 100%; color: var(--clrdarkblue); }

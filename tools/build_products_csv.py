@@ -41,6 +41,7 @@ RANGES = {
     "frag": "Frag tanks",
     "peninsula": "Peninsula",
     "specialty": "Specialty",
+    "retail": "Retail",
     "marine": "Marine",
     "shallow-peninsula": "Shallow peninsula",
     "aio": "All-in-one",

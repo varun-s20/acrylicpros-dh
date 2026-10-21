@@ -905,19 +905,22 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   .m-hero__scrollDown { position: absolute; bottom: 2.4rem; left: 50%; margin: 0; transform: translateX(-50%); }
   .m-hero__cloudVideo video { width: 100%; height: auto; }
 }
-/* Phones turned sideways (client, 15 Oct): the title is sized off the width,
-   so on a wide-but-short screen its three rows ran past the bottom edge.
-   There it is also capped by the screen's height and the block centred in
-   the space under the header. Upright phones, tablets and desktop are
-   untouched; a browser without svh drops this rule and keeps the width size. */
+/* Phones turned sideways (client, 15-16 Oct): the title is sized off the
+   width, so on a wide-but-short screen its rows ran past the bottom edge.
+   There it is also capped by the screen's height and given the whole first
+   screen, centred in the space under the header (9rem); the intro paragraph
+   and Yelp badge follow below, on scroll. Upright phones, tablets and desktop
+   are untouched; a browser without svh keeps the width size. */
 @media (orientation: landscape) and (max-height: 500px) {
-  .m-hero__content {
-    display: flex; flex-direction: column; justify-content: center;
-    min-height: 100svh;
-    padding: 9rem 0 3rem;
-  }
+  .m-hero__content { padding: 0 0 3rem; }
   .m-hero__column { width: 76%; margin-left: auto; margin-right: auto; }
-  .m-hero .tx-h1 { font-size: min(10rem, 10.1cqi, 10.5svh); }
+  .m-hero__column > .overflow-wrapper:first-child {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; min-height: 100svh;
+    padding-top: 9rem;
+  }
+  .m-hero__title { margin-bottom: 0; }
+  .m-hero .tx-h1 { font-size: min(10rem, 10.1cqi, 12.5svh); }
 }
 
 /* =====================================================================
@@ -1421,14 +1424,13 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   text-align: center;
 }
 .o-prefooter .row { z-index: 2; container-type: inline-size; }
-/* The title is one narrow column of this row, and the longest version of it
-   ("with an enchanting aquarium.") ran to five rows there in capitals. Sized
-   off the row so it fits its column: 6.1cqi is that row filling the full-width
-   mobile column, 2.27cqi the 37.5% column it gets from 1025 up. */
+/* Sized off the row so the longest version of the title ("with an enchanting
+   aquarium.") fits on phones: 6.1cqi of the full-width column, capped at
+   5.2rem on wider screens. */
 .o-prefooter__title { font-size: min(5.2rem, 6.1cqi); }
-.o-prefooter__logo { display: flex; width: 100%; margin-bottom: 7.5rem; }
-.o-prefooter__logo picture { width: min(100%, 28rem); margin: 0 auto; } /* full-colour wordmark, 3.9:1 (client, 22 Sept) */
-.o-prefooter__logo img { width: 100%; height: auto; }
+/* The wordmark that sat above (or, on desktop, beside) the title is gone
+   (client, 17 Oct: "delete that big logo"); the title, paragraph and button
+   are one centred block on every screen. */
 .o-prefooter__title { width: 100%; margin-bottom: 3.75rem; }
 .o-prefooter__contentWrapper { display: flex; flex-direction: column; align-items: center; width: 100%; }
 .o-prefooter__description { margin-bottom: 4.5rem; }
@@ -1446,11 +1448,8 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   .o-prefooter__description { margin-bottom: 3.75rem; }
   .o-prefooter__symbol { top: 50%; bottom: auto; left: 50%; transform: translate(-50%, -50%); }
 }
-@media (min-width: 1025px) {
-  .o-prefooter { text-align: left; }
-  .o-prefooter__logo { width: 18.75%; }
-  .o-prefooter__title { width: 37.5%; margin-left: 6.25%; font-size: min(5.2rem, 2.27cqi); }
-  .o-prefooter__contentWrapper { align-items: flex-start; width: 31.25%; margin-left: 6.25%; }
+@media (min-width: 641px) {
+  .o-prefooter__description { max-width: 56rem; margin-right: auto; margin-left: auto; }
 }
 
 /* =====================================================================
@@ -2145,7 +2144,7 @@ p, .tx-p, .tx-psmall, .tx-plarge, .tx-pxlarge { text-wrap: pretty; }
   .o-menu__mainNav {
     display: grid;
     grid-auto-flow: column;
-    grid-template-rows: repeat(5, auto);   /* 7 items: 5 + 2. Rows are shared by both columns, so the second column (Our process, About us) must end above Shop tanks' row (3rd): opening it then only pushes Gallery and Videos below it */
+    grid-template-rows: repeat(5, auto);   /* 8 items: 5 + 3. Rows are shared by both columns, so the second column (Videos, Our process, About us) must end above Shop tanks' row (4th): opening it then only pushes Gallery below it */
     gap: .3rem 6rem;
     justify-content: center;
   }

@@ -1012,6 +1012,7 @@
     if (!shop) return;
     var grid = $('[data-shop-grid]', shop);
     var cards = $$('[data-tank]', grid);
+    var soon = $$('[data-shop-soon]', grid); // "more coming soon", one range only
     var chips = $$('[data-shop-range]', shop);
     var rangeButtons = $$('[data-shop-range]'); // chips + range tiles + table rows
     var sortSelect = $('[data-shop-sort]', shop);
@@ -1042,6 +1043,10 @@
       var matching = sorted.filter(function (c) { return state.range === 'all' || c.dataset.range === state.range; });
       sorted.forEach(function (c) { c.hidden = true; });
       matching.slice(0, state.limit).forEach(function (c) { c.hidden = false; });
+      soon.forEach(function (s) {
+        grid.appendChild(s); // always after the tanks
+        s.hidden = s.getAttribute('data-shop-soon') !== state.range;
+      });
       var shown = Math.min(state.limit, matching.length);
       moreBtn.hidden = shown >= matching.length;
       emptyEl.hidden = matching.length > 0;

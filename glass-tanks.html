@@ -148,6 +148,14 @@
       <figure class="o-menu__videoCard" data-menu-card>
         <video muted loop playsinline preload="none" data-src="assets/video/hero-mobile.mp4"></video>
       </figure>
+      <!-- Services (client, 16 Oct: second in the menu, after Home): the coral close-up from the Services page header. Wide photo in a tall card, so it asks for a wider file than the 342px card. -->
+      <figure class="o-menu__videoCard" data-menu-card>
+        <picture>
+          <source type="image/webp" srcset="assets/images/headers/coral-closeup-header-768.webp 768w,
+                              assets/images/headers/coral-closeup-header-1280.webp 1280w" sizes="1100px">
+          <img src="assets/images/headers/coral-closeup-header.jpg" alt="" width="2148" height="895" loading="lazy" decoding="async">
+        </picture>
+      </figure>
       <!-- Scratch removal: the same before/after reel its service card plays (client, 3 Oct). -->
       <figure class="o-menu__videoCard" data-menu-card>
         <video muted loop playsinline preload="none" data-src="assets/video/scratch-reel-v2.mp4"></video>
@@ -188,7 +196,7 @@
           <img src="assets/images/featured/featured-in-wall-reef-white.jpg" alt="" width="1414" height="1800" loading="lazy" decoding="async">
         </picture>
       </figure>
-      <!-- Acrylic tanks: a rimless acrylic cube from the acrylic range. Shown by its sub-link (data-menu-sublink="7"), not by position. -->
+      <!-- Acrylic tanks: a rimless acrylic cube from the acrylic range. Shown by its sub-link (data-menu-sublink="8"), not by position. -->
       <figure class="o-menu__videoCard" data-menu-card>
         <picture>
           <source type="image/webp" srcset="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1-400.webp 400w,
@@ -197,7 +205,7 @@
           <img src="assets/images/acrylic/ref-12c-12x12x12-rimless-cube-all-in-one-1.jpg" alt="" width="1005" height="1200" loading="lazy" decoding="async">
         </picture>
       </figure>
-      <!-- Glass tanks: the 190-gallon Starphire glass tank on a white stand. Shown by its sub-link (data-menu-sublink="8"). -->
+      <!-- Glass tanks: the 190-gallon Starphire glass tank on a white stand. Shown by its sub-link (data-menu-sublink="9"). -->
       <figure class="o-menu__videoCard" data-menu-card>
         <picture>
           <source type="image/webp" srcset="assets/images/products/190-GAL-48X30X30-STARPHIRE-GLASS-WHITE-WOOD-STAND-09thupdated-400.webp 400w,
@@ -211,15 +219,16 @@
     <nav class="o-menu__mainNavWrapper" aria-label="Main" data-menu-nav>
       <ul class="o-menu__mainNav -active" data-nav="glass-tanks">
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="index.html" data-menu-link data-nav-item="home">Home</a></li>
+        <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="services.html" data-menu-link data-nav-item="services">Services</a></li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="scratch-removal.html" data-menu-link data-nav-item="scratch-removal">Scratch removal</a></li>
         <!-- Client, 3 Oct: "Shop tanks" opens Glass tanks and Acrylic tanks. The
-             button is the 3rd data-menu-link, so it keeps the 3rd preview card
+             button is the 4th data-menu-link, so it keeps the 4th preview card
              (the curved aquarium); each sub-link names its own card by index. -->
         <li class="o-menu__mainItem -drop" data-menu-drop>
           <button class="o-menu__link tx-h3 o-menu__dropToggle" type="button" aria-expanded="false" aria-controls="menu-tanks" data-menu-link data-menu-drop-toggle>Shop tanks<svg class="o-menu__dropIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <ul class="o-menu__dropList" id="menu-tanks">
-            <li><a class="o-menu__subLink" href="glass-tanks.html" data-menu-sublink="8" data-nav-item="glass-tanks">Glass tanks</a></li>
-            <li><a class="o-menu__subLink" href="acrylic-tanks.html" data-menu-sublink="7" data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
+            <li><a class="o-menu__subLink" href="glass-tanks.html" data-menu-sublink="9" data-nav-item="glass-tanks">Glass tanks</a></li>
+            <li><a class="o-menu__subLink" href="acrylic-tanks.html" data-menu-sublink="8" data-nav-item="acrylic-tanks">Acrylic tanks</a></li>
           </ul>
         </li>
         <li class="o-menu__mainItem"><a class="o-menu__link tx-h3" href="gallery.html" data-menu-link data-nav-item="gallery">Gallery</a></li>
@@ -231,7 +240,6 @@
 
     <nav class="o-menu__subnav" aria-label="More pages">
       <ul>
-        <li><a class="a-link tx-cta" href="services.html" data-menu-secondary>Services</a></li>
         <li><a class="a-link tx-cta" href="quote.html" data-menu-secondary>Get a quote</a></li>
         <li><a class="a-link tx-cta" href="contact.html" data-menu-secondary>Contact</a></li>
       </ul>
@@ -309,7 +317,8 @@
 <li><button class="m-rangeTile" type="button" data-shop-range="shallow-peninsula"><span class="m-rangeTile__media"><picture><source type="image/webp" srcset="assets/images/products/150-GAL-72x24x20-SHALLOW-PENINSULA-TANK-LOW-IRON-GLASS-AQUARIUM-s-watermark-400.webp 400w, assets/images/products/150-GAL-72x24x20-SHALLOW-PENINSULA-TANK-LOW-IRON-GLASS-AQUARIUM-s-watermark-800.webp 800w" sizes="(min-width: 1025px) 14vw, 40vw"><img src="assets/images/products/150-GAL-72x24x20-SHALLOW-PENINSULA-TANK-LOW-IRON-GLASS-AQUARIUM-s-watermark.png" alt="" width="800" height="800" loading="lazy" decoding="async"></picture></span><span class="m-rangeTile__label">Shallow Peninsula</span><span class="m-rangeTile__count">3 tanks</span></button></li>
 <li><button class="m-rangeTile" type="button" data-shop-range="marine"><span class="m-rangeTile__media"><picture><source type="image/webp" srcset="assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND-400.webp 400w, assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND-800.webp 800w, assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND-1024.webp 1024w" sizes="(min-width: 1025px) 14vw, 40vw"><img src="assets/images/products/40-GAL-24x20x20-MARINE-AQUARIUM-BLACK-STAND.png" alt="" width="1024" height="1024" loading="lazy" decoding="async"></picture></span><span class="m-rangeTile__label">Marine</span><span class="m-rangeTile__count">3 tanks</span></button></li>
 <li><button class="m-rangeTile" type="button" data-shop-range="aio"><span class="m-rangeTile__media"><picture><source type="image/webp" srcset="assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well-400.webp 400w, assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well-800.webp 800w, assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well-1024.webp 1024w" sizes="(min-width: 1025px) 14vw, 40vw"><img src="assets/images/products/90-GAL-36X24X24-AIO-TANK-BLACK-WOOD-STAND2-s-awatermark-final-for-120-as-well.png" alt="" width="1024" height="1024" loading="lazy" decoding="async"></picture></span><span class="m-rangeTile__label">All-in-One</span><span class="m-rangeTile__count">2 tanks</span></button></li>
-<li><button class="m-rangeTile" type="button" data-shop-range="specialty"><span class="m-rangeTile__media"><picture><source type="image/webp" srcset="assets/images/products/120-s-gal-low-iron-glass-tank-400.webp 400w, assets/images/products/120-s-gal-low-iron-glass-tank-800.webp 800w" sizes="(min-width: 1025px) 14vw, 40vw"><img src="assets/images/products/120-s-gal-low-iron-glass-tank.jpg" alt="" width="800" height="800" loading="lazy" decoding="async"></picture></span><span class="m-rangeTile__label">Specialty</span><span class="m-rangeTile__count">5 tanks</span></button></li>
+<li><button class="m-rangeTile" type="button" data-shop-range="specialty"><span class="m-rangeTile__media"><picture><source type="image/webp" srcset="assets/images/products/120-s-gal-low-iron-glass-tank-400.webp 400w, assets/images/products/120-s-gal-low-iron-glass-tank-800.webp 800w" sizes="(min-width: 1025px) 14vw, 40vw"><img src="assets/images/products/120-s-gal-low-iron-glass-tank.jpg" alt="" width="800" height="800" loading="lazy" decoding="async"></picture></span><span class="m-rangeTile__label">Specialty</span><span class="m-rangeTile__count">3 tanks</span></button></li>
+<li><button class="m-rangeTile" type="button" data-shop-range="retail"><span class="m-rangeTile__media"><picture><source type="image/webp" srcset="assets/images/products/BETA-TANK-SYSTEM-34-13-59-400.webp 400w, assets/images/products/BETA-TANK-SYSTEM-34-13-59-800.webp 800w" sizes="(min-width: 1025px) 14vw, 40vw"><img src="assets/images/products/BETA-TANK-SYSTEM-34-13-59.jpg" alt="" width="800" height="800" loading="lazy" decoding="async"></picture></span><span class="m-rangeTile__label">Retail</span><span class="m-rangeTile__count">2 tanks</span></button></li>
 
     </ul>
   </div>
@@ -336,6 +345,7 @@
         <button class="o-shop__chip" type="button" data-shop-range="marine" aria-pressed="false">Marine</button>
         <button class="o-shop__chip" type="button" data-shop-range="aio" aria-pressed="false">All-in-One</button>
         <button class="o-shop__chip" type="button" data-shop-range="specialty" aria-pressed="false">Specialty</button>
+        <button class="o-shop__chip" type="button" data-shop-range="retail" aria-pressed="false">Retail</button>
       </div>
       <label class="o-shop__sort">
         <span>Sort by</span>
@@ -848,11 +858,11 @@
     </div>
   </a>
 </article>
-<article class="m-tankCard" data-tank data-range="specialty" data-price="1499.00" data-gallons="0" data-name="beta tank system 34×13×59">
+<article class="m-tankCard" data-tank data-range="retail" data-price="1499.00" data-gallons="0" data-name="beta tank system 34×13×59">
   <a class="m-tankCard__link" href="product/beta-tank-system-34x13x59.html">
     <div class="m-tankCard__media"><picture><source type="image/webp" srcset="assets/images/products/BETA-TANK-SYSTEM-34-13-59-400.webp 400w, assets/images/products/BETA-TANK-SYSTEM-34-13-59-800.webp 800w" sizes="(min-width: 1025px) 22vw, (min-width: 641px) 45vw, 90vw"><img src="assets/images/products/BETA-TANK-SYSTEM-34-13-59.jpg" alt="Beta Tank System 34×13×59" width="800" height="800" loading="lazy" decoding="async"></picture></div>
     <div class="m-tankCard__body">
-      <p class="m-tankCard__range">Specialty</p>
+      <p class="m-tankCard__range">Retail</p>
       <h3 class="m-tankCard__name">Beta Tank System 34×13×59</h3>
       <ul class="m-tankCard__chips"><li>34 × 13 × 59″</li></ul>
       <div class="m-tankCard__foot"><span class="m-tankCard__price">$1,499.00</span><span class="m-tankCard__cta">View tank <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
@@ -881,11 +891,11 @@
     </div>
   </a>
 </article>
-<article class="m-tankCard" data-tank data-range="specialty" data-price="2499.99" data-gallons="0" data-name="retail aquarium system 48x20x92">
+<article class="m-tankCard" data-tank data-range="retail" data-price="2499.99" data-gallons="0" data-name="retail aquarium system 48x20x92">
   <a class="m-tankCard__link" href="product/retail-aquarium-system-48x20x92.html">
     <div class="m-tankCard__media"><picture><source type="image/webp" srcset="assets/images/products/RETAIL-AQUARIUM-SYSTEM-48X20X92-400.webp 400w, assets/images/products/RETAIL-AQUARIUM-SYSTEM-48X20X92-800.webp 800w" sizes="(min-width: 1025px) 22vw, (min-width: 641px) 45vw, 90vw"><img src="assets/images/products/RETAIL-AQUARIUM-SYSTEM-48X20X92.jpg" alt="Retail Aquarium System 48X20X92" width="800" height="800" loading="lazy" decoding="async"></picture></div>
     <div class="m-tankCard__body">
-      <p class="m-tankCard__range">Specialty</p>
+      <p class="m-tankCard__range">Retail</p>
       <h3 class="m-tankCard__name">Retail Aquarium System 48X20X92</h3>
       <ul class="m-tankCard__chips"><li>48 × 20 × 92″</li></ul>
       <div class="m-tankCard__foot"><span class="m-tankCard__price">$2,499.99</span><span class="m-tankCard__cta">View tank <svg class="a-svg" aria-hidden="true"><use href="#i-arrow-right"/></svg></span></div>
@@ -1113,6 +1123,12 @@
   </a>
 </article>
 
+      <!-- Shown by pages.js only while its range is selected (client, 16 Oct). -->
+      <div class="m-soonCard" data-shop-soon="specialty" hidden>
+        <p class="m-tankCard__range">Specialty</p>
+        <p class="m-soonCard__title">More items coming soon</p>
+        <p class="m-soonCard__text">Looking for something specific? <a href="quote.html">Ask us for a quote</a></p>
+      </div>
     </div>
     <p class="o-shop__empty" data-shop-empty hidden>No tanks in this range yet.</p>
     <div class="o-shop__more">
@@ -1142,7 +1158,8 @@
 <tr><th scope="row"><button type="button" data-shop-range="shallow-peninsula">Shallow Peninsula</button></th><td>3</td><td>100 – 150 gal</td><td>from $1,499.99</td></tr>
 <tr><th scope="row"><button type="button" data-shop-range="marine">Marine</button></th><td>3</td><td>40 – 80 gal</td><td>from $1,499.99</td></tr>
 <tr><th scope="row"><button type="button" data-shop-range="aio">All-in-One</button></th><td>2</td><td>90 – 120 gal</td><td>from $1,199.99</td></tr>
-<tr><th scope="row"><button type="button" data-shop-range="specialty">Specialty</button></th><td>5</td><td>65 – 85 gal</td><td>from $679.99</td></tr>
+<tr><th scope="row"><button type="button" data-shop-range="specialty">Specialty</button></th><td>3</td><td>65 – 85 gal</td><td>from $679.99</td></tr>
+<tr><th scope="row"><button type="button" data-shop-range="retail">Retail</button></th><td>2</td><td>—</td><td>from $1,499.00</td></tr>
 
           </tbody>
         </table>
@@ -1176,9 +1193,6 @@
 <section class="o-prefooter" aria-labelledby="estimate-title">
   <span class="o-prefooter__symbol" aria-hidden="true"></span>
   <div class="row">
-    <div class="o-prefooter__logo">
-      <picture><source type="image/webp" srcset="assets/images/brand/logo-2026-400.webp 400w, assets/images/brand/logo-2026-800.webp 800w" sizes="28rem"><img src="assets/images/brand/logo-2026.png" alt="Acrylic Pros" width="2070" height="534" loading="lazy" decoding="async"></picture>
-    </div>
     <h2 class="tx-h3 o-prefooter__title" id="estimate-title">Request a<br><strong>free estimate</strong></h2>
     <div class="o-prefooter__contentWrapper">
       <p class="tx-p o-prefooter__description">Contact us today for a free estimate regarding your new project and to learn more about our aquarium design company.</p>

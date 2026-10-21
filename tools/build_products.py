@@ -48,6 +48,7 @@ RANGES = [
     ("marine", "Marine"),
     ("aio", "All-in-One"),
     ("specialty", "Specialty"),
+    ("retail", "Retail"),
 ]
 RANGE_LABELS = dict(RANGES)
 
